@@ -1,0 +1,6 @@
+framework module DVESecurity {
+  umbrella header "DVESecurity.h"
+
+  export *
+  module * { export * }
+}

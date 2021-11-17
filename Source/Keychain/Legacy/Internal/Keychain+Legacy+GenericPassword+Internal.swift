@@ -1,0 +1,10 @@
+// Copyright (c) diva-e NEXT GmbH. All rights reserved.
+// Licensed under the MIT License.
+
+import Foundation
+
+#if os(macOS)
+extension Keychain.Legacy.GenericPassword {
+    static let itemClass: Keychain.ItemClass = .genericPassword
+}
+#endif

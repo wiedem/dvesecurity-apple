@@ -1,0 +1,12 @@
+.DS_Store
+.idea
+.build
+.swiftpm
+*.bcsymbolmap
+Package.resolved
+xcuserdata/
+DerivedData/
+Carthage/
+Configuration/Local.xcconfig
+CSource/ObjC/ASN.1/converter-example.*
+CSource/ObjC/ASN.1/Makefile.*

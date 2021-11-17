@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "824E0BF3-F087-4B9E-B5FD-AAECA3E34EFE",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "InteractiveTestCase",
+        "InteractiveTestCaseDevice",
+        "InteractiveTestCaseiOS13",
+        "InteractiveTestCaseiOS13Device",
+        "InteractiveTestCaseiOSDevice"
+      ],
+      "target" : {
+        "containerPath" : "container:DVESecurity.xcodeproj",
+        "identifier" : "65002EF6252E594E0001F9E8",
+        "name" : "DVESecurityInteractiveTests"
+      }
+    }
+  ],
+  "version" : 1
+}

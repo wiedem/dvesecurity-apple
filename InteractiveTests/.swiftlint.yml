@@ -1,0 +1,6 @@
+disabled_rules:
+  - line_length
+  - force_cast
+  - trailing_comma
+  - opening_brace
+  - function_body_length

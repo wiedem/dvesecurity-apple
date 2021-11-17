@@ -1,0 +1,9 @@
+// Copyright (c) diva-e NEXT GmbH. All rights reserved.
+// Licensed under the MIT License.
+
+PRODUCT_DOMAIN =
+DEVELOPMENT_TEAM[sdk=iphonesimulator*] =
+DEVELOPMENT_TEAM[sdk=iphoneos*] =
+DEVELOPMENT_TEAM[sdk=macos*] =
+
+#include? "Local.xcconfig"

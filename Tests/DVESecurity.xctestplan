@@ -1,0 +1,70 @@
+{
+  "configurations" : [
+    {
+      "id" : "512F28D5-0A8E-4ED7-9447-6E078184D5B7",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:DVESecurity.xcodeproj",
+          "identifier" : "6512249524CB0E3A00A2CEF4",
+          "name" : "DVESecurity"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "Keychain_AESTestsiOS13Device\/testQueryWithApplicationPassword()",
+        "Keychain_AESTestsiOS13Device\/testQueryWithAuthenticationContext()",
+        "Keychain_AESTestsiOS13Device\/testQueryWithUserPresence()",
+        "Keychain_AESTestsiOSDevice\/testSaveAndQueryWithApplicationPassword()",
+        "Keychain_ECCTestsiOS13Device\/testQueryWithApplicationPassword()",
+        "Keychain_ECCTestsiOS13Device\/testQueryWithAuthenticationContext()",
+        "Keychain_ECCTestsiOS13Device\/testQueryWithUserPresence()",
+        "Keychain_ECCTestsiOSDevice\/testImplicitSaveAndQueryWithApplicationPassword()",
+        "Keychain_ECCTestsiOSDevice\/testSaveAndQueryWithApplicationPassword()",
+        "Keychain_GenericPasswordTestsiOS13Device\/testQueryWithApplicationPassword()",
+        "Keychain_GenericPasswordTestsiOS13Device\/testQueryWithAuthenticationContext()",
+        "Keychain_GenericPasswordTestsiOS13Device\/testQueryWithUserPresence()",
+        "Keychain_GenericPasswordTestsiOSDevice\/testQueryWithApplicationPassword()",
+        "Keychain_InternetPasswordTestsiOS13Device\/testQueryWithApplicationPassword()",
+        "Keychain_InternetPasswordTestsiOS13Device\/testQueryWithAuthenticationContext()",
+        "Keychain_InternetPasswordTestsiOS13Device\/testQueryWithUserPresence()",
+        "Keychain_InternetPasswordTestsiOSDevice\/testQueryWithApplicationPassword()",
+        "Keychain_RSATestsiOS13Device\/testQueryWithApplicationPassword()",
+        "Keychain_RSATestsiOS13Device\/testQueryWithAuthenticationContext()",
+        "Keychain_RSATestsiOS13Device\/testQueryWithUserPresence()",
+        "Keychain_RSATestsiOSDevice\/testImplicitSaveAndQueryWithApplicationPassword()",
+        "Keychain_RSATestsiOSDevice\/testSaveAndQueryWithApplicationPassword()",
+        "Keychain_SecureEnclaveTestsiOS13\/testQueryWithApplicationPassword()",
+        "Keychain_SecureEnclaveTestsiOS13\/testQueryWithAuthenticationContext()",
+        "Keychain_SecureEnclaveTestsiOS13\/testQueryWithUserPresence()",
+        "TestCaseCombine",
+        "TestCaseCryptoKit",
+        "TestCaseDevice",
+        "TestCaseLegacyKeychain",
+        "TestCaseMacOS",
+        "TestCaseiOS",
+        "TestCaseiOS13",
+        "TestCaseiOS13Device",
+        "TestCaseiOSDevice",
+        "UITestCase",
+        "UserInteractiveTests"
+      ],
+      "target" : {
+        "containerPath" : "container:DVESecurity.xcodeproj",
+        "identifier" : "6512249E24CB0E3A00A2CEF4",
+        "name" : "DVESecurityTests"
+      }
+    }
+  ],
+  "version" : 1
+}

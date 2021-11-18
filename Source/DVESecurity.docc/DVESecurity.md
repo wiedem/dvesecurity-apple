@@ -23,7 +23,6 @@ The framework provides easy access to functionalities provided by the [Security]
 - ``KeychainError``
 
 ### Cryptography
-- <doc:Crypto-GettingStarted>
 - ``Crypto``
 - ``SymmetricKey``
 - ``RSAKey``

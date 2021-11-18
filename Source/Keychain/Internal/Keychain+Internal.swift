@@ -24,12 +24,12 @@ extension Keychain {
     }
 
     static func dataResultItemsToString(_ result: CFTypeRef) throws -> [String] {
-        guard let dataItems = result as? [Data] else {
+        guard let dataItems = result as? [NSData] else {
             throw KeychainError.resultError
         }
 
         return try dataItems.map {
-            guard let string = String(data: $0, encoding: .utf8) else {
+            guard let string = String(data: Data(referencing: $0), encoding: .utf8) else {
                 throw KeychainError.resultError
             }
             return string
@@ -37,10 +37,12 @@ extension Keychain {
     }
 
     static func dataResultItemsToKeys<K>(_ result: CFTypeRef) throws -> [K] where K: RawKeyConvertible {
-        guard let dataItems = result as? [Data] else {
+        guard let dataItems = result as? [NSData] else {
             throw KeychainError.resultError
         }
-        return try dataItems.map { try K(rawKeyRepresentation: $0) }
+        return try dataItems.map {
+            try K(rawKeyRepresentation: Data(referencing: $0))
+        }
     }
 
     static func attributesTransform<A>(_ result: CFTypeRef) throws -> [A] where A: KeychainAttributesConvertible {

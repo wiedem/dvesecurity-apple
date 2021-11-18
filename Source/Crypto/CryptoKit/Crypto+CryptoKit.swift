@@ -61,8 +61,16 @@ extension Curve25519.Signing.PrivateKey: RawKeyConvertible {
 
 @available(iOS 13.0, *)
 extension CryptoKit.SymmetricKey: SymmetricKey & RawKeyConvertible {
-    public var rawKeyRepresentation: Data { dataNoCopy }
+    /// The raw representation of the key.
+    ///
+    /// The raw data of the key is copied in memory and returned as a `Data` Instance.
+    public var rawKeyRepresentation: Data {
+        withUnsafeBytes { Data($0) }
+    }
 
+    /// Creates a key from the given raw representation of the key.
+    ///
+    /// - Parameter rawKeyRepresentation: Raw representation of the key.
     public init<Bytes>(rawKeyRepresentation: Bytes) where Bytes: ContiguousBytes {
         self.init(data: rawKeyRepresentation)
     }
@@ -72,8 +80,14 @@ extension CryptoKit.SymmetricKey: SymmetricKey & RawKeyConvertible {
 extension CryptoKit.SecureEnclave.P256.Signing.PrivateKey: RawKeyConvertible {
     public var rawKeyRepresentation: Data { dataRepresentation }
 
+    /// Creates a P-256 private key for signing from a raw key representation of the key.
+    ///
+    /// The raw data passed is copied in memory as needed to initialize the key.
+    ///
+    /// - Parameter rawKeyRepresentation: Raw representation of the key.
     public init<Bytes>(rawKeyRepresentation: Bytes) throws where Bytes: ContiguousBytes {
-        try self.init(dataRepresentation: rawKeyRepresentation.dataNoCopy, authenticationContext: nil)
+        let data = rawKeyRepresentation.withUnsafeBytes { Data($0) }
+        try self.init(dataRepresentation: data, authenticationContext: nil)
     }
 }
 
@@ -81,8 +95,14 @@ extension CryptoKit.SecureEnclave.P256.Signing.PrivateKey: RawKeyConvertible {
 extension CryptoKit.SecureEnclave.P256.KeyAgreement.PrivateKey: RawKeyConvertible {
     public var rawKeyRepresentation: Data { dataRepresentation }
 
+    /// Creates a P-256 private key for signing from a raw key representation of the key.
+    ///
+    /// The raw data passed is copied in memory as needed to initialize the key.
+    ///
+    /// - Parameter rawKeyRepresentation: Raw representation of the key.
     public init<Bytes>(rawKeyRepresentation: Bytes) throws where Bytes: ContiguousBytes {
-        try self.init(dataRepresentation: rawKeyRepresentation.dataNoCopy, authenticationContext: nil)
+        let data = rawKeyRepresentation.withUnsafeBytes { Data($0) }
+        try self.init(dataRepresentation: data, authenticationContext: nil)
     }
 }
 

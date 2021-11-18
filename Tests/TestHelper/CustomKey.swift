@@ -4,11 +4,7 @@
 @testable import DVESecurity
 import Foundation
 
-struct CustomKey: RawKeyConvertible, Equatable {
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.value == rhs.value
-    }
-
+struct CustomKey: RawKeyConvertible {
     var rawKeyRepresentation: Data {
         value.data(using: .utf8)!
     }
@@ -22,5 +18,11 @@ struct CustomKey: RawKeyConvertible, Equatable {
     init<Bytes>(rawKeyRepresentation: Bytes) where Bytes: ContiguousBytes {
         let data = rawKeyRepresentation.withUnsafeBytes { Data($0) }
         value = String(data: data, encoding: .utf8)!
+    }
+}
+
+extension CustomKey: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.value == rhs.value
     }
 }

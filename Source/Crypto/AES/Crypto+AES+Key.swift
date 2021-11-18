@@ -126,17 +126,17 @@ public extension Crypto.AES.Key {
         let derivedKeyLength = keySize.sizeInBytes
         var derivedKey = Data(count: derivedKeyLength)
 
-        let result = derivedKey.withUnsafeMutableBytes { (derivedKeyPointer: UnsafeMutableRawBufferPointer) in
-            passwordData.withUnsafeBytes { (passwordPointer: UnsafeRawBufferPointer) in
-                saltData.withUnsafeBytes { (saltPointer: UnsafeRawBufferPointer) in
+        let result = derivedKey.withUnsafeMutableBytes { derivedKeyBuffer in
+            passwordData.withUnsafeBytes { passwordBuffer in
+                saltData.withUnsafeBytes { saltBuffer in
                     CCKeyDerivationPBKDF(CCPBKDFAlgorithm(kCCPBKDF2),
-                                         passwordPointer.bindMemory(to: Int8.self).baseAddress!,
-                                         password.count,
-                                         saltPointer.bindMemory(to: UInt8.self).baseAddress!,
-                                         saltData.count,
+                                         passwordBuffer.bindMemory(to: Int8.self).baseAddress!,
+                                         passwordBuffer.count,
+                                         saltBuffer.bindMemory(to: UInt8.self).baseAddress!,
+                                         saltBuffer.count,
                                          pseudoRandomAlgorithm.ccryptoValue,
                                          rounds,
-                                         derivedKeyPointer.bindMemory(to: UInt8.self).baseAddress!,
+                                         derivedKeyBuffer.bindMemory(to: UInt8.self).baseAddress!,
                                          derivedKeyLength)
                 }
             }

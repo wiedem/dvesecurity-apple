@@ -32,9 +32,9 @@ Such macOS applications do not have access to the Data Protection Keychain.
 
 ### Passwords
 - ``Keychain/InternetPassword``
-- ``Keychain/InternetPasswordError``
-
 - ``Keychain/GenericPassword``
+
+- ``Keychain/InternetPasswordError``
 - ``Keychain/GenericPasswordError``
 
 ### RSA Keys

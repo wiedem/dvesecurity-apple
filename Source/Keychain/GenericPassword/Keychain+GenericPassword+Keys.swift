@@ -74,7 +74,7 @@ extension Keychain.GenericPassword {
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication.
     ///
-    /// - Returns: The password for the specified account and service, or `nil` if no item was found.
+    /// - Returns: The key for the specified account and service, or `nil` if no item was found.
     open class func queryKey<K>(
         forAccount account: String,
         service: String,

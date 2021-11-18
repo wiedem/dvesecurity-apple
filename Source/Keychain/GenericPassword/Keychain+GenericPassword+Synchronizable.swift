@@ -5,11 +5,11 @@ import Foundation
 import LocalAuthentication
 
 extension Keychain.GenericPassword {
-    /// Search the keychain for a generic password which is synced via iCloud.
+    /// Searches the keychain for a synchronizable generic password.
     ///
     /// - Parameters:
-    ///   - account: Specifies the account name for this password.
-    ///   - service: Specifies the service associated with this password.
+    ///   - account: Specifies the account name for the password.
+    ///   - service: Specifies the service associated with the password.
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
     open class func querySynchronizable(
@@ -26,14 +26,14 @@ extension Keychain.GenericPassword {
         Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString, completion: completion)
     }
 
-    /// Save a generic password to the keychain for a specific account and service with a specific access control which is synced via iCloud.
+    /// Saves a generic password to the keychain for a specific account and service with a specific access control which is synced via iCloud.
     ///
     /// The synchronizable entry in the keychain is uniquely identified by the account name and the associated service.
     ///
     /// - Parameters:
     ///   - password: Specifies the password to save.
-    ///   - account: Specifies the account name for this password.
-    ///   - service: Specifies the service associated with this password.
+    ///   - account: Specifies the account name for the password.
+    ///   - service: Specifies the service associated with the password.
     ///   - accessGroup: Keychain Access group for which the save should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - accessibility: Indicates when your application needs access to an item's data. You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
@@ -60,7 +60,7 @@ extension Keychain.GenericPassword {
         try Keychain.saveItem(query: query)
     }
 
-    /// Updates a generic password in the keychain for a specific account and service which is synced via iCloud.
+    /// Updates a synchronizable generic password in the keychain for a specific account and service.
     ///
     /// The synchronizable entry in the keychain is uniquely identified by the account name and the associated service.
     ///
@@ -86,7 +86,7 @@ extension Keychain.GenericPassword {
         try Keychain.updateItem(query: query)
     }
 
-    /// Updates or saves a generic password in the keychain for a specific account and service which is synced via iCloud.
+    /// Updates or saves a synchronizable generic password in the keychain for a specific account and service.
     ///
     /// The synchronizable entry in the keychain is uniquely identified by the account name and the associated service.
     ///
@@ -115,7 +115,7 @@ extension Keychain.GenericPassword {
         }
     }
 
-    /// Deletes a generic password in the keychain for a specific account and service.
+    /// Deletes a synchronizable generic password in the keychain for a specific account and service.
     ///
     /// The synchronizable entry in the keychain is uniquely identified by the account name and the associated service.
     ///
@@ -144,11 +144,11 @@ extension Keychain.GenericPassword {
 
 @available(iOS 13.0, *)
 extension Keychain.GenericPassword {
-    /// Search the keychain for a generic password.
+    /// Searches the keychain for a synchronizable generic password.
     ///
     /// - Parameters:
-    ///   - account: Specifies the account name for this password.
-    ///   - service: Specifies the service associated with this password.
+    ///   - account: Specifies the account name for the password.
+    ///   - service: Specifies the service associated with the password.
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///
     /// - Returns: The password, or `nil` if no password was found for this account and service.

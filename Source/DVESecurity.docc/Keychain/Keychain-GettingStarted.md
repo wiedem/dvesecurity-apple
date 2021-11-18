@@ -8,9 +8,9 @@ DVESecurity makes it easy to use the keychain APIs and prevents incorrect use wh
 ## Keychain Types
 On iOS, only the modern `Data Protection Keychain` of the system is available. All functionalities for this keychain type can be found in the ``Keychain`` container.
 
-On macOS, in addition to the modern `Data Protection Keychain`, there are legacy file-based keychains. macOS offers both a modern and a legacy keychain type as system keychains.
+On macOS, in addition to the modern `Data Protection Keychain`, there are legacy file-based keychains.
 
-In addition, macOS apps can also create and use their own legacy keychain files, which are independent of the system keychain. The functionality for legacy keychain types is contained in the ``Keychain/Legacy`` type.
+macOS offers both a modern and a legacy keychain type as system keychains. In addition, macOS apps can also create and use their own legacy keychain files, which are independent of the system keychain. The functionality for legacy keychain types is contained in the ``Keychain/Legacy`` type.
 
 Using the `Data Protection Keychain` on macOS requires that the application has an `Application Identifier`. While all iOS apps usually have the required entitlement set, this usually has to be explicitly done for macOS apps.
 

@@ -35,6 +35,24 @@ class Keychain_GenericPassword_SynchronizableTests: XCTestCase {
         expect(queriedSynchronizedPassword) == synchronizedPassword
     }
 
+    func testSaveAndQueryKey() throws {
+        let key = CustomKey(value: password)
+        let synchronizedKey = CustomKey(value: synchronizedPassword)
+
+        try Keychain.GenericPassword.saveKey(key, forAccount: account, service: service)
+        try Keychain.GenericPassword.saveSynchronizableKey(synchronizedKey, forAccount: account, service: service)
+
+        let queriedKey: CustomKey? = try wait(description: "Keychain query") {
+            Keychain.GenericPassword.queryKey(forAccount: account, service: service, completion: $0)
+        }
+        let queriedSynchronizedKey: CustomKey? = try wait(description: "Keychain query") {
+            Keychain.GenericPassword.querySynchronizableKey(forAccount: account, service: service, completion: $0)
+        }
+
+        expect(queriedKey) == key
+        expect(queriedSynchronizedKey) == synchronizedKey
+    }
+
     func testSavingWithUnconfiguredAccessGroup() {
         expect {
             try Keychain.GenericPassword.saveSynchronizable(self.password, forAccount: self.account, service: self.service, accessGroup: "UnconfiguredAccessGroup")
@@ -84,14 +102,14 @@ class Keychain_GenericPassword_SynchronizableTests: XCTestCase {
         try Keychain.GenericPassword.saveSynchronizable(synchronizedPassword, forAccount: account, service: service)
 
         // Delete unsynced password and query both
-        expect(try Keychain.GenericPassword.delete(forAccount: self.account, service: self.service)) == true // swiftformat:disable:this --redundantSelf
-        expect(try self.queryPassword(synchronizable: false))
-            .to(beNil())
-        expect(try self.queryPassword(synchronizable: true))
-            == synchronizedPassword
+        let result1 = try Keychain.GenericPassword.delete(forAccount: account, service: service)
+        expect(result1) == true
+        expect(try self.queryPassword(synchronizable: false)).to(beNil())
+        expect(try self.queryPassword(synchronizable: true)) == synchronizedPassword
 
         // Delete synced password and query both
-        expect(try Keychain.GenericPassword.deleteSynchronizable(forAccount: self.account, service: self.service)) == true // swiftformat:disable:this --redundantSelf
+        let result2 = try Keychain.GenericPassword.deleteSynchronizable(forAccount: account, service: service)
+        expect(result2) == true
         expect(try self.queryPassword(synchronizable: false)).to(beNil())
         expect(try self.queryPassword(synchronizable: true)).to(beNil())
     }

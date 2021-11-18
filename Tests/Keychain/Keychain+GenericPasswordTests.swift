@@ -42,6 +42,17 @@ class Keychain_GenericPasswordTests: XCTestCase {
         expect(items?.map(\.account)).to(contain(account1, account2))
     }
 
+    func testSaveAndQueryKey() throws {
+        let key = CustomKey(value: password)
+
+        try Keychain.GenericPassword.saveKey(key, forAccount: account1, service: service)
+
+        let queriedKey: CustomKey? = try wait(description: "Keychain query") {
+            Keychain.GenericPassword.queryKey(forAccount: self.account1, service: self.service, completion: $0)
+        }
+        expect(queriedKey) == key
+    }
+
     func testQueryItemsWithAttributes() throws {
         try Keychain.GenericPassword.save("Test1", forAccount: account1, service: "service1")
         try Keychain.GenericPassword.save("Test2", forAccount: account2, service: "service2")
@@ -94,17 +105,6 @@ class Keychain_GenericPasswordTests: XCTestCase {
         expect(items?.first?.description).to(beNil())
         expect(items?.first?.comment).to(beNil())
         expect(items?.first?.creator).to(beNil())
-    }
-
-    func testSaveAndQueryKey() throws {
-        let key = CustomKey(value: password)
-
-        try Keychain.GenericPassword.saveKey(key, forAccount: account1, service: service)
-
-        let queriedKey: CustomKey? = try wait(description: "Keychain query") {
-            Keychain.GenericPassword.queryKey(forAccount: self.account1, service: self.service, completion: $0)
-        }
-        expect(queriedKey) == key
     }
 
     func testSavingWithUnconfiguredAccessGroup() {

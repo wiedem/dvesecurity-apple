@@ -50,6 +50,7 @@
 		655F969E27440873002B5C9B /* Optional+SetElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655F969D27440873002B5C9B /* Optional+SetElementTests.swift */; };
 		655F96A12744126D002B5C9B /* ContiguousBytes+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655F96A02744126D002B5C9B /* ContiguousBytes+Data.swift */; };
 		655F96A327441455002B5C9B /* ContiguousBytes+DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655F96A227441455002B5C9B /* ContiguousBytes+DataTests.swift */; };
+		655F96C8274681F7002B5C9B /* Keychain+GenericPassword+SynchronizableKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655F96C7274681F7002B5C9B /* Keychain+GenericPassword+SynchronizableKeys.swift */; };
 		65696CE924E565AE00BA8774 /* Crypto+AES+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65696CE824E565AE00BA8774 /* Crypto+AES+Key.swift */; };
 		65696CEB24E56D6D00BA8774 /* Crypto+AES+Key+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65696CEA24E56D6D00BA8774 /* Crypto+AES+Key+Internal.swift */; };
 		65696CED24E56DB500BA8774 /* Keychain+SymmetricKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65696CEC24E56DB500BA8774 /* Keychain+SymmetricKey.swift */; };
@@ -511,6 +512,7 @@
 		655F969D27440873002B5C9B /* Optional+SetElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+SetElementTests.swift"; sourceTree = "<group>"; };
 		655F96A02744126D002B5C9B /* ContiguousBytes+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContiguousBytes+Data.swift"; sourceTree = "<group>"; };
 		655F96A227441455002B5C9B /* ContiguousBytes+DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContiguousBytes+DataTests.swift"; sourceTree = "<group>"; };
+		655F96C7274681F7002B5C9B /* Keychain+GenericPassword+SynchronizableKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+GenericPassword+SynchronizableKeys.swift"; sourceTree = "<group>"; };
 		65696CE824E565AE00BA8774 /* Crypto+AES+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+AES+Key.swift"; sourceTree = "<group>"; };
 		65696CEA24E56D6D00BA8774 /* Crypto+AES+Key+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+AES+Key+Internal.swift"; sourceTree = "<group>"; };
 		65696CEC24E56DB500BA8774 /* Keychain+SymmetricKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+SymmetricKey.swift"; sourceTree = "<group>"; };
@@ -1562,6 +1564,7 @@
 				657653982735ADED00D20684 /* Keychain+GenericPassword+Keys.swift */,
 				657653962735ADC100D20684 /* Keychain+GenericPassword+Item.swift */,
 				BB35DEB5279590D58C27907D /* Keychain+GenericPassword+Synchronizable.swift */,
+				655F96C7274681F7002B5C9B /* Keychain+GenericPassword+SynchronizableKeys.swift */,
 				6599C00124DF13C90063E210 /* Keychain+GenericPassword+Combine.swift */,
 				91E5735A24DD7A0700C50786 /* Keychain+GenericPassword+Internal.swift */,
 			);
@@ -2184,6 +2187,7 @@
 				91E5735724DC597100C50786 /* CommonCryptoError.swift in Sources */,
 				65696CED24E56DB500BA8774 /* Keychain+SymmetricKey.swift in Sources */,
 				65EF6807273AF40000B2A1C7 /* constr_SET_OF_xer.c in Sources */,
+				655F96C8274681F7002B5C9B /* Keychain+GenericPassword+SynchronizableKeys.swift in Sources */,
 				65EF682D273AF40100B2A1C7 /* OPEN_TYPE.c in Sources */,
 				65EF6839273AF40100B2A1C7 /* INTEGER_print.c in Sources */,
 				657653A1273A87B900D20684 /* Keychain+Legacy+GenericPassword+Internal.swift in Sources */,

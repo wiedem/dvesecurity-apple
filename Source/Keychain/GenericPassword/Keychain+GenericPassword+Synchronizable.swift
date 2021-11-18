@@ -26,28 +26,6 @@ extension Keychain.GenericPassword {
         Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString, completion: completion)
     }
 
-    /// Search the keychain for a generic password.
-    ///
-    /// - Parameters:
-    ///   - account: Specifies the account name for this password.
-    ///   - service: Specifies the service associated with this password.
-    ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
-    ///
-    /// - Returns: The password, or `nil` if no password was found for this account and service.
-    @available(iOS 13.0, *)
-    open class func querySynchronizable(
-        forAccount account: String,
-        service: String,
-        accessGroup: String = Keychain.defaultAccessGroup
-    ) throws -> String? {
-        let itemAttributes: Set<Keychain.ItemAttribute> = [
-            .account(account), .service(service), .accessGroup(accessGroup), .synchronizable(),
-        ]
-
-        let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
-        return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString)
-    }
-
     /// Save a generic password to the keychain for a specific account and service with a specific access control which is synced via iCloud.
     ///
     /// The synchronizable entry in the keychain is uniquely identified by the account name and the associated service.
@@ -161,5 +139,29 @@ extension Keychain.GenericPassword {
 
         let query = Keychain.DeleteItemsQuery(itemClass: itemClass, attributes: itemAttributes)
         return try Keychain.deleteItems(query: query)
+    }
+}
+
+@available(iOS 13.0, *)
+extension Keychain.GenericPassword {
+    /// Search the keychain for a generic password.
+    ///
+    /// - Parameters:
+    ///   - account: Specifies the account name for this password.
+    ///   - service: Specifies the service associated with this password.
+    ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
+    ///
+    /// - Returns: The password, or `nil` if no password was found for this account and service.
+    open class func querySynchronizable(
+        forAccount account: String,
+        service: String,
+        accessGroup: String = Keychain.defaultAccessGroup
+    ) throws -> String? {
+        let itemAttributes: Set<Keychain.ItemAttribute> = [
+            .account(account), .service(service), .accessGroup(accessGroup), .synchronizable(),
+        ]
+
+        let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
+        return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString)
     }
 }

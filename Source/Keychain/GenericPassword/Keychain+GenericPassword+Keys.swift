@@ -29,31 +29,6 @@ extension Keychain.GenericPassword {
         Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToKeys, completion: completion)
     }
 
-    /// Searches the keychain for a key saved as a generic password.
-    ///
-    /// - Parameters:
-    ///   - account: Specifies the account name for the password.
-    ///   - service: Specifies the service associated with the password.
-    ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
-    ///   - authentication: Keychain query authentication.
-    ///
-    /// - Returns: The password for the specified account and service, or `nil` if no item was found.
-    @available(iOS 13.0, *)
-    open class func queryKey<K>(
-        forAccount account: String,
-        service: String,
-        accessGroup: String = Keychain.defaultAccessGroup,
-        authentication: Keychain.QueryAuthentication = .default
-    ) throws -> K? where K: RawKeyConvertible {
-        let itemAttributes: Set<Keychain.ItemAttribute> = [
-            .account(account), .service(service), .accessGroup(accessGroup),
-        ]
-
-        let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
-            .add(authentication)
-        return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToKeys)
-    }
-
     /// Saves a key as a generic password item in the keychain.
     ///
     /// Saves a non-synchronizable key conforming to the ``RawKeyConvertible`` protocol for the specified account and service in the keychain.
@@ -86,5 +61,32 @@ extension Keychain.GenericPassword {
         let query = Keychain.AddItemQuery(itemClass: itemClass, valueData: key.rawKeyRepresentation, attributes: itemAttributes)
             .useAuthenticationContext(authenticationContext)
         try Keychain.saveItem(query: query)
+    }
+}
+
+@available(iOS 13.0, *)
+extension Keychain.GenericPassword {
+    /// Searches the keychain for a key saved as a generic password.
+    ///
+    /// - Parameters:
+    ///   - account: Specifies the account name for the password.
+    ///   - service: Specifies the service associated with the password.
+    ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
+    ///   - authentication: Keychain query authentication.
+    ///
+    /// - Returns: The password for the specified account and service, or `nil` if no item was found.
+    open class func queryKey<K>(
+        forAccount account: String,
+        service: String,
+        accessGroup: String = Keychain.defaultAccessGroup,
+        authentication: Keychain.QueryAuthentication = .default
+    ) throws -> K? where K: RawKeyConvertible {
+        let itemAttributes: Set<Keychain.ItemAttribute> = [
+            .account(account), .service(service), .accessGroup(accessGroup),
+        ]
+
+        let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
+            .add(authentication)
+        return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToKeys)
     }
 }

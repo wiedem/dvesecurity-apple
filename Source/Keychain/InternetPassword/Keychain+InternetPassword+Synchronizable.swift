@@ -48,51 +48,6 @@ extension Keychain.InternetPassword {
         Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString, completion: completion)
     }
 
-    /// Searches the keychain for a unique Internet password entry that is synced via iCloud.
-    ///
-    /// Searches the keychain for a single synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
-    ///
-    /// Since all fields except the `account` are optional, you must ensure that the specified combination of fields identifies a unique entry.
-    ///
-    /// Use the ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)`` or ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)`` method and filter the results with the ``Keychain/InternetPassword/Item/synchronizable`` attribute if you want to use a query which may return multiple items.
-    ///
-    /// - Parameters:
-    ///   - account: Specifies the account name for this password.
-    ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
-    ///   - securityDomain: The internet security domain associated with the password item.
-    ///   - server: Server domain name or IP address associated with the password item.
-    ///   - protocol: Protocol associated with the internet password item.
-    ///   - authenticationType: Authentication scheme associated with the internet password item.
-    ///   - port: Internet port number associated with the internet password item.
-    ///   - path: Path associated with the internet password keychain item.
-    ///
-    /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item.
-    /// - Returns: The password, or nil if no password was found for this account.
-    @available(iOS 13.0, *)
-    open class func queryOneSynchronizable(
-        forAccount account: String,
-        accessGroup: String = Keychain.defaultAccessGroup,
-        securityDomain: String? = nil,
-        server: String? = nil,
-        protocol: Keychain.InternetPassword.NetworkProtocol? = nil,
-        authenticationType: Keychain.InternetPassword.AuthenticationType? = nil,
-        port: UInt16? = nil,
-        path: String? = nil
-    ) throws -> String? {
-        var itemAttributes: Set<Keychain.ItemAttribute> = [
-            .account(account), .accessGroup(accessGroup), .synchronizable(),
-        ]
-        securityDomain.updateMapped({ .securityDomain($0) }, in: &itemAttributes)
-        server.updateMapped({ .server($0) }, in: &itemAttributes)
-        `protocol`.updateMapped({ .protocol($0) }, in: &itemAttributes)
-        authenticationType.updateMapped({ .authenticationType($0) }, in: &itemAttributes)
-        port.updateMapped({ .port($0) }, in: &itemAttributes)
-        path.updateMapped({ .path($0) }, in: &itemAttributes)
-
-        let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
-        return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString)
-    }
-
     /// Adds an internet password to the keychain that is synced via iCloud.
     ///
     /// Saves a synchronizable internet password in the keychain for a specific account and with the given fields.
@@ -287,5 +242,52 @@ extension Keychain.InternetPassword {
 
         let query = Keychain.DeleteItemsQuery(itemClass: itemClass, attributes: itemAttributes)
         return try Keychain.deleteItems(query: query)
+    }
+}
+
+@available(iOS 13.0, *)
+extension Keychain.InternetPassword {
+    /// Searches the keychain for a unique Internet password entry that is synced via iCloud.
+    ///
+    /// Searches the keychain for a single synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
+    ///
+    /// Since all fields except the `account` are optional, you must ensure that the specified combination of fields identifies a unique entry.
+    ///
+    /// Use the ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)`` or ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)`` method and filter the results with the ``Keychain/InternetPassword/Item/synchronizable`` attribute if you want to use a query which may return multiple items.
+    ///
+    /// - Parameters:
+    ///   - account: Specifies the account name for this password.
+    ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
+    ///   - securityDomain: The internet security domain associated with the password item.
+    ///   - server: Server domain name or IP address associated with the password item.
+    ///   - protocol: Protocol associated with the internet password item.
+    ///   - authenticationType: Authentication scheme associated with the internet password item.
+    ///   - port: Internet port number associated with the internet password item.
+    ///   - path: Path associated with the internet password keychain item.
+    ///
+    /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item.
+    /// - Returns: The password, or nil if no password was found for this account.
+    open class func queryOneSynchronizable(
+        forAccount account: String,
+        accessGroup: String = Keychain.defaultAccessGroup,
+        securityDomain: String? = nil,
+        server: String? = nil,
+        protocol: Keychain.InternetPassword.NetworkProtocol? = nil,
+        authenticationType: Keychain.InternetPassword.AuthenticationType? = nil,
+        port: UInt16? = nil,
+        path: String? = nil
+    ) throws -> String? {
+        var itemAttributes: Set<Keychain.ItemAttribute> = [
+            .account(account), .accessGroup(accessGroup), .synchronizable(),
+        ]
+        securityDomain.updateMapped({ .securityDomain($0) }, in: &itemAttributes)
+        server.updateMapped({ .server($0) }, in: &itemAttributes)
+        `protocol`.updateMapped({ .protocol($0) }, in: &itemAttributes)
+        authenticationType.updateMapped({ .authenticationType($0) }, in: &itemAttributes)
+        port.updateMapped({ .port($0) }, in: &itemAttributes)
+        path.updateMapped({ .path($0) }, in: &itemAttributes)
+
+        let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
+        return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString)
     }
 }

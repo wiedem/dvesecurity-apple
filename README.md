@@ -62,7 +62,9 @@ If a test is terminated irregularly, it can happen that keychain entries from th
 The framework is designed to generate a detailed [DocC] documentation.
 It contains the API documentation as well as articles on getting started and code samples.
 
-To generate the DocC documentation of the framework for your app in Xcode, use the `Product > Build Documentation` command for your application or use the corresponding `xcodebuild` command from the command line.
+When the framework is included as a Swift package in Xcode, the documentation can be generated via the `Product > Build Documentation` menu item or the corresponding `xcodebuild` command from the command line.
+
+If the framework is included via Carthage or manually as a library, then the documentation must be generated manually.  
 
 ## Compatibility
 DVESecurity is compatible with iOS 12.4, macOS 10.15 and requires at least Swift 5.4.

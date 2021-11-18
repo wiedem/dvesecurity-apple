@@ -2,6 +2,9 @@
 // Licensed under the MIT License.
 
 import Foundation
+#if canImport(DVESecurity_ObjC)
+import DVESecurity_ObjC
+#endif
 
 /// A type representing a RSA private key.
 public protocol RSAPrivateKey: RSAKey, DefinesSecKeyClass {

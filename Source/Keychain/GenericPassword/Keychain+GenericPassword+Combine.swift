@@ -31,7 +31,7 @@ extension Keychain.GenericPassword {
         .eraseToAnyPublisher()
     }
 
-    /// Returns a publisher that searches the keychain for a generic password which is synced via iCloud.
+    /// Returns a publisher that searches the keychain for a synchronizable generic password.
     ///
     /// The entry in the keychain is uniquely identified by the account name and the associated service.
     ///
@@ -89,7 +89,7 @@ extension Keychain.GenericPassword {
         .eraseToAnyPublisher()
     }
 
-    /// Returns a publisher that saves a generic password, which is synced via iCloud, to the keychain for a specific account and service with a specific accessibility.
+    /// Returns a publisher that saves a synchronizable generic password to the keychain for a specific account and service with a specific accessibility.
     ///
     /// The entry in the keychain is uniquely identified by the account name and the associated service.
     ///

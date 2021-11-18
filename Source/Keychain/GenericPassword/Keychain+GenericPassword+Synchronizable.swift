@@ -26,7 +26,7 @@ extension Keychain.GenericPassword {
         Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString, completion: completion)
     }
 
-    /// Saves a generic password to the keychain for a specific account and service with a specific access control which is synced via iCloud.
+    /// Saves a synchronizable generic password to the keychain for a specific account and service with a specific access control.
     ///
     /// The synchronizable entry in the keychain is uniquely identified by the account name and the associated service.
     ///

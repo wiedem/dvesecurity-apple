@@ -52,7 +52,7 @@ extension Keychain.InternetPassword {
         .eraseToAnyPublisher()
     }
 
-    /// Returns a publisher which searches the keychain for a unique internet password entry that is synced via iCloud..
+    /// Returns a publisher which searches the keychain for a single synchronizable internet password entry.
     ///
     /// The publisher searches the keychain for a single synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
     ///
@@ -149,7 +149,7 @@ extension Keychain.InternetPassword {
         .eraseToAnyPublisher()
     }
 
-    /// Returns a publisher that adds an internet password to the keychain that is synced via iCloud.
+    /// Returns a publisher that adds a synchronizable internet password to the keychain.
     ///
     /// The publisher saves a synchronizable internet password in the keychain for a specific account and with the given fields.
     ///

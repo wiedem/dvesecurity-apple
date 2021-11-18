@@ -12,9 +12,6 @@ extension Keychain {
     }
 
     /// A container for generic password items.
-    ///
-    /// - Note: Due to an issue / limitation in iOS 12, the synchronous query methods are only available for iOS 13 and later.
-    /// With iOS 12 a synchronous query on the main thread leads to a deadlock when the keychain services try to display a UI.
     open class GenericPassword {
         /// Queries generic password items in an access group.
         ///

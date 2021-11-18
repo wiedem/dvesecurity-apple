@@ -5,6 +5,7 @@ import Foundation
 
 public extension Keychain.InternetPassword {
     // swiftlint:disable identifier_name
+    /// Authentication type attribute of an Internet Password keychain entry.
     enum AuthenticationType {
         case NTLM
         case MSN

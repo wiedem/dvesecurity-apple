@@ -4,7 +4,7 @@
 import Foundation
 
 extension Keychain.InternetPassword {
-    /// Searches the keychain for a unique Internet password entry that is synced via iCloud.
+    /// Searches the keychain for a single synchronizable internet password entry.
     ///
     /// Searches the keychain for a single synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
     ///
@@ -14,7 +14,7 @@ extension Keychain.InternetPassword {
     /// Use the ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)`` or ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)`` method and filter the results with the ``Keychain/InternetPassword/Item/synchronizable`` field if you want to use a query which may return multiple items.
     ///
     /// - Parameters:
-    ///   - account: Specifies the account name for this password.
+    ///   - account: Specifies the account name for the password.
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - securityDomain: The internet security domain associated with the password item.
     ///   - server: Server domain name or IP address associated with the password item.
@@ -48,7 +48,7 @@ extension Keychain.InternetPassword {
         Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString, completion: completion)
     }
 
-    /// Adds an internet password to the keychain that is synced via iCloud.
+    /// Adds a synchronizable internet password to the keychain.
     ///
     /// Saves a synchronizable internet password in the keychain for a specific account and with the given fields.
     ///
@@ -100,7 +100,7 @@ extension Keychain.InternetPassword {
         try Keychain.saveItem(query: query)
     }
 
-    /// Updates internet password items in the keychain that are synced via iCloud.
+    /// Updates synchronizable internet password items in the keychain.
     ///
     /// Searches and updates synchronizable internet password items in the keychain of the access group identified by a combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
     ///
@@ -145,7 +145,7 @@ extension Keychain.InternetPassword {
         return try Keychain.updateItem(query: query)
     }
 
-    /// Updates or saves an internet password in the keychain for a specific account which is synced via iCloud.
+    /// Updates or saves a synchronizable internet password in the keychain for a specific account.
     ///
     /// The synchronizable entry in the keychain is uniquely identified by the account name.
     ///
@@ -201,7 +201,7 @@ extension Keychain.InternetPassword {
         }
     }
 
-    /// Deletes internet password items in the keychain which are synced via iCloud.
+    /// Deletes synchronizable internet password items in the keychain.
     ///
     /// Searches and deletes synchronizable internet password items in the keychain of the access group identified by a combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
     ///
@@ -209,7 +209,7 @@ extension Keychain.InternetPassword {
     /// If only a single entry is to be deleted, you must ensure that the combination of fields uniquely identifies an entry.
     ///
     /// - Parameters:
-    ///   - account: Specifies the account name for this password.
+    ///   - account: Specifies the account name for the password.
     ///   - accessGroup: Keychain Access group for which the delete should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - securityDomain: The internet security domain associated with the password item.
     ///   - server: Server domain name or IP address associated with the password item.
@@ -247,7 +247,7 @@ extension Keychain.InternetPassword {
 
 @available(iOS 13.0, *)
 extension Keychain.InternetPassword {
-    /// Searches the keychain for a unique Internet password entry that is synced via iCloud.
+    /// Searches the keychain for a single synchronizable internet password entry.
     ///
     /// Searches the keychain for a single synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
     ///
@@ -256,7 +256,7 @@ extension Keychain.InternetPassword {
     /// Use the ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)`` or ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)`` method and filter the results with the ``Keychain/InternetPassword/Item/synchronizable`` attribute if you want to use a query which may return multiple items.
     ///
     /// - Parameters:
-    ///   - account: Specifies the account name for this password.
+    ///   - account: Specifies the account name for the password.
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - securityDomain: The internet security domain associated with the password item.
     ///   - server: Server domain name or IP address associated with the password item.

@@ -5,6 +5,7 @@ import Foundation
 
 public extension Keychain.InternetPassword {
     // swiftlint:disable identifier_name
+    /// Network protocol attribute of an Internet Password keychain entry.
     enum NetworkProtocol {
         case FTP
         case FTPAccount

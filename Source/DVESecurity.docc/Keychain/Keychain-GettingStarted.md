@@ -27,7 +27,7 @@ Internet password items are usually used for network credentials. The functions 
 ### Generic Passwords
 Generic passwords are entries that are not intended to be assigned to any specific purpose. The value of such entries is usually a data object that must be converted to the appropriate type by the app.
 
-This allows this type to be used when dealing with a credential that cannot be mapped via the other types.
+This allows this type to be used when the credential is not assignable to the other available keychain entry types.
 
 Generic password functionality is encapsulated in the ``Keychain/GenericPassword``container.
 

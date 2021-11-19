@@ -5,28 +5,25 @@ import Foundation
 import LocalAuthentication
 
 public extension Keychain {
-    /// Performs a keychain query for a private RSA key and a given public key.
+    /// Performs a keychain query for a private RSA key and a given private tag data.
     ///
-    /// This function returns a RSA private key instance for the first match found. The type of the returned item has to conform to the `RSAPrivateKey` protocol.
+    /// This function returns a RSA private key instance for the first match found. The type of the returned item has to conform to the ``RSAPrivateKey`` protocol.
     ///
     /// - Parameters:
-    ///   - publicKey: The RSA public key used to search for the corresponding RSA private key item.
     ///   - tag: The private tag data used for the search.
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication. See ``Keychain/QueryAuthentication``  for more details.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-    static func queryKey<K, PK>(
-        for publicKey: K,
-        withTag tag: String? = nil,
+    static func queryKey<PK>(
+        withTag tag: String,
         accessGroup: String = defaultAccessGroup,
         authentication: QueryAuthentication = .default,
         completion: @escaping (Result<PK?, Error>) -> Void
-    ) where
-        K: RSAPublicKey & PKCS1Convertible,
-        PK: RSAPrivateKey & CreateableFromSecKey
-    {
-        let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
-        queryKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup, authentication: authentication, completion: completion)
+    ) where PK: RSAPrivateKey & CreateableFromSecKey {
+        CryptoKey.queryOne(keyClass: PK.secKeyClass,
+                           itemAttributes: [.applicationTag(tag), .accessGroup(accessGroup)],
+                           authentication: authentication,
+                           completion: completion)
     }
 
     /// Performs a keychain query for a private RSA key and a given public key digest.
@@ -55,25 +52,28 @@ public extension Keychain {
                            completion: completion)
     }
 
-    /// Performs a keychain query for a private RSA key and a given private tag data.
+    /// Performs a keychain query for a private RSA key and a given public key.
     ///
-    /// This function returns a RSA private key instance for the first match found. The type of the returned item has to conform to the ``RSAPrivateKey`` protocol.
+    /// This function returns a RSA private key instance for the first match found. The type of the returned item has to conform to the `RSAPrivateKey` protocol.
     ///
     /// - Parameters:
+    ///   - publicKey: The RSA public key used to search for the corresponding RSA private key item.
     ///   - tag: The private tag data used for the search.
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication. See ``Keychain/QueryAuthentication``  for more details.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-    static func queryKey<PK>(
-        withTag tag: String,
+    static func queryKey<K, PK>(
+        for publicKey: K,
+        withTag tag: String? = nil,
         accessGroup: String = defaultAccessGroup,
         authentication: QueryAuthentication = .default,
         completion: @escaping (Result<PK?, Error>) -> Void
-    ) where PK: RSAPrivateKey & CreateableFromSecKey {
-        CryptoKey.queryOne(keyClass: PK.secKeyClass,
-                           itemAttributes: [.applicationTag(tag), .accessGroup(accessGroup)],
-                           authentication: authentication,
-                           completion: completion)
+    ) where
+        K: RSAPublicKey & PKCS1Convertible,
+        PK: RSAPrivateKey & CreateableFromSecKey
+    {
+        let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
+        queryKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup, authentication: authentication, completion: completion)
     }
 
     /// Stores a private RSA key in the keychain.
@@ -187,29 +187,25 @@ public extension Keychain {
 // MARK: - iOS 13
 @available(iOS 13.0, *)
 public extension Keychain {
-    /// Performs a keychain query for a private RSA key and a given public key.
+    /// Performs a keychain query for a private RSA key and a given private tag data.
     ///
     /// This function returns a RSA private key instance for the first match found. The type of the returned item has to conform to the ``RSAPrivateKey`` protocol.
     ///
     /// - Parameters:
-    ///   - publicKey: The RSA public key used to search for the corresponding RSA private key item.
     ///   - tag: The private tag data used for the search.
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication.
     ///
+    /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item. Make sure to use a unique `tag` value when storing a key or combine the search with the SHA1 of the public key.
     /// - Returns: RSA private key instance if the item could be found, `nil` otherwise.
-    static func queryKey<K, PK>(
-        for publicKey: K,
-        withTag tag: String? = nil,
+    static func queryKey<PK>(
+        withTag tag: String,
         accessGroup: String = defaultAccessGroup,
         authentication: QueryAuthentication = .default
-    ) throws -> PK?
-        where
-        K: RSAPublicKey & PKCS1Convertible,
-        PK: RSAPrivateKey & CreateableFromSecKey
-    {
-        let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
-        return try queryKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup, authentication: authentication)
+    ) throws -> PK? where PK: RSAPrivateKey & CreateableFromSecKey {
+        try CryptoKey.queryOne(keyClass: PK.secKeyClass,
+                               itemAttributes: [.accessGroup(accessGroup), .applicationTag(tag)],
+                               authentication: authentication)
     }
 
     /// Performs a keychain query for a private RSA key and a given public key digest.
@@ -222,6 +218,7 @@ public extension Keychain {
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication.
     ///
+    /// - Throws: ``KeychainError/ambiguousQueryResult`` if no `tag` value is specified for the query and more than one private key exists for the specified public key in the access group.
     /// - Returns: RSA private key instance if the item could be found, `nil` otherwise.
     static func queryKey<PK>(
         withPublicKeySHA1 publicKeySHA1: Data,
@@ -240,23 +237,29 @@ public extension Keychain {
                                       authentication: authentication)
     }
 
-    /// Performs a keychain query for a private RSA key and a given private tag data.
+    /// Performs a keychain query for a private RSA key and a given public key.
     ///
     /// This function returns a RSA private key instance for the first match found. The type of the returned item has to conform to the ``RSAPrivateKey`` protocol.
     ///
     /// - Parameters:
+    ///   - publicKey: The RSA public key used to search for the corresponding RSA private key item.
     ///   - tag: The private tag data used for the search.
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication.
     ///
+    /// - Throws: ``KeychainError/ambiguousQueryResult`` if no `tag` value is specified for the query and more than one private key exists for the specified public key in the access group.
     /// - Returns: RSA private key instance if the item could be found, `nil` otherwise.
-    static func queryKey<PK>(
-        withTag tag: String,
+    static func queryKey<K, PK>(
+        for publicKey: K,
+        withTag tag: String? = nil,
         accessGroup: String = defaultAccessGroup,
         authentication: QueryAuthentication = .default
-    ) throws -> PK? where PK: RSAPrivateKey & CreateableFromSecKey {
-        try CryptoKey.queryOne(keyClass: PK.secKeyClass,
-                               itemAttributes: [.accessGroup(accessGroup), .applicationTag(tag)],
-                               authentication: authentication)
+    ) throws -> PK?
+        where
+        K: RSAPublicKey & PKCS1Convertible,
+        PK: RSAPrivateKey & CreateableFromSecKey
+    {
+        let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
+        return try queryKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup, authentication: authentication)
     }
 }

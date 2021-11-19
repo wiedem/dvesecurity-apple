@@ -1,12 +1,8 @@
-# ``DVESecurity/Keychain/queryKey(for:withTag:accessGroup:authentication:)-9zkq7``
+# ``DVESecurity/Keychain/queryKey(withTag:accessGroup:authentication:)-5l8ir``
 
 @Metadata {
     @DocumentationExtension(mergeBehavior: append)
 }
 
-- Note: This method uses the SHA-1 of the public key to find the corresponding private key in the keychain.
-
-The following example shows how you can query a private key of type ``Crypto/ECC/PrivateKey`` from the keychain and the default keychain access group.
-```swift
-let privateKey: Crypto.ECC.PrivateKey? = try Keychain.ECC.queryKey(for: publicKey)
-```
+- Attention: Make sure you use unique tag values for Secure Enclave and regular ECC keys.
+Saving a Secure Enclave ECC key and a regular ECC key with the same tag may cause undefined behavior when trying to query or delete a key via this tag.

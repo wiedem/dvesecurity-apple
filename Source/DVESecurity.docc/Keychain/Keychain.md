@@ -59,12 +59,12 @@ Such macOS applications do not have access to the Data Protection Keychain.
 ### Synchronizable RSA Keys
 - ``Keychain/saveSynchronizableKey(_:withTag:accessGroup:accessibility:label:)-8inbq``
 
-- ``Keychain/querySynchronizableKey(for:withTag:accessGroup:completion:)-1can0``
-- ``Keychain/querySynchronizableKey(for:withTag:accessGroup:)-qk74``
-- ``Keychain/querySynchronizableKey(withPublicKeySHA1:tag:accessGroup:completion:)-6rm2c``
-- ``Keychain/querySynchronizableKey(withPublicKeySHA1:tag:accessGroup:)-93g5y``
 - ``Keychain/querySynchronizableKey(withTag:accessGroup:completion:)-5i7el``
 - ``Keychain/querySynchronizableKey(withTag:accessGroup:)-569jm``
+- ``Keychain/querySynchronizableKey(withPublicKeySHA1:tag:accessGroup:completion:)-6rm2c``
+- ``Keychain/querySynchronizableKey(withPublicKeySHA1:tag:accessGroup:)-93g5y``
+- ``Keychain/querySynchronizableKey(for:withTag:accessGroup:completion:)-1can0``
+- ``Keychain/querySynchronizableKey(for:withTag:accessGroup:)-qk74``
 
 - ``Keychain/deleteSynchronizableKey(_:withTag:accessGroup:)-58t34``
 - ``Keychain/deleteSynchronizablePrivateKey(for:withTag:accessGroup:)-823ri``
@@ -92,10 +92,10 @@ Such macOS applications do not have access to the Data Protection Keychain.
 ### Synchronizable ECC Keys
 - ``Keychain/saveSynchronizableKey(_:withTag:accessGroup:accessibility:label:)-7obmr``
 
-- ``Keychain/querySynchronizableKey(withPublicKeySHA1:tag:accessGroup:completion:)-4cgih``
-- ``Keychain/querySynchronizableKey(withPublicKeySHA1:tag:accessGroup:)-995vh``
 - ``Keychain/querySynchronizableKey(withTag:accessGroup:completion:)-ohxr``
 - ``Keychain/querySynchronizableKey(withTag:accessGroup:)-7dnen``
+- ``Keychain/querySynchronizableKey(withPublicKeySHA1:tag:accessGroup:completion:)-4cgih``
+- ``Keychain/querySynchronizableKey(withPublicKeySHA1:tag:accessGroup:)-995vh``
 - ``Keychain/querySynchronizableKey(for:withTag:accessGroup:completion:)-qqh6``
 - ``Keychain/querySynchronizableKey(for:withTag:accessGroup:)-6hfzy``
 

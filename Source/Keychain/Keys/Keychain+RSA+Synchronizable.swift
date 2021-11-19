@@ -8,16 +8,6 @@ public extension Keychain {
     ///
     /// This function returns a RSA private key instance for the first match found. The type of the returned item has to conform to the `RSAPrivateKey` protocol.
     ///
-    /// The following example shows how you can query a private key of type ``RSAPrivateKey`` from the keychain and the default keychain access group.
-    /// ```swift
-    /// let privateKey: Crypto.RSA.PrivateKey? = try Keychain.queryKey(for: publicKey)
-    /// ```
-    ///
-    /// - Important: If you do not specify a `tag` for the query and more than one private key exists for the specified public key in the access group the error
-    /// ``KeychainError/ambiguousQueryResult`` will be thrown.
-    ///
-    /// - Note: This method uses the SHA-1 of the public key to find the corresponding privte key in the keychain.
-    ///
     /// - Parameters:
     ///   - publicKey: The RSA public key used to search for the corresponding RSA private key item.
     ///   - tag: The private tag data used for the search.
@@ -39,8 +29,6 @@ public extension Keychain {
     /// Performs a keychain query for a synchronized private RSA key and a given public key digest.
     ///
     /// This function returns a RSA private key instance for the first match found. The type of the returned item has to conform to the ``RSAPrivateKey`` protocol.
-    ///
-    /// - Important: If you do not specify a `tag` for the query and more than one private key exists for the specified public key in the access group the error ``KeychainError/ambiguousQueryResult`` will be thrown.
     ///
     /// - Parameters:
     ///   - publicKeySHA1: The RSA public key SHA-1 used to search for the corresponding RSA private key item.
@@ -183,18 +171,12 @@ public extension Keychain {
     ///
     /// This function returns a RSA private key instance for the first match found. The type of the returned item has to conform to the ``RSAPrivateKey`` protocol.
     ///
-    /// The following example shows how you can query a private key of type ``Crypto/ECC/PrivateKey`` from the keychain and the default keychain access group.
-    /// ```swift
-    /// let privateKey: Crypto.RSA.PrivateKey? = try Keychain.queryKey(for: publicKey)
-    /// ```
-    ///
-    /// - Note: This method uses the SHA-1 of the public key to find the corresponding privte key in the keychain.
-    ///
     /// - Parameters:
     ///   - publicKey: The RSA public key used to search for the corresponding RSA private key item.
     ///   - tag: The private tag data used for the search.
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///
+    /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item. Use a `tag` value if needed to make the query unique.
     /// - Returns: RSA private key instance if the item could be found, `nil` otherwise.
     static func querySynchronizableKey<K, PK>(
         for publicKey: K,
@@ -218,6 +200,7 @@ public extension Keychain {
     ///   - tag: The private tag data used for the search.
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///
+    /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item. Use a `tag` value if needed to make the query unique.
     /// - Returns: RSA private key instance if the item could be found, `nil` otherwise.
     static func querySynchronizableKey<PK>(
         withPublicKeySHA1 publicKeySHA1: Data,

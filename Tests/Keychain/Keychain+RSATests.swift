@@ -21,7 +21,7 @@ class Keychain_RSATests: XCTestCase {
         expect(queriedKey).to(beNil())
     }
 
-    func testSaveAndQuery() throws {
+    func testSaveAndQueryWithKey() throws {
         let privateKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
         let publicKey = privateKey.publicKey()
         let keyTag = "Test Tag \(#function)"
@@ -32,6 +32,46 @@ class Keychain_RSATests: XCTestCase {
             Keychain.queryKey(for: publicKey, completion: $0)
         }
         expect(queriedKey?.pkcs1Representation) == privateKey.pkcs1Representation
+    }
+
+    func testAmbiguousQueryWithKey() throws {
+        let privateKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
+        let keyTag1 = "Test Tag 1 \(#function)"
+        let keyTag2 = "Test Tag 2 \(#function)"
+
+        try Keychain.saveKey(privateKey, withTag: keyTag1)
+        try Keychain.saveKey(privateKey, withTag: keyTag2)
+
+        expect {
+            let _: Crypto.RSA.PrivateKey? = try self.wait(description: "Keychain query") {
+                Keychain.queryKey(for: privateKey.publicKey(), completion: $0)
+            }
+        }.to(throwError(KeychainError.ambiguousQueryResult))
+
+        let queriedKey1: Crypto.RSA.PrivateKey? = try wait(description: "Keychain query") {
+            Keychain.queryKey(for: privateKey.publicKey(), withTag: keyTag1, completion: $0)
+        }
+        expect(queriedKey1?.pkcs1Representation) == privateKey.pkcs1Representation
+
+        let queriedKey2: Crypto.RSA.PrivateKey? = try wait(description: "Keychain query") {
+            Keychain.queryKey(for: privateKey.publicKey(), withTag: keyTag2, completion: $0)
+        }
+        expect(queriedKey2?.pkcs1Representation) == privateKey.pkcs1Representation
+    }
+
+    func testAmbiguousQueryWithTag() throws {
+        let privateKey1 = try Crypto.RSA.PrivateKey(bitCount: 2048)
+        let privateKey2 = try Crypto.RSA.PrivateKey(bitCount: 2048)
+        let keyTag = "Test Tag \(#function)"
+
+        try Keychain.saveKey(privateKey1, withTag: keyTag)
+        try Keychain.saveKey(privateKey2, withTag: keyTag)
+
+        expect {
+            let _: Crypto.RSA.PrivateKey? = try self.wait(description: "Keychain query") {
+                Keychain.queryKey(withTag: keyTag, completion: $0)
+            }
+        }.to(throwError(KeychainError.ambiguousQueryResult))
     }
 
     func testSaveMultipleTimesWithDifferentTags() throws {
@@ -57,13 +97,6 @@ class Keychain_RSATests: XCTestCase {
 
         expect(queriedKey1?.pkcs1Representation) == privateKey.pkcs1Representation
         expect(queriedKey2?.pkcs1Representation) == privateKey.pkcs1Representation
-
-        // Query the key without a tag which is supposed to fail.
-        expect {
-            let _: Crypto.RSA.PrivateKey? = try self.wait(description: "Keychain query") {
-                Keychain.queryKey(for: publicKey, completion: $0)
-            }
-        }.to(throwError(KeychainError.ambiguousQueryResult))
     }
 
     func testKeyDeletion() throws {

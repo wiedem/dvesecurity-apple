@@ -21,7 +21,7 @@ class Keychain_ECCTests: XCTestCase {
         expect(queriedKey).to(beNil())
     }
 
-    func testSaveAndQuery() throws {
+    func testSaveAndQueryWithKey() throws {
         let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
         let publicKey = privateKey.publicKey()
         let keyTag = "Test Tag \(#function)"
@@ -32,6 +32,46 @@ class Keychain_ECCTests: XCTestCase {
             Keychain.queryKey(for: publicKey, completion: $0)
         }
         expect(queriedKey?.x963Representation) == privateKey.x963Representation
+    }
+
+    func testAmbiguousQueryWithKey() throws {
+        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let keyTag1 = "Test Tag 1 \(#function)"
+        let keyTag2 = "Test Tag 2 \(#function)"
+
+        try Keychain.saveKey(privateKey, withTag: keyTag1)
+        try Keychain.saveKey(privateKey, withTag: keyTag2)
+
+        expect {
+            let _: Crypto.ECC.PrivateKey? = try self.wait(description: "Keychain query") {
+                Keychain.queryKey(for: privateKey.publicKey(), completion: $0)
+            }
+        }.to(throwError(KeychainError.ambiguousQueryResult))
+
+        let queriedKey1: Crypto.ECC.PrivateKey? = try wait(description: "Keychain query") {
+            Keychain.queryKey(for: privateKey.publicKey(), withTag: keyTag1, completion: $0)
+        }
+        expect(queriedKey1?.x963Representation) == privateKey.x963Representation
+
+        let queriedKey2: Crypto.ECC.PrivateKey? = try wait(description: "Keychain query") {
+            Keychain.queryKey(for: privateKey.publicKey(), withTag: keyTag2, completion: $0)
+        }
+        expect(queriedKey2?.x963Representation) == privateKey.x963Representation
+    }
+
+    func testAmbiguousQueryWithTag() throws {
+        let privateKey1 = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey2 = Crypto.ECC.PrivateKey(curve: .P256)
+        let keyTag = "Test Tag \(#function)"
+
+        try Keychain.saveKey(privateKey1, withTag: keyTag)
+        try Keychain.saveKey(privateKey2, withTag: keyTag)
+
+        expect {
+            let _: Crypto.ECC.PrivateKey? = try self.wait(description: "Keychain query") {
+                Keychain.queryKey(withTag: keyTag, completion: $0)
+            }
+        }.to(throwError(KeychainError.ambiguousQueryResult))
     }
 
     func testSaveMultipleTimesWithDifferentTags() throws {
@@ -57,13 +97,6 @@ class Keychain_ECCTests: XCTestCase {
 
         expect(queriedKey1?.x963Representation) == privateKey.x963Representation
         expect(queriedKey2?.x963Representation) == privateKey.x963Representation
-
-        // Query the key without a tag which is supposed to fail.
-        expect {
-            let _: Crypto.ECC.PrivateKey? = try self.wait(description: "Keychain query") {
-                Keychain.queryKey(for: publicKey, completion: $0)
-            }
-        }.to(throwError(KeychainError.ambiguousQueryResult))
     }
 
     func testKeyDeletion() throws {

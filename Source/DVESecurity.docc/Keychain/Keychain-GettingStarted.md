@@ -51,7 +51,7 @@ let aesKey = try Crypto.AES.Key(keySize: .bits256,
                                 rounds: 1)
 try Keychain.saveKey(key, withTag: "AESKeyTag", applicationLabel: "SearchLabel")
 
-// Create a random RSA / ECC private keys and save them in the keychain.
+// Create random RSA / ECC private keys and save them in the keychain.
 // The items are identified by a tag value can also be queried by the SHA1 of their public keys.
 let rsaKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
 try Keychain.saveKey(rsaKey, withTag: "RSAKeyTag")

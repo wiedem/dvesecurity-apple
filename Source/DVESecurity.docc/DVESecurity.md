@@ -12,7 +12,6 @@ The framework provides easy access to functionalities provided by the [Security]
 ### Keychains
 - <doc:Keychain-GettingStarted>
 - ``Keychain``
-- ``Keychain/Legacy``
 - ``SecKeyAttributes``
 - ``ConvertibleToSecKey``
 - ``CreateableFromSecKey``

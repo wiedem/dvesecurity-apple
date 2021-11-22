@@ -46,7 +46,7 @@ extension Keychain {
         ///
         /// Searches the keychain for a generic non-synchronizable password and returns the entry as a value of `String`.
         ///
-        /// Returns a ``KeychainError/resultError`` ff the value of the entry cannot be decoded to a String.
+        /// Returns a ``KeychainError/resultError`` if the value of the entry cannot be decoded to a String.
         ///
         /// - Parameters:
         ///   - account: Specifies the account name for the password.

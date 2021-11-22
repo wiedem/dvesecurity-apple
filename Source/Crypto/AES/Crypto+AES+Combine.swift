@@ -5,7 +5,7 @@ import Foundation
 #if canImport(Combine)
 import Combine
 
-@available(iOS 13, *)
+@available(iOS 13.0, *)
 public extension Crypto.AES {
     /// Creates IV data used for AES data encryption.
     ///

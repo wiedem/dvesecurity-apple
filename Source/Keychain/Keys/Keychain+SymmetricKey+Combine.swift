@@ -6,7 +6,7 @@ import Foundation
 import Combine
 import LocalAuthentication
 
-@available(iOS 13, *)
+@available(iOS 13.0, *)
 public extension Keychain {
     /// Returns a publisher that searches the keychain for a symmetric key.
     ///

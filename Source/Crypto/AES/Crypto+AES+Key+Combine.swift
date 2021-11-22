@@ -5,7 +5,7 @@ import Foundation
 #if canImport(Combine)
 import Combine
 
-@available(iOS 13, *)
+@available(iOS 13.0, *)
 public extension Crypto.AES.Key {
     /// Returns a publisher that encrypts a block of data using the Advanced Encryption Standard (AES).
     ///

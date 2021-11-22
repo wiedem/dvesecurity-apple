@@ -6,7 +6,7 @@ import Foundation
 import Combine
 import LocalAuthentication
 
-@available(iOS 13, *)
+@available(iOS 13.0, *)
 public extension Keychain {
     /// Returns a publisher that performs a keychain query for a Secure Enclave key.
     ///

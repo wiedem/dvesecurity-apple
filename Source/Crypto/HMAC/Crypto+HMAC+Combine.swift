@@ -5,7 +5,7 @@ import Foundation
 #if canImport(Combine)
 import Combine
 
-@available(iOS 13, *)
+@available(iOS 13.0, *)
 public extension Crypto.HMAC {
     /// Returns a publisher that computes a message authentication code for the given data.
     ///

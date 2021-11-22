@@ -6,7 +6,7 @@ import Foundation
 import Combine
 import LocalAuthentication
 
-@available(iOS 13, *)
+@available(iOS 13.0, *)
 extension LAContext {
     /// Returns a publisher that evaluates an access control object for the specified operation.
     ///

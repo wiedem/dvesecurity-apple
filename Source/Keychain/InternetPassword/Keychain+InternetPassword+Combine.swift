@@ -6,7 +6,7 @@ import Foundation
 import Combine
 import LocalAuthentication
 
-@available(iOS 13, *)
+@available(iOS 13.0, *)
 extension Keychain.InternetPassword {
     /// Returns a publisher which searches the keychain for a unique internet password entry.
     ///

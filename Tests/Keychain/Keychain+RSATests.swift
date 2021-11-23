@@ -99,6 +99,18 @@ class Keychain_RSATests: XCTestCase {
         expect(queriedKey2?.pkcs1Representation) == privateKey.pkcs1Representation
     }
 
+    func testSaveMultipleTimesWithSameTag() throws {
+        let privateKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
+        let keyTag = "Test Tag \(#function)"
+
+        expect {
+            try Keychain.saveKey(privateKey, withTag: keyTag)
+            try Keychain.saveKey(privateKey, withTag: keyTag)
+        }.to(throwError {
+            expect($0) == KeychainError.itemSavingFailed(status: errSecDuplicateItem)
+        })
+    }
+
     func testKeyDeletion() throws {
         let privateKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
         let keyTag = "Test Tag \(#function)"

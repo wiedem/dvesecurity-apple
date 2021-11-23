@@ -99,6 +99,18 @@ class Keychain_ECCTests: XCTestCase {
         expect(queriedKey2?.x963Representation) == privateKey.x963Representation
     }
 
+    func testSaveMultipleTimesWithSameTag() throws {
+        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let keyTag = "Test Tag \(#function)"
+
+        expect {
+            try Keychain.saveKey(privateKey, withTag: keyTag)
+            try Keychain.saveKey(privateKey, withTag: keyTag)
+        }.to(throwError {
+            expect($0) == KeychainError.itemSavingFailed(status: errSecDuplicateItem)
+        })
+    }
+
     func testKeyDeletion() throws {
         let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
         let keyTag = "Test Tag \(#function)"

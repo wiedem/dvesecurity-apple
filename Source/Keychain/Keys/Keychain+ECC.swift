@@ -90,7 +90,7 @@ public extension Keychain {
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
     ///   - authenticationContext: A local authentication context to use.
     ///
-    /// - Throws: An error will be thrown If an ECC private key with the same tag and access group already exists in the keychain.
+    /// - Throws: ``KeychainError/itemSavingFailed(status:)`` with a `errSecDuplicateItem` status code if the item already exists in the keychain.
     static func saveKey<PK>(
         _ privateKey: PK,
         withTag tag: String,
@@ -194,6 +194,7 @@ public extension Keychain {
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication.
     ///
+    /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item. Make sure to use a unique `tag` value when storing a key or combine the search with the SHA1 of the public key.
     /// - Returns: ECC private key instance if the item could be found, `nil` otherwise.
     static func queryKey<PK>(
         withTag tag: String,

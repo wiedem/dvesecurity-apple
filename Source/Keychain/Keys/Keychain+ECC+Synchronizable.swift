@@ -8,13 +8,6 @@ public extension Keychain {
     ///
     /// This function returns an ECC private key instance for the first match found. The type of the returned item has to conform to the ``ECCPrivateKey`` protocol.
     ///
-    /// The following example shows how you can query a private key of type ``Crypto/ECC/PrivateKey`` from the keychain and the default keychain access group.
-    /// ```swift
-    /// let privateKey: Crypto.ECC.PrivateKey? = try Keychain.ECC.queryKey(for: publicKey)
-    /// ```
-    ///
-    /// - Note: This method uses the SHA-1 of the public key to find the corresponding private key in the keychain.
-    ///
     /// - Parameters:
     ///   - publicKey: The ECC public key used to search for the corresponding ECC private key item.
     ///   - tag: The private tag data used for the search.
@@ -86,15 +79,14 @@ public extension Keychain {
     ///
     /// Attempts to store an ECC private key in the keychain. To query the key from the keychain later, you must specify the same `tag`  value and `accessGroup`  that was used when saving.
     ///
-    /// - Note: Public keys do not need to be stored in the keychain because they do not need to be specially secured and because they can be generated from the private key if required.
-    ///
     /// - Parameters:
     ///   - privateKey: ECC private key to save in the keychain.
     ///   - tag: The private tag data used for the key.
     ///   - accessGroup: Keychain Access group for which the save should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - accessibility: Accessibility of the key. Sets the conditions under which an app can access the item.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
-    /// - Throws: An error will be thrown If an ECC private key with the same tag and access group already exists in the keychain.
+    ///
+    /// - Throws: ``KeychainError/itemSavingFailed(status:)`` with a `errSecDuplicateItem` status code if the item already exists in the keychain.
     static func saveSynchronizableKey<PK>(
         _ privateKey: PK,
         withTag tag: String,
@@ -181,28 +173,18 @@ public extension Keychain {
     }
 }
 
-// MARK: - iOS 13
 @available(iOS 13.0, *)
 public extension Keychain {
     /// Performs a keychain query for a synchronized private ECC key and a given public key.
     ///
     /// This function returns an ECC private key instance for the first match found. The type of the returned item has to conform to the ``ECCPrivateKey`` protocol.
     ///
-    /// The following example shows how you can query a private key of type ``Crypto/ECC/PrivateKey`` from the keychain and the default keychain access group.
-    /// ```swift
-    /// let privateKey: Crypto.ECC.PrivateKey? = try Keychain.ECC.queryKey(for: publicKey)
-    /// ```
-    ///
-    /// - Important: If you do not specify a `tag` for the query and more than one private key exists for the specified public key in the access group the error
-    /// ``KeychainError/ambiguousQueryResult`` will be thrown.
-    ///
-    /// - Note: This method uses the SHA-1 of the public key to find the corresponding private key in the keychain.
-    ///
     /// - Parameters:
     ///   - publicKey: The ECC public key used to search for the corresponding ECC private key item.
     ///   - tag: The private tag data used for the search.
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///
+    /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item. Use a `tag` value if needed to make the query unique.
     /// - Returns: ECC private key instance if the item could be found, `nil` otherwise.
     static func querySynchronizableKey<K, PK>(
         for publicKey: K,
@@ -221,14 +203,12 @@ public extension Keychain {
     ///
     /// This function returns an ECC private key instance for the first match found. The type of the returned item has to conform to the ``ECCPrivateKey`` protocol.
     ///
-    /// - Important: If you do not specify a `tag` for the query and more than one private key exists for the specified public key in the access group the error
-    /// ``KeychainError/ambiguousQueryResult`` will be thrown.
-    ///
     /// - Parameters:
     ///   - publicKeySHA1: The ECC public key SHA-1 used to search for the corresponding ECC private key item.
     ///   - tag: The private tag data used for the search.
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///
+    /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item. Use a `tag` value if needed to make the query unique.
     /// - Returns: ECC private key instance if the item could be found, `nil` otherwise.
     static func querySynchronizableKey<PK>(
         withPublicKeySHA1 publicKeySHA1: Data,
@@ -254,6 +234,7 @@ public extension Keychain {
     ///   - tag: The private tag data used for the search.
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///
+    /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item for the `tag`.
     /// - Returns: ECC private key instance if the item could be found, `nil` otherwise.
     static func querySynchronizableKey<PK>(
         withTag tag: String,

@@ -8,5 +8,5 @@
 
 The following example shows how you can query a private key of type ``Crypto/RSA/PrivateKey`` from the keychain and the default keychain access group.
 ```swift
-let privateKey: Crypto.RSA.PrivateKey? = try Keychain.queryKey(for: publicKey)
+let privateKey: Crypto.RSA.PrivateKey? = try Keychain.querySynchronizableKey(for: publicKey)
 ```

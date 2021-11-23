@@ -64,7 +64,7 @@ extension Keychain.Legacy {
             return try Keychain.queryItems(query: query, transform: Keychain.attributesTransform)
         }
 
-        /// Searches a file based keychain for a unique internet password entry.
+        /// Searches a file based keychain for a single internet password entry.
         ///
         /// Searches the keychain for a single non-synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
         ///

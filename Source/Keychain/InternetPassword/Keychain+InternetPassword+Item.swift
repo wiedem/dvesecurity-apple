@@ -5,8 +5,6 @@ import Foundation
 
 public extension Keychain.InternetPassword {
     /// Internet password keychain item.
-    ///
-    /// Keychain items for internet passwords are returned by the  ``queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)`` and ``queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)`` methods.
     struct Item {
         /// The raw password data associated with the internet password keychain item.
         ///

@@ -148,7 +148,6 @@ extension Keychain.CryptoKey {
     }
 }
 
-// MARK: - iOS 13
 @available(iOS 13.0, *)
 extension Keychain.CryptoKey {
     static func queryOne<K>(

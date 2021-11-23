@@ -8,11 +8,6 @@ extension Keychain.InternetPassword {
     ///
     /// Searches the keychain for a single synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
     ///
-    /// Since all fields except the `account` are optional, you must ensure that the specified combination of fields identifies a unique entry.
-    /// If the query returns more than one item a ``KeychainError/ambiguousQueryResult``error result will be returned.
-    ///
-    /// Use the ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)`` or ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)`` method and filter the results with the ``Keychain/InternetPassword/Item/synchronizable`` field if you want to use a query which may return multiple items.
-    ///
     /// - Parameters:
     ///   - account: Specifies the account name for the password.
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
@@ -250,10 +245,6 @@ extension Keychain.InternetPassword {
     /// Searches the keychain for a single synchronizable internet password entry.
     ///
     /// Searches the keychain for a single synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
-    ///
-    /// Since all fields except the `account` are optional, you must ensure that the specified combination of fields identifies a unique entry.
-    ///
-    /// Use the ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)`` or ``Keychain/InternetPassword/queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)`` method and filter the results with the ``Keychain/InternetPassword/Item/synchronizable`` attribute if you want to use a query which may return multiple items.
     ///
     /// - Parameters:
     ///   - account: Specifies the account name for the password.

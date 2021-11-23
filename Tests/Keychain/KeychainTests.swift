@@ -23,7 +23,6 @@ class KeychainTests: XCTestCase {
     }
 }
 
-// MARK: - iOS 13 Tests
 @available(iOS 13.0, *)
 extension KeychainTests {
     func testDefaultAccessGroup() throws {

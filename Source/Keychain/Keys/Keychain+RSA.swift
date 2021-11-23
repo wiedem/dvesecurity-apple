@@ -90,6 +90,8 @@ public extension Keychain {
     ///   - accessControl: Access control value of the key. Sets  the conditions under which an app can access the item.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
     ///   - authenticationContext: A local authentication context to use.
+    ///
+    /// - Throws: ``KeychainError/itemSavingFailed(status:)`` with a `errSecDuplicateItem` status code if the item already exists in the keychain.
     static func saveKey<PK>(
         _ privateKey: PK,
         withTag tag: String,
@@ -184,7 +186,6 @@ public extension Keychain {
     }
 }
 
-// MARK: - iOS 13
 @available(iOS 13.0, *)
 public extension Keychain {
     /// Performs a keychain query for a private RSA key and a given private tag data.

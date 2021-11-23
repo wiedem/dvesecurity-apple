@@ -14,14 +14,12 @@ With iOS 12 a synchronous query on the main thread leads to a deadlock when the 
 ### Retrieve Passwords
 - ``queryOne(forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:authentication:completion:)``
 - ``queryOne(forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:authentication:)``
-- ``queryOnePublisher(forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:authentication:)``
 
 - ``queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)``
 - ``queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)``
 
 ### Save and Update Passwords
 - ``save(_:forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:accessControl:label:authenticationContext:)``
-- ``savePublisher(for:account:accessGroup:securityDomain:server:protocol:authenticationType:port:path:accessControl:authenticationContext:)``
 
 - ``upsert(_:forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:accessControl:label:authentication:)``
 
@@ -33,11 +31,9 @@ With iOS 12 a synchronous query on the main thread leads to a deadlock when the 
 ### Retrieve Synchronizable Passwords
 - ``queryOneSynchronizable(forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:completion:)``
 - ``queryOneSynchronizable(forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:)``
-- ``queryOneSynchronizablePublisher(forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:)``
 
 ### Save and Update Synchronizable Passwords
 - ``saveSynchronizable(_:forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:accessibility:label:)``
-- ``saveSynchronizablePublisher(for:account:accessGroup:securityDomain:server:protocol:authenticationType:port:path:accessibility:)``
 
 - ``upsertSynchronizable(_:forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:accessibility:label:)``
 

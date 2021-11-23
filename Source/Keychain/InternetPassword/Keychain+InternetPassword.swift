@@ -57,14 +57,9 @@ extension Keychain {
             Keychain.queryItems(query: query, transform: attributesTransform, completion: completion)
         }
 
-        /// Searches the keychain for a unique internet password entry.
+        /// Searches the keychain for a single internet password entry.
         ///
         /// Searches the keychain for a single non-synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
-        ///
-        /// Since all fields except the `account` are optional, you must ensure that the specified combination of fields identifies a unique entry.
-        /// If the query returns more than one item a ``KeychainError/ambiguousQueryResult`` error result will be returned.
-        ///
-        /// Use the ``queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)``  or ``queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)`` method if you want to use a query which may return multiple items.
         ///
         /// - Parameters:
         ///   - account: Specifies the account name for this password.
@@ -358,13 +353,9 @@ extension Keychain.InternetPassword {
         return try Keychain.queryItems(query: query, transform: Keychain.attributesTransform)
     }
 
-    /// Searches the keychain for a unique internet password entry.
+    /// Searches the keychain for a single internet password entry.
     ///
     /// Searches the keychain for a single non-synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
-    ///
-    /// Since all fields except the `account` are optional, you must ensure that the specified combination of fields identifies a unique entry.
-    ///
-    /// Use the ``queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)`` or ``queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)`` method if you want to use a query which may return multiple items.
     ///
     /// - Parameters:
     ///   - account: Specifies the account name for this password.

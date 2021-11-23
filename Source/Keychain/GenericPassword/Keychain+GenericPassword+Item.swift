@@ -5,8 +5,6 @@ import Foundation
 
 public extension Keychain.GenericPassword {
     /// Generic password keychain item.
-    ///
-    /// Keychain items for generic passwords are returned by the  ``queryItems(account:service:accessGroup:authentication:completion:)`` and ``queryItems(account:service:accessGroup:authentication:)`` methods.
     struct Item {
         /// The raw password data associated with the generic password keychain item.
         public let value: Data

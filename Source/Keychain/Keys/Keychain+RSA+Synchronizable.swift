@@ -78,6 +78,8 @@ public extension Keychain {
     ///   - accessGroup: Keychain Access group for which the save should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - accessibility: Access control value of the key. Sets  the conditions under which an app can access the item.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
+    ///
+    /// - Throws: ``KeychainError/itemSavingFailed(status:)`` with a `errSecDuplicateItem` status code if the item already exists in the keychain.
     static func saveSynchronizableKey<PK>(
         _ privateKey: PK,
         withTag tag: String,
@@ -164,7 +166,6 @@ public extension Keychain {
     }
 }
 
-// MARK: - iOS 13
 @available(iOS 13.0, *)
 public extension Keychain {
     /// Performs a keychain query for a synchronized private RSA key and a given public key.
@@ -223,6 +224,7 @@ public extension Keychain {
     ///   - tag: The private tag data used for the search.
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///
+    /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item for the `tag`.
     /// - Returns: RSA private key instance if the item could be found, `nil` otherwise.
     static func querySynchronizableKey<PK>(
         withTag tag: String,

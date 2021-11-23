@@ -110,7 +110,6 @@ public extension Keychain {
     }
 }
 
-// MARK: - iOS 13
 @available(iOS 13.0, *)
 public extension Keychain {
     /// Performs a keychain query for a synchronized symmetric key.

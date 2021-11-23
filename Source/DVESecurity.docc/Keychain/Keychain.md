@@ -39,7 +39,6 @@ Such macOS applications do not have access to the Data Protection Keychain.
 
 ### RSA Keys
 - ``Keychain/saveKey(_:withTag:accessGroup:accessControl:label:authenticationContext:)-3fhlv``
-- ``Keychain/saveKeyPublisher(for:withTag:accessGroup:accessControl:authenticationContext:)-3qqba``
 
 - ``Keychain/queryKey(withTag:accessGroup:authentication:completion:)-8x8b9``
 - ``Keychain/queryKey(withTag:accessGroup:authentication:)-52xe5``
@@ -47,10 +46,6 @@ Such macOS applications do not have access to the Data Protection Keychain.
 - ``Keychain/queryKey(withPublicKeySHA1:tag:accessGroup:authentication:)-6sl8q``
 - ``Keychain/queryKey(for:withTag:accessGroup:authentication:completion:)-628z0``
 - ``Keychain/queryKey(for:withTag:accessGroup:authentication:)-8h63r``
-
-- ``Keychain/queryKeyPublisher(withTag:accessGroup:authentication:)-2vh9v``
-- ``Keychain/queryKeyPublisher(withPublicKeySHA1:tag:accessGroup:authentication:)-7yqa4``
-- ``Keychain/queryKeyPublisher(for:withTag:accessGroup:authentication:)-6fzy1``
 
 - ``Keychain/deleteKey(_:withTag:accessGroup:)-9g152``
 - ``Keychain/deletePrivateKey(for:withTag:accessGroup:)-1akqe``
@@ -72,7 +67,6 @@ Such macOS applications do not have access to the Data Protection Keychain.
 
 ### ECC Keys
 - ``Keychain/saveKey(_:withTag:accessGroup:accessControl:label:authenticationContext:)-9x3dp``
-- ``Keychain/saveKeyPublisher(for:withTag:accessGroup:accessControl:authenticationContext:)-1m2ot``
 
 - ``Keychain/queryKey(withTag:accessGroup:authentication:completion:)-976xd``
 - ``Keychain/queryKey(withTag:accessGroup:authentication:)-5l8ir``
@@ -80,10 +74,6 @@ Such macOS applications do not have access to the Data Protection Keychain.
 - ``Keychain/queryKey(withPublicKeySHA1:tag:accessGroup:authentication:)-7e2vn``
 - ``Keychain/queryKey(for:withTag:accessGroup:authentication:completion:)-2jtnq``
 - ``Keychain/queryKey(for:withTag:accessGroup:authentication:)-9zkq7``
-
-- ``Keychain/queryKeyPublisher(withTag:accessGroup:authentication:)-86a01``
-- ``Keychain/queryKeyPublisher(withPublicKeySHA1:tag:accessGroup:authentication:)-74k20``
-- ``Keychain/queryKeyPublisher(for:withTag:accessGroup:authentication:)-632gz``
 
 - ``Keychain/deleteKey(ofType:withTag:publicKeySHA1:accessGroup:)-7jjm5``
 - ``Keychain/deletePrivateKey(for:withTag:accessGroup:)-3y5ru``
@@ -105,14 +95,11 @@ Such macOS applications do not have access to the Data Protection Keychain.
 
 ### Symmetric Keys
 - ``Keychain/saveKey(_:withTag:applicationLabel:accessGroup:accessControl:label:authenticationContext:)``
-- ``Keychain/saveKeyPublisher(for:withTag:applicationLabel:accessGroup:accessControl:authenticationContext:)``
 
 - ``Keychain/updateKey(newKey:withTag:applicationLabel:accessGroup:authentication:)``
 
 - ``Keychain/queryKey(withTag:applicationLabel:accessGroup:authentication:completion:)``
 - ``Keychain/queryKey(withTag:applicationLabel:accessGroup:authentication:)``
-
-- ``Keychain/queryKeyPublisher(withTag:applicationLabel:accessGroup:authentication:)``
 
 - ``Keychain/deleteKey(withTag:applicationLabel:accessGroup:)``
 
@@ -132,7 +119,5 @@ Such macOS applications do not have access to the Data Protection Keychain.
 - ``Keychain/queryKey(withTag:accessGroup:authentication:)-54te0``
 - ``Keychain/queryKey(withPublicKeySHA1:tag:accessGroup:authentication:)-9dffr``
 - ``Keychain/queryKey(for:withTag:accessGroup:authentication:)-65j90``
-
-- ``Keychain/queryKeyPublisher(withTag:accessGroup:authentication:)-76gyy``
 
 - ``Keychain/deleteSecureEnclaveKey(withTag:accessGroup:)``

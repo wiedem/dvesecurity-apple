@@ -237,7 +237,7 @@ extension Keychain.GenericPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Throws: ``KeychainError/resultError`` if the value of the entry cannot be decoded to a String.
-    /// - Returns: The password for the specified account and service, or `nil` if no item was found.
+    /// - Returns: The generic password decoded as a `String` value, or `nil` if no item was found.
     open class func query(
         forAccount account: String,
         service: String,

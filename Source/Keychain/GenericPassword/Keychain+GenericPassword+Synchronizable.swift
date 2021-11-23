@@ -151,7 +151,7 @@ extension Keychain.GenericPassword {
     ///   - service: Specifies the service associated with the password.
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///
-    /// - Returns: The password, or `nil` if no password was found for this account and service.
+    /// - Returns: The generic password decoded as a `String` value, or `nil` if no item was found.
     open class func querySynchronizable(
         forAccount account: String,
         service: String,

@@ -14,7 +14,6 @@ With iOS 12 a synchronous query on the main thread leads to a deadlock when the 
 ### Retrieve Items
 - ``query(forAccount:service:accessGroup:authentication:completion:)``
 - ``query(forAccount:service:accessGroup:authentication:)``
-- ``queryPublisher(forAccount:service:accessGroup:authentication:)``
 
 - ``queryKey(forAccount:service:accessGroup:authentication:completion:)``
 - ``queryKey(forAccount:service:accessGroup:authentication:)``
@@ -24,7 +23,6 @@ With iOS 12 a synchronous query on the main thread leads to a deadlock when the 
 
 ### Save and Update Items
 - ``save(_:forAccount:service:accessGroup:accessControl:label:authenticationContext:)``
-- ``savePublisher(for:account:service:accessGroup:accessControl:authenticationContext:)``
 - ``saveKey(_:forAccount:service:accessGroup:accessControl:label:authenticationContext:)``
 
 - ``upsert(_:forAccount:service:accessGroup:accessControl:label:authentication:)``
@@ -37,14 +35,12 @@ With iOS 12 a synchronous query on the main thread leads to a deadlock when the 
 ### Retrieve Synchronizable Items
 - ``querySynchronizable(forAccount:service:accessGroup:completion:)``
 - ``querySynchronizable(forAccount:service:accessGroup:)``
-- ``querySynchronizablePublisher(forAccount:service:accessGroup:)``
 
 - ``querySynchronizableKey(forAccount:service:accessGroup:completion:)``
 - ``querySynchronizableKey(forAccount:service:accessGroup:)``
 
 ### Save and Update Synchronizable Items
 - ``saveSynchronizable(_:forAccount:service:accessGroup:accessibility:label:)``
-- ``saveSynchronizablePublisher(for:account:service:accessGroup:accessibility:)``
 - ``saveSynchronizableKey(_:forAccount:service:accessGroup:accessibility:label:)``
 
 - ``upsertSynchronizable(_:forAccount:service:accessGroup:accessibility:label:)``

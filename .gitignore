@@ -1,6 +1,7 @@
 .DS_Store
 .idea
 .build
+.docc-build
 .swiftpm
 *.bcsymbolmap
 Package.resolved

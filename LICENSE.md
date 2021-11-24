@@ -1,5 +1,3 @@
-DVESecurity framework for Apple platforms
-
 MIT License
 
 Copyright (c) 2021 diva-e NEXT GmbH

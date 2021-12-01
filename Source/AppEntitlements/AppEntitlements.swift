@@ -17,6 +17,8 @@ public enum AppEntitlementsError: Error {
 }
 
 /// A singleton class used to get the app's entitlements.
+///
+/// - SeeAlso: [Entitlements](https://developer.apple.com/documentation/bundleresources/entitlements)
 public final class AppEntitlements {
     private let entitlements: [String: Any]
 
@@ -68,6 +70,11 @@ public final class AppEntitlements {
         return shared.entitlements[EntitlementKey.appleDeveloperTeamIdentifier.rawValue] as? String
     }
 
+    /// Apple Push Services (APS) environment used by the app.
+    public class var apsEnvironment: String? {
+        return shared.entitlements[EntitlementKey.apsEnvironment.rawValue] as? String
+    }
+
     private init(_ entitlements: [String: Any]) {
         self.entitlements = entitlements
     }
@@ -78,32 +85,56 @@ private extension AppEntitlements {
     enum EntitlementKey: String {
         // swiftlint:disable duplicate_enum_cases
         #if os(iOS)
-        /// The identifier of this application, typically the same as the `CFBundleIdentifier`, prefixed with the team-id.
+        /// Entitlement key for the application identifier.
+        ///
+        /// Typically the value of this entitlement is same as the `CFBundleIdentifier`, prefixed with the team-id.
         case applicationIdentifier = "application-identifier"
+        /// Entitlement key defining the APS Environment.
+        ///
+        /// See [APS Environmen Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/aps-environment)
+        case apsEnvironment = "aps-environment"
         #elseif os(macOS)
-        /// The identifier of this application, typically the same as the `CFBundleIdentifier`, prefixed with the team-id.
+        /// Entitlement key for the application identifier.
+        ///
+        /// Typically the value of this entitlement is same as the `CFBundleIdentifier`, prefixed with the team-id.
         case applicationIdentifier = "com.apple.application-identifier"
+        /// Entitlement key defining the APS Environment.
+        ///
+        /// See [APS Environmen Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_aps-environment)
+        case apsEnvironment = "com.apple.developer.aps-environment"
         #endif
         #if os(macOS) || targetEnvironment(simulator)
-        /// Allow other tasks to get this task's name port. This is needed so the app can be debugged.
+        /// Entitlement key for the `get task` access control.
+        ///
+        /// This entitlement defines if other tasks can get the app's task name port. This is needed so the app can be debugged.
         case getTaskAllow = "com.apple.security.get-task-allow"
         #elseif os(iOS)
-        /// Allow other tasks to get this task's name port. This is needed so the app can be debugged.
+        /// Entitlement key for the `get task` access control.
+        ///
+        /// This entitlement defines if other tasks can get the app's task name port. This is needed so the app can be debugged.
         case getTaskAllow = "get-task-allow"
         #endif
         // swiftlint:enable duplicate_enum_cases
-        /// Associated application identifier for Marzipan apps distributed through the App Store.
+        /// Entitlement key for the associated application identifier.
+        ///
+        /// Associated application identifiers are used for `Catalyst` (formerly known as `Marzipan`) apps distributed through the App Store.
         case associatedApplicationIdentifier = "com.apple.developer.associated-application-identifier"
-        /// Array of strings, each string is the name of an access group that the application has access to.
+        /// Entitlement key for the app's keychain access groups.
+        ///
+        /// The value of this key is an array of strings, each string is the name of an access group that the application has access to.
         case keychainAccessGroups = "keychain-access-groups"
-        /// Array of strings, each string is the name of an access group that the application has access to.
+        /// Entitlement key for the app's security groups.
+        ///
+        /// The value of this key is an array of strings, each string is the name of an access group that the application has access to.
         ///
         /// The first of `keychainAccessGroups`, `applicationIdentifier` or `appleSecurityApplicationGroups` to have a value becomes the default application group for keychain clients that don't specify an explicit one.
         case appleSecurityApplicationGroups = "com.apple.security.application-groups"
-        /// Team identifier of the app.
+        /// Entitlement key for the team identifier of the app.
         case appleDeveloperTeamIdentifier = "com.apple.developer.team-identifier"
         #if os(macOS)
-        /// A Boolean value that indicates whether the app may use access control technology to contain damage to the system and user data if an app is compromised.
+        /// Entitlement key indicating if the app is sandboxed.
+        ///
+        /// The value of this key is a Boolean that indicates whether the app may use access control technology to contain damage to the system and user data if an app is compromised.
         case applicationSandbox = "com.apple.security.app-sandbox"
         #endif
     }

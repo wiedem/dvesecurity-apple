@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,43 +16,102 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="lBm-QD-1nK">
-                                <rect key="frame" x="20" y="389.5" width="374" height="117"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apf-lc-35V">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Running DVESecurity Tests" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWv-uN-Ztq">
-                                        <rect key="frame" x="41" y="0.0" width="292" height="30"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rQx-h8-GeZ">
-                                        <rect key="frame" x="168.5" y="55" width="37" height="37"/>
-                                    </activityIndicatorView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rOa-CU-o6c">
-                                        <rect key="frame" x="187" y="117" width="0.0" height="0.0"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zeg-4W-MlQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="259"/>
                                         <subviews>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCh-r7-hzh">
-                                                <rect key="frame" x="0.0" y="0.0" width="97" height="0.0"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="lBm-QD-1nK">
+                                                <rect key="frame" x="0.0" y="94" width="414" height="165"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Running DVESecurity Tests" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWv-uN-Ztq">
+                                                        <rect key="frame" x="61" y="0.0" width="292" height="30"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rQx-h8-GeZ">
+                                                        <rect key="frame" x="188.5" y="55" width="37" height="37"/>
+                                                    </activityIndicatorView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rOa-CU-o6c">
+                                                        <rect key="frame" x="207" y="117" width="0.0" height="0.0"/>
+                                                        <subviews>
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCh-r7-hzh">
+                                                                <rect key="frame" x="70.5" y="0.0" width="97" height="0.0"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpC-ij-S1P">
+                                                                <rect key="frame" x="0.0" y="0.0" width="238" height="0.0"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Register for Remote Notifications"/>
+                                                                <connections>
+                                                                    <action selector="registerForRemoteNotificationsAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fDm-Cx-mJC"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="xpC-ij-S1P" firstAttribute="leading" secondItem="rOa-CU-o6c" secondAttribute="leadingMargin" id="9jM-oB-Mct"/>
+                                                            <constraint firstItem="JCh-r7-hzh" firstAttribute="top" secondItem="rOa-CU-o6c" secondAttribute="topMargin" id="FGP-AW-xoM"/>
+                                                            <constraint firstItem="xpC-ij-S1P" firstAttribute="top" secondItem="JCh-r7-hzh" secondAttribute="top" id="oQT-TN-erX"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ofX-B7-vbQ">
+                                                        <rect key="frame" x="177.5" y="142" width="59" height="23"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Output" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dV-1X-4MV">
+                                                                <rect key="frame" x="0.0" y="0.0" width="59" height="23"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="7dV-1X-4MV" secondAttribute="trailing" id="QdD-95-Bax"/>
+                                                            <constraint firstItem="7dV-1X-4MV" firstAttribute="leading" secondItem="ofX-B7-vbQ" secondAttribute="leading" id="aTm-Zm-UjJ"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
-                                    </stackView>
+                                        <viewLayoutGuide key="safeArea" id="Khd-yq-HSn"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="lBm-QD-1nK" firstAttribute="bottom" secondItem="Khd-yq-HSn" secondAttribute="bottom" id="Rbt-5B-0uq"/>
+                                            <constraint firstItem="lBm-QD-1nK" firstAttribute="leading" secondItem="zeg-4W-MlQ" secondAttribute="leading" id="W74-Kf-a0P"/>
+                                            <constraint firstItem="lBm-QD-1nK" firstAttribute="top" secondItem="Khd-yq-HSn" secondAttribute="top" constant="50" id="We2-dp-goC"/>
+                                            <constraint firstAttribute="trailing" secondItem="lBm-QD-1nK" secondAttribute="trailing" id="re4-Tg-o7l"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="zeg-4W-MlQ" firstAttribute="trailing" secondItem="RdC-v2-vxF" secondAttribute="trailing" id="8xk-Ml-gkv"/>
+                                    <constraint firstItem="zeg-4W-MlQ" firstAttribute="bottom" secondItem="RdC-v2-vxF" secondAttribute="bottom" id="Der-y7-7Xl"/>
+                                    <constraint firstItem="RdC-v2-vxF" firstAttribute="leading" secondItem="zeg-4W-MlQ" secondAttribute="leading" id="GxO-kM-aoc"/>
+                                    <constraint firstItem="RdC-v2-vxF" firstAttribute="top" secondItem="zeg-4W-MlQ" secondAttribute="top" id="cxM-MT-9m6"/>
+                                    <constraint firstItem="zeg-4W-MlQ" firstAttribute="width" secondItem="iPj-4U-uaD" secondAttribute="width" id="yDK-f6-8Zn"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="RdC-v2-vxF"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="iPj-4U-uaD"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="lBm-QD-1nK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7Z4-x3-IMT"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lBm-QD-1nK" secondAttribute="trailing" constant="20" id="S2z-QH-wfN"/>
-                            <constraint firstItem="lBm-QD-1nK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="maJ-gP-cum"/>
+                            <constraint firstItem="apf-lc-35V" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dUJ-8L-Z9k"/>
+                            <constraint firstItem="apf-lc-35V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hld-je-aag"/>
+                            <constraint firstItem="apf-lc-35V" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="l0L-wf-GRE"/>
+                            <constraint firstItem="apf-lc-35V" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="vl6-bk-B0G"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicatorView" destination="rQx-h8-GeZ" id="1XA-S9-VLF"/>
                         <outlet property="descriptionLabel" destination="JCh-r7-hzh" id="mXg-8Y-n0s"/>
+                        <outlet property="outputStackView" destination="ofX-B7-vbQ" id="2Rt-2w-l1y"/>
+                        <outlet property="registerForRemoteNotificationsButton" destination="xpC-ij-S1P" id="TXx-h3-f31"/>
+                        <outlet property="scrollView" destination="apf-lc-35V" id="aDE-zg-jdK"/>
                         <outlet property="stackView" destination="lBm-QD-1nK" id="fpH-2A-cSQ"/>
                         <outlet property="testStepsStackView" destination="rOa-CU-o6c" id="FsO-ii-d9D"/>
                     </connections>

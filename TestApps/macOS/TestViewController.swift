@@ -80,4 +80,8 @@ public final class TestViewController: NSViewController, InteractiveTestViewMode
 
         testStepsStackView.addArrangedSubview(button)
     }
+
+    public func addOutput(_ output: String) {
+        NSLog("Output: \(output)")
+    }
 }

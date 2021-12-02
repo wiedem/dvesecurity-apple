@@ -6,7 +6,7 @@ import LocalAuthentication
 import Nimble
 import XCTest
 
-class Keychain_AESTestsiOSDevice: InteractiveTestCaseDevice {
+class Keychain_AESTestsDevice: InteractiveTestCaseDevice {
     // swiftlint:disable force_try
     private let key: Crypto.AES.Key = try! Crypto.AES.Key(keySize: Crypto.AES.KeySize.bits256,
                                                           password: "Hello Test!",
@@ -32,24 +32,10 @@ class Keychain_AESTestsiOSDevice: InteractiveTestCaseDevice {
         try Keychain.saveKey(key, withTag: keyTag, applicationLabel: applicationLabel, accessControl: accessControl)
 
         // Manual confirmation is necessary for this test because we can't know if the user entered the proper password or if the authentication UI did appear properly.
-        var queryResult: Result<Crypto.AES.Key?, Error>?
-
-        let result = wait(expectationDescription: "Keychain query", timeout: Self.defaultUIInteractionTimeout) { expectation in
+        let queriedKey: Crypto.AES.Key? = try wait(description: "Keychain query", timeout: Self.defaultUIInteractionTimeout) {
             let authentication = Keychain.QueryAuthentication(userInterface: .allow(prompt: "Password for the protected access to the keychain item"))
-            Keychain.queryKey(withTag: keyTag, applicationLabel: applicationLabel, authentication: authentication) { (result: Result<Crypto.AES.Key?, Error>) in
-                defer { expectation?.fulfill() }
-                queryResult = result
-            }
+            Keychain.queryKey(withTag: keyTag, applicationLabel: applicationLabel, authentication: authentication, completion: $0)
         }
-        guard result.isCompleted else { return }
-
-        switch queryResult {
-        case let .success(queriedKey):
-            expect(queriedKey) == key
-        case let .failure(error):
-            fail("Failed to query key: \(error)")
-        default:
-            break
-        }
+        expect(queriedKey) == key
     }
 }

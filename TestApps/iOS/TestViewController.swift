@@ -17,9 +17,20 @@ final class ButtonActionTarget {
 
 public final class TestViewController: UIViewController, InteractiveTestViewModel {
     @IBOutlet private var stackView: UIStackView!
-    @IBOutlet private var testStepsStackView: UIStackView!
     @IBOutlet private var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet private var testStepsStackView: UIStackView!
     @IBOutlet private var descriptionLabel: UILabel!
+    @IBOutlet private var outputStackView: UIStackView!
+    @IBOutlet private var registerForRemoteNotificationsButton: UIButton!
+
+    @IBOutlet private var scrollView: UIScrollView!
+    @objc public var contentScrollView: UIScrollView? { scrollView }
+
+    private let userNotificationCenter = UNUserNotificationCenter.current()
+
+    private var deviceToken: Data?
+    private var notificationOptions: UNAuthorizationOptions = [.badge, .sound, .alert]
+    private var remoteNotificationHandler: ((Bool, [AnyHashable: Any]) -> Void)?
 
     public func startActivity() {
         activityIndicatorView.startAnimating()
@@ -27,6 +38,12 @@ public final class TestViewController: UIViewController, InteractiveTestViewMode
 
     public func stopActivity() {
         activityIndicatorView.stopAnimating()
+    }
+
+    public func enableRemoteNotifications(handler: @escaping (Bool, [AnyHashable: Any]) -> Void) {
+        remoteNotificationHandler = handler
+        userNotificationCenter.delegate = self
+        registerForRemoteNotificationsButton.isHidden = false
     }
 
     public func removeLastTestSteps(_ count: Int) {
@@ -69,5 +86,89 @@ public final class TestViewController: UIViewController, InteractiveTestViewMode
         button.widthAnchor.constraint(greaterThanOrEqualToConstant: 150).isActive = true
 
         testStepsStackView.addArrangedSubview(button)
+    }
+
+    public func addOutput(_ output: String) {
+        let textView = UITextView()
+
+        textView.font = .preferredFont(forTextStyle: .footnote)
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textColor = .white
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.textContainerInset = .zero
+        textView.text = output
+
+        outputStackView.addArrangedSubview(textView)
+    }
+
+    @IBAction private func registerForRemoteNotificationsAction(_: UIButton) {
+        userNotificationCenter.requestAuthorization(options: notificationOptions) { [weak self] granted, error in
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                if let authorizationError = error {
+                    self.addOutput("Failed to request authorization: \(authorizationError)")
+                    return
+                }
+
+                guard granted else {
+                    self.addOutput("Authorization for remote notifications was denied.")
+                    return
+                }
+
+                self.addOutput("Authorization for remote notifications was granted.")
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+}
+
+extension TestViewController: UNUserNotificationCenterDelegate {
+    public func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        NSLog("Received remote notification.")
+
+        remoteNotificationHandler?(false, response.notification.request.content.userInfo)
+
+        completionHandler()
+    }
+
+    public func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        NSLog("Showing notification while app is in foreground.")
+
+        remoteNotificationHandler?(false, notification.request.content.userInfo)
+
+        if #available(iOS 14.0, *) {
+            completionHandler([.banner, .list, .badge, .sound])
+        } else {
+            completionHandler([.alert, .badge, .sound])
+        }
+    }
+}
+
+extension TestViewController {
+    func didReceiveDeviceToken(_ token: Data) {
+        deviceToken = token
+
+        let tokenString = token.map { String(format: "%02hhx", $0) }.joined()
+        NSLog("Device token: \(tokenString)")
+        addOutput(tokenString)
+    }
+
+    func didFailToRegisterForRemoteNotificationsWithError(_ error: Error) {
+        addOutput("Failed to register for remote notifications: \(error)")
+    }
+
+    func didReceiveBackgroundNotification(userInfo: [AnyHashable: Any]) {
+        addOutput("Received remote notification")
+        remoteNotificationHandler?(true, userInfo)
     }
 }

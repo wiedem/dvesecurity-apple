@@ -25,25 +25,11 @@ class Keychain_ECCTestsiOSDevice: InteractiveTestCaseDevice {
         try Keychain.saveKey(privateKey, withTag: keyTag, accessControl: accessControl)
 
         // Manual confirmation is necessary for this test because we can't know if the user entered the proper password or if the authentication UI did appear properly.
-        var queryResult: Result<Crypto.ECC.PrivateKey?, Error>?
-
-        let result = wait(expectationDescription: "Keychain query", timeout: Self.defaultUIInteractionTimeout) { expectation in
+        let queriedKey: Crypto.ECC.PrivateKey? = try wait(description: "Keychain query", timeout: Self.defaultUIInteractionTimeout) {
             let authentication = Keychain.QueryAuthentication(userInterface: .allow(prompt: "Password for the protected access to the keychain item"))
-            Keychain.queryKey(withTag: keyTag, authentication: authentication) { (result: Result<Crypto.ECC.PrivateKey?, Error>) in
-                defer { expectation?.fulfill() }
-                queryResult = result
-            }
+            Keychain.queryKey(withTag: keyTag, authentication: authentication, completion: $0)
         }
-        guard result.isCompleted else { return }
-
-        switch queryResult {
-        case let .success(queriedKey):
-            expect(queriedKey?.x963Representation) == privateKey.x963Representation
-        case let .failure(error):
-            fail("Failed to query key: \(error)")
-        default:
-            break
-        }
+        expect(queriedKey?.x963Representation) == privateKey.x963Representation
     }
 
     func testImplicitSaveAndQueryWithApplicationPassword() throws {
@@ -56,24 +42,10 @@ class Keychain_ECCTestsiOSDevice: InteractiveTestCaseDevice {
         let privateKey = try Crypto.ECC.PrivateKey(curve: .P192, inKeychainWithTag: keyTag, accessControl: accessControl)
 
         // Manual confirmation is necessary for this test because we can't know if the user entered the proper password or if the authentication UI did appear properly.
-        var queryResult: Result<Crypto.ECC.PrivateKey?, Error>?
-
-        let result = wait(expectationDescription: "Keychain query", timeout: Self.defaultUIInteractionTimeout) { expectation in
+        let queriedKey: Crypto.ECC.PrivateKey? = try wait(description: "Keychain query", timeout: Self.defaultUIInteractionTimeout) {
             let authentication = Keychain.QueryAuthentication(userInterface: .allow(prompt: "Password for the protected access to the keychain item"))
-            Keychain.queryKey(withTag: keyTag, authentication: authentication) { (result: Result<Crypto.ECC.PrivateKey?, Error>) in
-                defer { expectation?.fulfill() }
-                queryResult = result
-            }
+            Keychain.queryKey(withTag: keyTag, authentication: authentication, completion: $0)
         }
-        guard result.isCompleted else { return }
-
-        switch queryResult {
-        case let .success(queriedKey):
-            expect(queriedKey?.x963Representation) == privateKey.x963Representation
-        case let .failure(error):
-            fail("Failed to query key: \(error)")
-        default:
-            break
-        }
+        expect(queriedKey?.x963Representation) == privateKey.x963Representation
     }
 }

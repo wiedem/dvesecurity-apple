@@ -6,7 +6,7 @@ import LocalAuthentication
 import Nimble
 import XCTest
 
-class Keychain_GenericPasswordTestsiOSDevice: InteractiveTestCaseDevice {
+class Keychain_GenericPasswordTestsDevice: InteractiveTestCaseDevice {
     private let password = "Password-1234!äöü/"
     private let account = "GenericPasswordTest"
     private let service = "com.diva-e.tests.GenericPasswordTests"
@@ -28,16 +28,9 @@ class Keychain_GenericPasswordTestsiOSDevice: InteractiveTestCaseDevice {
 
         let authentication = Keychain.QueryAuthentication(userInterface: .allow(prompt: "Password for the protected Access to the Keychain Item"))
 
-        let result = wait(expectationDescription: "Keychain query", timeout: Self.defaultUIInteractionTimeout) { expectation in
-            Keychain.GenericPassword.query(forAccount: self.account, service: self.service, authentication: authentication) { result in
-                defer { expectation?.fulfill() }
-                switch result {
-                case .success: break
-                case let .failure(error): fail("Failed to query password: \(error)")
-                }
-            }
+        _ = try wait(description: "Keychain query", timeout: Self.defaultUIInteractionTimeout) {
+            Keychain.GenericPassword.query(forAccount: self.account, service: self.service, authentication: authentication, completion: $0)
         }
-        guard result.isCompleted else { return }
     }
 
     func testAccessControlFlagBiometryCurrentSet() throws {
@@ -63,26 +56,13 @@ class Keychain_GenericPasswordTestsiOSDevice: InteractiveTestCaseDevice {
         testViewModel.removeLastTestSteps(3)
 
         // Second part: query the password which should return nil.
-        var queryResult: Result<String?, Error>?
-        let result2 = wait(expectationDescription: "Keychain query", timeout: Self.defaultUIInteractionTimeout) { expectation in
+        let queriedPassword: String? = try wait(description: "Keychain query", timeout: Self.defaultUIInteractionTimeout) { completion in
             self.testViewModel.addTestDescription("1. Change the Biometrics")
             self.testViewModel.addTestAction("2. Query the Password") {
-                Keychain.GenericPassword.query(forAccount: self.account, service: self.service) { result in
-                    queryResult = result
-                    expectation?.fulfill()
-                }
+                Keychain.GenericPassword.query(forAccount: self.account, service: self.service, completion: completion)
             }
         }
-        guard result2.isCompleted else { return }
-
-        switch queryResult {
-        case let .success(queriedPassword):
-            expect(queriedPassword).to(beNil())
-        case let .failure(error):
-            throw error
-        default:
-            break
-        }
+        expect(queriedPassword).to(beNil())
 
         testViewModel.removeLastTestSteps(2)
 
@@ -102,7 +82,6 @@ class Keychain_GenericPasswordTestsiOSDevice: InteractiveTestCaseDevice {
         guard result3.isCompleted else { return }
     }
 
-    // swiftlint:disable:next cyclomatic_complexity
     func testAccessControlFlagBiometryCurrentSetWithLAContext() throws {
         testViewModel.stopActivity()
         testViewModel.setTestTitle("Test access protection with current set biometry and LAContext")
@@ -111,25 +90,14 @@ class Keychain_GenericPasswordTestsiOSDevice: InteractiveTestCaseDevice {
         let authenticationContext = LAContext()
 
         // Step 1: Evaluate the access control.
-        var evaluateAccessControlResult: Result<Void, Error>!
-
         testViewModel.addTestDescription("1. Make sure biometry is currently active")
-        let result1 = wait(expectationDescription: "Policy evaluation", timeout: Self.defaultUIInteractionTimeout) { expectation in
+        _ = try wait(description: "Policy evaluation", timeout: Self.defaultUIInteractionTimeout) { completion in
             self.testViewModel.addTestAction("2. Evaluate Access Control") {
-                authenticationContext
-                    .evaluateAccessControl(accessControl, operation: .useItem, localizedReason: "Test access to protected keychain item") { result in
-                        evaluateAccessControlResult = result
-                        expectation?.fulfill()
-                    }
+                authenticationContext.evaluateAccessControl(accessControl,
+                                                            operation: .useItem,
+                                                            localizedReason: "Test access to protected keychain item",
+                                                            reply: completion)
             }
-        }
-        guard result1.isCompleted else { return }
-
-        switch evaluateAccessControlResult {
-        case let .failure(error):
-            throw error
-        default:
-            break
         }
 
         testViewModel.removeLastTestSteps(2)
@@ -159,26 +127,13 @@ class Keychain_GenericPasswordTestsiOSDevice: InteractiveTestCaseDevice {
         // Step 3: query the password which should return nil since the biometrics have changed.
         let queryAuthentication = Keychain.QueryAuthentication(userInterface: .disallow)
 
-        var queryResult: Result<String?, Error>?
-        let result3 = wait(expectationDescription: "Keychain query", timeout: Self.defaultUIInteractionTimeout) { expectation in
+        let queriedPassword: String? = try wait(description: "Keychain query", timeout: Self.defaultUIInteractionTimeout) { completion in
             self.testViewModel.addTestDescription("1. Change the Biometrics")
             self.testViewModel.addTestAction("2. Query the Password") {
-                Keychain.GenericPassword.query(forAccount: self.account, service: self.service, authentication: queryAuthentication) { result in
-                    queryResult = result
-                    expectation?.fulfill()
-                }
+                Keychain.GenericPassword.query(forAccount: self.account, service: self.service, authentication: queryAuthentication, completion: completion)
             }
         }
-        guard result3.isCompleted else { return }
-
-        switch queryResult {
-        case let .success(queriedPassword):
-            expect(queriedPassword).to(beNil())
-        case let .failure(error):
-            throw error
-        default:
-            break
-        }
+        expect(queriedPassword).to(beNil())
 
         testViewModel.removeLastTestSteps(2)
 

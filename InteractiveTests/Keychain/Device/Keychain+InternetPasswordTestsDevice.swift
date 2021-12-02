@@ -6,7 +6,7 @@ import LocalAuthentication
 import Nimble
 import XCTest
 
-class Keychain_InternetPasswordTestsiOSDevice: InteractiveTestCaseDevice {
+class Keychain_InternetPasswordTestsDevice: InteractiveTestCaseDevice {
     private let password = "Password-1234!äöü/"
     private let account = "InternetPasswordTest"
 
@@ -25,15 +25,9 @@ class Keychain_InternetPasswordTestsiOSDevice: InteractiveTestCaseDevice {
         try Keychain.InternetPassword.save(password, forAccount: account, accessControl: accessControl)
         // Manual confirmation is necessary for this test because we can't know if the user entered the proper password or if the authentication UI did appear properly.
         let authentication = Keychain.QueryAuthentication(userInterface: .allow(prompt: "Password for the protected access to the keychain item"))
-        let result = wait(expectationDescription: "Keychain query", timeout: Self.defaultUIInteractionTimeout) { expectation in
-            Keychain.InternetPassword.queryOne(forAccount: self.account, authentication: authentication) { result in
-                defer { expectation?.fulfill() }
-                switch result {
-                case .success: break
-                case let .failure(error): fail("Failed to query password: \(error)")
-                }
-            }
+        let password = try wait(description: "Keychain query", timeout: Self.defaultUIInteractionTimeout) {
+            Keychain.InternetPassword.queryOne(forAccount: self.account, authentication: authentication, completion: $0)
         }
-        guard result.isCompleted else { return }
+        expect(password) == self.password
     }
 }

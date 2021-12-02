@@ -3,7 +3,7 @@
 
 import Foundation
 
-public protocol InteractiveTestViewModel {
+public protocol InteractiveTestViewModel: AnyObject {
     func startActivity()
     func stopActivity()
 
@@ -11,6 +11,11 @@ public protocol InteractiveTestViewModel {
     func setTestTitle(_ title: String?)
     func addTestDescription(_ description: String)
     func addTestAction(_ description: String, removeOnCompletion: Bool, action: @escaping () -> Void)
+    func addOutput(_ output: String)
+
+    #if os(iOS)
+    func enableRemoteNotifications(handler: @escaping (Bool, [AnyHashable: Any]) -> Void)
+    #endif
 }
 
 public extension InteractiveTestViewModel {

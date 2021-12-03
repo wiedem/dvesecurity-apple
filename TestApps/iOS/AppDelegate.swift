@@ -15,6 +15,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func applicationDidBecomeActive(_: UIApplication) {
+        NSLog("Test application did become active.")
+    }
+
+    func applicationWillResignActive(_: UIApplication) {
+        NSLog("Test application is about to become inactive.")
+    }
+
+    func applicationDidEnterBackground(_: UIApplication) {
+        NSLog("Test application did enter background.")
+    }
+
+    func applicationWillEnterForeground(_: UIApplication) {
+        NSLog("Test application is about to enter the foreground.")
+    }
+
+    // MARK: - Remote Notifications
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         testViewController.didReceiveDeviceToken(deviceToken)
     }

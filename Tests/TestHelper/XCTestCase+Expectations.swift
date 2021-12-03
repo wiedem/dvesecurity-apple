@@ -14,7 +14,7 @@ extension XCTestCase {
     func wait<Success>(
         description: String,
         timeout: TimeInterval = defaultUIInteractionTimeout,
-        for task: (_ taskCompletion: @escaping AsyncResultCompletionHandler<Success>) -> Void
+        for task: (_ taskCompletion: @escaping AsyncResultCompletionHandler<Success>) throws -> Void
     ) throws -> Success {
         var taskExpectation: XCTestExpectation? = expectation(description: description)
 
@@ -24,7 +24,7 @@ extension XCTestCase {
             taskExpectation?.fulfill()
         }
 
-        task(handler)
+        try task(handler)
 
         let waiterResult = XCTWaiter.wait(for: [taskExpectation!], timeout: timeout)
         taskExpectation = nil
@@ -39,7 +39,7 @@ extension XCTestCase {
     func wait<Success>(
         description: String,
         timeout: TimeInterval = defaultUIInteractionTimeout,
-        for task: (_ taskCompletion: @escaping AsyncCompletionHandler<Success>) -> Void
+        for task: (_ taskCompletion: @escaping AsyncCompletionHandler<Success>) throws -> Void
     ) throws -> Success {
         var taskExpectation: XCTestExpectation? = expectation(description: description)
 
@@ -49,7 +49,7 @@ extension XCTestCase {
             taskExpectation?.fulfill()
         }
 
-        task(handler)
+        try task(handler)
 
         let waiterResult = XCTWaiter.wait(for: [taskExpectation!], timeout: timeout)
         taskExpectation = nil

@@ -49,7 +49,9 @@ The team identifier for your development team can be found in your [Apple develo
 Note that tests that require execution on a device are skipped in a simulator environment.
 
 ### Interactive Tests
-Some tests require user interaction and are therefore in a separate test target `DVESecurityInteractiveTests`.  In particular, most keychain tests require execution on a device rather than in a simulator environment.
+Some tests require user interaction and are therefore in a separate test target `DVESecurityInteractiveTests`. In particular, most keychain tests require execution on a device rather than in a simulator environment.
+
+The necessary interactive steps are displayed in the tests themselves or in the interface of the running test application.
 
 ### Keychain Tests
 The keychain tests are designed to leave the systems' keychains in a clean condition.
@@ -61,6 +63,8 @@ If a test is terminated irregularly, it can happen that keychain entries from th
 ## Documentation
 The framework is designed to generate a detailed [DocC] documentation.
 It contains the API documentation as well as articles on getting started and code samples.
+
+An online version of the documentation can be found [here](https://libraries.oss-pages.diva-e.com/dvesecurity-apple-documentation/documentation/index.html).
 
 When the framework is included as a Swift package in Xcode, the documentation can be generated via the `Product > Build Documentation` menu item or the corresponding `xcodebuild` command from the command line.
 

@@ -20,10 +20,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zeg-4W-MlQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="259"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="211"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="lBm-QD-1nK">
-                                                <rect key="frame" x="0.0" y="94" width="414" height="165"/>
+                                                <rect key="frame" x="0.0" y="94" width="414" height="117"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Running DVESecurity Tests" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWv-uN-Ztq">
                                                         <rect key="frame" x="61" y="0.0" width="292" height="30"/>
@@ -58,11 +58,11 @@
                                                             <constraint firstItem="xpC-ij-S1P" firstAttribute="top" secondItem="JCh-r7-hzh" secondAttribute="top" id="oQT-TN-erX"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ofX-B7-vbQ">
-                                                        <rect key="frame" x="177.5" y="142" width="59" height="23"/>
+                                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ofX-B7-vbQ">
+                                                        <rect key="frame" x="177.5" y="117" width="59" height="0.0"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Output" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dV-1X-4MV">
-                                                                <rect key="frame" x="0.0" y="0.0" width="59" height="23"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="59" height="0.0"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -109,7 +109,8 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="rQx-h8-GeZ" id="1XA-S9-VLF"/>
                         <outlet property="descriptionLabel" destination="JCh-r7-hzh" id="mXg-8Y-n0s"/>
-                        <outlet property="outputStackView" destination="ofX-B7-vbQ" id="2Rt-2w-l1y"/>
+                        <outlet property="outputLabel" destination="7dV-1X-4MV" id="ct2-6X-OOm"/>
+                        <outlet property="outputStackView" destination="ofX-B7-vbQ" id="Lql-z9-LPH"/>
                         <outlet property="registerForRemoteNotificationsButton" destination="xpC-ij-S1P" id="TXx-h3-f31"/>
                         <outlet property="scrollView" destination="apf-lc-35V" id="aDE-zg-jdK"/>
                         <outlet property="stackView" destination="lBm-QD-1nK" id="fpH-2A-cSQ"/>

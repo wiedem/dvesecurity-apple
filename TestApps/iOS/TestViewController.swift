@@ -21,6 +21,7 @@ public final class TestViewController: UIViewController, InteractiveTestViewMode
     @IBOutlet private var testStepsStackView: UIStackView!
     @IBOutlet private var descriptionLabel: UILabel!
     @IBOutlet private var outputStackView: UIStackView!
+    @IBOutlet private var outputLabel: UILabel!
     @IBOutlet private var registerForRemoteNotificationsButton: UIButton!
 
     @IBOutlet private var scrollView: UIScrollView!
@@ -89,6 +90,8 @@ public final class TestViewController: UIViewController, InteractiveTestViewMode
     }
 
     public func addOutput(_ output: String) {
+        outputLabel.isHidden = false
+
         let textView = UITextView()
 
         textView.font = .preferredFont(forTextStyle: .footnote)

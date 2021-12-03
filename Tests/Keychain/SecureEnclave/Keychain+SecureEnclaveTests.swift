@@ -18,7 +18,9 @@ class Keychain_SecureEnclaveTests: TestCaseDevice {
         let key = try Crypto.ECC.SecureEnclaveKey()
 
         try Keychain.saveKey(key, withTag: keyTag)
-        let queriedKey: Crypto.ECC.SecureEnclaveKey? = try Keychain.queryKey(withTag: keyTag)
+        let queriedKey: Crypto.ECC.SecureEnclaveKey? = try wait(description: "Keychain query") {
+            Keychain.queryKey(withTag: keyTag, completion: $0)
+        }
         expect(queriedKey).toNot(beNil())
     }
 
@@ -26,7 +28,9 @@ class Keychain_SecureEnclaveTests: TestCaseDevice {
         let keyTag = "Test Tag \(#function)"
 
         _ = try Crypto.ECC.PrivateKey(curve: .P256, inKeychainWithTag: keyTag)
-        let queriedKey: Crypto.ECC.SecureEnclaveKey? = try Keychain.queryKey(withTag: keyTag)
+        let queriedKey: Crypto.ECC.SecureEnclaveKey? = try wait(description: "Keychain query") {
+            Keychain.queryKey(withTag: keyTag, completion: $0)
+        }
         expect(queriedKey).to(beNil())
     }
 
@@ -36,7 +40,9 @@ class Keychain_SecureEnclaveTests: TestCaseDevice {
         _ = try Crypto.ECC.SecureEnclaveKey(inKeychainWithTag: keyTag)
 
         expect { () -> Void in
-            let queriedKey: Crypto.ECC.PrivateKey? = try Keychain.queryKey(withTag: keyTag)
+            let queriedKey: Crypto.ECC.PrivateKey? = try self.wait(description: "Keychain query") {
+                Keychain.queryKey(withTag: keyTag, completion: $0)
+            }
             expect(queriedKey).to(beNil())
         }.to(throwError(Crypto.KeyError.invalidSecKey))
     }
@@ -49,7 +55,9 @@ class Keychain_SecureEnclaveTests: TestCaseDevice {
         let deleted = try Keychain.deleteSecureEnclaveKey(withTag: keyTag)
         expect(deleted) == true
 
-        let queriedKey: Crypto.ECC.SecureEnclaveKey? = try Keychain.queryKey(withTag: keyTag)
+        let queriedKey: Crypto.ECC.SecureEnclaveKey? = try wait(description: "Keychain query") {
+            Keychain.queryKey(withTag: keyTag, completion: $0)
+        }
         expect(queriedKey).to(beNil())
     }
 }

@@ -58,17 +58,23 @@ class Keychain_GenericPasswordTests: XCTestCase {
         try Keychain.GenericPassword.save("Test2", forAccount: account2, service: "service2")
         try Keychain.GenericPassword.save("Test3", forAccount: account1, service: "service2")
 
-        let queriedPasswords1 = try Keychain.GenericPassword.queryItems(account: account1)
+        let queriedPasswords1 = try wait(description: "Keychain query") {
+            Keychain.GenericPassword.queryItems(account: account1, completion: $0)
+        }
         expect(queriedPasswords1).toNot(beNil())
         expect(queriedPasswords1).to(haveCount(2))
         expect(queriedPasswords1?.map(\.value).map({ String(data: $0, encoding: .utf8) })).to(contain("Test1", "Test3"))
 
-        let queriedPasswords2 = try Keychain.GenericPassword.queryItems(service: "service2")
+        let queriedPasswords2 = try wait(description: "Keychain query") {
+            Keychain.GenericPassword.queryItems(service: "service2", completion: $0)
+        }
         expect(queriedPasswords2).toNot(beNil())
         expect(queriedPasswords2).to(haveCount(2))
         expect(queriedPasswords2?.map(\.value).map({ String(data: $0, encoding: .utf8) })).to(contain("Test2", "Test3"))
 
-        let queriedPasswords3 = try Keychain.GenericPassword.queryItems(account: account2, service: "service2")
+        let queriedPasswords3 = try wait(description: "Keychain query") {
+            Keychain.GenericPassword.queryItems(account: account2, service: "service2", completion: $0)
+        }
         expect(queriedPasswords3).toNot(beNil())
         expect(queriedPasswords3?.map(\.value).map({ String(data: $0, encoding: .utf8) })) == ["Test2"]
     }

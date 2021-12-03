@@ -7,4 +7,5 @@ import XCTest
 extension XCTestCase {
     static let defaultUIInteractionTimeout: TimeInterval = 60
     static let longUIInteractionTimeout: TimeInterval = 5 * 60
+    static let veryLongUIInteractionTimeout: TimeInterval = 60 * 60
 }

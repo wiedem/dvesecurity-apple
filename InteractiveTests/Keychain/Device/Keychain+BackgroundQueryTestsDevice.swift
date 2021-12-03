@@ -41,6 +41,34 @@ class Keychain_BackgroundQueryTestsDevice: InteractiveTestCaseDevice {
         expect(password) == self.password
     }
 
+    func testQueryInBackgroundNotificationWithUserPresence() throws {
+        let accessControl = Keychain.AccessControl(itemAccessibility: .whenUnlockedThisDeviceOnly, flags: [.userPresence])
+
+        try Keychain.InternetPassword.save(password, forAccount: account, accessControl: accessControl)
+
+        testViewModel.stopActivity()
+        testViewModel.setTestTitle("Test Query in Background Push Notification")
+
+        testViewModel.addTestDescription("Enable remote notifications, send the app in the background, make sure your device is not locked, send a background notification and wait for the notification to arrive.")
+
+        // This test requires that the remote notifications are allowed for the test app and that you are able to send
+        // push notifications to the device.
+        // The device token will be printed to the console and can be copied from there.
+        expect {
+            _ = try self.wait(description: "Keychain query", timeout: Self.veryLongUIInteractionTimeout) { (completion: @escaping AsyncResultCompletionHandler<String?>) in
+                self.testViewModel.enableRemoteNotifications { backgroundNotification, _ in
+                    guard backgroundNotification else {
+                        completion(.failure(TestError.receivedForegroundNotification))
+                        return
+                    }
+                    Keychain.InternetPassword.queryOne(forAccount: self.account, completion: completion)
+                }
+            }
+        }.to(throwError {
+            expect($0) == KeychainError.itemQueryFailed(status: errSecInteractionNotAllowed)
+        })
+    }
+
     func testQueryInBackgroundNotificationWithLockedDevice() throws {
         let accessControl = Keychain.AccessControl(itemAccessibility: .whenUnlockedThisDeviceOnly)
 

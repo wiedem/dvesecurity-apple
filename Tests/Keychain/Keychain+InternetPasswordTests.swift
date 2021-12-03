@@ -59,12 +59,12 @@ class Keychain_InternetPasswordTests: XCTestCase {
         }
         expect(queriedPasswords1?.map(\.password)) == ["Test1"]
 
-        let queriedPasswords2 = try  wait(description: "Keychain query") {
+        let queriedPasswords2 = try wait(description: "Keychain query") {
             Keychain.InternetPassword.queryItems(server: "server", completion: $0)
         }
         expect(queriedPasswords2?.map(\.password)) == ["Test2"]
 
-        let queriedPasswords3 = try  wait(description: "Keychain query") {
+        let queriedPasswords3 = try wait(description: "Keychain query") {
             Keychain.InternetPassword.queryItems(protocol: .HTTP, completion: $0)
         }
         expect(queriedPasswords3?.map(\.password)) == ["Test3"]

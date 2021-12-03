@@ -54,22 +54,34 @@ class Keychain_InternetPasswordTests: XCTestCase {
         try Keychain.InternetPassword.save("Test5", forAccount: account1, port: 80)
         try Keychain.InternetPassword.save("Test6", forAccount: account1, path: "path")
 
-        let queriedPasswords1 = try Keychain.InternetPassword.queryItems(securityDomain: "securityDomain")
+        let queriedPasswords1 = try wait(description: "Keychain query") {
+            Keychain.InternetPassword.queryItems(securityDomain: "securityDomain", completion: $0)
+        }
         expect(queriedPasswords1?.map(\.password)) == ["Test1"]
 
-        let queriedPasswords2 = try Keychain.InternetPassword.queryItems(server: "server")
+        let queriedPasswords2 = try  wait(description: "Keychain query") {
+            Keychain.InternetPassword.queryItems(server: "server", completion: $0)
+        }
         expect(queriedPasswords2?.map(\.password)) == ["Test2"]
 
-        let queriedPasswords3 = try Keychain.InternetPassword.queryItems(protocol: .HTTP)
+        let queriedPasswords3 = try  wait(description: "Keychain query") {
+            Keychain.InternetPassword.queryItems(protocol: .HTTP, completion: $0)
+        }
         expect(queriedPasswords3?.map(\.password)) == ["Test3"]
 
-        let queriedPasswords4 = try Keychain.InternetPassword.queryItems(authenticationType: .HTTPBasic)
+        let queriedPasswords4 = try wait(description: "Keychain query") {
+            Keychain.InternetPassword.queryItems(authenticationType: .HTTPBasic, completion: $0)
+        }
         expect(queriedPasswords4?.map(\.password)) == ["Test4"]
 
-        let queriedPasswords5 = try Keychain.InternetPassword.queryItems(port: 80)
+        let queriedPasswords5 = try wait(description: "Keychain query") {
+            Keychain.InternetPassword.queryItems(port: 80, completion: $0)
+        }
         expect(queriedPasswords5?.map(\.password)) == ["Test5"]
 
-        let queriedPasswords6 = try Keychain.InternetPassword.queryItems(path: "path")
+        let queriedPasswords6 = try wait(description: "Keychain query") {
+            Keychain.InternetPassword.queryItems(path: "path", completion: $0)
+        }
         expect(queriedPasswords6?.map(\.password)) == ["Test6"]
     }
 

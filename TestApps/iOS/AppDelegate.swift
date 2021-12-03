@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("Test application is about to enter the foreground.")
     }
 
-    func applicationWillTerminate(_ application: UIApplication) {
+    func applicationWillTerminate(_: UIApplication) {
         NSLog("Test application is about to terminate.")
     }
 

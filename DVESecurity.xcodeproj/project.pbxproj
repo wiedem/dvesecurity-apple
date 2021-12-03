@@ -78,6 +78,7 @@
 		6576539F273A82E900D20684 /* Keychain+Legacy+GenericPassword+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576539E273A82E900D20684 /* Keychain+Legacy+GenericPassword+Item.swift */; };
 		657653A1273A87B900D20684 /* Keychain+Legacy+GenericPassword+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657653A0273A87B900D20684 /* Keychain+Legacy+GenericPassword+Internal.swift */; };
 		657653A3273ADBAF00D20684 /* Keychain+Legacy+InternetPassword+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657653A2273ADBAF00D20684 /* Keychain+Legacy+InternetPassword+Item.swift */; };
+		6578CEFF275A1BAC007FAAAE /* Keychain+BackgroundQueryTestsDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578CEFE275A1BAC007FAAAE /* Keychain+BackgroundQueryTestsDevice.swift */; };
 		657DDBBE24F98764004441F9 /* Keychain+SecureEnclaveTestsiOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DDBBD24F98764004441F9 /* Keychain+SecureEnclaveTestsiOS13.swift */; };
 		657DDBC124F98898004441F9 /* Keychain+ECCTestsiOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DDBC024F98898004441F9 /* Keychain+ECCTestsiOS13.swift */; };
 		657DDBC324F98915004441F9 /* Keychain+RSATestsiOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DDBC224F98915004441F9 /* Keychain+RSATestsiOS13.swift */; };
@@ -529,6 +530,7 @@
 		657653A2273ADBAF00D20684 /* Keychain+Legacy+InternetPassword+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Legacy+InternetPassword+Item.swift"; sourceTree = "<group>"; };
 		6576548A273AF2E100D20684 /* PKCS1.asn1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PKCS1.asn1; sourceTree = "<group>"; };
 		657654C3273AF2E600D20684 /* PKIX.asn1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PKIX.asn1; sourceTree = "<group>"; };
+		6578CEFE275A1BAC007FAAAE /* Keychain+BackgroundQueryTestsDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+BackgroundQueryTestsDevice.swift"; sourceTree = "<group>"; };
 		657DDBBD24F98764004441F9 /* Keychain+SecureEnclaveTestsiOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+SecureEnclaveTestsiOS13.swift"; sourceTree = "<group>"; };
 		657DDBC024F98898004441F9 /* Keychain+ECCTestsiOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+ECCTestsiOS13.swift"; sourceTree = "<group>"; };
 		657DDBC224F98915004441F9 /* Keychain+RSATestsiOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+RSATestsiOS13.swift"; sourceTree = "<group>"; };
@@ -1123,6 +1125,7 @@
 				655B2A2E2528AF6000A6BF9F /* Keychain+RSATestsDevice.swift */,
 				655B2A322528AF8E00A6BF9F /* Keychain+AESTestsDevice.swift */,
 				655B2A382528B5BD00A6BF9F /* Keychain+ECCTestsDevice.swift */,
+				6578CEFE275A1BAC007FAAAE /* Keychain+BackgroundQueryTestsDevice.swift */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -2101,6 +2104,7 @@
 				65449123252E620500D67C43 /* Keychain+GenericPasswordTestsDevice.swift in Sources */,
 				6544911D252E613000D67C43 /* InteractiveTestCaseiOS13Device.swift in Sources */,
 				91992CA7252F069900A36643 /* Keychain+GenericPasswordTestsiOS13Device.swift in Sources */,
+				6578CEFF275A1BAC007FAAAE /* Keychain+BackgroundQueryTestsDevice.swift in Sources */,
 				91992C9E252F05B200A36643 /* Keychain+InternetPasswordTestsDevice.swift in Sources */,
 				91992CC3252F073500A36643 /* Keychain+ECCTestsiOS13Device.swift in Sources */,
 				91992C85252F04DA00A36643 /* Keychain+AESTestsDevice.swift in Sources */,

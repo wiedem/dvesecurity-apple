@@ -288,8 +288,7 @@ extension Keychain {
             protocol: InternetPassword.NetworkProtocol? = nil,
             authenticationType: InternetPassword.AuthenticationType? = nil,
             port: UInt16? = nil,
-            path: String? = nil,
-            accessControl: AccessControl = .afterFirstUnlockThisDeviceOnly
+            path: String? = nil
         ) throws -> Bool {
             var itemAttributes: Set<Keychain.ItemAttribute> = [
                 .account(account), .accessGroup(accessGroup),

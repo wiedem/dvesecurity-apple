@@ -80,9 +80,6 @@ public extension Keychain {
     ///
     /// Attempts to store a RSA private key in the keychain.
     ///
-    /// To query the key from the keychain later, you must specify the same `tag`  value and `accessGroup`  that was used when saving.
-    /// The `accessControl` parameter restricts the conditions under which an app can query the item, see  ``Keychain/AccessControl`` for more details.
-    ///
     /// - Parameters:
     ///   - privateKey: RSA private key to save in the keychain.
     ///   - tag: The private tag data used for the key.

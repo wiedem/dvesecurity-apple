@@ -28,7 +28,7 @@ let package = Package(
             name: "DVESecurity_ObjC",
             dependencies: [],
             path: "CSource/ObjC",
-            exclude: ["ASN1/PKCS1.asn1", "ASN1/PKIX.asn1", "ASN1/Makefile.am.asn1convert", "ASN1/Makefile.am.libasncodec"],
+            exclude: ["ASN1/LICENSE", "ASN1/PKCS1.asn1", "ASN1/PKIX.asn1", "ASN1/Makefile.am.asn1convert", "ASN1/Makefile.am.libasncodec"],
             publicHeadersPath: "include",
             cSettings: [
                 .headerSearchPath("ASN1"),

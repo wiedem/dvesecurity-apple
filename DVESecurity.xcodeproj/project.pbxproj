@@ -485,6 +485,7 @@
 		6521CF0924DB5CB10018EEA5 /* Keychain+GenericPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+GenericPassword.swift"; sourceTree = "<group>"; };
 		6521CF0B24DB66830018EEA5 /* Keychain+InternetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+InternetPassword.swift"; sourceTree = "<group>"; };
 		653A87AE24E1C30500934AC0 /* Crypto+AsymmetricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+AsymmetricTests.swift"; sourceTree = "<group>"; };
+		653B77BB27682768006E0B51 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		654490FB252E5B7C00D67C43 /* InteractiveTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = InteractiveTests.xctestplan; path = InteractiveTests/InteractiveTests.xctestplan; sourceTree = SOURCE_ROOT; };
 		65449112252E611000D67C43 /* InteractiveTestCaseDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTestCaseDevice.swift; sourceTree = "<group>"; };
 		65449117252E612300D67C43 /* InteractiveTestCaseiOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTestCaseiOS13.swift; sourceTree = "<group>"; };
@@ -1617,6 +1618,7 @@
 		65EF6847273AF8CA00B2A1C7 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				653B77BB27682768006E0B51 /* LICENSE */,
 				65EF6848273AF8DF00B2A1C7 /* PKCS1.asn1 */,
 				65EF6849273AF8E000B2A1C7 /* PKIX.asn1 */,
 				65EF684B273AF8EE00B2A1C7 /* Makefile.am.asn1convert */,
@@ -2651,7 +2653,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2673,7 +2675,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.5;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2722,7 +2724,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2738,7 +2740,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.5;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.diva-e.DVESecurity";

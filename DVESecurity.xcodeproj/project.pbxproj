@@ -485,6 +485,7 @@
 		6521CF0924DB5CB10018EEA5 /* Keychain+GenericPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+GenericPassword.swift"; sourceTree = "<group>"; };
 		6521CF0B24DB66830018EEA5 /* Keychain+InternetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+InternetPassword.swift"; sourceTree = "<group>"; };
 		653A87AE24E1C30500934AC0 /* Crypto+AsymmetricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+AsymmetricTests.swift"; sourceTree = "<group>"; };
+		653B77BB27682768006E0B51 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		654490FB252E5B7C00D67C43 /* InteractiveTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = InteractiveTests.xctestplan; path = InteractiveTests/InteractiveTests.xctestplan; sourceTree = SOURCE_ROOT; };
 		65449112252E611000D67C43 /* InteractiveTestCaseDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTestCaseDevice.swift; sourceTree = "<group>"; };
 		65449117252E612300D67C43 /* InteractiveTestCaseiOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTestCaseiOS13.swift; sourceTree = "<group>"; };
@@ -1617,6 +1618,7 @@
 		65EF6847273AF8CA00B2A1C7 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				653B77BB27682768006E0B51 /* LICENSE */,
 				65EF6848273AF8DF00B2A1C7 /* PKCS1.asn1 */,
 				65EF6849273AF8E000B2A1C7 /* PKIX.asn1 */,
 				65EF684B273AF8EE00B2A1C7 /* Makefile.am.asn1convert */,

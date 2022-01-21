@@ -1905,7 +1905,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 651224AA24CB0E3A00A2CEF4 /* Build configuration list for PBXNativeTarget "DVESecurity" */;
 			buildPhases = (
-				6548AE9C24E843A900856EBA /* SwiftFormat */,
 				91E5736424DD8AD800C50786 /* SwiftLint */,
 				6512249124CB0E3A00A2CEF4 /* Headers */,
 				6512249224CB0E3A00A2CEF4 /* Sources */,
@@ -2048,24 +2047,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6548AE9C24E843A900856EBA /* SwiftFormat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftFormat;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftformat >/dev/null; then\n  if [ -z $TARGET_INTERFACE_BUILDER ]; then\n    swiftformat \"$SRCROOT\"\n  else\n    echo \"info: skipping SwiftFormat for InterfaceBuilder builds\"\n  fi\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
-		};
 		91E5736424DD8AD800C50786 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2082,7 +2063,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  if [ -z $TARGET_INTERFACE_BUILDER ]; then\n    swiftlint\n  else\n    echo \"info: skipping SwiftLint for InterfaceBuilder builds\"\n  fi\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  if [ $ACTION == \"indexbuild\" ] || [ ! -z $TARGET_INTERFACE_BUILDER ]; then\n    echo \"info: skipping SwiftLint\"\n    exit 0\n  fi\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

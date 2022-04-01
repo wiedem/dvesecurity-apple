@@ -228,7 +228,6 @@
 		65EF680F273AF40000B2A1C7 /* OCTET_STRING_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF679E273AF3FE00B2A1C7 /* OCTET_STRING_xer.c */; };
 		65EF6810273AF40000B2A1C7 /* asn_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF679F273AF3FE00B2A1C7 /* asn_internal.h */; };
 		65EF6811273AF40000B2A1C7 /* asn_random_fill.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67A0273AF3FE00B2A1C7 /* asn_random_fill.h */; };
-		65EF6812273AF40000B2A1C7 /* pdu_collection.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67A1273AF3FE00B2A1C7 /* pdu_collection.c */; };
 		65EF6813273AF40000B2A1C7 /* ANY_ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67A2273AF3FE00B2A1C7 /* ANY_ber.c */; };
 		65EF6814273AF40000B2A1C7 /* INTEGER_ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67A3273AF3FE00B2A1C7 /* INTEGER_ber.c */; };
 		65EF6815273AF40000B2A1C7 /* asn_application.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67A4273AF3FE00B2A1C7 /* asn_application.c */; };
@@ -683,7 +682,6 @@
 		65EF679E273AF3FE00B2A1C7 /* OCTET_STRING_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OCTET_STRING_xer.c; sourceTree = "<group>"; };
 		65EF679F273AF3FE00B2A1C7 /* asn_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_internal.h; sourceTree = "<group>"; };
 		65EF67A0273AF3FE00B2A1C7 /* asn_random_fill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_random_fill.h; sourceTree = "<group>"; };
-		65EF67A1273AF3FE00B2A1C7 /* pdu_collection.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pdu_collection.c; sourceTree = "<group>"; };
 		65EF67A2273AF3FE00B2A1C7 /* ANY_ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ANY_ber.c; sourceTree = "<group>"; };
 		65EF67A3273AF3FE00B2A1C7 /* INTEGER_ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = INTEGER_ber.c; sourceTree = "<group>"; };
 		65EF67A4273AF3FE00B2A1C7 /* asn_application.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn_application.c; sourceTree = "<group>"; };
@@ -737,7 +735,6 @@
 		65EF6848273AF8DF00B2A1C7 /* PKCS1.asn1 */ = {isa = PBXFileReference; lastKnownFileType = text; path = PKCS1.asn1; sourceTree = "<group>"; };
 		65EF6849273AF8E000B2A1C7 /* PKIX.asn1 */ = {isa = PBXFileReference; lastKnownFileType = text; path = PKIX.asn1; sourceTree = "<group>"; };
 		65EF684A273AF8EE00B2A1C7 /* Makefile.am.libasncodec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am.libasncodec; sourceTree = "<group>"; };
-		65EF684B273AF8EE00B2A1C7 /* Makefile.am.asn1convert */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am.asn1convert; sourceTree = "<group>"; };
 		65EF684E273D479300B2A1C7 /* Keychain+InternetPassword+ItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+InternetPassword+ItemTests.swift"; sourceTree = "<group>"; };
 		65EF6850273D92A900B2A1C7 /* Keychain+Legacy+InternetPassword+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Legacy+InternetPassword+Internal.swift"; sourceTree = "<group>"; };
 		65EF6858273ECF3800B2A1C7 /* ASN1+CoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASN1+CoderTests.swift"; sourceTree = "<group>"; };
@@ -1362,7 +1359,6 @@
 				65EF67C7273AF40000B2A1C7 /* OtherPrimeInfo.h */,
 				65EF679B273AF3FD00B2A1C7 /* OtherPrimeInfos.c */,
 				65EF678A273AF3FD00B2A1C7 /* OtherPrimeInfos.h */,
-				65EF67A1273AF3FE00B2A1C7 /* pdu_collection.c */,
 				65EF67CD273AF40000B2A1C7 /* RSAPrivateKey.c */,
 				65EF677F273AF3FC00B2A1C7 /* RSAPrivateKey.h */,
 				65EF6787273AF3FC00B2A1C7 /* RSAPublicKey.c */,
@@ -1621,7 +1617,6 @@
 				653B77BB27682768006E0B51 /* LICENSE */,
 				65EF6848273AF8DF00B2A1C7 /* PKCS1.asn1 */,
 				65EF6849273AF8E000B2A1C7 /* PKIX.asn1 */,
-				65EF684B273AF8EE00B2A1C7 /* Makefile.am.asn1convert */,
 				65EF684A273AF8EE00B2A1C7 /* Makefile.am.libasncodec */,
 			);
 			name = Files;
@@ -2137,7 +2132,6 @@
 				65EF6842273AF40100B2A1C7 /* asn_SEQUENCE_OF.c in Sources */,
 				65EF6816273AF40000B2A1C7 /* constr_SEQUENCE_print.c in Sources */,
 				65EF6826273AF40100B2A1C7 /* constr_SEQUENCE_OF_ber.c in Sources */,
-				65EF6812273AF40000B2A1C7 /* pdu_collection.c in Sources */,
 				65696CE924E565AE00BA8774 /* Crypto+AES+Key.swift in Sources */,
 				657653912735AD3000D20684 /* Keychain+InternetPassword+NetworkProtocol.swift in Sources */,
 				65765383273435B100D20684 /* Crypto+ECC+Operations.swift in Sources */,

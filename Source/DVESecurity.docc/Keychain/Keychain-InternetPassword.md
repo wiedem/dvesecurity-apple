@@ -26,7 +26,7 @@ With iOS 12 a synchronous query on the main thread leads to a deadlock when the 
 - ``updateItems(newPassword:forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:accessControl:authentication:)``
 
 ### Delete Passwords
-- ``deleteItems(forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:accessControl:)``
+- ``deleteItems(forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:)``
 
 ### Retrieve Synchronizable Passwords
 - ``queryOneSynchronizable(forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:completion:)``

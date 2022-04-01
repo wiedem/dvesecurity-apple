@@ -75,13 +75,42 @@ public final class AppEntitlements {
         return shared.entitlements[EntitlementKey.apsEnvironment.rawValue] as? String
     }
 
+    #if os(iOS)
+    /// The default data protection level entitlement of the app.
+    ///
+    /// The value of this entitlement defines the default protection level for newly created files.
+    ///
+    /// See [Data Protection Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_default-data-protection).
+    public class var defaultDataProtection: FileProtectionType? {
+        guard let defaultDataProtectionValue = shared.entitlements[EntitlementKey.defaultDataProtection.rawValue] as? String else {
+            return nil
+        }
+        return .init(rawValue: defaultDataProtectionValue)
+    }
+    #endif
+
+    #if os(macOS)
+    /// Indicates if the app has the [App Sandbox Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_app-sandbox) set.
+    ///
+    /// This value indicates whether the app may use access control technology to contain damage to the system and user data if an app is compromised.
+    ///
+    /// See [App Sandbox](https://developer.apple.com/documentation/security/app_sandbox).
+    public class var isAppSandboxed: Bool {
+        return shared.entitlements[EntitlementKey.applicationSandbox.rawValue] as? Bool ?? false
+    }
+    #endif
+
     private init(_ entitlements: [String: Any]) {
         self.entitlements = entitlements
     }
 }
 
 private extension AppEntitlements {
-    /// See [SecEntitlements.h](https://opensource.apple.com/source/Security/Security-59306.140.5/sectask/SecEntitlements.h.auto.html) and [App Sandbox](https://developer.apple.com/documentation/security/app_sandbox)
+    /// Keys used to get entitlement values from the app.
+    ///
+    /// This type contains a subset of the available application entitlement keys as described in the [Entitlements](https://developer.apple.com/documentation/bundleresources/entitlements) documentation.
+    ///
+    /// Also see [SecEntitlements.h](https://opensource.apple.com/source/Security/Security-59306.140.5/sectask/SecEntitlements.h.auto.html) for undocumented entitlement keys.
     enum EntitlementKey: String {
         // swiftlint:disable duplicate_enum_cases
         #if os(iOS)
@@ -131,10 +160,18 @@ private extension AppEntitlements {
         case appleSecurityApplicationGroups = "com.apple.security.application-groups"
         /// Entitlement key for the team identifier of the app.
         case appleDeveloperTeamIdentifier = "com.apple.developer.team-identifier"
+        #if os(iOS)
+        /// Entitlement key for the default data protection level of the app.
+        ///
+        /// See [Data Protection Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_default-data-protection).
+        case defaultDataProtection = "com.apple.developer.default-data-protection"
+        #endif
         #if os(macOS)
         /// Entitlement key indicating if the app is sandboxed.
         ///
         /// The value of this key is a Boolean that indicates whether the app may use access control technology to contain damage to the system and user data if an app is compromised.
+        ///
+        /// See [App Sandbox Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_app-sandbox).
         case applicationSandbox = "com.apple.security.app-sandbox"
         #endif
     }

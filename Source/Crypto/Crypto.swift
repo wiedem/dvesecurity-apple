@@ -55,9 +55,10 @@ public enum Crypto {
     public static func createRandomPassword(length: Int, characters: Set<Character> = defaultRandomPasswordAlphabet) -> String {
         var password = ""
         let charactersArray = Array(characters)
+        let charactersIndexRange = 0..<characters.count
 
         for _ in 1...length {
-            password.append(charactersArray[Int(arc4random_uniform(UInt32(characters.count)))])
+            password.append(charactersArray[charactersIndexRange.randomElement()!])
         }
         return password
     }

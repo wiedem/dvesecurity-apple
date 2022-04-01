@@ -1952,7 +1952,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1330;
 				ORGANIZATIONNAME = "diva-e NEXT GmbH";
 				TargetAttributes = {
 					45D9B9BF24E1764B00DF6480 = {
@@ -2554,6 +2554,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 diva-e NEXT GmbH. All rights reserved.";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -2583,6 +2584,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 diva-e NEXT GmbH. All rights reserved.";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;

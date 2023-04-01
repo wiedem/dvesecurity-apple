@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "DVESecurity",
     platforms: [
-        .iOS(.v12),
+        .iOS(.v13),
         .macOS(.v11),
     ],
     products: [

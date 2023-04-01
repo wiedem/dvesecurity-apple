@@ -71,7 +71,7 @@ When the framework is included as a Swift package in Xcode, the documentation ca
 If the framework is included via Carthage or manually as a library, then the documentation must be generated manually.  
 
 ## Compatibility
-DVESecurity is compatible with iOS 13.0, macOS 10.15 and requires at least Swift 5.4.
+DVESecurity is compatible with iOS 13.0, macOS 10.15 and requires at least Swift 5.5.
 The framework also follows the [SemVer 2.0.0] rules.
 
 [Security Framework]: https://developer.apple.com/documentation/security "Security Framework"

@@ -473,7 +473,6 @@
 		651224A624CB0E3A00A2CEF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		651224B024CB0FDA00A2CEF4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		651224B224CB0FDA00A2CEF4 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		651224B324CB102400A2CEF4 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		651224B424CB113700A2CEF4 /* DVESecurity.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DVESecurity.xctestplan; sourceTree = "<group>"; };
 		651A622D24FBE71A00B6420A /* test.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.dat; sourceTree = "<group>"; };
 		651A622F24FC0CD100B6420A /* Crypto+HMAC+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+HMAC+Combine.swift"; sourceTree = "<group>"; };
@@ -583,7 +582,7 @@
 		65C12AF324FAFFE600F21629 /* HMAC+SHA384.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HMAC+SHA384.swift"; sourceTree = "<group>"; };
 		65C12AF524FAFFEE00F21629 /* HMAC+SHA512.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HMAC+SHA512.swift"; sourceTree = "<group>"; };
 		65C12AF724FB036900F21629 /* Crypto+HMACTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+HMACTests.swift"; sourceTree = "<group>"; };
-		65C518AC2705EF29006D1F0D /* Package@swift-5.5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Package@swift-5.5.swift"; sourceTree = "<group>"; };
+		65C518AC2705EF29006D1F0D /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		65C518AD2705EFA9006D1F0D /* DVESecurity.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DVESecurity.docc; sourceTree = "<group>"; };
 		65C902A32502EB0F007F2F76 /* DVEASN1Coder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVEASN1Coder.h; sourceTree = "<group>"; };
 		65C902A42502EB0F007F2F76 /* DVEASN1Coder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DVEASN1Coder.m; sourceTree = "<group>"; };
@@ -953,8 +952,7 @@
 				651224B224CB0FDA00A2CEF4 /* LICENSE.md */,
 				6548AE9B24E83ED500856EBA /* .swiftformat */,
 				91E5736324DD8AB400C50786 /* .swiftlint.yml */,
-				651224B324CB102400A2CEF4 /* Package.swift */,
-				65C518AC2705EF29006D1F0D /* Package@swift-5.5.swift */,
+				65C518AC2705EF29006D1F0D /* Package.swift */,
 				65A4301524EEFE2900E326D9 /* Configuration */,
 				65A1D43024EDCDC5006E19E6 /* CSource */,
 				6512249824CB0E3A00A2CEF4 /* Source */,
@@ -2665,7 +2663,7 @@
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.4;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2729,7 +2727,7 @@
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.4;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class RSAPublicKeyTests: XCTestCase {
+final class RSAPublicKeyTests: XCTestCase {
     private lazy var x509TestFileURL = Bundle.main.url(forResource: "X509RSAPublicKey", withExtension: "der")!
 
     func testCreationFromX509() throws {

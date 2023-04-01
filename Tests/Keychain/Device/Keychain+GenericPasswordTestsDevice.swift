@@ -6,7 +6,7 @@ import LocalAuthentication
 import Nimble
 import XCTest
 
-class Keychain_GenericPasswordTestsDevice: TestCaseDevice {
+final class Keychain_GenericPasswordTestsDevice: TestCaseDevice {
     private let password = "Password-1234!äöü/"
     private let account = "GenericPasswordTest"
     private let service = "com.diva-e.tests.GenericPasswordTests"

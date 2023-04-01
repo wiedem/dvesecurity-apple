@@ -6,7 +6,7 @@ import Nimble
 import XCTest
 
 #if os(macOS)
-class Keychain_Legacy_InternetPasswordTests: TestCaseLegacyKeychain {
+final class Keychain_Legacy_InternetPasswordTests: TestCaseLegacyKeychain {
     private let password = "Password-1234!äöü/"
     private let account1 = "InternetPasswordTest1"
     private let account2 = "InternetPasswordTest2"

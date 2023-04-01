@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class Keychain_InternetPassword_SynchronizableTests: XCTestCase {
+final class Keychain_InternetPassword_SynchronizableTests: XCTestCase {
     private static let configuredAccessGroups = Keychain.accessGroups
 
     private static let password = "Password-1234!äöü/"

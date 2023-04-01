@@ -8,7 +8,7 @@ import Nimble
 import XCTest
 
 @available(iOS 13.0, *)
-class Keychain_CryptoKitTests: TestCaseCryptoKit {
+final class Keychain_CryptoKitTests: TestCaseCryptoKit {
     override func tearDownWithError() throws {
         try super.tearDownWithError()
 

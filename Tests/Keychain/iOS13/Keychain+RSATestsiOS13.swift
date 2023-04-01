@@ -7,7 +7,7 @@ import Nimble
 import XCTest
 
 @available(iOS 13.0, *)
-class Keychain_RSATestsiOS13: TestCaseiOS13 {
+final class Keychain_RSATestsiOS13: TestCaseiOS13 {
     private static let keychainAccessGroups = Keychain.accessGroups
 
     override func tearDownWithError() throws {

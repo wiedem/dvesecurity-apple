@@ -6,7 +6,7 @@ import LocalAuthentication
 import Nimble
 import XCTest
 
-class Keychain_InternetPasswordTestsDevice: InteractiveTestCaseDevice {
+final class Keychain_InternetPasswordTestsDevice: InteractiveTestCaseDevice {
     private let password = "Password-1234!äöü/"
     private let account = "InternetPasswordTest"
 

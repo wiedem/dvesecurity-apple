@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class Keychain_InternetPassword_ItemTests: XCTestCase {
+final class Keychain_InternetPassword_ItemTests: XCTestCase {
     func testCreationFromSecAttributes() throws {
         let passwordData = Data()
         let modificationDate = Date()

@@ -7,7 +7,7 @@ import Nimble
 import XCTest
 
 @available(iOS 13.0, *)
-class Keychain_GenericPasswordTestsiOS13Device: InteractiveTestCaseiOS13Device {
+final class Keychain_GenericPasswordTestsiOS13Device: InteractiveTestCaseiOS13Device {
     private let password = "Password-1234!äöü/"
     private let account = "GenericPasswordTest"
     private let service = "com.diva-e.tests.GenericPasswordTests"

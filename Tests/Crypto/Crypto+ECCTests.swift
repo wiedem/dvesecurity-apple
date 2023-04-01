@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class ECCTests: XCTestCase {
+final class ECCTests: XCTestCase {
     override func tearDownWithError() throws {
         try super.tearDownWithError()
 

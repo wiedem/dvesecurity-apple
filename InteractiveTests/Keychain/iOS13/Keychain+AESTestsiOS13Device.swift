@@ -7,7 +7,7 @@ import Nimble
 import XCTest
 
 @available(iOS 13.0, *)
-class Keychain_AESTestsiOS13Device: InteractiveTestCaseiOS13Device {
+final class Keychain_AESTestsiOS13Device: InteractiveTestCaseiOS13Device {
     // swiftlint:disable force_try
     private let key: Crypto.AES.Key = try! Crypto.AES.Key(keySize: Crypto.AES.KeySize.bits256,
                                                           password: "Hello Test!",

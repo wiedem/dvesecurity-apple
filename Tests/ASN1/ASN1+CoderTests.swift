@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class ASN1_CoderTests: XCTestCase {
+final class ASN1_CoderTests: XCTestCase {
     func testEncodeRSAPrivateKey() throws {
         let key = try Crypto.RSA.PrivateKey(bitCount: 1024)
         let pkcs1Data = key.pkcs1Representation

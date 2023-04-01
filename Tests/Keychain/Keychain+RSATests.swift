@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class Keychain_RSATests: XCTestCase {
+final class Keychain_RSATests: XCTestCase {
     override func tearDownWithError() throws {
         try super.tearDownWithError()
 

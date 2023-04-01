@@ -8,7 +8,7 @@ import Nimble
 import XCTest
 
 @available(iOS 13.0, *)
-class Keychain_SecureEnclaveTestsiOS13: InteractiveTestCaseiOS13Device {
+final class Keychain_SecureEnclaveTestsiOS13: InteractiveTestCaseiOS13Device {
     override func setUpWithError() throws {
         try super.setUpWithError()
 

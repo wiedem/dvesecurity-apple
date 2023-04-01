@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class Crypto_SecureEnclaveTests: TestCaseDevice {
+final class Crypto_SecureEnclaveTests: TestCaseDevice {
     func testEncryptionAndDecryption() throws {
         let secureEnclaveKey = try Crypto.ECC.SecureEnclaveKey()
         let publicKey: Crypto.ECC.PublicKey = secureEnclaveKey.publicKey()

@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class Keychain_GenericPassword_SynchronizableTests: XCTestCase {
+final class Keychain_GenericPassword_SynchronizableTests: XCTestCase {
     private static let configuredAccessGroups = Keychain.accessGroups
 
     private static let password = "Password-1234!äöü/"

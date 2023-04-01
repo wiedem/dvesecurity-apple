@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class RSATests: XCTestCase {
+final class RSATests: XCTestCase {
     func testEncryptionAndDecryption() throws {
         let rsaPrivateKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
         let rsaPublicKey = rsaPrivateKey.publicKey()

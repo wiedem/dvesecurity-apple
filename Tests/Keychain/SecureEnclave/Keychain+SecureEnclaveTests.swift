@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class Keychain_SecureEnclaveTests: TestCaseDevice {
+final class Keychain_SecureEnclaveTests: TestCaseDevice {
     override func tearDownWithError() throws {
         try super.tearDownWithError()
 

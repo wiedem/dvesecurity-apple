@@ -6,7 +6,7 @@ import CommonCrypto
 import Nimble
 import XCTest
 
-class SHA224Tests: HashingTests {
+final class SHA224Tests: HashingTests {
     private lazy var data = "Hello World!".data(using: .utf8)!
     private let dataHash: [UInt8] = [0x45, 0x75, 0xBB, 0x4E, 0xC1, 0x29, 0xDF, 0x63,
                                      0x80, 0xCE, 0xDD, 0xE6, 0xD7, 0x12, 0x17, 0xFE,

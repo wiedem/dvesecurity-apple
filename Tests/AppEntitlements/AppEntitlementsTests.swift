@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class AppEntitlementsTests: XCTestCase {
+final class AppEntitlementsTests: XCTestCase {
     func testAppEntitlements() throws {
         expect(AppEntitlements.applicationIdentifier.hasSuffix("\(Self.productDomain).DVESecurityTestApp")) == true
 

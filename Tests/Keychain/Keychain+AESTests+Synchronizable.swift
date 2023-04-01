@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class Keychain_AES_SynchronizableTests: XCTestCase {
+final class Keychain_AES_SynchronizableTests: XCTestCase {
     private static let configuredAccessGroups = Keychain.accessGroups
 
     // swiftlint:disable force_try

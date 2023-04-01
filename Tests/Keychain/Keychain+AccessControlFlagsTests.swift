@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class Keychain_AccessControlFlagsTests: XCTestCase {
+final class Keychain_AccessControlFlagsTests: XCTestCase {
     func testAccessControlFlagsSetMethods() {
         var flags: Keychain.AccessControlFlags = []
         var count = 0

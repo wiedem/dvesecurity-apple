@@ -8,7 +8,7 @@ import Nimble
 import XCTest
 
 @available(iOS 13.0, *)
-class Crypto_AES_CombineTests: TestCaseCombine {
+final class Crypto_AES_CombineTests: TestCaseCombine {
     func testDeferredEncryptionAndDecryption() {
         let plainText = "Hello World!"
         let plainTextData = plainText.data(using: .utf8)!

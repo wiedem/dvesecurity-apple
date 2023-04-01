@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class ECCPrivateKeyTests: XCTestCase {
+final class ECCPrivateKeyTests: XCTestCase {
     func testECCPrivateKeyCreation() throws {
         let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
 

@@ -6,7 +6,7 @@ import Nimble
 import Security
 import XCTest
 
-class SecKeyClassTests: XCTestCase {
+final class SecKeyClassTests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
     }

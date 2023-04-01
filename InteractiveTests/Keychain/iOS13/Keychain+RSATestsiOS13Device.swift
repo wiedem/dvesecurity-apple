@@ -7,7 +7,7 @@ import Nimble
 import XCTest
 
 @available(iOS 13.0, *)
-class Keychain_RSATestsiOS13Device: InteractiveTestCaseiOS13Device {
+final class Keychain_RSATestsiOS13Device: InteractiveTestCaseiOS13Device {
     override func tearDownWithError() throws {
         try super.tearDownWithError()
 

@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class KeychainTests: XCTestCase {
+final class KeychainTests: XCTestCase {
     private static let configuredAccessGroups = Keychain.accessGroups
 
     private let account = "KeychainPasswordTest"

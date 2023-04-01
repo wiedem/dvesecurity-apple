@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class AESTests: XCTestCase {
+final class AESTests: XCTestCase {
     func testEncryptionAndDecryption() throws {
         let ivData = try Crypto.AES.createIV()
         let aesKey = try Crypto.AES.Key(keySize: .bits192, password: "Password", withSalt: "Salt", pseudoRandomAlgorithm: .hmacAlgSHA256, rounds: 1)

@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class RSAPrivateKeyTests: XCTestCase {
+final class RSAPrivateKeyTests: XCTestCase {
     func testMaxPlainTextLength() throws {
         let rsaPrivateKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
         let keyBlockSize = rsaPrivateKey.blockSize

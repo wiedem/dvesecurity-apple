@@ -7,7 +7,7 @@ import Nimble
 import XCTest
 
 @available(iOS 13.0, *)
-class Keychain_AESTestsiOS13: TestCaseiOS13 {
+final class Keychain_AESTestsiOS13: TestCaseiOS13 {
     private static let configuredAccessGroups = Keychain.accessGroups
 
     // swiftlint:disable force_try

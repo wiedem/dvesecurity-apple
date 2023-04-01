@@ -6,7 +6,7 @@ import Foundation
 import Nimble
 import XCTest
 
-class Crypto_HMACTests: XCTestCase {
+final class Crypto_HMACTests: XCTestCase {
     private lazy var testFileURL = Bundle.main.url(forResource: "test", withExtension: "dat")!
 
     func testAuthenticationCode() throws {

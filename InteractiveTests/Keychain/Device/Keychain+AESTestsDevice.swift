@@ -6,7 +6,7 @@ import LocalAuthentication
 import Nimble
 import XCTest
 
-class Keychain_AESTestsDevice: InteractiveTestCaseDevice {
+final class Keychain_AESTestsDevice: InteractiveTestCaseDevice {
     // swiftlint:disable force_try
     private let key: Crypto.AES.Key = try! Crypto.AES.Key(keySize: Crypto.AES.KeySize.bits256,
                                                           password: "Hello Test!",

@@ -5,7 +5,7 @@
 import Nimble
 import XCTest
 
-class Keychain_BackgroundQueryTestsDevice: InteractiveTestCaseDevice {
+final class Keychain_BackgroundQueryTestsDevice: InteractiveTestCaseDevice {
     private let password = "Password-1234!äöü/"
     private let account = "InternetPasswordTest"
 

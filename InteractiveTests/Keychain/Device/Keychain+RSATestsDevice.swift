@@ -6,7 +6,7 @@ import LocalAuthentication
 import Nimble
 import XCTest
 
-class Keychain_RSATestsDevice: InteractiveTestCaseDevice {
+final class Keychain_RSATestsDevice: InteractiveTestCaseDevice {
     override func tearDownWithError() throws {
         try super.tearDownWithError()
 

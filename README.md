@@ -13,7 +13,7 @@ To use the framework as a Swift package, add the following dependency to your `P
 .package(url: "https://oss.diva-e.com/libraries/dvesecurity-apple", .upToNextMajor(from: "1.0.0")),
 ```
 
-If a Swift version of 5.5 or higher is used, a [DocC] documentation for the framework is available. Further details can be found in the [Documentation](#Documentation) section.
+A [DocC] documentation for the framework is available. Further details can be found in the [Documentation](#Documentation) section.
 
 Note that the framework does not have a test target in the Swift package manifest. For more details on testing, see the [Testing](#testing) section.
 
@@ -71,7 +71,7 @@ When the framework is included as a Swift package in Xcode, the documentation ca
 If the framework is included via Carthage or manually as a library, then the documentation must be generated manually.  
 
 ## Compatibility
-DVESecurity is compatible with iOS 13.0, macOS 10.15 and requires at least Swift 5.5.
+DVESecurity is compatible with iOS 13.0, macOS 10.15 and requires at least Swift 5.7.
 The framework also follows the [SemVer 2.0.0] rules.
 
 [Security Framework]: https://developer.apple.com/documentation/security "Security Framework"

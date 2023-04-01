@@ -1,4 +1,4 @@
---swiftversion 5.5
+--swiftversion 5.7
 --symlinks ignore
 --exclude CSource,Carthage,.build
 

@@ -97,7 +97,7 @@ final class RSATests: XCTestCase {
         let otherPlainTextData = otherPlainText.data(using: .utf8)!
 
         for algorithm in Crypto.RSA.MessageSignatureAlgorithm.allCases {
-            expect { () -> Void in
+            expect { () in
                 let signatureData = try rsaPrivateKey.signature(for: plainTextData, algorithm: algorithm)
                 let verifyResult1 = try rsaPublicKey.isValidSignature(signatureData, of: plainTextData, algorithm: algorithm)
                 expect(verifyResult1) == true
@@ -119,11 +119,11 @@ final class RSATests: XCTestCase {
             Hashing.SHA224.self,
             Hashing.SHA256.self,
             Hashing.SHA384.self,
-            Hashing.SHA512.self
+            Hashing.SHA512.self,
         ]
 
         for hashFunction in hashFunctions {
-            expect { () -> Void in
+            expect { () in
                 let digest = hashFunction.hash(plainTextData)
                 let signatureData = try rsaPrivateKey.digestSignature(for: digest, algorithm: .PKCS1v15Raw)
                 let verifyResult = try rsaPublicKey.isValidDigestSignature(signatureData, digest: digest, algorithm: .PKCS1v15Raw)
@@ -144,11 +144,11 @@ final class RSATests: XCTestCase {
             Hashing.SHA224.self,
             Hashing.SHA256.self,
             Hashing.SHA384.self,
-            Hashing.SHA512.self
+            Hashing.SHA512.self,
         ]
 
         for hashFunction in hashFunctions {
-            expect { () -> Void in
+            expect { () in
                 let digest = hashFunction.hash(plainTextData)
 
                 let algorithm = Self.pkcs1v15DigestSignatureAlgorithm(for: hashFunction)
@@ -171,11 +171,11 @@ final class RSATests: XCTestCase {
             Hashing.SHA224.self,
             Hashing.SHA256.self,
             Hashing.SHA384.self,
-            Hashing.SHA512.self
+            Hashing.SHA512.self,
         ]
 
         for hashFunction in hashFunctions {
-            expect { () -> Void in
+            expect { () in
                 let digest = hashFunction.hash(plainTextData)
 
                 let algorithm = Self.pkcs1v21DigestSignatureAlgorithm(for: hashFunction)
@@ -194,7 +194,7 @@ final class RSATests: XCTestCase {
         let plainText = "Hello World!"
         let plainTextData = plainText.data(using: .utf8)!
 
-        expect { () -> Void in
+        expect { () in
             let digest = Hashing.SHA224.hash(plainTextData)
 
             let algorithm = Crypto.RSA.DigestSignatureAlgorithm.PKCS1v15SHA256

@@ -19,8 +19,8 @@ extension Crypto.AES {
         }
 
         var cryptData = Data()
-        var cryptDataLength: Int = 0
-        var outputLength: Int = 0
+        var cryptDataLength = 0
+        var outputLength = 0
 
         let result: CCCryptorStatus = withUnsafeMutablePointer(to: &outputLength) { outputLengthPointer in
             data.withUnsafeBytes { dataBuffer in

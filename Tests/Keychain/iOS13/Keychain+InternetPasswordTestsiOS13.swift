@@ -167,7 +167,7 @@ final class Keychain_InternetPasswordTestsiOS13: TestCaseiOS13 {
 
     func testSaveWithProtectionClass() throws {
         for protectionClass in Keychain.ItemAccessibility.allCases {
-            expect { () -> Void in
+            expect { () in
                 try Keychain.InternetPassword.save(self.password, forAccount: self.account1, accessControl: Keychain.AccessControl(itemAccessibility: protectionClass))
                 let queriedPassword = try Keychain.InternetPassword.queryOne(forAccount: self.account1)
 

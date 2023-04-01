@@ -39,7 +39,7 @@ final class Keychain_SecureEnclaveTests: TestCaseDevice {
 
         _ = try Crypto.ECC.SecureEnclaveKey(inKeychainWithTag: keyTag)
 
-        expect { () -> Void in
+        expect { () in
             let queriedKey: Crypto.ECC.PrivateKey? = try self.wait(description: "Keychain query") {
                 Keychain.queryKey(withTag: keyTag, completion: $0)
             }

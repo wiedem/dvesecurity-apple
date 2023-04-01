@@ -174,7 +174,7 @@ final class Keychain_GenericPasswordTestsiOS13: TestCaseiOS13 {
 
     func testSaveWithProtectionClass() throws {
         for protectionClass in Keychain.ItemAccessibility.allCases {
-            expect { () -> Void in
+            expect { () in
                 try Keychain.GenericPassword.save(
                     self.password,
                     forAccount: self.account1,

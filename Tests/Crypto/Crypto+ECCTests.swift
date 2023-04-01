@@ -38,7 +38,7 @@ final class ECCTests: XCTestCase {
         let otherPlainTextData = otherPlainText.data(using: .utf8)!
 
         for algorithm in Crypto.ECC.SignatureAlgorithm.allCases {
-            expect { () -> Void in
+            expect { () in
                 let signatureData = try privateKey.signature(for: plainTextData, algorithm: algorithm)
                 let verifyResult1 = try publicKey.isValidSignature(signatureData, for: plainTextData, algorithm: algorithm)
                 expect(verifyResult1) == true

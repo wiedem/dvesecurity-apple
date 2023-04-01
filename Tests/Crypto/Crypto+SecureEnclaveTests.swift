@@ -32,7 +32,7 @@ final class Crypto_SecureEnclaveTests: TestCaseDevice {
         let otherPlainTextData = otherPlainText.data(using: .utf8)!
 
         for algorithm in Crypto.ECC.SignatureAlgorithm.allCases {
-            expect { () -> Void in
+            expect { () in
                 let signatureData = try secureEnclaveKey.signature(for: plainTextData, algorithm: algorithm)
                 let verifyResult1 = try publicKey.isValidSignature(signatureData, for: plainTextData, algorithm: algorithm)
                 expect(verifyResult1) == true

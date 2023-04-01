@@ -42,7 +42,7 @@ final class Keychain_SecureEnclaveTestsiOS13: TestCaseiOS13Device {
     func testQuerySecureEnclavePrivateKeyAsECCPrivateKey() {
         let keyTag = "Test Tag \(#function)"
 
-        expect { () -> Void in
+        expect { () in
             _ = try Crypto.ECC.SecureEnclaveKey(inKeychainWithTag: keyTag)
             let queriedKey: Crypto.ECC.PrivateKey? = try Keychain.queryKey(withTag: keyTag)
             expect(queriedKey).to(beNil())
@@ -54,7 +54,7 @@ final class Keychain_SecureEnclaveTestsiOS13: TestCaseiOS13Device {
 
         _ = try Crypto.ECC.PrivateKey(curve: .P256, inKeychainWithTag: keyTag)
 
-        expect { () -> Void in
+        expect { () in
             let queriedSecureEnclaveKey: Crypto.ECC.SecureEnclaveKey? = try Keychain.queryKey(withTag: keyTag)
             expect(queriedSecureEnclaveKey).to(beNil())
         }.toNot(throwError())

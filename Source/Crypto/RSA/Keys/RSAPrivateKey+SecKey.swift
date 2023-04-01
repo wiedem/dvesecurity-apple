@@ -22,15 +22,26 @@ public extension RSAPrivateKey where Self: ConvertibleToSecKey {
         return try Crypto.RSA.decrypt(cipherText, withKey: self, algorithm: algorithm)
     }
 
-    /// Generates an RSA signature of the given data using the given algorithm.
+    /// Generates a RSA signature of the given message data using the given algorithm.
     ///
     /// - Parameters:
-    ///   - data: The data to sign.
+    ///   - data: The message data to sign.
     ///   - algorithm: The algorithm to use for the signature.
     ///
     /// - Returns: The signature corresponding to the data.
-    func signature<D>(for data: D, algorithm: Crypto.RSA.SignatureAlgorithm) throws -> Data where D: DataProtocol {
+    func signature<D>(for data: D, algorithm: Crypto.RSA.MessageSignatureAlgorithm) throws -> Data where D: DataProtocol {
         return try Crypto.RSA.sign(data, withKey: self, algorithm: algorithm)
+    }
+
+    /// Generates a RSA signature of the given digest data using the given algorithm.
+    ///
+    /// - Parameters:
+    ///   - data: The digest data to sign.
+    ///   - algorithm: The algorithm to use for the signature.
+    ///
+    /// - Returns: The signature corresponding to the data.
+    func digestSignature<D>(for digestData: D, algorithm: Crypto.RSA.DigestSignatureAlgorithm) throws -> Data where D: DataProtocol {
+        return try Crypto.RSA.signDigest(digestData, withKey: self, algorithm: algorithm)
     }
 }
 

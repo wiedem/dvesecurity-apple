@@ -57,17 +57,17 @@ public extension Crypto.RSA {
     /// Creates the cryptographic RSA signature for a block of data using a private key and specified algorithm.
     ///
     /// - Parameters:
-    ///   - data: The data whose signature you want.
+    ///   - data: The message data whose signature you want.
     ///   - privateKey: The RSA private key to use in creating the signature.
-    ///   - algorithm: The RSA signing algorithm to use. See ``SignatureAlgorithm`` for more details.
+    ///   - algorithm: The RSA signing algorithm to use. See ``MessageSignatureAlgorithm`` for more details.
     ///
     /// - Returns: The digital signature.
     static func sign<D, PK>(
         _ data: D,
         withKey privateKey: PK,
-        algorithm: SignatureAlgorithm
+        algorithm: MessageSignatureAlgorithm
     ) throws -> Data where D: DataProtocol, PK: RSAPrivateKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.sign(data, withKey: privateKey.secKey, algorithm: algorithm.secKeyMessageAlgorithm)
+        return try Crypto.Asymmetric.sign(data, withKey: privateKey.secKey, algorithm: algorithm.secKeyAlgorithm)
     }
 
     /// Creates the cryptographic RSA signature for a digest data using a private key and specified algorithm.
@@ -75,35 +75,60 @@ public extension Crypto.RSA {
     /// - Parameters:
     ///   - digestData: The digest data whose signature you want.
     ///   - privateKey: The RSA private key to use in creating the signature.
-    ///   - algorithm: The RSA signing algorithm to use. See ``SignatureAlgorithm`` for more details.
+    ///   - algorithm: The RSA signing algorithm to use. See ``DigestSignatureAlgorithm`` for more details.
     ///
     /// - Returns: The digital signature.
-    static func signDigest<PK>(
-        _ digestData: Data,
+    static func signDigest<D, PK>(
+        _ digestData: D,
         withKey privateKey: PK,
-        algorithm: SignatureAlgorithm
-    ) throws -> Data where PK: RSAPrivateKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.sign(digestData, withKey: privateKey.secKey, algorithm: algorithm.secKeyDigestAlgorithm)
+        algorithm: DigestSignatureAlgorithm
+    ) throws -> Data where D: DataProtocol, PK: RSAPrivateKey & ConvertibleToSecKey {
+        return try Crypto.Asymmetric.sign(digestData, withKey: privateKey.secKey, algorithm: algorithm.secKeyAlgorithm)
     }
 
     /// Verifies the RSA cryptographic signature of a block of data using a public key and specified algorithm.
     ///
     /// - Parameters:
-    ///   - signature: The signature that was created with a call to the ``sign(_:withKey:algorithm:)`` or ``signDigest(_:withKey:algorithm:)`` function.
-    ///   - signedData: The data that was signed.
+    ///   - signature: The signature that was created with a call to the ``sign(_:withKey:algorithm:)``  function.
+    ///   - signedData: The message data that was signed.
     ///   - publicKey: The RSA public key to use in evaluating the signature.
-    ///   - algorithm: The algorithm that was used to create the signature. See ``SignatureAlgorithm`` for more details.
+    ///   - algorithm: The algorithm that was used to create the signature. See ``MessageSignatureAlgorithm`` for more details.
     ///
     /// - Returns: A Boolean indicating whether or not the data and signature are intact.
     static func verifySignature<D, K>(
         _ signature: Data,
         of signedData: D,
         withKey publicKey: K,
-        algorithm: SignatureAlgorithm
+        algorithm: MessageSignatureAlgorithm
     ) throws -> Bool where D: DataProtocol, K: RSAPublicKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.verify(signature: signature,
-                                            of: signedData,
-                                            withKey: publicKey.secKey,
-                                            algorithm: algorithm.secKeyMessageAlgorithm)
+        return try Crypto.Asymmetric.verify(
+            signature: signature,
+            of: signedData,
+            withKey: publicKey.secKey,
+            algorithm: algorithm.secKeyAlgorithm
+        )
+    }
+
+    /// Verifies the RSA cryptographic signature of a digest data using a public key and specified algorithm.
+    ///
+    /// - Parameters:
+    ///   - signature: The signature that was created with a call to the  ``signDigest(_:withKey:algorithm:)`` function.
+    ///   - signedData: The digest data that was signed.
+    ///   - publicKey: The RSA public key to use in evaluating the signature.
+    ///   - algorithm: The algorithm that was used to create the signature. See ``DigestSignatureAlgorithm`` for more details.
+    ///
+    /// - Returns: A Boolean indicating whether or not the data and signature are intact.
+    static func verifyDigestSignature<D, K>(
+        _ signature: Data,
+        of signedDigestData: D,
+        withKey publicKey: K,
+        algorithm: DigestSignatureAlgorithm
+    ) throws -> Bool where D: DataProtocol, K: RSAPublicKey & ConvertibleToSecKey {
+        return try Crypto.Asymmetric.verify(
+            signature: signature,
+            of: signedDigestData,
+            withKey: publicKey.secKey,
+            algorithm: algorithm.secKeyAlgorithm
+        )
     }
 }

@@ -67,11 +67,11 @@ extension Crypto.RSA {
     /// - Parameters:
     ///   - data: The data whose signature you want.
     ///   - privateKey: The RSA private key to use in creating the signature.
-    ///   - algorithm: The RSA signing algorithm to use. See ``SignatureAlgorithm`` for more details.
+    ///   - algorithm: The RSA signing algorithm to use. See ``MessageSignatureAlgorithm`` for more details.
     func signPublisher<D, PK>(
         for data: D,
         withKey privateKey: PK,
-        algorithm: SignatureAlgorithm
+        algorithm: MessageSignatureAlgorithm
     ) -> AnyPublisher<Data, Error>
         where
         D: DataProtocol,
@@ -93,11 +93,11 @@ extension Crypto.RSA {
     /// - Parameters:
     ///   - digestData: The digest data whose signature you want.
     ///   - privateKey: The RSA private key to use in creating the signature.
-    ///   - algorithm: The RSA signing algorithm to use. See ``SignatureAlgorithm`` for more details.
+    ///   - algorithm: The RSA signing algorithm to use. See ``DigestSignatureAlgorithm`` for more details.
     func signDigestPublisher<PK>(
         for digestData: Data,
         withKey privateKey: PK,
-        algorithm: SignatureAlgorithm
+        algorithm: DigestSignatureAlgorithm
     ) -> AnyPublisher<Data, Error>
         where
         PK: RSAPrivateKey & ConvertibleToSecKey
@@ -119,12 +119,12 @@ extension Crypto.RSA {
     ///   - signature: The signature that was created with a call to the `sign(_:withKey:algorithm:)` or `signDigest(_:withKey:algorithm:)` function.
     ///   - signedData: The data that was signed.
     ///   - publicKey: The RSA public key to use in evaluating the signature.
-    ///   - algorithm: The algorithm that was used to create the signature. See ``SignatureAlgorithm`` for more details.
+    ///   - algorithm: The algorithm that was used to create the signature. See ``MessageSignatureAlgorithm`` for more details.
     func verifySignaturePublisher<D, K>(
         for signature: Data,
         of signedData: D,
         withKey publicKey: K,
-        algorithm: SignatureAlgorithm
+        algorithm: MessageSignatureAlgorithm
     ) -> AnyPublisher<Bool, Error>
         where
         D: DataProtocol,

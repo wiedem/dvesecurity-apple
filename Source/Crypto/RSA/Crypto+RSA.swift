@@ -107,53 +107,45 @@ public extension Crypto {
             case OAEPSHA512AESGCM
         }
 
-        /// RSA signature algorithms available for the RSA class.
-        public enum SignatureAlgorithm: CaseIterable {
+        /// RSA message signature algorithms available for the RSA class.
+        public enum MessageSignatureAlgorithm: CaseIterable {
             /// RSA signature with PKCS#1 padding.
             ///
-            /// When used to sign a message, SHA-1 digest is generated from input data of any size.
-            /// When used to sign a digest, input data must be SHA-1 generated digest
+            /// The SHA-1 digest for the signature is generated from input data of any size.
             case PKCS1v15SHA1
             /// RSA signature with PKCS#1 padding.
             ///
-            /// When used to sign a message, SHA-224 digest is generated from input data of any size.
-            /// When used to sign a digest, input data must be SHA-224 generated digest
+            /// The SHA-224 digest for the signature is generated from input data of any size.
             case PKCS1v15SHA224
             /// RSA signature with PKCS#1 padding.
             ///
-            /// When used to sign a message, SHA-256 digest is generated from input data of any size.
-            /// When used to sign a digest, input data must be SHA-256 generated digest
+            /// The SHA-256 digest for the signature is generated from input data of any size.
             case PKCS1v15SHA256
             /// RSA signature with PKCS#1 padding.
             ///
-            /// When used to sign a message, SHA-384 digest is generated from input data of any size.
-            /// When used to sign a digest, input data must be SHA-384 generated digest
+            /// The SHA-384 digest for the signature is generated from input data of any size.
             case PKCS1v15SHA384
             /// RSA signature with PKCS#1 padding.
             ///
-            /// When used to sign a message, SHA-512 digest is generated from input data of any size.
-            /// When used to sign a digest, input data must be SHA-512 generated digest
+            /// The SHA-512 digest for the signature is generated from input data of any size.
             case PKCS1v15SHA512
             /// RSA signature with RSASSA-PSS padding according to PKCS#1 v2.1.
             ///
             /// PSS padding is calculated using MGF1 with SHA1 and saltLength parameter is set to 20 (SHA-1 output size).
             ///
-            /// When used to sign a message, SHA-1 digest is generated from input data of any size.
-            /// When used to sign a digest, input data must be SHA-1 generated digest
+            /// The SHA-1 digest for the signature is generated from input data of any size.
             case PSSSHA1
             /// RSA signature with RSASSA-PSS padding according to PKCS#1 v2.1.
             ///
             /// PSS padding is calculated using MGF1 with SHA224 and saltLength parameter is set to 28 (SHA-1 output size).
             ///
-            /// When used to sign a message, SHA-224 digest is generated from input data of any size.
-            /// When used to sign a digest, input data must be SHA-224 generated digest
+            /// The SHA-224 digest for the signature is generated from input data of any size.
             case PSSSHA224
             /// RSA signature with RSASSA-PSS padding according to PKCS#1 v2.1.
             ///
             /// PSS padding is calculated using MGF1 with SHA256 and saltLength parameter is set to 32 (SHA-1 output size).
             ///
-            /// When used to sign a message, SHA-256 digest is generated from input data of any size.
-            /// When used to sign a digest, input data must be SHA-256 generated digest
+            /// The SHA-256 digest for the signature is generated from input data of any size.
             ///
             /// - Note: RSA keys must have at least a size of 528 bits for this algorithm.
             case PSSSHA256
@@ -161,8 +153,7 @@ public extension Crypto {
             ///
             /// PSS padding is calculated using MGF1 with SHA384 and saltLength parameter is set to 48 (SHA-1 output size).
             ///
-            /// When used to sign a message, SHA-384 digest is generated from input data of any size.
-            /// When used to sign a digest, input data must be SHA-384 generated digest
+            /// The SHA-384 digest for the signature is generated from input data of any size.
             ///
             /// - Note: RSA keys must have at least a size of 784 bits for this algorithm.
             case PSSSHA384
@@ -170,8 +161,73 @@ public extension Crypto {
             ///
             /// PSS padding is calculated using MGF1 with SHA512 and saltLength parameter is set to 64 (SHA-1 output size).
             ///
-            /// When used to sign a message, SHA-512 digest is generated from input data of any size.
-            /// When used to sign a digest, input data must be SHA-512 generated digest
+            /// The SHA-512 digest for the signature is generated from input data of any size.
+            ///
+            /// - Note: RSA keys must have at least a size of 1040 bits for this algorithm.
+            case PSSSHA512
+        }
+
+        /// RSA digest signature algorithms available for the RSA class.
+        public enum DigestSignatureAlgorithm: CaseIterable {
+            /// RSA digest signature with PKCS#1 padding.
+            ///
+            /// Assumes that input data is digest and OID and digest algorithm as specified in PKCS# v1.5.
+            ///
+            /// This algorithm is typically not used directly, instead use algorithm with specified digest, like ``PKCS1v15SHA256``.
+            case PKCS1v15Raw
+            /// RSA digest signature with PKCS#1 padding.
+            ///
+            /// Input data must be SHA-1 generated digest
+            case PKCS1v15SHA1
+            /// RSA digest signature with PKCS#1 padding.
+            ///
+            /// Input data must be SHA-224 generated digest
+            case PKCS1v15SHA224
+            /// RSA digest signature with PKCS#1 padding.
+            ///
+            /// Input data must be SHA-256 generated digest
+            case PKCS1v15SHA256
+            /// RSA digest signature with PKCS#1 padding.
+            ///
+            /// Input data must be SHA-384 generated digest
+            case PKCS1v15SHA384
+            /// RSA digest signature with PKCS#1 padding.
+            ///
+            /// Input data must be SHA-512 generated digest
+            case PKCS1v15SHA512
+            /// RSA digest signature with RSASSA-PSS padding according to PKCS#1 v2.1.
+            ///
+            /// PSS padding is calculated using MGF1 with SHA1 and saltLength parameter is set to 20 (SHA-1 output size).
+            ///
+            /// Input data must be SHA-1 generated digest
+            case PSSSHA1
+            /// RSA digest signature with RSASSA-PSS padding according to PKCS#1 v2.1.
+            ///
+            /// PSS padding is calculated using MGF1 with SHA224 and saltLength parameter is set to 28 (SHA-1 output size).
+            ///
+            /// Input data must be SHA-224 generated digest
+            case PSSSHA224
+            /// RSA digest signature with RSASSA-PSS padding according to PKCS#1 v2.1.
+            ///
+            /// PSS padding is calculated using MGF1 with SHA256 and saltLength parameter is set to 32 (SHA-1 output size).
+            ///
+            /// Input data must be SHA-256 generated digest
+            ///
+            /// - Note: RSA keys must have at least a size of 528 bits for this algorithm.
+            case PSSSHA256
+            /// RSA digest signature with RSASSA-PSS padding according to PKCS#1 v2.1.
+            ///
+            /// PSS padding is calculated using MGF1 with SHA384 and saltLength parameter is set to 48 (SHA-1 output size).
+            ///
+            /// Input data must be SHA-384 generated digest
+            ///
+            /// - Note: RSA keys must have at least a size of 784 bits for this algorithm.
+            case PSSSHA384
+            /// RSA digest signature with RSASSA-PSS padding according to PKCS#1 v2.1.
+            ///
+            /// PSS padding is calculated using MGF1 with SHA512 and saltLength parameter is set to 64 (SHA-1 output size).
+            ///
+            /// Input data must be SHA-512 generated digest
             ///
             /// - Note: RSA keys must have at least a size of 1040 bits for this algorithm.
             case PSSSHA512

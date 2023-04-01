@@ -87,7 +87,7 @@ class RSATests: XCTestCase {
         }
     }
 
-    func testSignAndVerify() throws {
+    func testSignMessageAndVerify() throws {
         let rsaPrivateKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
         let rsaPublicKey = rsaPrivateKey.publicKey()
 
@@ -96,15 +96,144 @@ class RSATests: XCTestCase {
         let otherPlainText = "Test"
         let otherPlainTextData = otherPlainText.data(using: .utf8)!
 
-        for algorithm in Crypto.RSA.SignatureAlgorithm.allCases {
+        for algorithm in Crypto.RSA.MessageSignatureAlgorithm.allCases {
             expect { () -> Void in
                 let signatureData = try rsaPrivateKey.signature(for: plainTextData, algorithm: algorithm)
-                let verifyResult1 = try rsaPublicKey.isValidSignature(signatureData, for: plainTextData, algorithm: algorithm)
+                let verifyResult1 = try rsaPublicKey.isValidSignature(signatureData, of: plainTextData, algorithm: algorithm)
                 expect(verifyResult1) == true
 
-                let verifyResult2 = try rsaPublicKey.isValidSignature(signatureData, for: otherPlainTextData, algorithm: algorithm)
+                let verifyResult2 = try rsaPublicKey.isValidSignature(signatureData, of: otherPlainTextData, algorithm: algorithm)
                 expect(verifyResult2) == false
             }.toNot(throwError(), description: "RSA signing and signature verification with algorithm '\(algorithm)' failed.")
+        }
+    }
+
+    func testSignDigestPKCSv15RawAndVerify() throws {
+        let rsaPrivateKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
+        let rsaPublicKey = rsaPrivateKey.publicKey()
+
+        let plainText = "Hello World!"
+        let plainTextData = plainText.data(using: .utf8)!
+
+        let hashFunctions: [HashFunction.Type] = [
+            Hashing.SHA224.self,
+            Hashing.SHA256.self,
+            Hashing.SHA384.self,
+            Hashing.SHA512.self
+        ]
+
+        for hashFunction in hashFunctions {
+            expect { () -> Void in
+                let digest = hashFunction.hash(plainTextData)
+                let signatureData = try rsaPrivateKey.digestSignature(for: digest, algorithm: .PKCS1v15Raw)
+                let verifyResult = try rsaPublicKey.isValidDigestSignature(signatureData, digest: digest, algorithm: .PKCS1v15Raw)
+
+                expect(verifyResult) == true
+            }.toNot(throwError())
+        }
+    }
+
+    func testSignDigestPKCS1v15AndVerify() throws {
+        let rsaPrivateKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
+        let rsaPublicKey = rsaPrivateKey.publicKey()
+
+        let plainText = "Hello World!"
+        let plainTextData = plainText.data(using: .utf8)!
+
+        let hashFunctions: [HashFunction.Type] = [
+            Hashing.SHA224.self,
+            Hashing.SHA256.self,
+            Hashing.SHA384.self,
+            Hashing.SHA512.self
+        ]
+
+        for hashFunction in hashFunctions {
+            expect { () -> Void in
+                let digest = hashFunction.hash(plainTextData)
+
+                let algorithm = Self.pkcs1v15DigestSignatureAlgorithm(for: hashFunction)
+                let signatureData = try rsaPrivateKey.digestSignature(for: digest, algorithm: algorithm)
+                let verifyResult = try rsaPublicKey.isValidDigestSignature(signatureData, digest: digest, algorithm: algorithm)
+
+                expect(verifyResult) == true
+            }.toNot(throwError())
+        }
+    }
+
+    func testSignDigestPKCS1v21AndVerify() throws {
+        let rsaPrivateKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
+        let rsaPublicKey = rsaPrivateKey.publicKey()
+
+        let plainText = "Hello World!"
+        let plainTextData = plainText.data(using: .utf8)!
+
+        let hashFunctions: [HashFunction.Type] = [
+            Hashing.SHA224.self,
+            Hashing.SHA256.self,
+            Hashing.SHA384.self,
+            Hashing.SHA512.self
+        ]
+
+        for hashFunction in hashFunctions {
+            expect { () -> Void in
+                let digest = hashFunction.hash(plainTextData)
+
+                let algorithm = Self.pkcs1v21DigestSignatureAlgorithm(for: hashFunction)
+                let signatureData = try rsaPrivateKey.digestSignature(for: digest, algorithm: algorithm)
+                let verifyResult = try rsaPublicKey.isValidDigestSignature(signatureData, digest: digest, algorithm: algorithm)
+
+                expect(verifyResult) == true
+            }.toNot(throwError())
+        }
+    }
+
+    func testSignDigestWithInvalidAlgorithm() throws {
+        let rsaPrivateKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
+        let rsaPublicKey = rsaPrivateKey.publicKey()
+
+        let plainText = "Hello World!"
+        let plainTextData = plainText.data(using: .utf8)!
+
+        expect { () -> Void in
+            let digest = Hashing.SHA224.hash(plainTextData)
+
+            let algorithm = Crypto.RSA.DigestSignatureAlgorithm.PKCS1v15SHA256
+            let signatureData = try rsaPrivateKey.digestSignature(for: digest, algorithm: algorithm)
+            let verifyResult = try rsaPublicKey.isValidDigestSignature(signatureData, digest: digest, algorithm: algorithm)
+
+            expect(verifyResult) == true
+        }.toNot(throwError())
+    }
+}
+
+private extension RSATests {
+    static func pkcs1v15DigestSignatureAlgorithm<H>(for hashFunctionType: H.Type) -> Crypto.RSA.DigestSignatureAlgorithm where H: HashFunction {
+        switch hashFunctionType {
+        case is Hashing.SHA224.Type:
+            return .PKCS1v15SHA224
+        case is Hashing.SHA256.Type:
+            return .PKCS1v15SHA256
+        case is Hashing.SHA384.Type:
+            return .PKCS1v15SHA384
+        case is Hashing.SHA512.Type:
+            return .PKCS1v15SHA512
+        default:
+            fatalError("Unknown hash function type '\(hashFunctionType)'")
+        }
+    }
+
+    static func pkcs1v21DigestSignatureAlgorithm<H>(for hashFunctionType: H.Type) -> Crypto.RSA.DigestSignatureAlgorithm where H: HashFunction {
+        switch hashFunctionType {
+        case is Hashing.SHA224.Type:
+            return .PSSSHA224
+        case is Hashing.SHA256.Type:
+            return .PSSSHA256
+        case is Hashing.SHA384.Type:
+            return .PSSSHA384
+        case is Hashing.SHA512.Type:
+            return .PSSSHA512
+        default:
+            fatalError("Unknown hash function type '\(hashFunctionType)'")
         }
     }
 }

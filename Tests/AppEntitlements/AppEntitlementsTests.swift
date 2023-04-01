@@ -7,13 +7,13 @@ import XCTest
 
 class AppEntitlementsTests: XCTestCase {
     func testAppEntitlements() throws {
-        expect(AppEntitlements.applicationIdentifier.hasSuffix("com.diva-e.DVESecurityTestApp")) == true
+        expect(AppEntitlements.applicationIdentifier.hasSuffix("\(Self.productDomain).DVESecurityTestApp")) == true
 
         expect(AppEntitlements.keychainAccessGroups).to(containElementSatisfying({ group in
-            return group.hasSuffix("com.diva-e.DVESecurityTestApp")
+            return group.hasSuffix("\(Self.productDomain).DVESecurityTestApp")
         }))
         expect(AppEntitlements.keychainAccessGroups).to(containElementSatisfying({ group in
-            return group.hasSuffix("com.diva-e.DVESecurityTestApp2")
+            return group.hasSuffix("\(Self.productDomain).DVESecurityTestApp2")
         }))
 
         expect(AppEntitlements.applicationGroups).to(beNil())
@@ -25,4 +25,8 @@ class AppEntitlementsTests: XCTestCase {
         expect(AppEntitlements.developerTeamIdentifier).toNot(beNil())
         #endif
     }
+}
+
+private extension AppEntitlementsTests {
+    private static let productDomain = Bundle.main.object(forInfoDictionaryKey: "ProductDomain")! as! String
 }

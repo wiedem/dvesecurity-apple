@@ -7,50 +7,86 @@ import Security
 extension Crypto.RSA.EncryptionAlgorithm {
     var secKeyAlgorithm: SecKeyAlgorithm {
         switch self {
-        case .raw: return SecKeyAlgorithm.rsaEncryptionRaw
-        case .PKCS1: return SecKeyAlgorithm.rsaEncryptionPKCS1
-        case .OAEPSHA1: return SecKeyAlgorithm.rsaEncryptionOAEPSHA1
-        case .OAEPSHA224: return SecKeyAlgorithm.rsaEncryptionOAEPSHA224
-        case .OAEPSHA256: return SecKeyAlgorithm.rsaEncryptionOAEPSHA256
-        case .OAEPSHA384: return SecKeyAlgorithm.rsaEncryptionOAEPSHA384
-        case .OAEPSHA512: return SecKeyAlgorithm.rsaEncryptionOAEPSHA512
-        case .OAEPSHA1AESGCM: return SecKeyAlgorithm.rsaEncryptionOAEPSHA1AESGCM
-        case .OAEPSHA224AESGCM: return SecKeyAlgorithm.rsaEncryptionOAEPSHA224AESGCM
-        case .OAEPSHA256AESGCM: return SecKeyAlgorithm.rsaEncryptionOAEPSHA256AESGCM
-        case .OAEPSHA384AESGCM: return SecKeyAlgorithm.rsaEncryptionOAEPSHA384AESGCM
-        case .OAEPSHA512AESGCM: return SecKeyAlgorithm.rsaEncryptionOAEPSHA512AESGCM
+        case .raw:
+            return .rsaEncryptionRaw
+        case .PKCS1:
+            return .rsaEncryptionPKCS1
+        case .OAEPSHA1:
+            return .rsaEncryptionOAEPSHA1
+        case .OAEPSHA224:
+            return .rsaEncryptionOAEPSHA224
+        case .OAEPSHA256:
+            return .rsaEncryptionOAEPSHA256
+        case .OAEPSHA384:
+            return .rsaEncryptionOAEPSHA384
+        case .OAEPSHA512:
+            return .rsaEncryptionOAEPSHA512
+        case .OAEPSHA1AESGCM:
+            return .rsaEncryptionOAEPSHA1AESGCM
+        case .OAEPSHA224AESGCM:
+            return .rsaEncryptionOAEPSHA224AESGCM
+        case .OAEPSHA256AESGCM:
+            return .rsaEncryptionOAEPSHA256AESGCM
+        case .OAEPSHA384AESGCM:
+            return .rsaEncryptionOAEPSHA384AESGCM
+        case .OAEPSHA512AESGCM:
+            return .rsaEncryptionOAEPSHA512AESGCM
         }
     }
 }
 
-extension Crypto.RSA.SignatureAlgorithm {
-    var secKeyMessageAlgorithm: SecKeyAlgorithm {
+extension Crypto.RSA.MessageSignatureAlgorithm {
+    var secKeyAlgorithm: SecKeyAlgorithm {
         switch self {
-        case .PKCS1v15SHA1: return SecKeyAlgorithm.rsaSignatureMessagePKCS1v15SHA1
-        case .PKCS1v15SHA224: return SecKeyAlgorithm.rsaSignatureMessagePKCS1v15SHA224
-        case .PKCS1v15SHA256: return SecKeyAlgorithm.rsaSignatureMessagePKCS1v15SHA256
-        case .PKCS1v15SHA384: return SecKeyAlgorithm.rsaSignatureMessagePKCS1v15SHA384
-        case .PKCS1v15SHA512: return SecKeyAlgorithm.rsaSignatureMessagePKCS1v15SHA512
-        case .PSSSHA1: return SecKeyAlgorithm.rsaSignatureMessagePSSSHA1
-        case .PSSSHA224: return SecKeyAlgorithm.rsaSignatureMessagePSSSHA224
-        case .PSSSHA256: return SecKeyAlgorithm.rsaSignatureMessagePSSSHA256
-        case .PSSSHA384: return SecKeyAlgorithm.rsaSignatureMessagePSSSHA384
-        case .PSSSHA512: return SecKeyAlgorithm.rsaSignatureMessagePSSSHA512
+        case .PKCS1v15SHA1:
+            return .rsaSignatureMessagePKCS1v15SHA1
+        case .PKCS1v15SHA224:
+            return .rsaSignatureMessagePKCS1v15SHA224
+        case .PKCS1v15SHA256:
+            return .rsaSignatureMessagePKCS1v15SHA256
+        case .PKCS1v15SHA384:
+            return .rsaSignatureMessagePKCS1v15SHA384
+        case .PKCS1v15SHA512:
+            return .rsaSignatureMessagePKCS1v15SHA512
+        case .PSSSHA1:
+            return .rsaSignatureMessagePSSSHA1
+        case .PSSSHA224:
+            return .rsaSignatureMessagePSSSHA224
+        case .PSSSHA256:
+            return .rsaSignatureMessagePSSSHA256
+        case .PSSSHA384:
+            return .rsaSignatureMessagePSSSHA384
+        case .PSSSHA512:
+            return .rsaSignatureMessagePSSSHA512
         }
     }
+}
 
-    var secKeyDigestAlgorithm: SecKeyAlgorithm {
+extension Crypto.RSA.DigestSignatureAlgorithm {
+    var secKeyAlgorithm: SecKeyAlgorithm {
         switch self {
-        case .PKCS1v15SHA1: return SecKeyAlgorithm.rsaSignatureDigestPKCS1v15SHA1
-        case .PKCS1v15SHA224: return SecKeyAlgorithm.rsaSignatureDigestPKCS1v15SHA224
-        case .PKCS1v15SHA256: return SecKeyAlgorithm.rsaSignatureDigestPKCS1v15SHA256
-        case .PKCS1v15SHA384: return SecKeyAlgorithm.rsaSignatureDigestPKCS1v15SHA384
-        case .PKCS1v15SHA512: return SecKeyAlgorithm.rsaSignatureDigestPKCS1v15SHA512
-        case .PSSSHA1: return SecKeyAlgorithm.rsaSignatureDigestPSSSHA1
-        case .PSSSHA224: return SecKeyAlgorithm.rsaSignatureDigestPSSSHA224
-        case .PSSSHA256: return SecKeyAlgorithm.rsaSignatureDigestPSSSHA256
-        case .PSSSHA384: return SecKeyAlgorithm.rsaSignatureDigestPSSSHA384
-        case .PSSSHA512: return SecKeyAlgorithm.rsaSignatureDigestPSSSHA512
+        case .PKCS1v15Raw:
+            return .rsaSignatureDigestPKCS1v15Raw
+        case .PKCS1v15SHA1:
+            return .rsaSignatureDigestPKCS1v15SHA1
+        case .PKCS1v15SHA224:
+            return .rsaSignatureDigestPKCS1v15SHA224
+        case .PKCS1v15SHA256:
+            return .rsaSignatureDigestPKCS1v15SHA256
+        case .PKCS1v15SHA384:
+            return .rsaSignatureDigestPKCS1v15SHA384
+        case .PKCS1v15SHA512:
+            return .rsaSignatureDigestPKCS1v15SHA512
+        case .PSSSHA1:
+            return .rsaSignatureDigestPSSSHA1
+        case .PSSSHA224:
+            return .rsaSignatureDigestPSSSHA224
+        case .PSSSHA256:
+            return .rsaSignatureDigestPSSSHA256
+        case .PSSSHA384:
+            return .rsaSignatureDigestPSSSHA384
+        case .PSSSHA512:
+            return .rsaSignatureDigestPSSSHA512
         }
     }
 }

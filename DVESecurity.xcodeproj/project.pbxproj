@@ -750,6 +750,7 @@
 		65FB35EB2504130D00C38585 /* DVEASN1RSAPrivateKey+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DVEASN1RSAPrivateKey+Internal.h"; sourceTree = "<group>"; };
 		65FB35ED2504137C00C38585 /* DVEASN1RSAPublicKey+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DVEASN1RSAPublicKey+Internal.h"; sourceTree = "<group>"; };
 		65FB35EF25042C5300C38585 /* DVESecurity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVESecurity.h; sourceTree = "<group>"; };
+		8BEE873229D869E400DDF2D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9103A00324F684630093AA18 /* Keychain+QueryAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+QueryAuthentication.swift"; sourceTree = "<group>"; };
 		9103A00524F684AF0093AA18 /* Keychain+QueryAuthentication+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+QueryAuthentication+Internal.swift"; sourceTree = "<group>"; };
 		9103A00724F6ADC20093AA18 /* Keychain+AccessControlFlagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+AccessControlFlagsTests.swift"; sourceTree = "<group>"; };
@@ -930,6 +931,7 @@
 				65082597270747BA00F78672 /* TestViewController.swift */,
 				6508259B270747BB00F78672 /* Main.storyboard */,
 				65082599270747BB00F78672 /* Assets.xcassets */,
+				8BEE873229D869E400DDF2D7 /* Info.plist */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -2550,6 +2552,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TestApps/macOS/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 diva-e NEXT GmbH. All rights reserved.";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -2580,6 +2583,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TestApps/macOS/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 diva-e NEXT GmbH. All rights reserved.";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

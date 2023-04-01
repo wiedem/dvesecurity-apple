@@ -19,7 +19,7 @@ public extension RSAPublicKey where Self: ConvertibleToSecKey {
     ///
     /// - Returns: The ciphertext represented as a Data object.
     func encrypt<D>(_ plainText: D, using algorithm: Crypto.RSA.EncryptionAlgorithm) throws -> Data where D: DataProtocol {
-        return try Crypto.RSA.encrypt(plainText, withKey: self, algorithm: algorithm)
+        try Crypto.RSA.encrypt(plainText, withKey: self, algorithm: algorithm)
     }
 
     /// Verifies an RSA signature on a block of data with the given algorithm.
@@ -30,8 +30,28 @@ public extension RSAPublicKey where Self: ConvertibleToSecKey {
     ///   - algorithm: The algorithm used for the signature.
     ///
     /// - Returns: A Boolean value that’s `true` if the signature is valid for the given data.
-    func isValidSignature<D>(_ signature: Data, for data: D, algorithm: Crypto.RSA.SignatureAlgorithm) throws -> Bool where D: DataProtocol {
-        return try Crypto.RSA.verifySignature(signature, of: data, withKey: self, algorithm: algorithm)
+    func isValidSignature<D>(
+        _ signature: Data,
+        of data: D,
+        algorithm: Crypto.RSA.MessageSignatureAlgorithm
+    ) throws -> Bool where D: DataProtocol {
+        try Crypto.RSA.verifySignature(signature, of: data, withKey: self, algorithm: algorithm)
+    }
+
+    /// Verifies an RSA signature on a block of digest data with the given algorithm.
+    ///
+    /// - Parameters:
+    ///   - signature: The signature to check against the given data.
+    ///   - data: The digest data covered by the signature.
+    ///   - algorithm: The algorithm used for the signature.
+    ///
+    /// - Returns: A Boolean value that’s `true` if the signature is valid for the given data.
+    func isValidDigestSignature<D>(
+        _ signature: Data,
+        digest: D,
+        algorithm: Crypto.RSA.DigestSignatureAlgorithm
+    ) throws -> Bool where D: DataProtocol {
+        try Crypto.RSA.verifyDigestSignature(signature, of: digest, withKey: self, algorithm: algorithm)
     }
 }
 

@@ -22,6 +22,8 @@
 	<true/>
 	<key>NSFaceIDUsageDescription</key>
 	<string>FaceID Tests</string>
+	<key>ProductDomain</key>
+	<string>$(PRODUCT_DOMAIN)</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

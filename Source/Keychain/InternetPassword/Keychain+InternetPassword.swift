@@ -311,7 +311,7 @@ extension Keychain {
 }
 
 @available(iOS 13.0, *)
-extension Keychain.InternetPassword {
+public extension Keychain.InternetPassword {
     /// Queries internet password items in an access group.
     ///
     /// This method queries Internet password entries in the keychain, including synchronizable entries, and returns them as an array of  ``Item`` items.
@@ -328,7 +328,7 @@ extension Keychain.InternetPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Returns: A list of  internet password items of type ``Item``, or `nil` if no item was found.
-    public class func queryItems(
+    class func queryItems(
         account: String? = nil,
         securityDomain: String? = nil,
         server: String? = nil,
@@ -376,7 +376,7 @@ extension Keychain.InternetPassword {
     ///
     /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item.
     /// - Returns: The password for the specified account and service, or `nil` if no item was found.
-    public class func queryOne(
+    class func queryOne(
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
         securityDomain: String? = nil,

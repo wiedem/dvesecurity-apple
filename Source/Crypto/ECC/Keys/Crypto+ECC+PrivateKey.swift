@@ -14,6 +14,7 @@ public extension Crypto.ECC {
         case p384
         case p521
     }
+
     // swiftlint:enable identifier_name
 
     /// A Elliptic Curve Cryptography private key.

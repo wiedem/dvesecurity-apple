@@ -7,7 +7,7 @@ import Combine
 import LocalAuthentication
 
 @available(iOS 13.0, *)
-extension LAContext {
+public extension LAContext {
     /// Returns a publisher that evaluates an access control object for the specified operation.
     ///
     /// This publisher asynchronously evaluates an access control. Evaluating an access control may involve prompting the user for various kinds of interaction or
@@ -24,7 +24,7 @@ extension LAContext {
     ///   - accessControl: The access control to be evaluated.
     ///   - operation: The operation for the access control to be evaluated. For possible values, see `LAAccessControlOperation`.
     ///   - localizedReason: The app-provided reason for requesting authentication, which displays in the authentication dialog presented to the user.
-    public func evaluateAccessControlPublisher(
+    func evaluateAccessControlPublisher(
         for accessControl: Keychain.AccessControl,
         operation: LAAccessControlOperation,
         localizedReason: String

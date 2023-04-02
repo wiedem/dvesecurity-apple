@@ -4,7 +4,7 @@
 import Foundation
 import LocalAuthentication
 
-extension Keychain.GenericPassword {
+public extension Keychain.GenericPassword {
     /// Searches the keychain for a key saved as a generic password.
     ///
     /// - Parameters:
@@ -13,7 +13,7 @@ extension Keychain.GenericPassword {
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-    public class func queryKey<K>(
+    class func queryKey<K>(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -44,7 +44,7 @@ extension Keychain.GenericPassword {
     ///   - accessControl: Indicates when your application needs access to an item's data. You should choose the most restrictive option that meets your application's needs to
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
     ///   allow the system to protect that item in the best way possible.
-    public class func saveKey(
+    class func saveKey(
         _ key: some RawKeyConvertible,
         forAccount account: String,
         service: String,
@@ -65,7 +65,7 @@ extension Keychain.GenericPassword {
 }
 
 @available(iOS 13.0, *)
-extension Keychain.GenericPassword {
+public extension Keychain.GenericPassword {
     /// Searches the keychain for a key saved as a generic password.
     ///
     /// - Parameters:
@@ -75,7 +75,7 @@ extension Keychain.GenericPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Returns: The key for the specified account and service, or `nil` if no item was found.
-    public class func queryKey<K>(
+    class func queryKey<K>(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,

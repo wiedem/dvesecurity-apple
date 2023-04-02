@@ -3,7 +3,7 @@
 
 import Foundation
 
-extension Keychain.InternetPassword {
+public extension Keychain.InternetPassword {
     /// Searches the keychain for a single synchronizable internet password entry.
     ///
     /// Searches the keychain for a single synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
@@ -18,7 +18,7 @@ extension Keychain.InternetPassword {
     ///   - port: Internet port number associated with the internet password item.
     ///   - path: Path associated with the internet password keychain item.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-    public class func queryOneSynchronizable(
+    class func queryOneSynchronizable(
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
         securityDomain: String? = nil,
@@ -64,7 +64,7 @@ extension Keychain.InternetPassword {
     ///   - path: Path associated with the internet password keychain item.
     ///   - accessibility: Indicates when your application needs access to an item's data.  You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item. This parameter is only used for saving the password and not for updating the password.
-    public class func saveSynchronizable(
+    class func saveSynchronizable(
         _ password: String,
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -112,7 +112,7 @@ extension Keychain.InternetPassword {
     ///   - authenticationType: Authentication scheme associated with the internet password item.
     ///   - port: Internet port number associated with the internet password item.
     ///   - path: Path associated with the internet password keychain item.
-    public class func updateSynchronizableItems(
+    class func updateSynchronizableItems(
         newPassword: String,
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -156,7 +156,7 @@ extension Keychain.InternetPassword {
     ///   - path: Path associated with the internet password keychain item.
     ///   - accessibility: Indicates when your application needs access to an item's data.  You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible. This parameter is only used for saving the password and not for updating the password.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item. This parameter is only used for saving the password and not for updating the password.
-    public class func upsertSynchronizable(
+    class func upsertSynchronizable(
         _ password: String,
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -219,7 +219,7 @@ extension Keychain.InternetPassword {
     ///
     /// - Returns: `true` if at least one item in the keychain was deleted, `false` otherwise.
     @discardableResult
-    public class func deleteSynchronizableItems(
+    class func deleteSynchronizableItems(
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
         securityDomain: String? = nil,
@@ -245,7 +245,7 @@ extension Keychain.InternetPassword {
 }
 
 @available(iOS 13.0, *)
-extension Keychain.InternetPassword {
+public extension Keychain.InternetPassword {
     /// Searches the keychain for a single synchronizable internet password entry.
     ///
     /// Searches the keychain for a single synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
@@ -262,7 +262,7 @@ extension Keychain.InternetPassword {
     ///
     /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item.
     /// - Returns: The password, or nil if no password was found for this account.
-    public class func queryOneSynchronizable(
+    class func queryOneSynchronizable(
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
         securityDomain: String? = nil,

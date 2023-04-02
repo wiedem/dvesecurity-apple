@@ -527,8 +527,6 @@
 		6576539E273A82E900D20684 /* Keychain+Legacy+GenericPassword+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Legacy+GenericPassword+Item.swift"; sourceTree = "<group>"; };
 		657653A0273A87B900D20684 /* Keychain+Legacy+GenericPassword+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Legacy+GenericPassword+Internal.swift"; sourceTree = "<group>"; };
 		657653A2273ADBAF00D20684 /* Keychain+Legacy+InternetPassword+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Legacy+InternetPassword+Item.swift"; sourceTree = "<group>"; };
-		6576548A273AF2E100D20684 /* PKCS1.asn1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PKCS1.asn1; sourceTree = "<group>"; };
-		657654C3273AF2E600D20684 /* PKIX.asn1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PKIX.asn1; sourceTree = "<group>"; };
 		6578CEFE275A1BAC007FAAAE /* Keychain+BackgroundQueryTestsDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+BackgroundQueryTestsDevice.swift"; sourceTree = "<group>"; };
 		657DDBBD24F98764004441F9 /* Keychain+SecureEnclaveTestsiOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+SecureEnclaveTestsiOS13.swift"; sourceTree = "<group>"; };
 		657DDBC024F98898004441F9 /* Keychain+ECCTestsiOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+ECCTestsiOS13.swift"; sourceTree = "<group>"; };
@@ -1605,8 +1603,6 @@
 		65EF6762273AF34E00B2A1C7 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				657654C3273AF2E600D20684 /* PKIX.asn1 */,
-				6576548A273AF2E100D20684 /* PKCS1.asn1 */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";

@@ -22,31 +22,31 @@ public extension Crypto {
             case pkcs1
             /// RSA encryption or decryption with data padded using OAEP padding scheme.
             ///
-            /// SHA1 is used internally.  Use ``OAEPSHA1AESGCM`` to be able to encrypt and decrypt arbitrary long data.
+            /// SHA1 is used internally.  Use ``oaepSHA1AESGCM`` to be able to encrypt and decrypt arbitrary long data.
             ///
             /// - Attention: Input data size for the encryption is limited to the size returned by the ``RSAKey/maxPlainTextLength(for:)-2z0eu`` function.
             case oaepSHA1
             /// RSA encryption or decryption with data padded using OAEP padding scheme.
             ///
-            /// SHA224 is used internally. Use ``OAEPSHA224AESGCM`` to be able to encrypt and decrypt arbitrary long data.
+            /// SHA224 is used internally. Use ``oaepSHA224AESGCM`` to be able to encrypt and decrypt arbitrary long data.
             ///
             /// - Attention: Input data size for the encryption is limited to the size returned by the ``RSAKey/maxPlainTextLength(for:)-2z0eu`` function.
             case oaepSHA224
             /// RSA encryption or decryption with data padded using OAEP padding scheme.
             ///
-            /// SHA256 is used internally. Use ``OAEPSHA256AESGCM`` to be able to encrypt and decrypt arbitrary long data.
+            /// SHA256 is used internally. Use ``oaepSHA256AESGCM`` to be able to encrypt and decrypt arbitrary long data.
             ///
             /// - Attention: Input data size for the encryption is limited to the size returned by the ``RSAKey/maxPlainTextLength(for:)-2z0eu`` function.
             case oaepSHA256
             /// RSA encryption or decryption with data padded using OAEP padding scheme.
             ///
-            /// SHA384 is used internally. Use ``OAEPSHA384AESGCM`` to be able to encrypt and decrypt arbitrary long data.
+            /// SHA384 is used internally. Use ``oaepSHA384AESGCM`` to be able to encrypt and decrypt arbitrary long data.
             ///
             /// - Attention: Input data size for the encryption is limited to the size returned by the ``RSAKey/maxPlainTextLength(for:)-2z0eu`` function.
             case oaepSHA384
             /// RSA encryption or decryption with data padded using OAEP padding scheme.
             ///
-            /// SHA512 is used internally. Use ``OAEPSHA512AESGCM`` to be able to encrypt and decrypt arbitrary long data.
+            /// SHA512 is used internally. Use ``oaepSHA512AESGCM`` to be able to encrypt and decrypt arbitrary long data.
             ///
             /// - Attention: Input data size for the encryption is limited to the size returned by the ``RSAKey/maxPlainTextLength(for:)-2z0eu`` function.
             case oaepSHA512
@@ -173,7 +173,7 @@ public extension Crypto {
             ///
             /// Assumes that input data is digest and OID and digest algorithm as specified in PKCS# v1.5.
             ///
-            /// This algorithm is typically not used directly, instead use algorithm with specified digest, like ``PKCS1v15SHA256``.
+            /// This algorithm is typically not used directly, instead use algorithm with specified digest, like ``pkcs1v15SHA256``.
             case pkcs1v15Raw
             /// RSA digest signature with PKCS#1 padding.
             ///

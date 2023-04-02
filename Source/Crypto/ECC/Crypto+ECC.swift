@@ -10,7 +10,7 @@ public extension Crypto {
         public enum EncryptionAlgorithm: CaseIterable {
             /// Hybrid ECIES encryption or decryption algorithm.
             ///
-            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ECDHStandardX963SHA224``.
+            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ecdhStandardX963SHA224``.
             /// AES Key size is 128bit for EC keys `<=`256bit and 256bit for bigger EC keys.
             /// Ephemeral public key data is used as sharedInfo for KDF.
             ///
@@ -20,7 +20,7 @@ public extension Crypto {
             case eciesStandardVariableIVX963SHA224AESGCM
             /// Hybrid ECIES encryption or decryption algorithm.
             ///
-            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ECDHStandardX963SHA256``.
+            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ecdhStandardX963SHA256``.
             /// AES Key size is 128bit for EC keys `<=`256bit and 256bit for bigger EC keys.
             /// Ephemeral public key data is used as sharedInfo for KDF.
             ///
@@ -30,7 +30,7 @@ public extension Crypto {
             case eciesStandardVariableIVX963SHA256AESGCM
             /// Hybrid ECIES encryption or decryption algorithm.
             ///
-            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ECDHStandardX963SHA384``.
+            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ecdhStandardX963SHA384``.
             /// AES Key size is 128bit for EC keys `<=`256bit and 256bit for bigger EC keys. Ephemeral public key data is used as sharedInfo for KDF.
             ///
             /// AES-GCM uses 16 bytes long TAG, AES key is first half of KDF output and 16 byte long IV (initialization vector) is second half of KDF output.
@@ -39,7 +39,7 @@ public extension Crypto {
             case eciesStandardVariableIVX963SHA384AESGCM
             /// Hybrid ECIES encryption or decryption algorithm.
             ///
-            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ECDHStandardX963SHA512``.
+            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ecdhStandardX963SHA512``.
             /// AES Key size is 128bit for EC keys `<=`256bit and 256bit for bigger EC keys.
             /// Ephemeral public key data is used as sharedInfo for KDF.
             ///
@@ -49,7 +49,7 @@ public extension Crypto {
             case eciesStandardVariableIVX963SHA512AESGCM
             /// Hybrid ECIES encryption or decryption algorithm.
             ///
-            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ECDHCofactorX963SHA224``.
+            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ecdhCofactorX963SHA224``.
             /// AES Key size is 128bit for EC keys `<=`256bit and 256bit for bigger EC keys. Ephemeral public key data is used as sharedInfo for KDF.
             ///
             /// AES-GCM uses 16 bytes long TAG, AES key is first half of KDF output and 16 byte long IV (initialization vector) is second half of KDF output.
@@ -58,7 +58,7 @@ public extension Crypto {
             case eciesCofactorVariableIVX963SHA224AESGCM
             /// Hybrid ECIES encryption or decryption algorithm.
             ///
-            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ECDHCofactorX963SHA256``.
+            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ecdhCofactorX963SHA256``.
             /// AES Key size is 128bit for EC keys `<=`256bit and 256bit for bigger EC keys. Ephemeral public key data is used as sharedInfo for KDF.
             ///
             /// AES-GCM uses 16 bytes long TAG, AES key is first half of KDF output and 16 byte long IV (initialization vector) is second half of KDF output.
@@ -67,7 +67,7 @@ public extension Crypto {
             case eciesCofactorVariableIVX963SHA256AESGCM
             /// Hybrid ECIES encryption or decryption algorithm.
             ///
-            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ECDHCofactorX963SHA384``.
+            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ecdhCofactorX963SHA384``.
             /// AES Key size is 128bit for EC keys `<=`256bit and 256bit for bigger EC keys. Ephemeral public key data is used as sharedInfo for KDF.
             ///
             /// AES-GCM uses 16 bytes long TAG, AES key is first half of KDF output and 16 byte long IV (initialization vector) is second half of KDF output.
@@ -76,7 +76,7 @@ public extension Crypto {
             case eciesCofactorVariableIVX963SHA384AESGCM
             /// Hybrid ECIES encryption or decryption algorithm.
             ///
-            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ECDHCofactorX963SHA512``.
+            /// Encryption is done using AES-GCM with key negotiated by ``Crypto/ECC/KeyExchangeAlgorithm/ecdhCofactorX963SHA512``.
             /// AES Key size is 128bit for EC keys `<=`256bit and 256bit for bigger EC keys. Ephemeral public key data is used as sharedInfo for KDF.
             ///
             /// AES-GCM uses 16 bytes long TAG, AES key is first half of KDF output and 16 byte long IV (initialization vector) is second half of KDF output.

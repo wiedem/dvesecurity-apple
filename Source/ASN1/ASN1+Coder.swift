@@ -23,10 +23,9 @@ public extension ASN1.Coder {
         }
     }
 
-    class func extractX509SubjectPublicKey<PK>(from x509SubjectPublicKeyInfo: some ContiguousBytes) throws -> PK
-        where
-        PK: RSAPublicKey & PKCS1Convertible
-    {
+    class func extractX509SubjectPublicKey<PK>(
+        from x509SubjectPublicKeyInfo: some ContiguousBytes
+    ) throws -> PK where PK: RSAPublicKey & PKCS1Convertible {
         try x509SubjectPublicKeyInfo.withUnsafeBytes { buffer in
             let pkcs1Representation = try __extractX509SubjectPublicKey(Data(buffer))
             return try PK(pkcs1Representation: pkcs1Representation)

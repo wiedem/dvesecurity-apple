@@ -26,10 +26,12 @@ public extension Keychain {
         let itemAttributes: Set<ItemAttribute> = [
             .applicationTag(tag), .accessGroup(accessGroup), .tokenID(kSecAttrTokenIDSecureEnclave as String),
         ]
-        CryptoKey.queryOne(keyClass: K.secKeyClass,
-                           itemAttributes: itemAttributes,
-                           authentication: authentication,
-                           completion: completion)
+        CryptoKey.queryOne(
+            keyClass: K.secKeyClass,
+            itemAttributes: itemAttributes,
+            authentication: authentication,
+            completion: completion
+        )
     }
 
     /// Saves a Secure Enclave key to the keychain.
@@ -120,9 +122,11 @@ public extension Keychain {
             .accessGroup(accessGroup), .applicationTag(tag), .tokenID(kSecAttrTokenIDSecureEnclave as String),
         ]
 
-        return try CryptoKey.queryOne(keyClass: K.secKeyClass,
-                                      itemAttributes: itemAttributes,
-                                      authentication: authentication)
+        return try CryptoKey.queryOne(
+            keyClass: K.secKeyClass,
+            itemAttributes: itemAttributes,
+            authentication: authentication
+        )
     }
 
     /// Performs a keychain query for a Secure Enclave key with a given public key digest.
@@ -148,9 +152,11 @@ public extension Keychain {
         ]
         tag.updateMapped({ .applicationTag($0) }, in: &itemAttributes)
 
-        return try CryptoKey.queryOne(keyClass: K.secKeyClass,
-                                      itemAttributes: itemAttributes,
-                                      authentication: authentication)
+        return try CryptoKey.queryOne(
+            keyClass: K.secKeyClass,
+            itemAttributes: itemAttributes,
+            authentication: authentication
+        )
     }
 
     /// Performs a keychain query for a Secure Enclave key with a given public.
@@ -165,14 +171,13 @@ public extension Keychain {
     ///
     /// - Throws: ``KeychainError/ambiguousQueryResult`` if no `tag` value for the query was specified and more than one key exists for the specified public key in the access group.
     /// - Returns: Secure Enclave key instance if the item could be found, `nil` otherwise.
-    static func queryKey<PK, K>(
-        for publicKey: PK,
+    static func queryKey<K>(
+        for publicKey: some ECCPublicKey,
         withTag tag: String? = nil,
         accessGroup: String = Keychain.defaultAccessGroup,
         authentication: Keychain.QueryAuthentication = .default
     ) throws -> K?
         where
-        PK: ECCPublicKey,
         K: ECCSecureEnclaveKey & CreateableFromSecKey
     {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.x963Representation)

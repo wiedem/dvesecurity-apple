@@ -18,11 +18,11 @@ public extension Crypto.RSA {
     /// - Throws: ``Crypto/RSAError/invalidDataLength`` if the data length of the plaintext doesn't meet the requirements of the key and algorithm.
     ///
     /// - Returns: The ciphertext represented as a Data object.
-    static func encrypt<D, K>(
-        _ plainText: D,
-        withKey publicKey: K,
+    static func encrypt(
+        _ plainText: some DataProtocol,
+        withKey publicKey: some RSAPublicKey & ConvertibleToSecKey,
         algorithm: EncryptionAlgorithm
-    ) throws -> Data where D: DataProtocol, K: RSAPublicKey & ConvertibleToSecKey {
+    ) throws -> Data {
         if let maxPlainTextLength = publicKey.maxPlainTextLength(for: algorithm) {
             guard plainText.count <= maxPlainTextLength else {
                 throw Crypto.RSAError.invalidDataLength
@@ -41,11 +41,11 @@ public extension Crypto.RSA {
     /// - Throws: ``Crypto/RSAError/invalidDataLength`` if the data length of the plaintext doesn't meet the requirements of the key and algorithm.
     ///
     /// - Returns: The decrypted plaintext data.
-    static func decrypt<D, PK>(
-        _ cipherText: D,
-        withKey privateKey: PK,
+    static func decrypt(
+        _ cipherText: some DataProtocol,
+        withKey privateKey: some RSAPrivateKey & ConvertibleToSecKey,
         algorithm: EncryptionAlgorithm
-    ) throws -> Data where D: DataProtocol, PK: RSAPrivateKey & ConvertibleToSecKey {
+    ) throws -> Data {
         if privateKey.maxPlainTextLength(for: algorithm) != nil {
             guard cipherText.count <= privateKey.blockSize else {
                 throw Crypto.RSAError.invalidDataLength
@@ -62,12 +62,12 @@ public extension Crypto.RSA {
     ///   - algorithm: The RSA signing algorithm to use. See ``MessageSignatureAlgorithm`` for more details.
     ///
     /// - Returns: The digital signature.
-    static func sign<D, PK>(
-        _ data: D,
-        withKey privateKey: PK,
+    static func sign(
+        _ data: some DataProtocol,
+        withKey privateKey: some RSAPrivateKey & ConvertibleToSecKey,
         algorithm: MessageSignatureAlgorithm
-    ) throws -> Data where D: DataProtocol, PK: RSAPrivateKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.sign(data, withKey: privateKey.secKey, algorithm: algorithm.secKeyAlgorithm)
+    ) throws -> Data {
+        try Crypto.Asymmetric.sign(data, withKey: privateKey.secKey, algorithm: algorithm.secKeyAlgorithm)
     }
 
     /// Creates the cryptographic RSA signature for a digest data using a private key and specified algorithm.
@@ -78,12 +78,12 @@ public extension Crypto.RSA {
     ///   - algorithm: The RSA signing algorithm to use. See ``DigestSignatureAlgorithm`` for more details.
     ///
     /// - Returns: The digital signature.
-    static func signDigest<D, PK>(
-        _ digestData: D,
-        withKey privateKey: PK,
+    static func signDigest(
+        _ digestData: some DataProtocol,
+        withKey privateKey: some RSAPrivateKey & ConvertibleToSecKey,
         algorithm: DigestSignatureAlgorithm
-    ) throws -> Data where D: DataProtocol, PK: RSAPrivateKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.sign(digestData, withKey: privateKey.secKey, algorithm: algorithm.secKeyAlgorithm)
+    ) throws -> Data {
+        try Crypto.Asymmetric.sign(digestData, withKey: privateKey.secKey, algorithm: algorithm.secKeyAlgorithm)
     }
 
     /// Verifies the RSA cryptographic signature of a block of data using a public key and specified algorithm.
@@ -95,13 +95,13 @@ public extension Crypto.RSA {
     ///   - algorithm: The algorithm that was used to create the signature. See ``MessageSignatureAlgorithm`` for more details.
     ///
     /// - Returns: A Boolean indicating whether or not the data and signature are intact.
-    static func verifySignature<D, K>(
+    static func verifySignature(
         _ signature: Data,
-        of signedData: D,
-        withKey publicKey: K,
+        of signedData: some DataProtocol,
+        withKey publicKey: some RSAPublicKey & ConvertibleToSecKey,
         algorithm: MessageSignatureAlgorithm
-    ) throws -> Bool where D: DataProtocol, K: RSAPublicKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.verify(
+    ) throws -> Bool {
+        try Crypto.Asymmetric.verify(
             signature: signature,
             of: signedData,
             withKey: publicKey.secKey,
@@ -118,13 +118,13 @@ public extension Crypto.RSA {
     ///   - algorithm: The algorithm that was used to create the signature. See ``DigestSignatureAlgorithm`` for more details.
     ///
     /// - Returns: A Boolean indicating whether or not the data and signature are intact.
-    static func verifyDigestSignature<D, K>(
+    static func verifyDigestSignature(
         _ signature: Data,
-        of signedDigestData: D,
-        withKey publicKey: K,
+        of signedDigestData: some DataProtocol,
+        withKey publicKey: some RSAPublicKey & ConvertibleToSecKey,
         algorithm: DigestSignatureAlgorithm
-    ) throws -> Bool where D: DataProtocol, K: RSAPublicKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.verify(
+    ) throws -> Bool {
+        try Crypto.Asymmetric.verify(
             signature: signature,
             of: signedDigestData,
             withKey: publicKey.secKey,

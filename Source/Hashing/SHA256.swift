@@ -18,7 +18,7 @@ public extension Hashing {
         /// - Parameter source: The data whose digest the hash function should compute. This can be any type that conforms to `DataProtocol`, like `Data` or an array of `UInt8` instances.
         ///
         /// - Returns: The computed digest of the data.
-        public static func hash<D>(_ source: D) -> Data where D: DataProtocol {
+        public static func hash(_ source: some DataProtocol) -> Data {
             let dataToHash = Data(source)
             let dataLength = CC_LONG(dataToHash.count)
             var digest = Data(count: byteCount)
@@ -45,7 +45,7 @@ public extension Hashing {
         /// Don’t call the `update` method again after finalizing the hash function.
         ///
         /// - Parameter data: The next block of data for the ongoing digest calculation. You can provide this as any type that conforms to `DataProtocol`, like `Data` or an array of `UInt8` instances.
-        public mutating func update<D>(data: D) where D: DataProtocol {
+        public mutating func update(data: some DataProtocol) {
             let dataToHash = Data(data)
             let dataLength = CC_LONG(dataToHash.count)
 

@@ -13,14 +13,14 @@ extension Keychain.Legacy {
         init(itemClass: Keychain.ItemClass, valueData: Data, keychain: SecKeychain?) {
             itemClass.insertIntoKeychainQuery(&queryDictionary)
 
-            if let keychain = keychain {
+            if let keychain {
                 queryDictionary[kSecMatchSearchList as String] = [keychain]
             }
 
             updateDictionary[kSecValueData as String] = valueData
         }
 
-        func add<Attributes>(_ attributes: Attributes) -> Self where Attributes: KeychainQueryParamsConvertible {
+        func add(_ attributes: some KeychainQueryParamsConvertible) -> Self {
             var copy = self
             attributes.insertIntoKeychainQuery(&copy.queryDictionary)
             return copy

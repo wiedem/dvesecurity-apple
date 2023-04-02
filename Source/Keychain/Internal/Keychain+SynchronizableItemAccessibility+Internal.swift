@@ -6,9 +6,12 @@ import Foundation
 extension Keychain.SynchronizableItemAccessibility {
     var secAttrString: String {
         switch self {
-        case .always: return kSecAttrAccessibleAlways as String
-        case .afterFirstUnlock: return kSecAttrAccessibleAfterFirstUnlock as String
-        case .whenUnlocked: return kSecAttrAccessibleWhenUnlocked as String
+        case .always:
+            return kSecAttrAccessibleAlways as String
+        case .afterFirstUnlock:
+            return kSecAttrAccessibleAfterFirstUnlock as String
+        case .whenUnlocked:
+            return kSecAttrAccessibleWhenUnlocked as String
         }
     }
 

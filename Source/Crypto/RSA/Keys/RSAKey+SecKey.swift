@@ -51,7 +51,7 @@ public extension RSAKey where Self: CreateableFromSecKey & DefinesSecKeyClass {
     /// The key has to be in ASN.1 DER encoded format as defined in [RFC 8017 - PKCS #1](https://tools.ietf.org/html/rfc8017).
     ///
     /// - Parameter pkcs1Representation: PKCS#1 data of the key.
-    init<Bytes>(pkcs1Representation: Bytes) throws where Bytes: ContiguousBytes {
+    init(pkcs1Representation: some ContiguousBytes) throws {
         let secKey: SecKey = try pkcs1Representation.withUnsafeBytes {
             try SecKey.create(keyClass: Self.secKeyClass, keyData: Data($0))
         }

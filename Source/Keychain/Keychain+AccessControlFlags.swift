@@ -86,7 +86,7 @@ public extension Keychain {
             _flags = Set<AccessControlFlag>(minimumCapacity: minimumCapacity)
         }
 
-        public init<S>(_ sequence: S) where S: Sequence, S.Element == AccessControlFlag {
+        public init(_ sequence: some Sequence<AccessControlFlag>) {
             _flags = Set<AccessControlFlag>(sequence)
         }
 
@@ -103,7 +103,7 @@ public extension Keychain {
         /// `newMember` by identity comparison or some other means.
         @discardableResult
         public mutating func insert(_ newMember: AccessControlFlag) -> (inserted: Bool, memberAfterInsert: AccessControlFlag) {
-            return _flags.insert(newMember)
+            _flags.insert(newMember)
         }
 
         /// Inserts the given access control flag into the set unconditionally.
@@ -116,7 +116,7 @@ public extension Keychain {
         /// from `newMember` by identity comparison or some other means.
         @discardableResult
         public mutating func update(with newMember: AccessControlFlag) -> AccessControlFlag? {
-            return _flags.update(with: newMember)
+            _flags.update(with: newMember)
         }
 
         /// Removes the specified access control flag from the set.
@@ -129,7 +129,7 @@ public extension Keychain {
         ///   set; otherwise, `nil`.
         @discardableResult
         public mutating func remove(_ member: AccessControlFlag) -> AccessControlFlag? {
-            return _flags.remove(member)
+            _flags.remove(member)
         }
 
         /// Removes the access control flag at the given index of the set.
@@ -138,7 +138,7 @@ public extension Keychain {
         ///
         /// - Returns: The access control flag that was removed from the set.
         public mutating func remove(at position: Index) -> Element {
-            return _flags.remove(at: position)
+            _flags.remove(at: position)
         }
 
         /// Removes all access control flags from the set.
@@ -196,7 +196,7 @@ extension Keychain.AccessControlFlags: Collection {
 
     // swiftlint:disable:next identifier_name
     public func index(after i: Index) -> Index {
-        return _flags.index(after: i)
+        _flags.index(after: i)
     }
 }
 
@@ -218,7 +218,7 @@ extension Keychain.AccessControlFlags: Hashable {
 
     public func hash(into hasher: inout Hasher) {
         hasher.combine(_flags)
-        if let applicationPasswordPrompt = applicationPasswordPrompt {
+        if let applicationPasswordPrompt {
             hasher.combine(applicationPasswordPrompt)
         }
     }

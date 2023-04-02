@@ -16,15 +16,11 @@ extension Crypto.RSA {
     ///   - plainText: The plaintext data to encrypt.
     ///   - publicKey: RSA public key used for the encryption..
     ///   - algorithm: Algorithm used to perform the encryption. See ``EncryptionAlgorithm`` for more details.
-    func encryptPublisher<D, K>(
-        for plainText: D,
-        withKey publicKey: K,
+    func encryptPublisher(
+        for plainText: some DataProtocol,
+        withKey publicKey: some RSAPublicKey & ConvertibleToSecKey,
         algorithm: EncryptionAlgorithm
-    ) -> AnyPublisher<Data, Error>
-        where
-        D: DataProtocol,
-        K: RSAPublicKey & ConvertibleToSecKey
-    {
+    ) -> AnyPublisher<Data, Error> {
         Future { promise in
             do {
                 let cipherText = try Crypto.RSA.encrypt(plainText, withKey: publicKey, algorithm: algorithm)
@@ -42,15 +38,11 @@ extension Crypto.RSA {
     ///   - cipherText: The ciphertext data to decrypt.
     ///   - privateKey: RSA private key used for the decryption.
     ///   - algorithm: Algorithm used to perform the decryption. See ``EncryptionAlgorithm`` for more details.
-    func decryptPublisher<D, PK>(
-        for cipherText: D,
-        withKey privateKey: PK,
+    func decryptPublisher(
+        for cipherText: some DataProtocol,
+        withKey privateKey: some RSAPrivateKey & ConvertibleToSecKey,
         algorithm: EncryptionAlgorithm
-    ) -> AnyPublisher<Data, Error>
-        where
-        D: DataProtocol,
-        PK: RSAPrivateKey & ConvertibleToSecKey
-    {
+    ) -> AnyPublisher<Data, Error> {
         Future { promise in
             do {
                 let plainText = try Crypto.RSA.decrypt(cipherText, withKey: privateKey, algorithm: algorithm)
@@ -68,15 +60,11 @@ extension Crypto.RSA {
     ///   - data: The data whose signature you want.
     ///   - privateKey: The RSA private key to use in creating the signature.
     ///   - algorithm: The RSA signing algorithm to use. See ``MessageSignatureAlgorithm`` for more details.
-    func signPublisher<D, PK>(
-        for data: D,
-        withKey privateKey: PK,
+    func signPublisher(
+        for data: some DataProtocol,
+        withKey privateKey: some RSAPrivateKey & ConvertibleToSecKey,
         algorithm: MessageSignatureAlgorithm
-    ) -> AnyPublisher<Data, Error>
-        where
-        D: DataProtocol,
-        PK: RSAPrivateKey & ConvertibleToSecKey
-    {
+    ) -> AnyPublisher<Data, Error> {
         Future { promise in
             do {
                 let signature = try Crypto.RSA.sign(data, withKey: privateKey, algorithm: algorithm)
@@ -94,14 +82,11 @@ extension Crypto.RSA {
     ///   - digestData: The digest data whose signature you want.
     ///   - privateKey: The RSA private key to use in creating the signature.
     ///   - algorithm: The RSA signing algorithm to use. See ``DigestSignatureAlgorithm`` for more details.
-    func signDigestPublisher<PK>(
+    func signDigestPublisher(
         for digestData: Data,
-        withKey privateKey: PK,
+        withKey privateKey: some RSAPrivateKey & ConvertibleToSecKey,
         algorithm: DigestSignatureAlgorithm
-    ) -> AnyPublisher<Data, Error>
-        where
-        PK: RSAPrivateKey & ConvertibleToSecKey
-    {
+    ) -> AnyPublisher<Data, Error> {
         Future { promise in
             do {
                 let signature = try Crypto.RSA.signDigest(digestData, withKey: privateKey, algorithm: algorithm)
@@ -120,16 +105,12 @@ extension Crypto.RSA {
     ///   - signedData: The data that was signed.
     ///   - publicKey: The RSA public key to use in evaluating the signature.
     ///   - algorithm: The algorithm that was used to create the signature. See ``MessageSignatureAlgorithm`` for more details.
-    func verifySignaturePublisher<D, K>(
+    func verifySignaturePublisher(
         for signature: Data,
-        of signedData: D,
-        withKey publicKey: K,
+        of signedData: some DataProtocol,
+        withKey publicKey: some RSAPublicKey & ConvertibleToSecKey,
         algorithm: MessageSignatureAlgorithm
-    ) -> AnyPublisher<Bool, Error>
-        where
-        D: DataProtocol,
-        K: RSAPublicKey & ConvertibleToSecKey
-    {
+    ) -> AnyPublisher<Bool, Error> {
         Future { promise in
             do {
                 let verified = try Crypto.RSA.verifySignature(signature, of: signedData, withKey: publicKey, algorithm: algorithm)

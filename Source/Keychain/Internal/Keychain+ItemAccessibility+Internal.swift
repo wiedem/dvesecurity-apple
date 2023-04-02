@@ -7,13 +7,20 @@ import Security
 extension Keychain.ItemAccessibility {
     var secAttrString: String {
         switch self {
-        case .afterFirstUnlock: return kSecAttrAccessibleAfterFirstUnlock as String
-        case .afterFirstUnlockThisDeviceOnly: return kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly as String
-        case .whenPasscodeSetThisDeviceOnly: return kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly as String
-        case .whenUnlocked: return kSecAttrAccessibleWhenUnlocked as String
-        case .whenUnlockedThisDeviceOnly: return kSecAttrAccessibleWhenUnlockedThisDeviceOnly as String
-        case .always: return kSecAttrAccessibleAlways as String
-        case .alwaysThisDeviceOnly: return kSecAttrAccessibleAlwaysThisDeviceOnly as String
+        case .afterFirstUnlock:
+            return kSecAttrAccessibleAfterFirstUnlock as String
+        case .afterFirstUnlockThisDeviceOnly:
+            return kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly as String
+        case .whenPasscodeSetThisDeviceOnly:
+            return kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly as String
+        case .whenUnlocked:
+            return kSecAttrAccessibleWhenUnlocked as String
+        case .whenUnlockedThisDeviceOnly:
+            return kSecAttrAccessibleWhenUnlockedThisDeviceOnly as String
+        case .always:
+            return kSecAttrAccessibleAlways as String
+        case .alwaysThisDeviceOnly:
+            return kSecAttrAccessibleAlwaysThisDeviceOnly as String
         }
     }
 }

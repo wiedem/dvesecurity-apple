@@ -27,13 +27,15 @@ public extension Crypto {
         ///   - ivData: IV data used for the encryption.
         ///
         /// - Returns: The ciphertext data with PKCS#7 padding represented as a Data object.
-        public static func encrypt<PD>(_ plainText: PD, withKey key: Key, ivData: Data) throws -> Data where PD: ContiguousBytes {
-            try cryptOperation(CCOperation(kCCEncrypt),
-                               algorithm: CCAlgorithm(kCCAlgorithmAES),
-                               options: CCOptions(kCCOptionPKCS7Padding),
-                               for: plainText,
-                               withKey: key.rawKeyRepresentation,
-                               iv: ivData)
+        public static func encrypt(_ plainText: some ContiguousBytes, withKey key: Key, ivData: Data) throws -> Data {
+            try cryptOperation(
+                CCOperation(kCCEncrypt),
+                algorithm: CCAlgorithm(kCCAlgorithmAES),
+                options: CCOptions(kCCOptionPKCS7Padding),
+                for: plainText,
+                withKey: key.rawKeyRepresentation,
+                iv: ivData
+            )
         }
 
         /// Decrypts a block of data using the Advanced Encryption Standard (AES).
@@ -46,13 +48,15 @@ public extension Crypto {
         ///   - ivData: IV data used for the decryption.
         ///
         /// - Returns: The decrypted plaintext data.
-        public static func decrypt<D>(_ data: D, withKey key: Key, ivData: Data) throws -> Data where D: ContiguousBytes {
-            try cryptOperation(CCOperation(kCCDecrypt),
-                               algorithm: CCAlgorithm(kCCAlgorithmAES),
-                               options: CCOptions(kCCOptionPKCS7Padding),
-                               for: data,
-                               withKey: key.rawKeyRepresentation,
-                               iv: ivData)
+        public static func decrypt(_ data: some ContiguousBytes, withKey key: Key, ivData: Data) throws -> Data {
+            try cryptOperation(
+                CCOperation(kCCDecrypt),
+                algorithm: CCAlgorithm(kCCAlgorithmAES),
+                options: CCOptions(kCCOptionPKCS7Padding),
+                for: data,
+                withKey: key.rawKeyRepresentation,
+                iv: ivData
+            )
         }
     }
 }

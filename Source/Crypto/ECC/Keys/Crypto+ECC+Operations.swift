@@ -12,12 +12,12 @@ public extension Crypto.ECC {
     ///   - algorithm: Algorithm used to perform the encryption. See ``EncryptionAlgorithm`` for more details.
     ///
     /// - Returns: The ciphertext represented as a Data object.
-    static func encrypt<D, K>(
-        _ plainText: D,
-        withKey publicKey: K,
+    static func encrypt(
+        _ plainText: some DataProtocol,
+        withKey publicKey: some ECCPublicKey & ConvertibleToSecKey,
         algorithm: EncryptionAlgorithm
-    ) throws -> Data where D: DataProtocol, K: ECCPublicKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.encryptDataBlock(plainText, withKey: publicKey.secKey, algorithm: algorithm.secKeyAlgorithm)
+    ) throws -> Data {
+        try Crypto.Asymmetric.encryptDataBlock(plainText, withKey: publicKey.secKey, algorithm: algorithm.secKeyAlgorithm)
     }
 
     /// Decrypts a block of data using an ECC private key and the specified ECC algorithm.
@@ -28,12 +28,12 @@ public extension Crypto.ECC {
     ///   - algorithm: Algorithm used to perform the decryption. See ``EncryptionAlgorithm`` for more details.
     ///
     /// - Returns: The decrypted plaintext data.
-    static func decrypt<D, PK>(
-        _ cipherText: D,
-        withKey privateKey: PK,
+    static func decrypt(
+        _ cipherText: some DataProtocol,
+        withKey privateKey: some ECCPrivateKey & ConvertibleToSecKey,
         algorithm: EncryptionAlgorithm
-    ) throws -> Data where D: DataProtocol, PK: ECCPrivateKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.decryptDataBlock(cipherText, withKey: privateKey.secKey, algorithm: algorithm.secKeyAlgorithm)
+    ) throws -> Data {
+        try Crypto.Asymmetric.decryptDataBlock(cipherText, withKey: privateKey.secKey, algorithm: algorithm.secKeyAlgorithm)
     }
 
     /// Creates the cryptographic ECC signature for a block of data using a private key and specified algorithm.
@@ -44,12 +44,12 @@ public extension Crypto.ECC {
     ///   - algorithm: The ECC signing algorithm to use. See ``SignatureAlgorithm`` for more details.
     ///
     /// - Returns: The digital signature.
-    static func sign<D, PK>(
-        _ data: D,
-        withKey privateKey: PK,
+    static func sign(
+        _ data: some DataProtocol,
+        withKey privateKey: some ECCPrivateKey & ConvertibleToSecKey,
         algorithm: SignatureAlgorithm
-    ) throws -> Data where D: DataProtocol, PK: ECCPrivateKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.sign(data, withKey: privateKey.secKey, algorithm: algorithm.secKeyMessageAlgorithm)
+    ) throws -> Data {
+        try Crypto.Asymmetric.sign(data, withKey: privateKey.secKey, algorithm: algorithm.secKeyMessageAlgorithm)
     }
 
     /// Creates the cryptographic ECC signature for a digest data using a private key and specified algorithm.
@@ -60,12 +60,12 @@ public extension Crypto.ECC {
     ///   - algorithm: The ECC signing algorithm to use. See ``SignatureAlgorithm`` for more details.
     ///
     /// - Returns: The digital signature.
-    static func signDigest<PK>(
+    static func signDigest(
         _ digestData: Data,
-        withKey privateKey: PK,
+        withKey privateKey: some ECCPrivateKey & ConvertibleToSecKey,
         algorithm: SignatureAlgorithm
-    ) throws -> Data where PK: ECCPrivateKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.sign(digestData, withKey: privateKey.secKey, algorithm: algorithm.secKeyDigestAlgorithm)
+    ) throws -> Data {
+        try Crypto.Asymmetric.sign(digestData, withKey: privateKey.secKey, algorithm: algorithm.secKeyDigestAlgorithm)
     }
 
     /// Verifies the ECC cryptographic signature of a block of data using a public key and specified algorithm.
@@ -77,16 +77,18 @@ public extension Crypto.ECC {
     ///   - algorithm: The algorithm that was used to create the signature. See ``SignatureAlgorithm`` for more details.
     ///
     /// - Returns: A Boolean indicating whether or not the data and signature are intact.
-    static func verifySignature<D, K>(
+    static func verifySignature(
         _ signature: Data,
-        of signedData: D,
-        withKey publicKey: K,
+        of signedData: some DataProtocol,
+        withKey publicKey: some ECCPublicKey & ConvertibleToSecKey,
         algorithm: SignatureAlgorithm
-    ) throws -> Bool where D: DataProtocol, K: ECCPublicKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.verify(signature: signature,
-                                            of: signedData,
-                                            withKey: publicKey.secKey,
-                                            algorithm: algorithm.secKeyMessageAlgorithm)
+    ) throws -> Bool {
+        try Crypto.Asymmetric.verify(
+            signature: signature,
+            of: signedData,
+            withKey: publicKey.secKey,
+            algorithm: algorithm.secKeyMessageAlgorithm
+        )
     }
 }
 
@@ -99,12 +101,12 @@ public extension Crypto.ECC {
     ///   - algorithm: Algorithm used to perform the decryption. See ``EncryptionAlgorithm`` for more details.
     ///
     /// - Returns: The decrypted plaintext data.
-    static func decrypt<D, PK>(
-        _ cipherText: D,
-        withKey key: PK,
+    static func decrypt(
+        _ cipherText: some DataProtocol,
+        withKey key: some ECCSecureEnclaveKey & ConvertibleToSecKey,
         algorithm: EncryptionAlgorithm
-    ) throws -> Data where D: DataProtocol, PK: ECCSecureEnclaveKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.decryptDataBlock(cipherText, withKey: key.secKey, algorithm: algorithm.secKeyAlgorithm)
+    ) throws -> Data {
+        try Crypto.Asymmetric.decryptDataBlock(cipherText, withKey: key.secKey, algorithm: algorithm.secKeyAlgorithm)
     }
 
     /// Creates the cryptographic ECC signature for a block of data using a Secure Enclave private key and specified algorithm.
@@ -115,12 +117,12 @@ public extension Crypto.ECC {
     ///   - algorithm: The ECC signing algorithm to use. See ``SignatureAlgorithm`` for more details.
     ///
     /// - Returns: The digital signature.
-    static func sign<D, PK>(
-        _ data: D,
-        withKey key: PK,
+    static func sign(
+        _ data: some DataProtocol,
+        withKey key: some ECCSecureEnclaveKey & ConvertibleToSecKey,
         algorithm: SignatureAlgorithm
-    ) throws -> Data where D: DataProtocol, PK: ECCSecureEnclaveKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.sign(data, withKey: key.secKey, algorithm: algorithm.secKeyMessageAlgorithm)
+    ) throws -> Data {
+        try Crypto.Asymmetric.sign(data, withKey: key.secKey, algorithm: algorithm.secKeyMessageAlgorithm)
     }
 
     /// Creates the cryptographic ECC signature for a digest data using a Secure Enclave private key and specified algorithm.
@@ -131,11 +133,11 @@ public extension Crypto.ECC {
     ///   - algorithm: The ECC signing algorithm to use. See ``SignatureAlgorithm`` for more details.
     ///
     /// - Returns: The digital signature.
-    static func signDigest<PK>(
+    static func signDigest(
         _ digestData: Data,
-        withKey key: PK,
+        withKey key: some ECCSecureEnclaveKey & ConvertibleToSecKey,
         algorithm: SignatureAlgorithm
-    ) throws -> Data where PK: ECCSecureEnclaveKey & ConvertibleToSecKey {
-        return try Crypto.Asymmetric.sign(digestData, withKey: key.secKey, algorithm: algorithm.secKeyDigestAlgorithm)
+    ) throws -> Data {
+        try Crypto.Asymmetric.sign(digestData, withKey: key.secKey, algorithm: algorithm.secKeyDigestAlgorithm)
     }
 }

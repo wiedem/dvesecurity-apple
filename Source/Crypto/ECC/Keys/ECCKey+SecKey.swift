@@ -29,7 +29,7 @@ public extension ECCKey where Self: ConvertibleToSecKey {
 
 public extension ECCKey where Self: CreateableFromSecKey & DefinesSecKeyClass {
     /// Creates a new ECC key from its X.963 representation.
-    init<Bytes>(x963Representation: Bytes) throws where Bytes: ContiguousBytes {
+    init(x963Representation: some ContiguousBytes) throws {
         let secKey: SecKey = try x963Representation.withUnsafeBytes {
             try SecKey.create(keyClass: Self.secKeyClass, keyData: Data($0))
         }

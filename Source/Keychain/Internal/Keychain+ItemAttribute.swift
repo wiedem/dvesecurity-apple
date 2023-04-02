@@ -139,7 +139,7 @@ extension Keychain.ItemAttribute: KeychainQueryParamsConvertible {
         case let .label(label):
             query[kSecAttrLabel as String] = label
         case let .synchronizable(accessibility):
-            if let accessibility = accessibility {
+            if let accessibility {
                 query[kSecAttrAccessible as String] = accessibility.secAttrString
             }
             query[kSecAttrSynchronizable as String] = true

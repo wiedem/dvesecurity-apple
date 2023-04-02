@@ -13,13 +13,12 @@ public extension Keychain {
     ///   - tag: The private tag data used for the search.
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-    static func querySynchronizableKey<K, PK>(
-        for publicKey: K,
+    static func querySynchronizableKey<PK>(
+        for publicKey: some RSAPublicKey & PKCS1Convertible,
         withTag tag: String? = nil,
         accessGroup: String = defaultAccessGroup,
         completion: @escaping (Result<PK?, Error>) -> Void
     ) where
-        K: RSAPublicKey & PKCS1Convertible,
         PK: RSAPrivateKey & CreateableFromSecKey
     {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
@@ -106,11 +105,11 @@ public extension Keychain {
     ///
     /// - Returns: `true` if an item matching the parameters was deleted, `false` otherwise.
     @discardableResult
-    static func deleteSynchronizablePrivateKey<K>(
-        for publicKey: K,
+    static func deleteSynchronizablePrivateKey(
+        for publicKey: some RSAPublicKey & PKCS1Convertible,
         withTag tag: String,
         accessGroup: String = defaultAccessGroup
-    ) throws -> Bool where K: RSAPublicKey & PKCS1Convertible {
+    ) throws -> Bool {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
         return try deleteSynchronizableKey(ofType: Crypto.RSA.PrivateKey.self, withTag: tag, publicKeySHA1: publicKeySHA1, accessGroup: accessGroup)
     }
@@ -179,13 +178,12 @@ public extension Keychain {
     ///
     /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item. Use a `tag` value if needed to make the query unique.
     /// - Returns: RSA private key instance if the item could be found, `nil` otherwise.
-    static func querySynchronizableKey<K, PK>(
-        for publicKey: K,
+    static func querySynchronizableKey<PK>(
+        for publicKey: some RSAPublicKey & PKCS1Convertible,
         withTag tag: String? = nil,
         accessGroup: String = defaultAccessGroup
     ) throws -> PK?
         where
-        K: RSAPublicKey & PKCS1Convertible,
         PK: RSAPrivateKey & CreateableFromSecKey
     {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)

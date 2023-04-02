@@ -15,7 +15,7 @@ public extension ASN1.RSAPrivateKey {
         }
     }
 
-    convenience init<Bytes>(pkcs1Bytes: Bytes) throws where Bytes: ContiguousBytes {
+    convenience init(pkcs1Bytes: some ContiguousBytes) throws {
         let pkcs1Data = pkcs1Bytes.withUnsafeBytes { Data($0) }
         try self.init(pkcs1Data: pkcs1Data)
     }

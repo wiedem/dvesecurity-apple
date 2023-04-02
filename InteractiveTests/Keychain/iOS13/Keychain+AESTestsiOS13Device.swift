@@ -8,13 +8,14 @@ import XCTest
 
 @available(iOS 13.0, *)
 final class Keychain_AESTestsiOS13Device: InteractiveTestCaseiOS13Device {
-    // swiftlint:disable force_try
-    private let key: Crypto.AES.Key = try! Crypto.AES.Key(keySize: Crypto.AES.KeySize.bits256,
-                                                          password: "Hello Test!",
-                                                          withSalt: "Salt",
-                                                          pseudoRandomAlgorithm: .hmacAlgSHA256,
-                                                          rounds: 1)
-    // swiftlint:enable force_try
+    // swiftlint:disable:next force_try
+    private let key: Crypto.AES.Key = try! Crypto.AES.Key(
+        keySize: Crypto.AES.KeySize.bits256,
+        password: "Hello Test!",
+        withSalt: "Salt",
+        pseudoRandomAlgorithm: .hmacAlgSHA256,
+        rounds: 1
+    )
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()

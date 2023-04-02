@@ -17,50 +17,59 @@ extension Crypto {
 
         static func createPrivateKey(keyType: SecKeyType, keySizeInBits: Int) throws -> SecKey {
             let keyGenerationAttributes = SecKeyAttributes(keySizeInBits: keySizeInBits)
-            return try createSecKey(keyType: keyType,
-                                    keyGenerationAttributes: keyGenerationAttributes,
-                                    privateKeyAttributes: .init())
+            return try createSecKey(
+                keyType: keyType,
+                keyGenerationAttributes: keyGenerationAttributes,
+                privateKeyAttributes: .init()
+            )
         }
 
         static func createSecureEnclavePrivateKey() throws -> SecKey {
-            let keyGenerationAttributes = SecKeyAttributes(keySizeInBits: Crypto.ECC.EllipticCurve.P256.secKeySizeInBits,
-                                                           tokenID: kSecAttrTokenIDSecureEnclave as String)
-            return try createSecKey(keyType: .ECSECPrimeRandom,
-                                    keyGenerationAttributes: keyGenerationAttributes,
-                                    privateKeyAttributes: .init())
+            let keyGenerationAttributes = SecKeyAttributes(
+                keySizeInBits: Crypto.ECC.EllipticCurve.P256.secKeySizeInBits,
+                tokenID: kSecAttrTokenIDSecureEnclave as String
+            )
+            return try createSecKey(
+                keyType: .ECSECPrimeRandom,
+                keyGenerationAttributes: keyGenerationAttributes,
+                privateKeyAttributes: .init()
+            )
         }
 
-        static func encryptDataBlock<D>(_ plainText: D, withKey publicKey: SecKey, algorithm: SecKeyAlgorithm) throws -> Data where D: DataProtocol {
+        static func encryptDataBlock(_ plainText: some DataProtocol, withKey publicKey: SecKey, algorithm: SecKeyAlgorithm) throws -> Data {
             guard SecKeyIsAlgorithmSupported(publicKey, .encrypt, algorithm) else {
                 throw AsymmetricCryptoError.unsupportedOperation(.encrypt)
             }
 
             let plainTextData = Data(plainText)
             var error: Unmanaged<CFError>?
-            guard let cipherTextData = SecKeyCreateEncryptedData(publicKey,
-                                                                 algorithm,
-                                                                 plainTextData as CFData,
-                                                                 &error)
-            else {
+
+            guard let cipherTextData = SecKeyCreateEncryptedData(
+                publicKey,
+                algorithm,
+                plainTextData as CFData,
+                &error
+            ) else {
                 throw error!.takeRetainedValue() as Error
             }
             return cipherTextData as Data
         }
 
-        static func decryptDataBlock<D>(_ cipherText: D, withKey privateKey: SecKey, algorithm: SecKeyAlgorithm) throws -> Data where D: DataProtocol {
+        static func decryptDataBlock(_ cipherText: some DataProtocol, withKey privateKey: SecKey, algorithm: SecKeyAlgorithm) throws -> Data {
             guard SecKeyIsAlgorithmSupported(privateKey, .decrypt, algorithm) else {
                 throw AsymmetricCryptoError.unsupportedOperation(.decrypt)
             }
 
             let cipherTextData = Data(cipherText)
             var error: Unmanaged<CFError>?
+
             guard let plainTextData = SecKeyCreateDecryptedData(privateKey, algorithm, cipherTextData as CFData, &error) else {
                 throw error!.takeRetainedValue() as Error
             }
             return plainTextData as Data
         }
 
-        static func sign<D>(_ data: D, withKey privateKey: SecKey, algorithm: SecKeyAlgorithm) throws -> Data where D: DataProtocol {
+        static func sign(_ data: some DataProtocol, withKey privateKey: SecKey, algorithm: SecKeyAlgorithm) throws -> Data {
             guard SecKeyIsAlgorithmSupported(privateKey, .sign, algorithm) else {
                 throw AsymmetricCryptoError.unsupportedOperation(.sign)
             }
@@ -73,7 +82,7 @@ extension Crypto {
             return signature as Data
         }
 
-        static func verify<D>(signature: Data, of signedData: D, withKey publicKey: SecKey, algorithm: SecKeyAlgorithm) throws -> Bool where D: DataProtocol {
+        static func verify(signature: Data, of signedData: some DataProtocol, withKey publicKey: SecKey, algorithm: SecKeyAlgorithm) throws -> Bool {
             guard SecKeyIsAlgorithmSupported(publicKey, .verify, algorithm) else {
                 throw AsymmetricCryptoError.unsupportedOperation(.verify)
             }
@@ -152,7 +161,7 @@ extension Crypto.Asymmetric {
 
         var parameters = [kSecAttrKeyType: keyType.secAttrString,
                           kSecPrivateKeyAttrs: secPrivateKeyAttributes] as [String: Any]
-        if let authenticationContext = authenticationContext {
+        if let authenticationContext {
             parameters[kSecUseAuthenticationContext as String] = authenticationContext
         }
 

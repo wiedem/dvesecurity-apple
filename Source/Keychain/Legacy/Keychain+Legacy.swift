@@ -90,14 +90,17 @@ public extension Keychain.Legacy {
         var detectedItemType = itemType
         var detectedKeyParams = keyParams
 
-        let status = SecItemImport(data as CFData,
-                                   fileNameOrExtension as CFString?,
-                                   &detectedInputFormat,
-                                   &detectedItemType,
-                                   flags,
-                                   &detectedKeyParams,
-                                   importKeychain,
-                                   &items)
+        let status = SecItemImport(
+            data as CFData,
+            fileNameOrExtension as CFString?,
+            &detectedInputFormat,
+            &detectedItemType,
+            flags,
+            &detectedKeyParams,
+            importKeychain,
+            &items
+        )
+
         guard status == errSecSuccess else {
             throw KeychainError.secError(status: status)
         }

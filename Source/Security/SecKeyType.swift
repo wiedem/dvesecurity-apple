@@ -15,8 +15,10 @@ public enum SecKeyType: Equatable, Hashable, CaseIterable {
 extension SecKeyType {
     var secAttrString: String {
         switch self {
-        case .RSA: return kSecAttrKeyTypeRSA as String
-        case .ECSECPrimeRandom: return kSecAttrKeyTypeECSECPrimeRandom as String
+        case .RSA:
+            return kSecAttrKeyTypeRSA as String
+        case .ECSECPrimeRandom:
+            return kSecAttrKeyTypeECSECPrimeRandom as String
         }
     }
 

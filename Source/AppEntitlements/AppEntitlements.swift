@@ -62,17 +62,17 @@ public final class AppEntitlements {
     ///
     /// A list of identifiers specifying the groups your app belongs to.
     public class var applicationGroups: [String]? {
-        return shared.entitlements[EntitlementKey.appleSecurityApplicationGroups.rawValue] as? [String]
+        shared.entitlements[EntitlementKey.appleSecurityApplicationGroups.rawValue] as? [String]
     }
 
     /// The app's development team identifier entitlement.
     public class var developerTeamIdentifier: String? {
-        return shared.entitlements[EntitlementKey.appleDeveloperTeamIdentifier.rawValue] as? String
+        shared.entitlements[EntitlementKey.appleDeveloperTeamIdentifier.rawValue] as? String
     }
 
     /// Apple Push Services (APS) environment used by the app.
     public class var apsEnvironment: String? {
-        return shared.entitlements[EntitlementKey.apsEnvironment.rawValue] as? String
+        shared.entitlements[EntitlementKey.apsEnvironment.rawValue] as? String
     }
 
     #if os(iOS)

@@ -18,7 +18,7 @@ class TestCaseiOS13Device: XCTestCase {
     override func tearDownWithError() throws {
         try super.tearDownWithError()
 
-        guard let testRun = testRun, testRun.hasBeenSkipped == false else {
+        guard let testRun, testRun.hasBeenSkipped == false else {
             throw XCTSkip("Test case needs to run on an iOS 13 compatible device.")
         }
     }

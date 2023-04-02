@@ -29,14 +29,22 @@ extension Keychain.AccessControl: KeychainQueryParamsConvertible {
 extension Keychain.AccessControlFlag {
     var secAccessControlCreateFlags: SecAccessControlCreateFlags {
         switch self {
-        case .devicePasscode: return SecAccessControlCreateFlags.devicePasscode
-        case .biometryAny: return SecAccessControlCreateFlags.biometryAny
-        case .biometryCurrentSet: return SecAccessControlCreateFlags.biometryCurrentSet
-        case .userPresence: return SecAccessControlCreateFlags.userPresence
-        case .applicationPassword: return SecAccessControlCreateFlags.applicationPassword
-        case .privateKeyUsage: return SecAccessControlCreateFlags.privateKeyUsage
-        case .satisfyAll: return SecAccessControlCreateFlags.and
-        case .satisfyOne: return SecAccessControlCreateFlags.or
+        case .devicePasscode:
+            return SecAccessControlCreateFlags.devicePasscode
+        case .biometryAny:
+            return SecAccessControlCreateFlags.biometryAny
+        case .biometryCurrentSet:
+            return SecAccessControlCreateFlags.biometryCurrentSet
+        case .userPresence:
+            return SecAccessControlCreateFlags.userPresence
+        case .applicationPassword:
+            return SecAccessControlCreateFlags.applicationPassword
+        case .privateKeyUsage:
+            return SecAccessControlCreateFlags.privateKeyUsage
+        case .satisfyAll:
+            return SecAccessControlCreateFlags.and
+        case .satisfyOne:
+            return SecAccessControlCreateFlags.or
         }
     }
 }

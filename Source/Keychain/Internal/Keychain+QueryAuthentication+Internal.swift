@@ -6,7 +6,7 @@ import Security
 
 extension Keychain.QueryAuthentication: KeychainQueryParamsConvertible {
     func insertIntoKeychainQuery(_ query: inout [String: Any]) {
-        if let authenticationContext = authenticationContext {
+        if let authenticationContext {
             query[kSecUseAuthenticationContext as String] = authenticationContext
         }
         userInterface.insertIntoKeychainQuery(&query)

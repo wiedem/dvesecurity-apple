@@ -36,14 +36,14 @@ public extension Keychain {
     ///   - accessGroup: Keychain Access group for which the save should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - accessibility: Indicates when your application needs access to an item's data.  You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
-    static func saveSynchronizableKey<K>(
-        _ key: K,
+    static func saveSynchronizableKey(
+        _ key: some SymmetricKey & RawKeyConvertible,
         withTag tag: String,
         applicationLabel: Data?,
         accessGroup: String = defaultAccessGroup,
         accessibility: SynchronizableItemAccessibility = .afterFirstUnlock,
         label: String? = nil
-    ) throws where K: SymmetricKey & RawKeyConvertible {
+    ) throws {
         var itemAttributes: Set<ItemAttribute> = [
             .accessGroup(accessGroup),
             .synchronizable(accessibility: accessibility),
@@ -53,9 +53,11 @@ public extension Keychain {
         applicationLabel.updateMapped({ .applicationLabel($0) }, in: &itemAttributes)
         label.updateMapped({ .label($0) }, in: &itemAttributes)
 
-        try CryptoKey.save(keyClass: .symmetric,
-                           keyData: key.rawKeyRepresentation,
-                           itemAttributes: itemAttributes)
+        try CryptoKey.save(
+            keyClass: .symmetric,
+            keyData: key.rawKeyRepresentation,
+            itemAttributes: itemAttributes
+        )
     }
 
     /// Updates a synchronized symmetric key in the keychain.
@@ -65,12 +67,12 @@ public extension Keychain {
     ///   - tag: The private tag data used for the save. See ``SecKeyAttributes/applicationTag``.
     ///   - applicationLabel: The application label for the symmetric key item. See ``SecKeyAttributes/applicationLabel``.
     ///   - accessGroup: Keychain Access group for which the update should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
-    static func updateSynchronizableKey<K>(
-        newKey: K,
+    static func updateSynchronizableKey(
+        newKey: some SymmetricKey & RawKeyConvertible,
         withTag tag: String,
         applicationLabel: Data?,
         accessGroup: String = defaultAccessGroup
-    ) throws where K: SymmetricKey & RawKeyConvertible {
+    ) throws {
         var itemAttributes: Set<ItemAttribute> = [
             .applicationTag(tag),
             .accessGroup(accessGroup),

@@ -18,8 +18,8 @@ public extension RSAPrivateKey where Self: ConvertibleToSecKey {
     /// - Throws: ``Crypto/RSAError/invalidDataLength`` if the data length of the plaintext doesn't meet the requirements of the key and algorithm.
     ///
     /// - Returns: The decrypted plaintext data.
-    func decrypt<D>(_ cipherText: D, using algorithm: Crypto.RSA.EncryptionAlgorithm) throws -> Data where D: DataProtocol {
-        return try Crypto.RSA.decrypt(cipherText, withKey: self, algorithm: algorithm)
+    func decrypt(_ cipherText: some DataProtocol, using algorithm: Crypto.RSA.EncryptionAlgorithm) throws -> Data {
+        try Crypto.RSA.decrypt(cipherText, withKey: self, algorithm: algorithm)
     }
 
     /// Generates a RSA signature of the given message data using the given algorithm.
@@ -29,8 +29,8 @@ public extension RSAPrivateKey where Self: ConvertibleToSecKey {
     ///   - algorithm: The algorithm to use for the signature.
     ///
     /// - Returns: The signature corresponding to the data.
-    func signature<D>(for data: D, algorithm: Crypto.RSA.MessageSignatureAlgorithm) throws -> Data where D: DataProtocol {
-        return try Crypto.RSA.sign(data, withKey: self, algorithm: algorithm)
+    func signature(for data: some DataProtocol, algorithm: Crypto.RSA.MessageSignatureAlgorithm) throws -> Data {
+        try Crypto.RSA.sign(data, withKey: self, algorithm: algorithm)
     }
 
     /// Generates a RSA signature of the given digest data using the given algorithm.
@@ -40,8 +40,8 @@ public extension RSAPrivateKey where Self: ConvertibleToSecKey {
     ///   - algorithm: The algorithm to use for the signature.
     ///
     /// - Returns: The signature corresponding to the data.
-    func digestSignature<D>(for digestData: D, algorithm: Crypto.RSA.DigestSignatureAlgorithm) throws -> Data where D: DataProtocol {
-        return try Crypto.RSA.signDigest(digestData, withKey: self, algorithm: algorithm)
+    func digestSignature(for digestData: some DataProtocol, algorithm: Crypto.RSA.DigestSignatureAlgorithm) throws -> Data {
+        try Crypto.RSA.signDigest(digestData, withKey: self, algorithm: algorithm)
     }
 }
 

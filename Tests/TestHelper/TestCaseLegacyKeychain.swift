@@ -23,7 +23,7 @@ class TestCaseLegacyKeychain: TestCaseMacOS {
     }
 
     override func tearDownWithError() throws {
-        if let keychain = keychain {
+        if let keychain {
             try Keychain.Legacy.deleteKeychain(keychain)
         }
         try FileManager.default.removeItem(at: tempURL)

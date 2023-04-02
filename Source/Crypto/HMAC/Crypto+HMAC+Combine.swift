@@ -12,14 +12,10 @@ public extension Crypto.HMAC {
     /// - Parameters:
     ///   - data: The data for which to compute the authentication code.
     ///   - key: The symmetric key used to secure the computation.
-    static func authenticationCodePublisher<D, K>(
-        for data: D,
-        using key: K
-    ) -> AnyPublisher<Data, Never>
-        where
-        D: DataProtocol,
-        K: SymmetricKey & RawKeyConvertible
-    {
+    static func authenticationCodePublisher(
+        for data: some DataProtocol,
+        using key: some SymmetricKey & RawKeyConvertible
+    ) -> AnyPublisher<Data, Never> {
         Future { promise in
             let code = authenticationCode(for: data, using: key)
             promise(.success(code))
@@ -33,15 +29,11 @@ public extension Crypto.HMAC {
     ///   - authenticationCode: The authentication code.
     ///   - authenticatedData: The authenticated data.
     ///   - key: The symmetric key used to secure the computation.
-    static func validationPublisher<D, K>(
+    static func validationPublisher(
         for authenticationCode: Data,
-        authenticating authenticatedData: D,
-        using key: K
-    ) -> AnyPublisher<Bool, Never>
-        where
-        D: DataProtocol,
-        K: SymmetricKey & RawKeyConvertible
-    {
+        authenticating authenticatedData: some DataProtocol,
+        using key: some SymmetricKey & RawKeyConvertible
+    ) -> AnyPublisher<Bool, Never> {
         Future { promise in
             let isValid = isValidAuthenticationCode(authenticationCode, authenticating: authenticatedData, using: key)
             promise(.success(isValid))

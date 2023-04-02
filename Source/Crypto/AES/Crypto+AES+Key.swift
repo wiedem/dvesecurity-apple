@@ -75,7 +75,7 @@ extension Crypto.AES.Key: RawKeyConvertible {
     /// Create a new AES key from raw data.
     ///
     /// - Parameter rawKeyRepresentation: The raw key data from which the key should be created.
-    public init<Bytes>(rawKeyRepresentation: Bytes) where Bytes: ContiguousBytes {
+    public init(rawKeyRepresentation: some ContiguousBytes) {
         keyData = rawKeyRepresentation.withUnsafeBytes { Data($0) }
     }
 }
@@ -129,15 +129,17 @@ public extension Crypto.AES.Key {
         let result = derivedKey.withUnsafeMutableBytes { derivedKeyBuffer in
             passwordData.withUnsafeBytes { passwordBuffer in
                 saltData.withUnsafeBytes { saltBuffer in
-                    CCKeyDerivationPBKDF(CCPBKDFAlgorithm(kCCPBKDF2),
-                                         passwordBuffer.bindMemory(to: Int8.self).baseAddress!,
-                                         passwordBuffer.count,
-                                         saltBuffer.bindMemory(to: UInt8.self).baseAddress!,
-                                         saltBuffer.count,
-                                         pseudoRandomAlgorithm.ccryptoValue,
-                                         rounds,
-                                         derivedKeyBuffer.bindMemory(to: UInt8.self).baseAddress!,
-                                         derivedKeyLength)
+                    CCKeyDerivationPBKDF(
+                        CCPBKDFAlgorithm(kCCPBKDF2),
+                        passwordBuffer.bindMemory(to: Int8.self).baseAddress!,
+                        passwordBuffer.count,
+                        saltBuffer.bindMemory(to: UInt8.self).baseAddress!,
+                        saltBuffer.count,
+                        pseudoRandomAlgorithm.ccryptoValue,
+                        rounds,
+                        derivedKeyBuffer.bindMemory(to: UInt8.self).baseAddress!,
+                        derivedKeyLength
+                    )
                 }
             }
         }

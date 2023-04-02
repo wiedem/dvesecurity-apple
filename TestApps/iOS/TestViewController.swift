@@ -107,7 +107,7 @@ public final class TestViewController: UIViewController, InteractiveTestViewMode
 
     @IBAction private func registerForRemoteNotificationsAction(_: UIButton) {
         userNotificationCenter.requestAuthorization(options: notificationOptions) { [weak self] granted, error in
-            guard let self = self else { return }
+            guard let self else { return }
 
             DispatchQueue.main.async {
                 if let authorizationError = error {

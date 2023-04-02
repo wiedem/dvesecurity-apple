@@ -64,7 +64,7 @@ final class Keychain_RSATestsiOS13: TestCaseiOS13 {
         expect(fetchedPrivateKey1).toNot(beNil())
         expect(fetchedPrivateKey2).toNot(beNil())
 
-        if let fetchedPrivateKey1 = fetchedPrivateKey1, let fetchedPrivateKey2 = fetchedPrivateKey2 {
+        if let fetchedPrivateKey1, let fetchedPrivateKey2 {
             expect(fetchedPrivateKey1.pkcs1Representation) != fetchedPrivateKey2.pkcs1Representation
         }
     }

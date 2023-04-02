@@ -56,11 +56,14 @@ extension Keychain.Legacy {
             port.updateMapped({ .port($0) }, in: &itemAttributes)
             path.updateMapped({ .path($0) }, in: &itemAttributes)
 
-            let query = Keychain.Legacy.FetchItemsQuery(itemClass: itemClass,
-                                                        returnType: [.data, .attributes],
-                                                        attributes: itemAttributes,
-                                                        keychain: keychain)
-                .setLimit(limit)
+            let query = Keychain.Legacy.FetchItemsQuery(
+                itemClass: itemClass,
+                returnType: [.data, .attributes],
+                attributes: itemAttributes,
+                keychain: keychain
+            )
+            .setLimit(limit)
+
             return try Keychain.queryItems(query: query, transform: Keychain.attributesTransform)
         }
 
@@ -103,10 +106,12 @@ extension Keychain.Legacy {
             port.updateMapped({ .port($0) }, in: &itemAttributes)
             path.updateMapped({ .path($0) }, in: &itemAttributes)
 
-            let query = Keychain.Legacy.FetchItemsQuery(itemClass: itemClass,
-                                                        returnType: .data,
-                                                        attributes: itemAttributes,
-                                                        keychain: keychain)
+            let query = Keychain.Legacy.FetchItemsQuery(
+                itemClass: itemClass,
+                returnType: .data,
+                attributes: itemAttributes,
+                keychain: keychain
+            )
             return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString)
         }
 
@@ -157,11 +162,13 @@ extension Keychain.Legacy {
             port.updateMapped({ .port($0) }, in: &itemAttributes)
             path.updateMapped({ .path($0) }, in: &itemAttributes)
 
-            let query = Keychain.Legacy.AddItemQuery(itemClass: itemClass,
-                                                     valueData: data,
-                                                     attributes: itemAttributes,
-                                                     keychain: keychain,
-                                                     access: access)
+            let query = Keychain.Legacy.AddItemQuery(
+                itemClass: itemClass,
+                valueData: data,
+                attributes: itemAttributes,
+                keychain: keychain,
+                access: access
+            )
             try Keychain.saveItem(query: query)
         }
 
@@ -203,9 +210,11 @@ extension Keychain.Legacy {
             port.updateMapped({ .port($0) }, in: &itemAttributes)
             path.updateMapped({ .path($0) }, in: &itemAttributes)
 
-            let query = Keychain.Legacy.DeleteItemsQuery(itemClass: itemClass,
-                                                         attributes: itemAttributes,
-                                                         keychain: keychain)
+            let query = Keychain.Legacy.DeleteItemsQuery(
+                itemClass: itemClass,
+                attributes: itemAttributes,
+                keychain: keychain
+            )
             return try Keychain.deleteItems(query: query)
         }
     }

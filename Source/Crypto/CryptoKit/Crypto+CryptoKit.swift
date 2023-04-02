@@ -45,7 +45,7 @@ extension P521.KeyAgreement.PublicKey: ECCPublicKey & X963Convertible {}
 extension Curve25519.KeyAgreement.PrivateKey: RawKeyConvertible {
     public var rawKeyRepresentation: Data { rawRepresentation }
 
-    public init<Bytes>(rawKeyRepresentation: Bytes) throws where Bytes: ContiguousBytes {
+    public init(rawKeyRepresentation: some ContiguousBytes) throws {
         try self.init(rawRepresentation: rawKeyRepresentation)
     }
 }
@@ -54,7 +54,7 @@ extension Curve25519.KeyAgreement.PrivateKey: RawKeyConvertible {
 extension Curve25519.Signing.PrivateKey: RawKeyConvertible {
     public var rawKeyRepresentation: Data { rawRepresentation }
 
-    public init<Bytes>(rawKeyRepresentation: Bytes) throws where Bytes: ContiguousBytes {
+    public init(rawKeyRepresentation: some ContiguousBytes) throws {
         try self.init(rawRepresentation: rawKeyRepresentation)
     }
 }
@@ -71,7 +71,7 @@ extension CryptoKit.SymmetricKey: SymmetricKey & RawKeyConvertible {
     /// Creates a key from the given raw representation of the key.
     ///
     /// - Parameter rawKeyRepresentation: Raw representation of the key.
-    public init<Bytes>(rawKeyRepresentation: Bytes) where Bytes: ContiguousBytes {
+    public init(rawKeyRepresentation: some ContiguousBytes) {
         self.init(data: rawKeyRepresentation)
     }
 }
@@ -85,7 +85,7 @@ extension CryptoKit.SecureEnclave.P256.Signing.PrivateKey: RawKeyConvertible {
     /// The raw data passed is copied in memory as needed to initialize the key.
     ///
     /// - Parameter rawKeyRepresentation: Raw representation of the key.
-    public init<Bytes>(rawKeyRepresentation: Bytes) throws where Bytes: ContiguousBytes {
+    public init(rawKeyRepresentation: some ContiguousBytes) throws {
         let data = rawKeyRepresentation.withUnsafeBytes { Data($0) }
         try self.init(dataRepresentation: data, authenticationContext: nil)
     }
@@ -100,7 +100,7 @@ extension CryptoKit.SecureEnclave.P256.KeyAgreement.PrivateKey: RawKeyConvertibl
     /// The raw data passed is copied in memory as needed to initialize the key.
     ///
     /// - Parameter rawKeyRepresentation: Raw representation of the key.
-    public init<Bytes>(rawKeyRepresentation: Bytes) throws where Bytes: ContiguousBytes {
+    public init(rawKeyRepresentation: some ContiguousBytes) throws {
         let data = rawKeyRepresentation.withUnsafeBytes { Data($0) }
         try self.init(dataRepresentation: data, authenticationContext: nil)
     }

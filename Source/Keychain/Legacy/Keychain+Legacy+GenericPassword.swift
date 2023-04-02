@@ -32,10 +32,12 @@ extension Keychain.Legacy {
             service: String,
             inKeychain keychain: SecKeychain? = nil
         ) throws -> String? {
-            let query = Keychain.Legacy.FetchItemsQuery(itemClass: itemClass,
-                                                        returnType: .data,
-                                                        attributes: [.account(account), .service(service)],
-                                                        keychain: keychain)
+            let query = Keychain.Legacy.FetchItemsQuery(
+                itemClass: itemClass,
+                returnType: .data,
+                attributes: [.account(account), .service(service)],
+                keychain: keychain
+            )
             return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString)
         }
 
@@ -66,11 +68,14 @@ extension Keychain.Legacy {
             account.updateMapped({ .account($0) }, in: &itemAttributes)
             service.updateMapped({ .service($0) }, in: &itemAttributes)
 
-            let query = Keychain.Legacy.FetchItemsQuery(itemClass: itemClass,
-                                                        returnType: [.data, .attributes],
-                                                        attributes: itemAttributes,
-                                                        keychain: keychain)
-                .setLimit(limit)
+            let query = Keychain.Legacy.FetchItemsQuery(
+                itemClass: itemClass,
+                returnType: [.data, .attributes],
+                attributes: itemAttributes,
+                keychain: keychain
+            )
+            .setLimit(limit)
+
             return try Keychain.queryItems(query: query, transform: Keychain.attributesTransform)
         }
 
@@ -99,11 +104,13 @@ extension Keychain.Legacy {
                 throw Keychain.GenericPasswordError.invalidPassword
             }
 
-            let query = Keychain.Legacy.AddItemQuery(itemClass: itemClass,
-                                                     valueData: data,
-                                                     attributes: [.account(account), .service(service), .label(label)],
-                                                     keychain: keychain,
-                                                     access: access)
+            let query = Keychain.Legacy.AddItemQuery(
+                itemClass: itemClass,
+                valueData: data,
+                attributes: [.account(account), .service(service), .label(label)],
+                keychain: keychain,
+                access: access
+            )
             try Keychain.saveItem(query: query)
         }
 
@@ -125,9 +132,11 @@ extension Keychain.Legacy {
             service: String,
             inKeychain keychain: SecKeychain? = nil
         ) throws -> Bool {
-            let query = Keychain.Legacy.DeleteItemsQuery(itemClass: itemClass,
-                                                         attributes: [.account(account), .service(service)],
-                                                         keychain: keychain)
+            let query = Keychain.Legacy.DeleteItemsQuery(
+                itemClass: itemClass,
+                attributes: [.account(account), .service(service)],
+                keychain: keychain
+            )
             return try Keychain.deleteItems(query: query)
         }
     }

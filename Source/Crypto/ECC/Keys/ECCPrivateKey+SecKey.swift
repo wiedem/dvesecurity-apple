@@ -16,7 +16,7 @@ public extension ECCPrivateKey where Self: ConvertibleToSecKey {
     ///   - algorithm: Algorithm used to perform the decryption. See  ``Crypto/ECC/EncryptionAlgorithm`` for more details.
     ///
     /// - Returns: The decrypted plaintext data.
-    func decrypt<D>(_ cipherText: D, using algorithm: Crypto.ECC.EncryptionAlgorithm) throws -> Data where D: DataProtocol {
+    func decrypt(_ cipherText: some DataProtocol, using algorithm: Crypto.ECC.EncryptionAlgorithm) throws -> Data {
         return try Crypto.ECC.decrypt(cipherText, withKey: self, algorithm: algorithm)
     }
 
@@ -27,7 +27,7 @@ public extension ECCPrivateKey where Self: ConvertibleToSecKey {
     ///   - algorithm: The algorithm to use for the signature.
     ///
     /// - Returns: The signature corresponding to the data.
-    func signature<D>(for data: D, algorithm: Crypto.ECC.SignatureAlgorithm) throws -> Data where D: DataProtocol {
+    func signature(for data: some DataProtocol, algorithm: Crypto.ECC.SignatureAlgorithm) throws -> Data {
         return try Crypto.ECC.sign(data, withKey: self, algorithm: algorithm)
     }
 }

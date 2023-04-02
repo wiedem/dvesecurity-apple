@@ -20,10 +20,12 @@ public extension Keychain {
         authentication: QueryAuthentication = .default,
         completion: @escaping (Result<PK?, Error>) -> Void
     ) where PK: RSAPrivateKey & CreateableFromSecKey {
-        CryptoKey.queryOne(keyClass: PK.secKeyClass,
-                           itemAttributes: [.applicationTag(tag), .accessGroup(accessGroup)],
-                           authentication: authentication,
-                           completion: completion)
+        CryptoKey.queryOne(
+            keyClass: PK.secKeyClass,
+            itemAttributes: [.applicationTag(tag), .accessGroup(accessGroup)],
+            authentication: authentication,
+            completion: completion
+        )
     }
 
     /// Performs a keychain query for a private RSA key and a given public key digest.
@@ -46,10 +48,12 @@ public extension Keychain {
         var itemAttributes: Set<ItemAttribute> = [.accessGroup(accessGroup), .applicationLabel(publicKeySHA1)]
         tag.updateMapped({ .applicationTag($0) }, in: &itemAttributes)
 
-        CryptoKey.queryOne(keyClass: PK.secKeyClass,
-                           itemAttributes: itemAttributes,
-                           authentication: authentication,
-                           completion: completion)
+        CryptoKey.queryOne(
+            keyClass: PK.secKeyClass,
+            itemAttributes: itemAttributes,
+            authentication: authentication,
+            completion: completion
+        )
     }
 
     /// Performs a keychain query for a private RSA key and a given public key.
@@ -62,14 +66,13 @@ public extension Keychain {
     ///   - accessGroup: Keychain Access group for whith the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication. See ``Keychain/QueryAuthentication``  for more details.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-    static func queryKey<K, PK>(
-        for publicKey: K,
+    static func queryKey<PK>(
+        for publicKey: some RSAPublicKey & PKCS1Convertible,
         withTag tag: String? = nil,
         accessGroup: String = defaultAccessGroup,
         authentication: QueryAuthentication = .default,
         completion: @escaping (Result<PK?, Error>) -> Void
     ) where
-        K: RSAPublicKey & PKCS1Convertible,
         PK: RSAPrivateKey & CreateableFromSecKey
     {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
@@ -123,11 +126,11 @@ public extension Keychain {
     ///
     /// - Returns: `true` if an item matching the parameters was deleted, `false` otherwise.
     @discardableResult
-    static func deletePrivateKey<K>(
-        for publicKey: K,
+    static func deletePrivateKey(
+        for publicKey: some RSAPublicKey & PKCS1Convertible,
         withTag tag: String,
         accessGroup: String = defaultAccessGroup
-    ) throws -> Bool where K: RSAPublicKey & PKCS1Convertible {
+    ) throws -> Bool {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
         return try deleteKey(ofType: Crypto.RSA.PrivateKey.self, withTag: tag, publicKeySHA1: publicKeySHA1, accessGroup: accessGroup)
     }
@@ -201,9 +204,11 @@ public extension Keychain {
         accessGroup: String = defaultAccessGroup,
         authentication: QueryAuthentication = .default
     ) throws -> PK? where PK: RSAPrivateKey & CreateableFromSecKey {
-        try CryptoKey.queryOne(keyClass: PK.secKeyClass,
-                               itemAttributes: [.accessGroup(accessGroup), .applicationTag(tag)],
-                               authentication: authentication)
+        try CryptoKey.queryOne(
+            keyClass: PK.secKeyClass,
+            itemAttributes: [.accessGroup(accessGroup), .applicationTag(tag)],
+            authentication: authentication
+        )
     }
 
     /// Performs a keychain query for a private RSA key and a given public key digest.
@@ -230,9 +235,11 @@ public extension Keychain {
         ]
         tag.updateMapped({ .applicationTag($0) }, in: &itemAttributes)
 
-        return try CryptoKey.queryOne(keyClass: PK.secKeyClass,
-                                      itemAttributes: itemAttributes,
-                                      authentication: authentication)
+        return try CryptoKey.queryOne(
+            keyClass: PK.secKeyClass,
+            itemAttributes: itemAttributes,
+            authentication: authentication
+        )
     }
 
     /// Performs a keychain query for a private RSA key and a given public key.
@@ -247,14 +254,13 @@ public extension Keychain {
     ///
     /// - Throws: ``KeychainError/ambiguousQueryResult`` if no `tag` value is specified for the query and more than one private key exists for the specified public key in the access group.
     /// - Returns: RSA private key instance if the item could be found, `nil` otherwise.
-    static func queryKey<K, PK>(
-        for publicKey: K,
+    static func queryKey<PK>(
+        for publicKey: some RSAPublicKey & PKCS1Convertible,
         withTag tag: String? = nil,
         accessGroup: String = defaultAccessGroup,
         authentication: QueryAuthentication = .default
     ) throws -> PK?
         where
-        K: RSAPublicKey & PKCS1Convertible,
         PK: RSAPrivateKey & CreateableFromSecKey
     {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)

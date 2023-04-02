@@ -207,7 +207,7 @@ final class RSATests: XCTestCase {
 }
 
 private extension RSATests {
-    static func pkcs1v15DigestSignatureAlgorithm<H>(for hashFunctionType: H.Type) -> Crypto.RSA.DigestSignatureAlgorithm where H: HashFunction {
+    static func pkcs1v15DigestSignatureAlgorithm(for hashFunctionType: (some HashFunction).Type) -> Crypto.RSA.DigestSignatureAlgorithm {
         switch hashFunctionType {
         case is Hashing.SHA224.Type:
             return .PKCS1v15SHA224
@@ -222,7 +222,7 @@ private extension RSATests {
         }
     }
 
-    static func pkcs1v21DigestSignatureAlgorithm<H>(for hashFunctionType: H.Type) -> Crypto.RSA.DigestSignatureAlgorithm where H: HashFunction {
+    static func pkcs1v21DigestSignatureAlgorithm(for hashFunctionType: (some HashFunction).Type) -> Crypto.RSA.DigestSignatureAlgorithm {
         switch hashFunctionType {
         case is Hashing.SHA224.Type:
             return .PSSSHA224

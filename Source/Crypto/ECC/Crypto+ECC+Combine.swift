@@ -13,15 +13,11 @@ extension Crypto.ECC {
     ///   - plainText: The plaintext data to encrypt.
     ///   - publicKey: ECC public key used for the encryption..
     ///   - algorithm: Algorithm used to perform the encryption. See ``EncryptionAlgorithm`` for more details.
-    func encryptPublisher<D, K>(
-        for plainText: D,
-        withKey publicKey: K,
+    func encryptPublisher(
+        for plainText: some DataProtocol,
+        withKey publicKey: some ECCPublicKey & ConvertibleToSecKey,
         algorithm: EncryptionAlgorithm
-    ) -> AnyPublisher<Data, Error>
-        where
-        D: DataProtocol,
-        K: ECCPublicKey & ConvertibleToSecKey
-    {
+    ) -> AnyPublisher<Data, Error> {
         Future { promise in
             do {
                 let cipherText = try Crypto.ECC.encrypt(plainText, withKey: publicKey, algorithm: algorithm)
@@ -39,15 +35,11 @@ extension Crypto.ECC {
     ///   - cipherText: The ciphertext data to decrypt.
     ///   - privateKey: ECC private key used for the decryption.
     ///   - algorithm: Algorithm used to perform the decryption. See ``EncryptionAlgorithm`` for more details.
-    func decryptPublisher<D, PK>(
-        for cipherText: D,
-        withKey privateKey: PK,
+    func decryptPublisher(
+        for cipherText: some DataProtocol,
+        withKey privateKey: some ECCPrivateKey & ConvertibleToSecKey,
         algorithm: EncryptionAlgorithm
-    ) -> AnyPublisher<Data, Error>
-        where
-        D: DataProtocol,
-        PK: ECCPrivateKey & ConvertibleToSecKey
-    {
+    ) -> AnyPublisher<Data, Error> {
         Future { promise in
             do {
                 let plainText = try Crypto.ECC.decrypt(cipherText, withKey: privateKey, algorithm: algorithm)
@@ -65,15 +57,11 @@ extension Crypto.ECC {
     ///   - data: The data whose signature you want.
     ///   - privateKey: The ECC private key to use in creating the signature.
     ///   - algorithm: The ECC signing algorithm to use. See ``SignatureAlgorithm`` for more details.
-    func signPublisher<D, PK>(
-        for data: D,
-        withKey privateKey: PK,
+    func signPublisher(
+        for data: some DataProtocol,
+        withKey privateKey: some ECCPrivateKey & ConvertibleToSecKey,
         algorithm: SignatureAlgorithm
-    ) -> AnyPublisher<Data, Error>
-        where
-        D: DataProtocol,
-        PK: ECCPrivateKey & ConvertibleToSecKey
-    {
+    ) -> AnyPublisher<Data, Error> {
         Future { promise in
             do {
                 let signature = try Crypto.ECC.sign(data, withKey: privateKey, algorithm: algorithm)
@@ -91,14 +79,11 @@ extension Crypto.ECC {
     ///   - digestData: The digest data whose signature you want.
     ///   - privateKey: The ECC private key to use in creating the signature.
     ///   - algorithm: The ECC signing algorithm to use. See ``SignatureAlgorithm`` for more details.
-    func signDigestPublisher<PK>(
+    func signDigestPublisher(
         for digestData: Data,
-        withKey privateKey: PK,
+        withKey privateKey: some ECCPrivateKey & ConvertibleToSecKey,
         algorithm: SignatureAlgorithm
-    ) -> AnyPublisher<Data, Error>
-        where
-        PK: ECCPrivateKey & ConvertibleToSecKey
-    {
+    ) -> AnyPublisher<Data, Error> {
         Future { promise in
             do {
                 let signature = try Crypto.ECC.signDigest(digestData, withKey: privateKey, algorithm: algorithm)
@@ -117,16 +102,12 @@ extension Crypto.ECC {
     ///   - signedData: The data that was signed.
     ///   - publicKey: The ECC public key to use in evaluating the signature.
     ///   - algorithm: The algorithm that was used to create the signature. See ``SignatureAlgorithm`` for more details.
-    func verifyPublisher<D, K>(
+    func verifyPublisher(
         for signature: Data,
-        of signedData: D,
-        withKey publicKey: K,
+        of signedData: some DataProtocol,
+        withKey publicKey: some ECCPublicKey & ConvertibleToSecKey,
         algorithm: SignatureAlgorithm
-    ) -> AnyPublisher<Bool, Error>
-        where
-        D: DataProtocol,
-        K: ECCPublicKey & ConvertibleToSecKey
-    {
+    ) -> AnyPublisher<Bool, Error> {
         Future { promise in
             do {
                 let verified = try Crypto.ECC.verifySignature(signature, of: signedData, withKey: publicKey, algorithm: algorithm)

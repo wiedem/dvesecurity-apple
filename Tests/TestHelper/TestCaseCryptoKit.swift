@@ -15,7 +15,7 @@ class TestCaseCryptoKit: TestCaseiOS13 {
     override func tearDownWithError() throws {
         try super.tearDownWithError()
 
-        guard let testRun = testRun, testRun.hasBeenSkipped == false else {
+        guard let testRun, testRun.hasBeenSkipped == false else {
             throw XCTSkip("Test case needs the CryptoKit framework to run.")
         }
     }

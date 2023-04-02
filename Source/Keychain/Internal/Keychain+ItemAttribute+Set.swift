@@ -4,7 +4,7 @@
 import Foundation
 import Security
 
-extension Set where Element == Keychain.ItemAttribute {
+extension Set<Keychain.ItemAttribute> {
     // swiftlint:disable:next cyclomatic_complexity function_body_length
     init(secAttributes: [String: Any]) {
         var attributes = [Element]()

@@ -34,11 +34,14 @@ extension Keychain {
             account.updateMapped({ .account($0) }, in: &itemAttributes)
             service.updateMapped({ .service($0) }, in: &itemAttributes)
 
-            let query = Keychain.FetchItemsQuery(itemClass: itemClass,
-                                                 returnType: [.data, .attributes],
-                                                 attributes: itemAttributes)
-                .add(authentication)
-                .includeSynchronizableItems()
+            let query = Keychain.FetchItemsQuery(
+                itemClass: itemClass,
+                returnType: [.data, .attributes],
+                attributes: itemAttributes
+            )
+            .add(authentication)
+            .includeSynchronizableItems()
+
             Keychain.queryItems(query: query, transform: attributesTransform, completion: completion)
         }
 
@@ -208,7 +211,7 @@ extension Keychain.GenericPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Returns: A list of  generic password items of type ``Item``, or `nil` if no item was found.
-    open class func queryItems(
+    public class func queryItems(
         account: String? = nil,
         service: String? = nil,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -218,11 +221,14 @@ extension Keychain.GenericPassword {
         account.updateMapped({ .account($0) }, in: &itemAttributes)
         service.updateMapped({ .service($0) }, in: &itemAttributes)
 
-        let query = Keychain.FetchItemsQuery(itemClass: itemClass,
-                                             returnType: [.data, .attributes],
-                                             attributes: itemAttributes)
-            .add(authentication)
-            .includeSynchronizableItems()
+        let query = Keychain.FetchItemsQuery(
+            itemClass: itemClass,
+            returnType: [.data, .attributes],
+            attributes: itemAttributes
+        )
+        .add(authentication)
+        .includeSynchronizableItems()
+
         return try Keychain.queryItems(query: query, transform: Keychain.attributesTransform)
     }
 
@@ -238,7 +244,7 @@ extension Keychain.GenericPassword {
     ///
     /// - Throws: ``KeychainError/resultError`` if the value of the entry cannot be decoded to a String.
     /// - Returns: The generic password decoded as a `String` value, or `nil` if no item was found.
-    open class func query(
+    public class func query(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,

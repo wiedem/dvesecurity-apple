@@ -234,28 +234,32 @@ extension Keychain {
             authentication: QueryAuthentication = .default
         ) throws {
             do {
-                try save(password,
-                         forAccount: account,
-                         accessGroup: accessGroup,
-                         securityDomain: securityDomain,
-                         server: server,
-                         protocol: `protocol`,
-                         authenticationType: authenticationType,
-                         port: port,
-                         path: path,
-                         accessControl: accessControl,
-                         label: label)
+                try save(
+                    password,
+                    forAccount: account,
+                    accessGroup: accessGroup,
+                    securityDomain: securityDomain,
+                    server: server,
+                    protocol: `protocol`,
+                    authenticationType: authenticationType,
+                    port: port,
+                    path: path,
+                    accessControl: accessControl,
+                    label: label
+                )
             } catch let KeychainError.itemSavingFailed(status) where status == errSecDuplicateItem {
-                try updateItems(newPassword: password,
-                                forAccount: account,
-                                accessGroup: accessGroup,
-                                securityDomain: securityDomain,
-                                server: server,
-                                protocol: `protocol`,
-                                authenticationType: authenticationType,
-                                port: port,
-                                path: path,
-                                authentication: authentication)
+                try updateItems(
+                    newPassword: password,
+                    forAccount: account,
+                    accessGroup: accessGroup,
+                    securityDomain: securityDomain,
+                    server: server,
+                    protocol: `protocol`,
+                    authenticationType: authenticationType,
+                    port: port,
+                    path: path,
+                    authentication: authentication
+                )
             } catch {
                 throw error
             }
@@ -324,7 +328,7 @@ extension Keychain.InternetPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Returns: A list of  internet password items of type ``Item``, or `nil` if no item was found.
-    open class func queryItems(
+    public class func queryItems(
         account: String? = nil,
         securityDomain: String? = nil,
         server: String? = nil,
@@ -344,11 +348,14 @@ extension Keychain.InternetPassword {
         port.updateMapped({ .port($0) }, in: &itemAttributes)
         path.updateMapped({ .path($0) }, in: &itemAttributes)
 
-        let query = Keychain.FetchItemsQuery(itemClass: itemClass,
-                                             returnType: [.data, .attributes],
-                                             attributes: itemAttributes)
-            .add(authentication)
-            .includeSynchronizableItems()
+        let query = Keychain.FetchItemsQuery(
+            itemClass: itemClass,
+            returnType: [.data, .attributes],
+            attributes: itemAttributes
+        )
+        .add(authentication)
+        .includeSynchronizableItems()
+
         return try Keychain.queryItems(query: query, transform: Keychain.attributesTransform)
     }
 
@@ -369,7 +376,7 @@ extension Keychain.InternetPassword {
     ///
     /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item.
     /// - Returns: The password for the specified account and service, or `nil` if no item was found.
-    open class func queryOne(
+    public class func queryOne(
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
         securityDomain: String? = nil,

@@ -19,7 +19,7 @@ class TestCaseCombine: XCTestCase {
     override func tearDownWithError() throws {
         try super.tearDownWithError()
 
-        guard let testRun = testRun, testRun.hasBeenSkipped == false else {
+        guard let testRun, testRun.hasBeenSkipped == false else {
             throw XCTSkip("Test case requires at least macOS 10.15 or iOS 13 and the Combine framework to run.")
         }
     }

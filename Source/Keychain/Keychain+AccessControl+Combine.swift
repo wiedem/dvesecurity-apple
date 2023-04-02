@@ -24,7 +24,7 @@ extension LAContext {
     ///   - accessControl: The access control to be evaluated.
     ///   - operation: The operation for the access control to be evaluated. For possible values, see `LAAccessControlOperation`.
     ///   - localizedReason: The app-provided reason for requesting authentication, which displays in the authentication dialog presented to the user.
-    open func evaluateAccessControlPublisher(
+    public func evaluateAccessControlPublisher(
         for accessControl: Keychain.AccessControl,
         operation: LAAccessControlOperation,
         localizedReason: String

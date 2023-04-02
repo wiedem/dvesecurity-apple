@@ -59,7 +59,7 @@ extension Keychain {
 
         switch SecItemCopyMatching(query, &secItems) {
         case errSecSuccess:
-            guard let secItems = secItems else {
+            guard let secItems else {
                 throw KeychainError.resultError
             }
             return try transform(secItems)
@@ -170,11 +170,16 @@ extension Keychain.ItemClass: KeychainQueryParamsConvertible {
 
     var secClassString: String {
         switch self {
-        case .internetPassword: return kSecClassInternetPassword as String
-        case .genericPassword: return kSecClassGenericPassword as String
-        case .certificate: return kSecClassCertificate as String
-        case .key: return kSecClassKey as String
-        case .identity: return kSecClassIdentity as String
+        case .internetPassword:
+            return kSecClassInternetPassword as String
+        case .genericPassword:
+            return kSecClassGenericPassword as String
+        case .certificate:
+            return kSecClassCertificate as String
+        case .key:
+            return kSecClassKey as String
+        case .identity:
+            return kSecClassIdentity as String
         }
     }
 }

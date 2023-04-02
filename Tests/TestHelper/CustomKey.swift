@@ -15,7 +15,7 @@ struct CustomKey: RawKeyConvertible {
         self.value = value
     }
 
-    init<Bytes>(rawKeyRepresentation: Bytes) where Bytes: ContiguousBytes {
+    init(rawKeyRepresentation: some ContiguousBytes) {
         let data = rawKeyRepresentation.withUnsafeBytes { Data($0) }
         value = String(data: data, encoding: .utf8)!
     }

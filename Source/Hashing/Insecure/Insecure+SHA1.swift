@@ -9,7 +9,7 @@ public extension Hashing.Insecure {
         public static var byteCount: Int { Int(CC_SHA1_DIGEST_LENGTH) }
         public static var blockByteCount: Int { Int(CC_SHA1_BLOCK_BYTES) }
 
-        public static func hash<D>(_ source: D) -> Data where D: DataProtocol {
+        public static func hash(_ source: some DataProtocol) -> Data {
             let data = Data(source)
             let dataLength = CC_LONG(data.count)
             var digest = Data(count: byteCount)

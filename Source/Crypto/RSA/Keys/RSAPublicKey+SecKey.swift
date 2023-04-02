@@ -18,7 +18,7 @@ public extension RSAPublicKey where Self: ConvertibleToSecKey {
     /// - Throws:``Crypto/RSAError/invalidDataLength`` if the data length of the plaintext doesn't meet the requirements of the key and algorithm.
     ///
     /// - Returns: The ciphertext represented as a Data object.
-    func encrypt<D>(_ plainText: D, using algorithm: Crypto.RSA.EncryptionAlgorithm) throws -> Data where D: DataProtocol {
+    func encrypt(_ plainText: some DataProtocol, using algorithm: Crypto.RSA.EncryptionAlgorithm) throws -> Data {
         try Crypto.RSA.encrypt(plainText, withKey: self, algorithm: algorithm)
     }
 
@@ -30,11 +30,11 @@ public extension RSAPublicKey where Self: ConvertibleToSecKey {
     ///   - algorithm: The algorithm used for the signature.
     ///
     /// - Returns: A Boolean value that’s `true` if the signature is valid for the given data.
-    func isValidSignature<D>(
+    func isValidSignature(
         _ signature: Data,
-        of data: D,
+        of data: some DataProtocol,
         algorithm: Crypto.RSA.MessageSignatureAlgorithm
-    ) throws -> Bool where D: DataProtocol {
+    ) throws -> Bool {
         try Crypto.RSA.verifySignature(signature, of: data, withKey: self, algorithm: algorithm)
     }
 
@@ -46,11 +46,11 @@ public extension RSAPublicKey where Self: ConvertibleToSecKey {
     ///   - algorithm: The algorithm used for the signature.
     ///
     /// - Returns: A Boolean value that’s `true` if the signature is valid for the given data.
-    func isValidDigestSignature<D>(
+    func isValidDigestSignature(
         _ signature: Data,
-        digest: D,
+        digest: some DataProtocol,
         algorithm: Crypto.RSA.DigestSignatureAlgorithm
-    ) throws -> Bool where D: DataProtocol {
+    ) throws -> Bool {
         try Crypto.RSA.verifyDigestSignature(signature, of: digest, withKey: self, algorithm: algorithm)
     }
 }
@@ -59,7 +59,7 @@ public extension RSAPublicKey where Self: CreateableFromSecKey {
     /// Creates a new RSA public key instance from a given RSA private key.
     ///
     /// - Parameter privateKey: The private key from which the public key should be derived.
-    init<K>(privateKey: K) throws where K: RSAPrivateKey & ConvertibleToSecKey {
+    init(privateKey: some RSAPrivateKey & ConvertibleToSecKey) throws {
         let publicSecKey = try Crypto.Asymmetric.publicKey(for: privateKey.secKey)
         try self.init(secKey: publicSecKey)
     }

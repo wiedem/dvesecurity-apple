@@ -127,7 +127,7 @@ public extension LAContext {
         do {
             let accessControl = try accessControl.secAccessControl()
             evaluateAccessControl(accessControl, operation: operation, localizedReason: localizedReason) { _, error in
-                if let error = error {
+                if let error {
                     reply(.failure(error))
                 } else {
                     reply(.success(()))

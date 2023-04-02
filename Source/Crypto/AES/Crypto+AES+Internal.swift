@@ -6,14 +6,14 @@ import Foundation
 
 extension Crypto.AES {
     // swiftlint:disable:next function_parameter_count
-    static func cryptOperation<D, K>(
+    static func cryptOperation(
         _ operation: CCOperation,
         algorithm: CCAlgorithm,
         options: CCOptions,
-        for data: D,
-        withKey key: K,
+        for data: some ContiguousBytes,
+        withKey key: some ContiguousBytes,
         iv: Data // swiftlint:disable:this identifier_name
-    ) throws -> Data where D: ContiguousBytes, K: ContiguousBytes {
+    ) throws -> Data {
         guard iv.count == blockSize else {
             throw Crypto.AESError.invalidIVSize(blockSize)
         }
@@ -34,17 +34,19 @@ extension Crypto.AES {
                 return cryptData.withUnsafeMutableBytes { cryptDataBuffer in
                     key.withUnsafeBytes { keyBuffer in
                         iv.withUnsafeBytes { ivBuffer in
-                            return CCCrypt(operation,
-                                           algorithm,
-                                           options,
-                                           keyBuffer.baseAddress,
-                                           keyBuffer.count,
-                                           ivBuffer.baseAddress,
-                                           dataBuffer.baseAddress,
-                                           dataBuffer.count,
-                                           cryptDataBuffer.baseAddress,
-                                           cryptDataLength,
-                                           outputLengthPointer)
+                            return CCCrypt(
+                                operation,
+                                algorithm,
+                                options,
+                                keyBuffer.baseAddress,
+                                keyBuffer.count,
+                                ivBuffer.baseAddress,
+                                dataBuffer.baseAddress,
+                                dataBuffer.count,
+                                cryptDataBuffer.baseAddress,
+                                cryptDataLength,
+                                outputLengthPointer
+                            )
                         }
                     }
                 }

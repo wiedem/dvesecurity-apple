@@ -242,6 +242,6 @@ public extension Crypto.RSA.EncryptionAlgorithm {
     ///
     /// - Returns: the maximum plaintext length in bytes for the RSA key.
     func maxPlainTextLength(for rsaKey: RSAKey) -> Int? {
-        return rsaKey.maxPlainTextLength(for: self)
+        rsaKey.maxPlainTextLength(for: self)
     }
 }

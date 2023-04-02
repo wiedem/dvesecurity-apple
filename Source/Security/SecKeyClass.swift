@@ -38,10 +38,14 @@ extension SecKeyClass {
 extension SecKeyClass: KeychainQueryParamsConvertible {
     var secAttrString: String? {
         switch self {
-        case .undefined: return nil
-        case .public: return kSecAttrKeyClassPublic as String
-        case .private: return kSecAttrKeyClassPrivate as String
-        case .symmetric: return kSecAttrKeyClassSymmetric as String
+        case .undefined:
+            return nil
+        case .public:
+            return kSecAttrKeyClassPublic as String
+        case .private:
+            return kSecAttrKeyClassPrivate as String
+        case .symmetric:
+            return kSecAttrKeyClassSymmetric as String
         }
     }
 
@@ -65,13 +69,13 @@ extension SecKeyClass: KeychainQueryParamsConvertible {
     }
 
     func insertIntoKeychainQuery(_ query: inout [String: Any]) {
-        if let secAttrString = secAttrString {
+        if let secAttrString {
             query[kSecAttrKeyClass as String] = secAttrString
         }
 
         switch self {
         case let .undefined(keyType):
-            if let keyType = keyType {
+            if let keyType {
                 query[kSecAttrKeyType as String] = keyType.secAttrString
             }
         case let .public(keyType), let .private(keyType):

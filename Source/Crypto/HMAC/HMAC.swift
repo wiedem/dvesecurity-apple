@@ -15,10 +15,10 @@ public extension Crypto {
         ///   - hashFunction: The hash function to use for the computation.
         ///
         /// - Returns: The authentication code.
-        public static func authenticationCode<D, K>(
-            for data: D,
-            using key: K
-        ) -> Data where D: DataProtocol, K: SymmetricKey & RawKeyConvertible {
+        public static func authenticationCode(
+            for data: some DataProtocol,
+            using key: some SymmetricKey & RawKeyConvertible
+        ) -> Data {
             let sourceData = Data(data)
             var hmacData = Data(count: H.byteCount)
             let keyData = key.rawKeyRepresentation
@@ -26,12 +26,14 @@ public extension Crypto {
             hmacData.withUnsafeMutableBytes { (hmacDataPointer: UnsafeMutableRawBufferPointer) in
                 keyData.withUnsafeBytes { keyPointer in
                     sourceData.withUnsafeBytes { sourceDataPointer in
-                        CCHmac(H.ccHmacAlgorithm,
-                               keyPointer.baseAddress!,
-                               keyData.count,
-                               sourceDataPointer.baseAddress!,
-                               sourceData.count,
-                               hmacDataPointer.baseAddress)
+                        CCHmac(
+                            H.ccHmacAlgorithm,
+                            keyPointer.baseAddress!,
+                            keyData.count,
+                            sourceDataPointer.baseAddress!,
+                            sourceData.count,
+                            hmacDataPointer.baseAddress
+                        )
                     }
                 }
             }
@@ -46,11 +48,11 @@ public extension Crypto {
         ///   - key: The symmetric key used to secure the computation.
         ///
         /// - Returns: Returns `true` iif the authentication code is valid for the given authenticated data, `false` otherwise.
-        public static func isValidAuthenticationCode<D, K>(
+        public static func isValidAuthenticationCode(
             _ authenticationCode: Data,
-            authenticating authenticatedData: D,
-            using key: K
-        ) -> Bool where D: DataProtocol, K: SymmetricKey & RawKeyConvertible {
+            authenticating authenticatedData: some DataProtocol,
+            using key: some SymmetricKey & RawKeyConvertible
+        ) -> Bool {
             return authenticationCode == self.authenticationCode(for: authenticatedData, using: key)
         }
 
@@ -59,7 +61,7 @@ public extension Crypto {
         /// Creates a message authentication code generator.
         ///
         /// - Parameter key: The symmetric key used to secure the computation.
-        public init<K>(key: K) where K: SymmetricKey & RawKeyConvertible {
+        public init(key: some SymmetricKey & RawKeyConvertible) {
             let keyData = key.rawKeyRepresentation
 
             withUnsafeMutablePointer(to: &hmacContext) { hmacContextPointer in
@@ -72,7 +74,7 @@ public extension Crypto {
         /// Updates the message authentication code computation with a block of data.
         ///
         /// - Parameter data: The data for which to compute the authentication code.
-        public mutating func update<D>(data: D) where D: DataProtocol {
+        public mutating func update(data: some DataProtocol) {
             let sourceData = Data(data)
 
             withUnsafeMutablePointer(to: &hmacContext) { hmacContextPointer in

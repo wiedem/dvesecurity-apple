@@ -17,7 +17,7 @@ final class Keychain_ECCTestsiOS13: TestCaseiOS13 {
     }
 
     func testQueryECCPrivateKey() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P192)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p192)
         let publicKey: Crypto.ECC.PublicKey = privateKey.publicKey()
         let keyTag = "Test Tag \(#function)"
 
@@ -37,7 +37,7 @@ final class Keychain_ECCTestsiOS13: TestCaseiOS13 {
 
     func testImplicitlySavedECCPrivateKey() throws {
         let keyTag = "Test Tag \(#function)"
-        let privateKey = try Crypto.ECC.PrivateKey(curve: .P192, inKeychainWithTag: keyTag, accessControl: .whenUnlockedThisDeviceOnly)
+        let privateKey = try Crypto.ECC.PrivateKey(curve: .p192, inKeychainWithTag: keyTag, accessControl: .whenUnlockedThisDeviceOnly)
 
         let publicKey: Crypto.ECC.PublicKey = privateKey.publicKey()
         let fetchedPrivateKey: Crypto.ECC.PrivateKey? = try Keychain.queryKey(for: publicKey)
@@ -46,14 +46,14 @@ final class Keychain_ECCTestsiOS13: TestCaseiOS13 {
     }
 
     func testSaveECCPrivateKey() throws {
-        let privateKey1 = Crypto.ECC.PrivateKey(curve: .P192)
+        let privateKey1 = Crypto.ECC.PrivateKey(curve: .p192)
         let publicKey1: Crypto.ECC.PublicKey = privateKey1.publicKey()
         let keyTag = "Test Tag \(#function)"
 
         try Keychain.saveKey(privateKey1, withTag: keyTag)
 
         //
-        let privateKey2 = Crypto.ECC.PrivateKey(curve: .P192)
+        let privateKey2 = Crypto.ECC.PrivateKey(curve: .p192)
         let publicKey2: Crypto.ECC.PublicKey = privateKey2.publicKey()
         try Keychain.saveKey(privateKey2, withTag: keyTag)
 
@@ -70,7 +70,7 @@ final class Keychain_ECCTestsiOS13: TestCaseiOS13 {
     }
 
     func testSaveECCPrivateKeyMultipleTimes() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let keyTag1 = "Test Tag 1 \(#function)"
         let keyTag2 = "Test Tag 2 \(#function)"
 
@@ -105,7 +105,7 @@ final class Keychain_ECCTestsiOS13: TestCaseiOS13 {
     }
 
     func testDeleteECCPrivateKey() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P192)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p192)
         let keyTag = "Test Tag \(#function)"
 
         try Keychain.saveKey(privateKey, withTag: keyTag)
@@ -117,7 +117,7 @@ final class Keychain_ECCTestsiOS13: TestCaseiOS13 {
     }
 
     func testDeleteECCPrivateKeyForPublicKey() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P192)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p192)
         let publicKey: Crypto.ECC.PublicKey = privateKey.publicKey()
         let keyTag = "Test Tag \(#function)"
 
@@ -129,7 +129,7 @@ final class Keychain_ECCTestsiOS13: TestCaseiOS13 {
     }
 
     func testECCPrivateKeyAccessGroup() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P192)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p192)
         let publicKey: Crypto.ECC.PublicKey = privateKey.publicKey()
         let keyTag = "Test Tag \(#function)"
 

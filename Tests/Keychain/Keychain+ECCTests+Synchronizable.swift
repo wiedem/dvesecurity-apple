@@ -13,7 +13,7 @@ final class Keychain_ECC_SynchronizableTests: XCTestCase {
     }
 
     func testSaveAndQuery() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let keyTag = "Test Tag \(#function)"
 
         try Keychain.saveKey(privateKey, withTag: keyTag)
@@ -26,7 +26,7 @@ final class Keychain_ECC_SynchronizableTests: XCTestCase {
     }
 
     func testSavingWithEqualAttributesTwice() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let keyTag = "Test Tag \(#function)"
 
         try Keychain.saveSynchronizableKey(privateKey, withTag: keyTag)
@@ -38,7 +38,7 @@ final class Keychain_ECC_SynchronizableTests: XCTestCase {
     }
 
     func testDeletion() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let keyTag = "Test Tag \(#function)"
 
         try Keychain.saveSynchronizableKey(privateKey, withTag: keyTag)
@@ -50,7 +50,7 @@ final class Keychain_ECC_SynchronizableTests: XCTestCase {
     }
 
     func testDeletionWithSyncedUnsynced() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let keyTag = "Test Tag \(#function)"
         try Keychain.saveKey(privateKey, withTag: keyTag)
         try Keychain.saveSynchronizableKey(privateKey, withTag: keyTag)

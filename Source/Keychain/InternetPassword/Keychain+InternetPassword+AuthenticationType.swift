@@ -7,13 +7,13 @@ public extension Keychain.InternetPassword {
     // swiftlint:disable:next identifier_name
     /// Authentication type attribute of an Internet Password keychain entry.
     enum AuthenticationType {
-        case NTLM
-        case MSN
-        case DPA
-        case RPA
-        case HTTPBasic
-        case HTTPDigest
-        case HTMLForm
-        case Default
+        case ntlm
+        case msn
+        case dpa
+        case rpa
+        case httpBasic
+        case httpDigest
+        case htmlForm
+        case `default`
     }
 }

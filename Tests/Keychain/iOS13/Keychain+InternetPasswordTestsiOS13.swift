@@ -51,19 +51,21 @@ final class Keychain_InternetPasswordTestsiOS13: TestCaseiOS13 {
     func testQueriedAttributesOfSavedItem() throws {
         let securityDomain = "security domain"
         let server = "dvesecurity.test"
-        let `protocol`: Keychain.InternetPassword.NetworkProtocol = .HTTP
-        let authenticationType: Keychain.InternetPassword.AuthenticationType = .HTTPBasic
+        let `protocol`: Keychain.InternetPassword.NetworkProtocol = .http
+        let authenticationType: Keychain.InternetPassword.AuthenticationType = .httpBasic
         let port: UInt16 = 80
         let path = "test"
 
-        try Keychain.InternetPassword.save(password,
-                                           forAccount: account1,
-                                           securityDomain: securityDomain,
-                                           server: server,
-                                           protocol: `protocol`,
-                                           authenticationType: authenticationType,
-                                           port: port,
-                                           path: path)
+        try Keychain.InternetPassword.save(
+            password,
+            forAccount: account1,
+            securityDomain: securityDomain,
+            server: server,
+            protocol: `protocol`,
+            authenticationType: authenticationType,
+            port: port,
+            path: path
+        )
 
         let items = try Keychain.InternetPassword.queryItems()
         expect(items).to(haveCount(1))

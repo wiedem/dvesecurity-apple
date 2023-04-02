@@ -27,7 +27,7 @@ final class Keychain_SecureEnclaveTests: TestCaseDevice {
     func testQueryECCPrivateKeyAsSecureEnclaveKey() throws {
         let keyTag = "Test Tag \(#function)"
 
-        _ = try Crypto.ECC.PrivateKey(curve: .P256, inKeychainWithTag: keyTag)
+        _ = try Crypto.ECC.PrivateKey(curve: .p256, inKeychainWithTag: keyTag)
         let queriedKey: Crypto.ECC.SecureEnclaveKey? = try wait(description: "Keychain query") {
             Keychain.queryKey(withTag: keyTag, completion: $0)
         }

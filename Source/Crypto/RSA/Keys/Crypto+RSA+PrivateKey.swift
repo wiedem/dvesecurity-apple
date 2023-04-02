@@ -23,7 +23,7 @@ public extension Crypto.RSA {
         ///
         /// - Parameter bitCount: The number of bits in the RSA key.
         public init(bitCount: Int) throws {
-            secKey = try Crypto.Asymmetric.createPrivateKey(keyType: .RSA, keySizeInBits: bitCount)
+            secKey = try Crypto.Asymmetric.createPrivateKey(keyType: .rsa, keySizeInBits: bitCount)
         }
 
         /// Returns the generated RSA public key for this private key.
@@ -71,7 +71,7 @@ public extension Crypto.RSA.PrivateKey {
         authenticationContext: LAContext? = nil
     ) throws {
         let secKey = try Crypto.Asymmetric.createPrivateKeyInKeychain(
-            keyType: .RSA,
+            keyType: .rsa,
             keySizeInBits: bitCount,
             tag: keychainTag,
             accessGroup: accessGroup,

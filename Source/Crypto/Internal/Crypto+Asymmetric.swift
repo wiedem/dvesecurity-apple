@@ -26,11 +26,11 @@ extension Crypto {
 
         static func createSecureEnclavePrivateKey() throws -> SecKey {
             let keyGenerationAttributes = SecKeyAttributes(
-                keySizeInBits: Crypto.ECC.EllipticCurve.P256.secKeySizeInBits,
+                keySizeInBits: Crypto.ECC.EllipticCurve.p256.secKeySizeInBits,
                 tokenID: kSecAttrTokenIDSecureEnclave as String
             )
             return try createSecKey(
-                keyType: .ECSECPrimeRandom,
+                keyType: .ellipticCurve,
                 keyGenerationAttributes: keyGenerationAttributes,
                 privateKeyAttributes: .init()
             )
@@ -131,12 +131,12 @@ extension Crypto.Asymmetric {
         accessGroup: String = Keychain.defaultAccessGroup,
         accessControl: Keychain.AccessControl
     ) throws -> SecKey {
-        let keyGenerationAttributes = SecKeyAttributes(keySizeInBits: Crypto.ECC.EllipticCurve.P256.secKeySizeInBits,
+        let keyGenerationAttributes = SecKeyAttributes(keySizeInBits: Crypto.ECC.EllipticCurve.p256.secKeySizeInBits,
                                                        tokenID: kSecAttrTokenIDSecureEnclave as String)
         let privateKeyAttributes = SecKeyAttributes(applicationTag: tag)
 
         return try createSecKeyInKeychain(
-            keyType: .ECSECPrimeRandom,
+            keyType: .ellipticCurve,
             keyGenerationAttributes: keyGenerationAttributes,
             privateKeyAttributes: privateKeyAttributes,
             accessGroup: accessGroup,

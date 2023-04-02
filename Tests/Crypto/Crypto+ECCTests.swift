@@ -13,7 +13,7 @@ final class ECCTests: XCTestCase {
     }
 
     func testEncryptionAndDecryption() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P192)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p192)
         let publicKey: Crypto.ECC.PublicKey = privateKey.publicKey()
 
         let plainText = "Hello World!"
@@ -29,7 +29,7 @@ final class ECCTests: XCTestCase {
     }
 
     func testSignAndVerify() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P192)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p192)
         let publicKey: Crypto.ECC.PublicKey = privateKey.publicKey()
 
         let plainText = "Hello World!"

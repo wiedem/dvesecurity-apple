@@ -16,7 +16,7 @@ final class Keychain_ECCTestsiOS13Device: InteractiveTestCaseiOS13Device {
 
     func testQueryWithApplicationPassword() throws {
         let keyTag = "Test Tag \(#function)"
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let publicKey: Crypto.ECC.PublicKey = privateKey.publicKey()
         let accessControl = Keychain.AccessControl(
             itemAccessibility: .afterFirstUnlockThisDeviceOnly,
@@ -30,7 +30,7 @@ final class Keychain_ECCTestsiOS13Device: InteractiveTestCaseiOS13Device {
 
     func testQueryWithUserPresence() throws {
         let keyTag = "Test Tag \(#function)"
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let publicKey: Crypto.ECC.PublicKey = privateKey.publicKey()
 
         let authenticationContext = LAContext()
@@ -48,7 +48,7 @@ final class Keychain_ECCTestsiOS13Device: InteractiveTestCaseiOS13Device {
         continueAfterFailure = false
 
         let keyTag = "Test Tag \(#function)"
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let publicKey: Crypto.ECC.PublicKey = privateKey.publicKey()
 
         let authenticationContext = LAContext()

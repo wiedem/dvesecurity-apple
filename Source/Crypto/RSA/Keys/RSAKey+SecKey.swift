@@ -27,17 +27,17 @@ public extension RSAKey where Self: ConvertibleToSecKey {
         switch algorithm {
         case .raw:
             return blockSize
-        case .PKCS1:
+        case .pkcs1:
             return blockSize - 11
-        case .OAEPSHA1:
+        case .oaepSHA1:
             return blockSize - 2 - (2 * 20)
-        case .OAEPSHA224:
+        case .oaepSHA224:
             return blockSize - 2 - (2 * 28)
-        case .OAEPSHA256:
+        case .oaepSHA256:
             return blockSize - 2 - (2 * 32)
-        case .OAEPSHA384:
+        case .oaepSHA384:
             return blockSize - 2 - (2 * 48)
-        case .OAEPSHA512:
+        case .oaepSHA512:
             return blockSize - 2 - (2 * 64)
         default:
             return nil

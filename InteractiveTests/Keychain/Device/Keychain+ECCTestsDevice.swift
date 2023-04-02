@@ -19,7 +19,7 @@ final class Keychain_ECCTestsiOSDevice: InteractiveTestCaseDevice {
             flags: [.applicationPassword(prompt: "Specify a password for the protected access to the keychain")]
         )
 
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P192)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p192)
         let keyTag = "Test Tag \(#function)"
 
         try Keychain.saveKey(privateKey, withTag: keyTag, accessControl: accessControl)
@@ -39,7 +39,7 @@ final class Keychain_ECCTestsiOSDevice: InteractiveTestCaseDevice {
         )
 
         let keyTag = "Test Tag \(#function)"
-        let privateKey = try Crypto.ECC.PrivateKey(curve: .P192, inKeychainWithTag: keyTag, accessControl: accessControl)
+        let privateKey = try Crypto.ECC.PrivateKey(curve: .p192, inKeychainWithTag: keyTag, accessControl: accessControl)
 
         // Manual confirmation is necessary for this test because we can't know if the user entered the proper password or if the authentication UI did appear properly.
         let queriedKey: Crypto.ECC.PrivateKey? = try wait(description: "Keychain query", timeout: Self.defaultUIInteractionTimeout) {

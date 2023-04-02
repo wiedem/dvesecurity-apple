@@ -36,8 +36,8 @@ final class Keychain_InternetPassword_ItemTests: XCTestCase {
         expect(item.synchronizable) == false
         expect(item.securityDomain) == "domain"
         expect(item.server) == "server"
-        expect(item.protocol) == .HTTP
-        expect(item.authenticationType) == .HTTPBasic
+        expect(item.protocol) == .http
+        expect(item.authenticationType) == .httpBasic
         expect(item.port) == 80
         expect(item.path) == "path"
         expect(item.modificationDate) == modificationDate

@@ -55,67 +55,67 @@ extension Keychain.InternetPassword.Item: KeychainAttributesConvertible {
 extension Keychain.InternetPassword.NetworkProtocol {
     var secAttrString: String {
         switch self {
-        case .FTP:
+        case .ftp:
             return kSecAttrProtocolFTP as String
-        case .FTPAccount:
+        case .ftpAccount:
             return kSecAttrProtocolFTPAccount as String
-        case .HTTP:
+        case .http:
             return kSecAttrProtocolHTTP as String
-        case .IRC:
+        case .irc:
             return kSecAttrProtocolIRC as String
-        case .NNTP:
+        case .nntp:
             return kSecAttrProtocolNNTP as String
-        case .POP3:
+        case .pop3:
             return kSecAttrProtocolPOP3 as String
-        case .SMTP:
+        case .smtp:
             return kSecAttrProtocolSMTP as String
-        case .SOCKS:
+        case .socks:
             return kSecAttrProtocolSOCKS as String
-        case .IMAP:
+        case .imap:
             return kSecAttrProtocolIMAP as String
-        case .LDAP:
+        case .ldap:
             return kSecAttrProtocolLDAP as String
-        case .AppleTalk:
+        case .appleTalk:
             return kSecAttrProtocolAppleTalk as String
-        case .AFP:
+        case .afp:
             return kSecAttrProtocolAFP as String
-        case .Telnet:
+        case .telnet:
             return kSecAttrProtocolTelnet as String
-        case .SSH:
+        case .ssh:
             return kSecAttrProtocolSSH as String
-        case .FTPS:
+        case .ftps:
             return kSecAttrProtocolFTPS as String
-        case .HTTPS:
+        case .https:
             return kSecAttrProtocolHTTPS as String
-        case .HTTPProxy:
+        case .httpProxy:
             return kSecAttrProtocolHTTPProxy as String
-        case .HTTPSProxy:
+        case .httpsProxy:
             return kSecAttrProtocolHTTPSProxy as String
-        case .FTPProxy:
+        case .ftpProxy:
             return kSecAttrProtocolFTPProxy as String
-        case .SMB:
+        case .smb:
             return kSecAttrProtocolSMB as String
-        case .RTSP:
+        case .rtsp:
             return kSecAttrProtocolRTSP as String
-        case .RTSPProxy:
+        case .rtspProxy:
             return kSecAttrProtocolRTSPProxy as String
-        case .DAAP:
+        case .daap:
             return kSecAttrProtocolDAAP as String
-        case .EPPC:
+        case .eppc:
             return kSecAttrProtocolEPPC as String
-        case .IPP:
+        case .ipp:
             return kSecAttrProtocolIPP as String
-        case .NNTPS:
+        case .nntps:
             return kSecAttrProtocolNNTPS as String
-        case .LDAPS:
+        case .ldaps:
             return kSecAttrProtocolLDAPS as String
-        case .TelnetS:
+        case .telnets:
             return kSecAttrProtocolTelnetS as String
-        case .IMAPSS:
+        case .imapss:
             return kSecAttrProtocolIMAPS as String
-        case .IRCS:
+        case .ircs:
             return kSecAttrProtocolIRCS as String
-        case .POP3S:
+        case .pop3s:
             return kSecAttrProtocolPOP3S as String
         }
     }
@@ -124,67 +124,67 @@ extension Keychain.InternetPassword.NetworkProtocol {
     init?(secAttrString: String) {
         switch secAttrString as CFString {
         case kSecAttrProtocolFTP:
-            self = .FTP
+            self = .ftp
         case kSecAttrProtocolFTPAccount:
-            self = .FTPAccount
+            self = .ftpAccount
         case kSecAttrProtocolHTTP:
-            self = .HTTP
+            self = .http
         case kSecAttrProtocolIRC:
-            self = .IRC
+            self = .irc
         case kSecAttrProtocolNNTP:
-            self = .NNTP
+            self = .nntp
         case kSecAttrProtocolPOP3:
-            self = .POP3
+            self = .pop3
         case kSecAttrProtocolSMTP:
-            self = .SMTP
+            self = .smtp
         case kSecAttrProtocolSOCKS:
-            self = .SOCKS
+            self = .socks
         case kSecAttrProtocolIMAP:
-            self = .IMAP
+            self = .imap
         case kSecAttrProtocolLDAP:
-            self = .LDAP
+            self = .ldap
         case kSecAttrProtocolAppleTalk:
-            self = .AppleTalk
+            self = .appleTalk
         case kSecAttrProtocolAFP:
-            self = .AFP
+            self = .afp
         case kSecAttrProtocolTelnet:
-            self = .Telnet
+            self = .telnet
         case kSecAttrProtocolSSH:
-            self = .SSH
+            self = .ssh
         case kSecAttrProtocolFTPS:
-            self = .FTPS
+            self = .ftps
         case kSecAttrProtocolHTTPS:
-            self = .HTTPS
+            self = .https
         case kSecAttrProtocolHTTPProxy:
-            self = .HTTPProxy
+            self = .httpProxy
         case kSecAttrProtocolHTTPSProxy:
-            self = .HTTPSProxy
+            self = .httpsProxy
         case kSecAttrProtocolFTPProxy:
-            self = .FTPProxy
+            self = .ftpProxy
         case kSecAttrProtocolSMB:
-            self = .SMB
+            self = .smb
         case kSecAttrProtocolRTSP:
-            self = .RTSP
+            self = .rtsp
         case kSecAttrProtocolRTSPProxy:
-            self = .RTSPProxy
+            self = .rtspProxy
         case kSecAttrProtocolDAAP:
-            self = .DAAP
+            self = .daap
         case kSecAttrProtocolEPPC:
-            self = .EPPC
+            self = .eppc
         case kSecAttrProtocolIPP:
-            self = .IPP
+            self = .ipp
         case kSecAttrProtocolNNTPS:
-            self = .NNTPS
+            self = .nntps
         case kSecAttrProtocolLDAPS:
-            self = .LDAPS
+            self = .ldaps
         case kSecAttrProtocolTelnetS:
-            self = .TelnetS
+            self = .telnets
         case kSecAttrProtocolIMAPS:
-            self = .IMAPSS
+            self = .imapss
         case kSecAttrProtocolIRCS:
-            self = .IRCS
+            self = .ircs
         case kSecAttrProtocolPOP3S:
-            self = .POP3S
+            self = .pop3s
         default:
             return nil
         }
@@ -194,21 +194,21 @@ extension Keychain.InternetPassword.NetworkProtocol {
 extension Keychain.InternetPassword.AuthenticationType {
     var secAttrString: String {
         switch self {
-        case .NTLM:
+        case .ntlm:
             return kSecAttrAuthenticationTypeNTLM as String
-        case .MSN:
+        case .msn:
             return kSecAttrAuthenticationTypeMSN as String
-        case .DPA:
+        case .dpa:
             return kSecAttrAuthenticationTypeDPA as String
-        case .RPA:
+        case .rpa:
             return kSecAttrAuthenticationTypeRPA as String
-        case .HTTPBasic:
+        case .httpBasic:
             return kSecAttrAuthenticationTypeHTTPBasic as String
-        case .HTTPDigest:
+        case .httpDigest:
             return kSecAttrAuthenticationTypeHTTPDigest as String
-        case .HTMLForm:
+        case .htmlForm:
             return kSecAttrAuthenticationTypeHTMLForm as String
-        case .Default:
+        case .default:
             return kSecAttrAuthenticationTypeDefault as String
         }
     }
@@ -216,21 +216,21 @@ extension Keychain.InternetPassword.AuthenticationType {
     init?(secAttrString: String) {
         switch secAttrString as CFString {
         case kSecAttrAuthenticationTypeNTLM:
-            self = .NTLM
+            self = .ntlm
         case kSecAttrAuthenticationTypeMSN:
-            self = .MSN
+            self = .msn
         case kSecAttrAuthenticationTypeDPA:
-            self = .DPA
+            self = .dpa
         case kSecAttrAuthenticationTypeRPA:
-            self = .RPA
+            self = .rpa
         case kSecAttrAuthenticationTypeHTTPBasic:
-            self = .HTTPBasic
+            self = .httpBasic
         case kSecAttrAuthenticationTypeHTTPDigest:
-            self = .HTTPDigest
+            self = .httpDigest
         case kSecAttrAuthenticationTypeHTMLForm:
-            self = .HTMLForm
+            self = .htmlForm
         case kSecAttrAuthenticationTypeDefault:
-            self = .Default
+            self = .default
         default:
             return nil
         }

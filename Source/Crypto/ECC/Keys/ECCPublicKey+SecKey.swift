@@ -5,7 +5,7 @@ import Foundation
 import Security
 
 public extension ECCPublicKey {
-    static var secKeyClass: SecKeyClass { .public(.ECSECPrimeRandom) }
+    static var secKeyClass: SecKeyClass { .public(.ellipticCurve) }
 }
 
 public extension ECCPublicKey where Self: ConvertibleToSecKey {

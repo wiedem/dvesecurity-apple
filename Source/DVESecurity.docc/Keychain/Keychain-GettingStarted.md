@@ -56,7 +56,7 @@ try Keychain.saveKey(key, withTag: "AESKeyTag", applicationLabel: "SearchLabel")
 let rsaKey = try Crypto.RSA.PrivateKey(bitCount: 2048)
 try Keychain.saveKey(rsaKey, withTag: "RSAKeyTag")
 
-let eccKey = Crypto.ECC.PrivateKey(curve: .P256)
+let eccKey = Crypto.ECC.PrivateKey(curve: .p256)
 try Keychain.saveKey(eccKey, withTag: "ECCKeyTag")
 ```
 

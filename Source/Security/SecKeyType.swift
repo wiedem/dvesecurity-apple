@@ -7,17 +7,17 @@ import Security
 /// Key type of a `SecKey`
 public enum SecKeyType: Equatable, Hashable, CaseIterable {
     /// RSA key type.
-    case RSA
+    case rsa
     /// ECC key type.
-    case ECSECPrimeRandom
+    case ellipticCurve
 }
 
 extension SecKeyType {
     var secAttrString: String {
         switch self {
-        case .RSA:
+        case .rsa:
             return kSecAttrKeyTypeRSA as String
-        case .ECSECPrimeRandom:
+        case .ellipticCurve:
             return kSecAttrKeyTypeECSECPrimeRandom as String
         }
     }
@@ -29,9 +29,9 @@ extension SecKeyType {
 
         switch keyType as CFString {
         case kSecAttrKeyTypeRSA:
-            self = .RSA
+            self = .rsa
         case kSecAttrKeyTypeEC, kSecAttrKeyTypeECSECPrimeRandom:
-            self = .ECSECPrimeRandom
+            self = .ellipticCurve
         default:
             return nil
         }

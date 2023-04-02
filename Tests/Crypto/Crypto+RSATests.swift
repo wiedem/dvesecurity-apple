@@ -125,8 +125,8 @@ final class RSATests: XCTestCase {
         for hashFunction in hashFunctions {
             expect { () in
                 let digest = hashFunction.hash(plainTextData)
-                let signatureData = try rsaPrivateKey.digestSignature(for: digest, algorithm: .PKCS1v15Raw)
-                let verifyResult = try rsaPublicKey.isValidDigestSignature(signatureData, digest: digest, algorithm: .PKCS1v15Raw)
+                let signatureData = try rsaPrivateKey.digestSignature(for: digest, algorithm: .pkcs1v15Raw)
+                let verifyResult = try rsaPublicKey.isValidDigestSignature(signatureData, digest: digest, algorithm: .pkcs1v15Raw)
 
                 expect(verifyResult) == true
             }.toNot(throwError())
@@ -197,7 +197,7 @@ final class RSATests: XCTestCase {
         expect { () in
             let digest = Hashing.SHA224.hash(plainTextData)
 
-            let algorithm = Crypto.RSA.DigestSignatureAlgorithm.PKCS1v15SHA256
+            let algorithm = Crypto.RSA.DigestSignatureAlgorithm.pkcs1v15SHA256
             let signatureData = try rsaPrivateKey.digestSignature(for: digest, algorithm: algorithm)
             let verifyResult = try rsaPublicKey.isValidDigestSignature(signatureData, digest: digest, algorithm: algorithm)
 
@@ -210,13 +210,13 @@ private extension RSATests {
     static func pkcs1v15DigestSignatureAlgorithm(for hashFunctionType: (some HashFunction).Type) -> Crypto.RSA.DigestSignatureAlgorithm {
         switch hashFunctionType {
         case is Hashing.SHA224.Type:
-            return .PKCS1v15SHA224
+            return .pkcs1v15SHA224
         case is Hashing.SHA256.Type:
-            return .PKCS1v15SHA256
+            return .pkcs1v15SHA256
         case is Hashing.SHA384.Type:
-            return .PKCS1v15SHA384
+            return .pkcs1v15SHA384
         case is Hashing.SHA512.Type:
-            return .PKCS1v15SHA512
+            return .pkcs1v15SHA512
         default:
             fatalError("Unknown hash function type '\(hashFunctionType)'")
         }
@@ -225,13 +225,13 @@ private extension RSATests {
     static func pkcs1v21DigestSignatureAlgorithm(for hashFunctionType: (some HashFunction).Type) -> Crypto.RSA.DigestSignatureAlgorithm {
         switch hashFunctionType {
         case is Hashing.SHA224.Type:
-            return .PSSSHA224
+            return .pssSHA224
         case is Hashing.SHA256.Type:
-            return .PSSSHA256
+            return .pssSHA256
         case is Hashing.SHA384.Type:
-            return .PSSSHA384
+            return .pssSHA384
         case is Hashing.SHA512.Type:
-            return .PSSSHA512
+            return .pssSHA512
         default:
             fatalError("Unknown hash function type '\(hashFunctionType)'")
         }

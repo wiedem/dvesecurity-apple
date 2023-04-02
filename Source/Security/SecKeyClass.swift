@@ -26,7 +26,7 @@ extension SecKeyClass {
     func assertAsymmetricKeyClass() {
         precondition({ () -> Bool in
             switch self {
-            case .undefined(.RSA), .undefined(.ECSECPrimeRandom), .public, .private:
+            case .undefined(.rsa), .undefined(.ellipticCurve), .public, .private:
                 return true
             default:
                 return false

@@ -39,8 +39,8 @@ final class Keychain_Legacy_InternetPasswordTests: TestCaseLegacyKeychain {
     func testQueryItemsWithAttributes() throws {
         try Keychain.Legacy.InternetPassword.save("Test1", forAccount: account1, securityDomain: "securityDomain", label: "Test", inKeychain: keychain)
         try Keychain.Legacy.InternetPassword.save("Test2", forAccount: account1, server: "server", label: "Test", inKeychain: keychain)
-        try Keychain.Legacy.InternetPassword.save("Test3", forAccount: account1, protocol: .HTTP, label: "Test", inKeychain: keychain)
-        try Keychain.Legacy.InternetPassword.save("Test4", forAccount: account1, authenticationType: .HTTPBasic, label: "Test", inKeychain: keychain)
+        try Keychain.Legacy.InternetPassword.save("Test3", forAccount: account1, protocol: .http, label: "Test", inKeychain: keychain)
+        try Keychain.Legacy.InternetPassword.save("Test4", forAccount: account1, authenticationType: .httpBasic, label: "Test", inKeychain: keychain)
         try Keychain.Legacy.InternetPassword.save("Test5", forAccount: account1, port: 80, label: "Test", inKeychain: keychain)
         try Keychain.Legacy.InternetPassword.save("Test6", forAccount: account1, path: "path", label: "Test", inKeychain: keychain)
 
@@ -50,10 +50,10 @@ final class Keychain_Legacy_InternetPasswordTests: TestCaseLegacyKeychain {
         let queriedPasswords2 = try Keychain.Legacy.InternetPassword.queryItems(server: "server", limit: 10, inKeychain: keychain)
         expect(queriedPasswords2?.map(\.password)) == ["Test2"]
 
-        let queriedPasswords3 = try Keychain.Legacy.InternetPassword.queryItems(protocol: .HTTP, limit: 10, inKeychain: keychain)
+        let queriedPasswords3 = try Keychain.Legacy.InternetPassword.queryItems(protocol: .http, limit: 10, inKeychain: keychain)
         expect(queriedPasswords3?.map(\.password)) == ["Test3"]
 
-        let queriedPasswords4 = try Keychain.Legacy.InternetPassword.queryItems(authenticationType: .HTTPBasic, limit: 10, inKeychain: keychain)
+        let queriedPasswords4 = try Keychain.Legacy.InternetPassword.queryItems(authenticationType: .httpBasic, limit: 10, inKeychain: keychain)
         expect(queriedPasswords4?.map(\.password)) == ["Test4"]
 
         let queriedPasswords5 = try Keychain.Legacy.InternetPassword.queryItems(port: 80, limit: 10, inKeychain: keychain)

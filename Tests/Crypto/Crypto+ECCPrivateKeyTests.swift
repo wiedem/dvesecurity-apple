@@ -7,7 +7,7 @@ import XCTest
 
 final class ECCPrivateKeyTests: XCTestCase {
     func testECCPrivateKeyCreation() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
 
         let privateKey2 = try Crypto.ECC.PrivateKey(x963Representation: privateKey.x963Representation)
         expect(privateKey.x963Representation) == privateKey2.x963Representation
@@ -17,7 +17,7 @@ final class ECCPrivateKeyTests: XCTestCase {
     }
 
     func testInvalidECCPrivateKeyCreationFromSecKey() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let publicKey: Crypto.ECC.PublicKey = privateKey.publicKey()
 
         expect {

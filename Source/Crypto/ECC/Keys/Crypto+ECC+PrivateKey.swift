@@ -9,10 +9,10 @@ public extension Crypto.ECC {
     // swiftlint:disable identifier_name
     /// Elliptic curves used for ECC methods and types.
     enum EllipticCurve {
-        case P192
-        case P256
-        case P384
-        case P521
+        case p192
+        case p256
+        case p384
+        case p521
     }
     // swiftlint:enable identifier_name
 
@@ -30,7 +30,7 @@ public extension Crypto.ECC {
         /// - Parameter curve: The elliptic curve used for the key creation.
         public init(curve: EllipticCurve) {
             secKey = expectNoError {
-                try Crypto.Asymmetric.createPrivateKey(keyType: .ECSECPrimeRandom, keySizeInBits: curve.secKeySizeInBits)
+                try Crypto.Asymmetric.createPrivateKey(keyType: .ellipticCurve, keySizeInBits: curve.secKeySizeInBits)
             }
         }
 
@@ -80,7 +80,7 @@ public extension Crypto.ECC.PrivateKey {
         authenticationContext: LAContext? = nil
     ) throws {
         let secKey = try Crypto.Asymmetric.createPrivateKeyInKeychain(
-            keyType: .ECSECPrimeRandom,
+            keyType: .ellipticCurve,
             keySizeInBits: curve.secKeySizeInBits,
             tag: keychainTag,
             accessGroup: accessGroup,

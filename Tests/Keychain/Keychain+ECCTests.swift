@@ -22,7 +22,7 @@ final class Keychain_ECCTests: XCTestCase {
     }
 
     func testSaveAndQueryWithKey() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let publicKey = privateKey.publicKey()
         let keyTag = "Test Tag \(#function)"
 
@@ -35,7 +35,7 @@ final class Keychain_ECCTests: XCTestCase {
     }
 
     func testAmbiguousQueryWithKey() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let keyTag1 = "Test Tag 1 \(#function)"
         let keyTag2 = "Test Tag 2 \(#function)"
 
@@ -60,8 +60,8 @@ final class Keychain_ECCTests: XCTestCase {
     }
 
     func testAmbiguousQueryWithTag() throws {
-        let privateKey1 = Crypto.ECC.PrivateKey(curve: .P256)
-        let privateKey2 = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey1 = Crypto.ECC.PrivateKey(curve: .p256)
+        let privateKey2 = Crypto.ECC.PrivateKey(curve: .p256)
         let keyTag = "Test Tag \(#function)"
 
         try Keychain.saveKey(privateKey1, withTag: keyTag)
@@ -75,7 +75,7 @@ final class Keychain_ECCTests: XCTestCase {
     }
 
     func testSaveMultipleTimesWithDifferentTags() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let publicKey = privateKey.publicKey()
         let keyTag1 = "Test Tag 1 \(#function)"
         let keyTag2 = "Test Tag 2 \(#function)"
@@ -100,7 +100,7 @@ final class Keychain_ECCTests: XCTestCase {
     }
 
     func testSaveMultipleTimesWithSameTag() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let keyTag = "Test Tag \(#function)"
 
         expect {
@@ -112,7 +112,7 @@ final class Keychain_ECCTests: XCTestCase {
     }
 
     func testKeyDeletion() throws {
-        let privateKey = Crypto.ECC.PrivateKey(curve: .P256)
+        let privateKey = Crypto.ECC.PrivateKey(curve: .p256)
         let keyTag = "Test Tag \(#function)"
 
         try Keychain.saveKey(privateKey, withTag: keyTag)

@@ -16,17 +16,17 @@ final class RSAPrivateKeyTests: XCTestCase {
             switch algorithm {
             case .raw:
                 expect(maxPlainTextLength) == keyBlockSize
-            case .PKCS1:
+            case .pkcs1:
                 expect(maxPlainTextLength) == keyBlockSize - 11
-            case .OAEPSHA1:
+            case .oaepSHA1:
                 expect(maxPlainTextLength) == keyBlockSize - 42
-            case .OAEPSHA224:
+            case .oaepSHA224:
                 expect(maxPlainTextLength) == keyBlockSize - 58
-            case .OAEPSHA256:
+            case .oaepSHA256:
                 expect(maxPlainTextLength) == keyBlockSize - 66
-            case .OAEPSHA384:
+            case .oaepSHA384:
                 expect(maxPlainTextLength) == keyBlockSize - 98
-            case .OAEPSHA512:
+            case .oaepSHA512:
                 expect(maxPlainTextLength) == keyBlockSize - 130
             default:
                 expect(maxPlainTextLength).to(beNil())

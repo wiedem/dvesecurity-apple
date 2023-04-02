@@ -49,8 +49,8 @@ final class Keychain_InternetPasswordTests: XCTestCase {
     func testQueryItemsWithAttributes() throws {
         try Keychain.InternetPassword.save("Test1", forAccount: account1, securityDomain: "securityDomain")
         try Keychain.InternetPassword.save("Test2", forAccount: account1, server: "server")
-        try Keychain.InternetPassword.save("Test3", forAccount: account1, protocol: .HTTP)
-        try Keychain.InternetPassword.save("Test4", forAccount: account1, authenticationType: .HTTPBasic)
+        try Keychain.InternetPassword.save("Test3", forAccount: account1, protocol: .http)
+        try Keychain.InternetPassword.save("Test4", forAccount: account1, authenticationType: .httpBasic)
         try Keychain.InternetPassword.save("Test5", forAccount: account1, port: 80)
         try Keychain.InternetPassword.save("Test6", forAccount: account1, path: "path")
 
@@ -65,12 +65,12 @@ final class Keychain_InternetPasswordTests: XCTestCase {
         expect(queriedPasswords2?.map(\.password)) == ["Test2"]
 
         let queriedPasswords3 = try wait(description: "Keychain query") {
-            Keychain.InternetPassword.queryItems(protocol: .HTTP, completion: $0)
+            Keychain.InternetPassword.queryItems(protocol: .http, completion: $0)
         }
         expect(queriedPasswords3?.map(\.password)) == ["Test3"]
 
         let queriedPasswords4 = try wait(description: "Keychain query") {
-            Keychain.InternetPassword.queryItems(authenticationType: .HTTPBasic, completion: $0)
+            Keychain.InternetPassword.queryItems(authenticationType: .httpBasic, completion: $0)
         }
         expect(queriedPasswords4?.map(\.password)) == ["Test4"]
 
@@ -97,19 +97,21 @@ final class Keychain_InternetPasswordTests: XCTestCase {
     func testAttributesOfSavedItem() throws {
         let securityDomain = "security domain"
         let server = "dvesecurity.test"
-        let `protocol`: Keychain.InternetPassword.NetworkProtocol = .HTTP
-        let authenticationType: Keychain.InternetPassword.AuthenticationType = .HTTPBasic
+        let `protocol`: Keychain.InternetPassword.NetworkProtocol = .http
+        let authenticationType: Keychain.InternetPassword.AuthenticationType = .httpBasic
         let port: UInt16 = 80
         let path = "test"
 
-        try Keychain.InternetPassword.save(password,
-                                           forAccount: account1,
-                                           securityDomain: securityDomain,
-                                           server: server,
-                                           protocol: `protocol`,
-                                           authenticationType: authenticationType,
-                                           port: port,
-                                           path: path)
+        try Keychain.InternetPassword.save(
+            password,
+            forAccount: account1,
+            securityDomain: securityDomain,
+            server: server,
+            protocol: `protocol`,
+            authenticationType: authenticationType,
+            port: port,
+            path: path
+        )
 
         let items = try wait(description: "Keychain query") {
             Keychain.InternetPassword.queryItems(completion: $0)

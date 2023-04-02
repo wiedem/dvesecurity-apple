@@ -5,7 +5,7 @@ import Foundation
 import Security
 
 public extension RSAPublicKey {
-    static var secKeyClass: SecKeyClass { .public(.RSA) }
+    static var secKeyClass: SecKeyClass { .public(.rsa) }
 }
 
 public extension RSAPublicKey where Self: ConvertibleToSecKey {

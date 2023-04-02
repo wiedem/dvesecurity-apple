@@ -52,7 +52,7 @@ final class Keychain_SecureEnclaveTestsiOS13: TestCaseiOS13Device {
     func testQuerySecureEnclaveKeyDoesntReturnRegularECCKey() throws {
         let keyTag = "Test Tag \(#function)"
 
-        _ = try Crypto.ECC.PrivateKey(curve: .P256, inKeychainWithTag: keyTag)
+        _ = try Crypto.ECC.PrivateKey(curve: .p256, inKeychainWithTag: keyTag)
 
         expect { () in
             let queriedSecureEnclaveKey: Crypto.ECC.SecureEnclaveKey? = try Keychain.queryKey(withTag: keyTag)

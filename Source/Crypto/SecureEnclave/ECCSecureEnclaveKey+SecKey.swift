@@ -5,7 +5,7 @@ import Foundation
 import Security
 
 public extension ECCSecureEnclaveKey {
-    static var secKeyClass: SecKeyClass { .private(.ECSECPrimeRandom) }
+    static var secKeyClass: SecKeyClass { .private(.ellipticCurve) }
 }
 
 public extension ECCSecureEnclaveKey where Self: ConvertibleToSecKey & CustomDebugStringConvertible {

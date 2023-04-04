@@ -20,10 +20,10 @@ public extension ASN1.X509 {
             self.subjectPublicKey = subjectPublicKey
         }
 
-        public init<Key>(_ rsaPublicKey: Key) where Key: RSAPublicKey & PKCS1Convertible {
+        public init(_ rsaPublicKey: some RSAPublicKey & PKCS1Convertible) {
             let subjectPublicKey = expectNoError {
                 let pkcs1PublicKey = try ASN1.PKCS1.RSAPublicKey(derData: rsaPublicKey.pkcs1Representation)
-                return ASN1BitString(bytes: try ArraySlice(pkcs1PublicKey.derBytes()))
+                return try ASN1BitString(bytes: ArraySlice(pkcs1PublicKey.derBytes()))
             }
 
             self.init(algorithm: .rsaPublicKeyIdentifier, subjectPublicKey: subjectPublicKey)

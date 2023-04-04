@@ -21,7 +21,7 @@ public extension RawRepresentable where Self: ASN1IntegerRepresentable, RawValue
     init(derIntegerBytes: ArraySlice<UInt8>) throws {
         let rawValue = try RawValue(derIntegerBytes: derIntegerBytes)
 
-        guard let instance = Self.init(rawValue: rawValue) else {
+        guard let instance = Self(rawValue: rawValue) else {
             throw ASN1.IntegerRepresentableError.invalidValue(derIntegerBytes: derIntegerBytes)
         }
         self = instance
@@ -41,7 +41,7 @@ extension Array: DERImplicitlyTaggable where Element: DERImplicitlyTaggable {
         self = try DER.sequence(rootNode, identifier: identifier) { nodes in
             var elements = [Element]()
             while let node = nodes.next() {
-                elements.append(try Element(derEncoded: node))
+                try elements.append(Element(derEncoded: node))
             }
             return Self(elements)
         }

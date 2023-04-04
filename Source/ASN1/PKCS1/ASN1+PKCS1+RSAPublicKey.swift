@@ -21,7 +21,7 @@ public extension ASN1.PKCS1 {
 
 public extension ASN1.PKCS1.RSAPublicKey {
     /// Creates a RSA public key instance from DER encoded byte sequence.
-    init<S>(derData: S) throws where S: Sequence, S.Element == UInt8 {
+    init(derData: some Sequence<UInt8>) throws {
         let node = try DER.parse(Array(derData))
         try self.init(derEncoded: node)
     }

@@ -15,7 +15,7 @@ final class ASN1X509Tests: XCTestCase {
         let node = try DER.parse(Array(x509Data))
         let subjectPublicKeyInfo = try ASN1.X509.SubjectPublicKeyInfo(derEncoded: node)
 
-        expect { () -> Void in
+        expect { () in
             _ = try subjectPublicKeyInfo.pkcs1RSAPublicKey()
         }.toNot(throwError())
     }

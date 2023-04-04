@@ -2,9 +2,6 @@
 // Licensed under the MIT License.
 
 import Foundation
-#if canImport(DVESecurity_ObjC)
-import DVESecurity_ObjC
-#endif
 
 /// A type representing a RSA private key.
 public protocol RSAPrivateKey: RSAKey, DefinesSecKeyClass {
@@ -15,14 +12,17 @@ public protocol RSAPrivateKey: RSAKey, DefinesSecKeyClass {
 }
 
 public extension RSAPrivateKey where Self: PKCS1Convertible {
-    /// Calculates the RSA public key.
+    /// Calculates the RSA public key for the private key.
+    ///
+    /// The default implementation of the conversion is done by creating a PKCS#1 format of the key and extracting the public key info from this form.
+    ///
+    /// - Attention: If the key is not a valid RSA private key or cannot be converted to a PKCS#1 format, program execution is stopped via `fatalError`.
     ///
     /// - Returns: A RSA public key instance.
     func publicKey<PK>() -> PK where PK: RSAPublicKey & PKCS1Convertible {
         expectNoError {
-            let asn1PublicKey = try ASN1.RSAPrivateKey(pkcs1Data: pkcs1Representation).publicKey
-            let encodedPublicKey = try ASN1.Coder.encode(asn1PublicKey)
-            return try PK(pkcs1Representation: encodedPublicKey)
+            let pkcs1PublicKey = try ASN1.PKCS1.RSAPrivateKey(derData: pkcs1Representation).publicKey()
+            return try PK(pkcs1Representation: pkcs1PublicKey.derBytes())
         }
     }
 }

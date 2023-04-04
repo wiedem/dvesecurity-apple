@@ -83,11 +83,6 @@
 		657DDBC124F98898004441F9 /* Keychain+ECCTestsiOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DDBC024F98898004441F9 /* Keychain+ECCTestsiOS13.swift */; };
 		657DDBC324F98915004441F9 /* Keychain+RSATestsiOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DDBC224F98915004441F9 /* Keychain+RSATestsiOS13.swift */; };
 		657DDBC524F98981004441F9 /* Keychain+AESTestsiOS13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657DDBC424F98981004441F9 /* Keychain+AESTestsiOS13.swift */; };
-		658183432505846800B482F1 /* ASN1+RSAPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658183422505846800B482F1 /* ASN1+RSAPrivateKey.swift */; };
-		658183452505847800B482F1 /* ASN1+RSAPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658183442505847800B482F1 /* ASN1+RSAPublicKey.swift */; };
-		6581834825058D4700B482F1 /* DVEASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 6581834625058D4700B482F1 /* DVEASN1.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6581834925058D4700B482F1 /* DVEASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6581834725058D4700B482F1 /* DVEASN1.m */; };
-		6581834B2505940300B482F1 /* DVEASN1+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6581834A250593CB00B482F1 /* DVEASN1+Internal.h */; };
 		6589D09C260591A500DB637E /* AppEntitlements+MachOFat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589D09B260591A500DB637E /* AppEntitlements+MachOFat.swift */; };
 		6589D0A42605970F00DB637E /* CpuInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589D0A32605970F00DB637E /* CpuInfo.swift */; };
 		6598BB182718265A006DA1C1 /* Crypto+CryptoKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6598BB172718265A006DA1C1 /* Crypto+CryptoKit.swift */; };
@@ -129,11 +124,6 @@
 		65C12AF624FAFFEE00F21629 /* HMAC+SHA512.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C12AF524FAFFEE00F21629 /* HMAC+SHA512.swift */; };
 		65C12AF824FB036900F21629 /* Crypto+HMACTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C12AF724FB036900F21629 /* Crypto+HMACTests.swift */; };
 		65C518AE2705EFAA006D1F0D /* DVESecurity.docc in Sources */ = {isa = PBXBuildFile; fileRef = 65C518AD2705EFA9006D1F0D /* DVESecurity.docc */; };
-		65C902A52502EB0F007F2F76 /* DVEASN1Coder.h in Headers */ = {isa = PBXBuildFile; fileRef = 65C902A32502EB0F007F2F76 /* DVEASN1Coder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65C902A62502EB0F007F2F76 /* DVEASN1Coder.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C902A42502EB0F007F2F76 /* DVEASN1Coder.m */; };
-		65C903B72503119E007F2F76 /* DVEASN1CoderError.h in Headers */ = {isa = PBXBuildFile; fileRef = 65C903B52503119E007F2F76 /* DVEASN1CoderError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65C903B82503119E007F2F76 /* DVEASN1CoderError.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C903B62503119E007F2F76 /* DVEASN1CoderError.m */; };
-		65C903BA25031BA4007F2F76 /* ASN1+Coder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C903B925031BA4007F2F76 /* ASN1+Coder.swift */; };
 		65C903BC25031F0A007F2F76 /* RSAPublicKey+X509.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C903BB25031F0A007F2F76 /* RSAPublicKey+X509.swift */; };
 		65C903BE25039D8E007F2F76 /* Preconditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C903BD25039D8E007F2F76 /* Preconditions.swift */; };
 		65C903C02503A353007F2F76 /* X509RSAPublicKey.der in Resources */ = {isa = PBXBuildFile; fileRef = 65C903BF2503A353007F2F76 /* X509RSAPublicKey.der */; };
@@ -166,133 +156,19 @@
 		65E8C34A2722D22A0036E324 /* KeychainQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E8C3492722D22A0036E324 /* KeychainQueries.swift */; };
 		65E8C34C2722EFBB0036E324 /* Keychain+ItemAccessibility+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E8C34B2722EFBB0036E324 /* Keychain+ItemAccessibility+Internal.swift */; };
 		65E8C34E2723215C0036E324 /* CustomKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E8C34D2723215C0036E324 /* CustomKey.swift */; };
-		65EF67D4273AF40000B2A1C7 /* OCTET_STRING.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6763273AF3FA00B2A1C7 /* OCTET_STRING.c */; };
-		65EF67D5273AF40000B2A1C7 /* constr_SEQUENCE_ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6764273AF3FA00B2A1C7 /* constr_SEQUENCE_ber.c */; };
-		65EF67D6273AF40000B2A1C7 /* constr_SEQUENCE_OF.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6765273AF3FA00B2A1C7 /* constr_SEQUENCE_OF.h */; };
-		65EF67D7273AF40000B2A1C7 /* constr_SEQUENCE.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6766273AF3FA00B2A1C7 /* constr_SEQUENCE.c */; };
-		65EF67D8273AF40000B2A1C7 /* xer_support.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6767273AF3FA00B2A1C7 /* xer_support.h */; };
-		65EF67D9273AF40000B2A1C7 /* INTEGER.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6768273AF3FA00B2A1C7 /* INTEGER.h */; };
-		65EF67DA273AF40000B2A1C7 /* OCTET_STRING_ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6769273AF3FA00B2A1C7 /* OCTET_STRING_ber.c */; };
-		65EF67DB273AF40000B2A1C7 /* ECParameters.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF676A273AF3FB00B2A1C7 /* ECParameters.c */; };
-		65EF67DC273AF40000B2A1C7 /* constr_CHOICE_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF676B273AF3FB00B2A1C7 /* constr_CHOICE_xer.c */; };
-		65EF67DD273AF40000B2A1C7 /* OBJECT_IDENTIFIER.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF676C273AF3FB00B2A1C7 /* OBJECT_IDENTIFIER.c */; };
-		65EF67DE273AF40000B2A1C7 /* OBJECT_IDENTIFIER_print.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF676D273AF3FB00B2A1C7 /* OBJECT_IDENTIFIER_print.c */; };
-		65EF67DF273AF40000B2A1C7 /* asn_SET_OF.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF676E273AF3FB00B2A1C7 /* asn_SET_OF.h */; };
-		65EF67E0273AF40000B2A1C7 /* der_encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF676F273AF3FB00B2A1C7 /* der_encoder.c */; };
-		65EF67E1273AF40000B2A1C7 /* constr_TYPE.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6770273AF3FB00B2A1C7 /* constr_TYPE.h */; };
-		65EF67E2273AF40000B2A1C7 /* OtherPrimeInfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6771273AF3FB00B2A1C7 /* OtherPrimeInfo.c */; };
-		65EF67E3273AF40000B2A1C7 /* constraints.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6772273AF3FB00B2A1C7 /* constraints.h */; };
-		65EF67E4273AF40000B2A1C7 /* ber_tlv_tag.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6773273AF3FB00B2A1C7 /* ber_tlv_tag.h */; };
-		65EF67E5273AF40000B2A1C7 /* OCTET_STRING.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6774273AF3FB00B2A1C7 /* OCTET_STRING.h */; };
-		65EF67E6273AF40000B2A1C7 /* ber_tlv_length.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6775273AF3FB00B2A1C7 /* ber_tlv_length.h */; };
-		65EF67E7273AF40000B2A1C7 /* constr_SEQUENCE.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6776273AF3FB00B2A1C7 /* constr_SEQUENCE.h */; };
-		65EF67E8273AF40000B2A1C7 /* BIT_STRING_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6777273AF3FB00B2A1C7 /* BIT_STRING_xer.c */; };
-		65EF67E9273AF40000B2A1C7 /* ECParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6778273AF3FB00B2A1C7 /* ECParameters.h */; };
-		65EF67EA273AF40000B2A1C7 /* der_encoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6779273AF3FC00B2A1C7 /* der_encoder.h */; };
-		65EF67EB273AF40000B2A1C7 /* constr_SET_OF.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF677A273AF3FC00B2A1C7 /* constr_SET_OF.c */; };
-		65EF67EC273AF40000B2A1C7 /* INTEGER_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF677B273AF3FC00B2A1C7 /* INTEGER_xer.c */; };
-		65EF67ED273AF40000B2A1C7 /* OPEN_TYPE_ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF677C273AF3FC00B2A1C7 /* OPEN_TYPE_ber.c */; };
-		65EF67EE273AF40000B2A1C7 /* asn_codecs_prim.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF677D273AF3FC00B2A1C7 /* asn_codecs_prim.h */; };
-		65EF67EF273AF40000B2A1C7 /* BIT_STRING_rfill.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF677E273AF3FC00B2A1C7 /* BIT_STRING_rfill.c */; };
-		65EF67F0273AF40000B2A1C7 /* RSAPrivateKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF677F273AF3FC00B2A1C7 /* RSAPrivateKey.h */; };
-		65EF67F1273AF40000B2A1C7 /* ANY.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6780273AF3FC00B2A1C7 /* ANY.c */; };
-		65EF67F2273AF40000B2A1C7 /* constr_CHOICE_print.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6781273AF3FC00B2A1C7 /* constr_CHOICE_print.c */; };
-		65EF67F3273AF40000B2A1C7 /* AlgorithmIdentifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6782273AF3FC00B2A1C7 /* AlgorithmIdentifier.h */; };
-		65EF67F4273AF40000B2A1C7 /* constraints.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6783273AF3FC00B2A1C7 /* constraints.c */; };
-		65EF67F5273AF40000B2A1C7 /* asn_codecs_prim.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6784273AF3FC00B2A1C7 /* asn_codecs_prim.c */; };
-		65EF67F6273AF40000B2A1C7 /* Version.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6785273AF3FC00B2A1C7 /* Version.h */; };
-		65EF67F7273AF40000B2A1C7 /* EXTERNAL.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6786273AF3FC00B2A1C7 /* EXTERNAL.h */; };
-		65EF67F8273AF40000B2A1C7 /* RSAPublicKey.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6787273AF3FC00B2A1C7 /* RSAPublicKey.c */; };
-		65EF67F9273AF40000B2A1C7 /* xer_encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6788273AF3FC00B2A1C7 /* xer_encoder.c */; };
-		65EF67FA273AF40000B2A1C7 /* INTEGER_rfill.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6789273AF3FC00B2A1C7 /* INTEGER_rfill.c */; };
-		65EF67FB273AF40000B2A1C7 /* OtherPrimeInfos.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF678A273AF3FD00B2A1C7 /* OtherPrimeInfos.h */; };
-		65EF67FC273AF40000B2A1C7 /* constr_CHOICE.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF678B273AF3FD00B2A1C7 /* constr_CHOICE.c */; };
-		65EF67FD273AF40000B2A1C7 /* Version.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF678C273AF3FD00B2A1C7 /* Version.c */; };
-		65EF67FE273AF40000B2A1C7 /* xer_decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF678D273AF3FD00B2A1C7 /* xer_decoder.c */; };
-		65EF67FF273AF40000B2A1C7 /* ber_decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF678E273AF3FD00B2A1C7 /* ber_decoder.h */; };
-		65EF6800273AF40000B2A1C7 /* xer_decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF678F273AF3FD00B2A1C7 /* xer_decoder.h */; };
-		65EF6801273AF40000B2A1C7 /* asn_bit_data.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6790273AF3FD00B2A1C7 /* asn_bit_data.c */; };
-		65EF6802273AF40000B2A1C7 /* constr_SET_OF_print.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6791273AF3FD00B2A1C7 /* constr_SET_OF_print.c */; };
-		65EF6803273AF40000B2A1C7 /* constr_SEQUENCE_OF_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6792273AF3FD00B2A1C7 /* constr_SEQUENCE_OF_xer.c */; };
-		65EF6804273AF40000B2A1C7 /* ber_decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6793273AF3FD00B2A1C7 /* ber_decoder.c */; };
-		65EF6805273AF40000B2A1C7 /* ber_tlv_tag.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6794273AF3FD00B2A1C7 /* ber_tlv_tag.c */; };
-		65EF6806273AF40000B2A1C7 /* xer_support.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6795273AF3FD00B2A1C7 /* xer_support.c */; };
-		65EF6807273AF40000B2A1C7 /* constr_SET_OF_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6796273AF3FD00B2A1C7 /* constr_SET_OF_xer.c */; };
-		65EF6808273AF40000B2A1C7 /* ANY_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6797273AF3FD00B2A1C7 /* ANY_xer.c */; };
-		65EF6809273AF40000B2A1C7 /* asn_codecs_prim_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6798273AF3FD00B2A1C7 /* asn_codecs_prim_xer.c */; };
-		65EF680A273AF40000B2A1C7 /* OCTET_STRING_print.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6799273AF3FD00B2A1C7 /* OCTET_STRING_print.c */; };
-		65EF680B273AF40000B2A1C7 /* constr_SEQUENCE_rfill.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF679A273AF3FD00B2A1C7 /* constr_SEQUENCE_rfill.c */; };
-		65EF680C273AF40000B2A1C7 /* OtherPrimeInfos.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF679B273AF3FD00B2A1C7 /* OtherPrimeInfos.c */; };
-		65EF680D273AF40000B2A1C7 /* OPEN_TYPE.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF679C273AF3FD00B2A1C7 /* OPEN_TYPE.h */; };
-		65EF680E273AF40000B2A1C7 /* RSAPublicKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF679D273AF3FD00B2A1C7 /* RSAPublicKey.h */; };
-		65EF680F273AF40000B2A1C7 /* OCTET_STRING_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF679E273AF3FE00B2A1C7 /* OCTET_STRING_xer.c */; };
-		65EF6810273AF40000B2A1C7 /* asn_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF679F273AF3FE00B2A1C7 /* asn_internal.h */; };
-		65EF6811273AF40000B2A1C7 /* asn_random_fill.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67A0273AF3FE00B2A1C7 /* asn_random_fill.h */; };
-		65EF6813273AF40000B2A1C7 /* ANY_ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67A2273AF3FE00B2A1C7 /* ANY_ber.c */; };
-		65EF6814273AF40000B2A1C7 /* INTEGER_ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67A3273AF3FE00B2A1C7 /* INTEGER_ber.c */; };
-		65EF6815273AF40000B2A1C7 /* asn_application.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67A4273AF3FE00B2A1C7 /* asn_application.c */; };
-		65EF6816273AF40000B2A1C7 /* constr_SEQUENCE_print.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67A5273AF3FE00B2A1C7 /* constr_SEQUENCE_print.c */; };
-		65EF6818273AF40000B2A1C7 /* OBJECT_IDENTIFIER_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67A7273AF3FE00B2A1C7 /* OBJECT_IDENTIFIER_xer.c */; };
-		65EF6819273AF40000B2A1C7 /* xer_encoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67A8273AF3FE00B2A1C7 /* xer_encoder.h */; };
-		65EF681A273AF40000B2A1C7 /* asn_random_fill.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67A9273AF3FE00B2A1C7 /* asn_random_fill.c */; };
-		65EF681B273AF40000B2A1C7 /* asn_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67AA273AF3FE00B2A1C7 /* asn_system.h */; };
-		65EF681C273AF40000B2A1C7 /* constr_TYPE.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67AB273AF3FE00B2A1C7 /* constr_TYPE.c */; };
-		65EF681D273AF40000B2A1C7 /* ANY.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67AC273AF3FE00B2A1C7 /* ANY.h */; };
-		65EF681E273AF40000B2A1C7 /* asn_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67AD273AF3FE00B2A1C7 /* asn_application.h */; };
-		65EF681F273AF40100B2A1C7 /* EXTERNAL.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67AE273AF3FE00B2A1C7 /* EXTERNAL.c */; };
-		65EF6820273AF40100B2A1C7 /* asn_codecs.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67AF273AF3FE00B2A1C7 /* asn_codecs.h */; };
-		65EF6821273AF40100B2A1C7 /* asn_bit_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67B0273AF3FE00B2A1C7 /* asn_bit_data.h */; };
-		65EF6822273AF40100B2A1C7 /* OCTET_STRING_rfill.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67B1273AF3FF00B2A1C7 /* OCTET_STRING_rfill.c */; };
-		65EF6823273AF40100B2A1C7 /* INTEGER.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67B2273AF3FF00B2A1C7 /* INTEGER.c */; };
-		65EF6824273AF40100B2A1C7 /* constr_SEQUENCE_OF.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67B3273AF3FF00B2A1C7 /* constr_SEQUENCE_OF.c */; };
-		65EF6825273AF40100B2A1C7 /* asn_internal.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67B4273AF3FF00B2A1C7 /* asn_internal.c */; };
-		65EF6826273AF40100B2A1C7 /* constr_SEQUENCE_OF_ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67B5273AF3FF00B2A1C7 /* constr_SEQUENCE_OF_ber.c */; };
-		65EF6827273AF40100B2A1C7 /* constr_SET_OF_ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67B6273AF3FF00B2A1C7 /* constr_SET_OF_ber.c */; };
-		65EF6828273AF40100B2A1C7 /* ber_tlv_length.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67B7273AF3FF00B2A1C7 /* ber_tlv_length.c */; };
-		65EF6829273AF40100B2A1C7 /* SubjectPublicKeyInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67B8273AF3FF00B2A1C7 /* SubjectPublicKeyInfo.h */; };
-		65EF682A273AF40100B2A1C7 /* asn_codecs_prim_ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67B9273AF3FF00B2A1C7 /* asn_codecs_prim_ber.c */; };
-		65EF682B273AF40100B2A1C7 /* asn_ioc.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67BA273AF3FF00B2A1C7 /* asn_ioc.h */; };
-		65EF682C273AF40100B2A1C7 /* GraphicString.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67BB273AF3FF00B2A1C7 /* GraphicString.h */; };
-		65EF682D273AF40100B2A1C7 /* OPEN_TYPE.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67BC273AF3FF00B2A1C7 /* OPEN_TYPE.c */; };
-		65EF682E273AF40100B2A1C7 /* constr_CHOICE.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67BD273AF3FF00B2A1C7 /* constr_CHOICE.h */; };
-		65EF682F273AF40100B2A1C7 /* constr_CHOICE_rfill.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67BE273AF3FF00B2A1C7 /* constr_CHOICE_rfill.c */; };
-		65EF6830273AF40100B2A1C7 /* ObjectDescriptor.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67BF273AF3FF00B2A1C7 /* ObjectDescriptor.c */; };
-		65EF6831273AF40100B2A1C7 /* constr_SET_OF.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67C0273AF3FF00B2A1C7 /* constr_SET_OF.h */; };
-		65EF6832273AF40100B2A1C7 /* asn_SEQUENCE_OF.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67C1273AF3FF00B2A1C7 /* asn_SEQUENCE_OF.h */; };
-		65EF6833273AF40100B2A1C7 /* BIT_STRING.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67C2273AF3FF00B2A1C7 /* BIT_STRING.c */; };
-		65EF6834273AF40100B2A1C7 /* OBJECT_IDENTIFIER_rfill.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67C3273AF3FF00B2A1C7 /* OBJECT_IDENTIFIER_rfill.c */; };
-		65EF6835273AF40100B2A1C7 /* BIT_STRING.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67C4273AF3FF00B2A1C7 /* BIT_STRING.h */; };
-		65EF6836273AF40100B2A1C7 /* ObjectDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67C5273AF40000B2A1C7 /* ObjectDescriptor.h */; };
-		65EF6837273AF40100B2A1C7 /* OBJECT_IDENTIFIER.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67C6273AF40000B2A1C7 /* OBJECT_IDENTIFIER.h */; };
-		65EF6838273AF40100B2A1C7 /* OtherPrimeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF67C7273AF40000B2A1C7 /* OtherPrimeInfo.h */; };
-		65EF6839273AF40100B2A1C7 /* INTEGER_print.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67C8273AF40000B2A1C7 /* INTEGER_print.c */; };
-		65EF683A273AF40100B2A1C7 /* AlgorithmIdentifier.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67C9273AF40000B2A1C7 /* AlgorithmIdentifier.c */; };
-		65EF683B273AF40100B2A1C7 /* constr_SEQUENCE_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67CA273AF40000B2A1C7 /* constr_SEQUENCE_xer.c */; };
-		65EF683C273AF40100B2A1C7 /* BIT_STRING_print.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67CB273AF40000B2A1C7 /* BIT_STRING_print.c */; };
-		65EF683D273AF40100B2A1C7 /* constr_SET_OF_rfill.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67CC273AF40000B2A1C7 /* constr_SET_OF_rfill.c */; };
-		65EF683E273AF40100B2A1C7 /* RSAPrivateKey.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67CD273AF40000B2A1C7 /* RSAPrivateKey.c */; };
-		65EF683F273AF40100B2A1C7 /* asn_SET_OF.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67CE273AF40000B2A1C7 /* asn_SET_OF.c */; };
-		65EF6840273AF40100B2A1C7 /* GraphicString.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67CF273AF40000B2A1C7 /* GraphicString.c */; };
-		65EF6841273AF40100B2A1C7 /* SubjectPublicKeyInfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67D0273AF40000B2A1C7 /* SubjectPublicKeyInfo.c */; };
-		65EF6842273AF40100B2A1C7 /* asn_SEQUENCE_OF.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67D1273AF40000B2A1C7 /* asn_SEQUENCE_OF.c */; };
-		65EF6843273AF40100B2A1C7 /* constr_CHOICE_ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67D2273AF40000B2A1C7 /* constr_CHOICE_ber.c */; };
-		65EF6844273AF40100B2A1C7 /* OPEN_TYPE_xer.c in Sources */ = {isa = PBXBuildFile; fileRef = 65EF67D3273AF40000B2A1C7 /* OPEN_TYPE_xer.c */; };
-		65EF6846273AF63400B2A1C7 /* asn_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 65EF6845273AF63400B2A1C7 /* asn_config.h */; };
 		65EF684F273D479300B2A1C7 /* Keychain+InternetPassword+ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF684E273D479300B2A1C7 /* Keychain+InternetPassword+ItemTests.swift */; };
 		65EF6851273D92A900B2A1C7 /* Keychain+Legacy+InternetPassword+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6850273D92A900B2A1C7 /* Keychain+Legacy+InternetPassword+Internal.swift */; };
-		65EF6859273ECF3800B2A1C7 /* ASN1+CoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6858273ECF3800B2A1C7 /* ASN1+CoderTests.swift */; };
+		65EF6859273ECF3800B2A1C7 /* ASN1PKCS1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF6858273ECF3800B2A1C7 /* ASN1PKCS1Tests.swift */; };
 		65EF685B2740598600B2A1C7 /* ECCSecureEnclaveKey+SecKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF685A2740598600B2A1C7 /* ECCSecureEnclaveKey+SecKey.swift */; };
 		65EF685D2741566500B2A1C7 /* Crypto+SecureEnclaveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF685C2741566500B2A1C7 /* Crypto+SecureEnclaveTests.swift */; };
-		65FB35DF2504064D00C38585 /* DVEASN1RSAPrivateKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FB35DD2504064D00C38585 /* DVEASN1RSAPrivateKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65FB35E02504064E00C38585 /* DVEASN1RSAPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FB35DE2504064D00C38585 /* DVEASN1RSAPrivateKey.m */; };
-		65FB35E32504065D00C38585 /* DVEASN1RSAPublicKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FB35E12504065D00C38585 /* DVEASN1RSAPublicKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65FB35E42504065D00C38585 /* DVEASN1RSAPublicKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FB35E22504065D00C38585 /* DVEASN1RSAPublicKey.m */; };
-		65FB35E7250406FC00C38585 /* DVEASN1RSAOtherPrimeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FB35E5250406FC00C38585 /* DVEASN1RSAOtherPrimeInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65FB35E8250406FC00C38585 /* DVEASN1RSAOtherPrimeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FB35E6250406FC00C38585 /* DVEASN1RSAOtherPrimeInfo.m */; };
-		65FB35EA2504129F00C38585 /* DVEASN1RSAOtherPrimeInfo+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FB35E92504124900C38585 /* DVEASN1RSAOtherPrimeInfo+Internal.h */; };
-		65FB35EC2504130D00C38585 /* DVEASN1RSAPrivateKey+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FB35EB2504130D00C38585 /* DVEASN1RSAPrivateKey+Internal.h */; };
-		65FB35EE2504137C00C38585 /* DVEASN1RSAPublicKey+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FB35ED2504137C00C38585 /* DVEASN1RSAPublicKey+Internal.h */; };
 		65FB35F225042E0B00C38585 /* DVESecurity.h in Headers */ = {isa = PBXBuildFile; fileRef = 65FB35EF25042C5300C38585 /* DVESecurity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9DB7A129D90B56002F5F1C /* ASN1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB7A029D90B56002F5F1C /* ASN1.swift */; };
+		8B9DB7A429D90D63002F5F1C /* SwiftASN1 in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9DB7A329D90D63002F5F1C /* SwiftASN1 */; };
+		8B9DB7A729D9BBCA002F5F1C /* ASN1+PKCS1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB7A629D9BBCA002F5F1C /* ASN1+PKCS1.swift */; };
+		8B9DB7A929D9BCDA002F5F1C /* ASN1+PKCS1+RSAPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB7A829D9BCDA002F5F1C /* ASN1+PKCS1+RSAPrivateKey.swift */; };
+		8B9DB7AB29D9BCFB002F5F1C /* ASN1+PKCS1+RSAPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB7AA29D9BCFB002F5F1C /* ASN1+PKCS1+RSAPublicKey.swift */; };
+		8B9DB7AE29D9D042002F5F1C /* ASN1+X509.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB7AD29D9D042002F5F1C /* ASN1+X509.swift */; };
+		8B9DB7B729DC7765002F5F1C /* ASN1X509Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB7B529DC7741002F5F1C /* ASN1X509Tests.swift */; };
 		9103A00424F684630093AA18 /* Keychain+QueryAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103A00324F684630093AA18 /* Keychain+QueryAuthentication.swift */; };
 		9103A00624F684AF0093AA18 /* Keychain+QueryAuthentication+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103A00524F684AF0093AA18 /* Keychain+QueryAuthentication+Internal.swift */; };
 		9103A00824F6ADC20093AA18 /* Keychain+AccessControlFlagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103A00724F6ADC20093AA18 /* Keychain+AccessControlFlagsTests.swift */; };
@@ -467,7 +343,6 @@
 		6508259E270747BB00F78672 /* DVESecurityTestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DVESecurityTestApp.entitlements; sourceTree = "<group>"; };
 		650825AA27074FFE00F78672 /* InteractiveTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTestViewModel.swift; sourceTree = "<group>"; };
 		6512249624CB0E3A00A2CEF4 /* DVESecurity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DVESecurity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6512249924CB0E3A00A2CEF4 /* DVESecurity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVESecurity.h; sourceTree = "<group>"; };
 		6512249A24CB0E3A00A2CEF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Resources/Info.plist; sourceTree = "<group>"; };
 		6512249F24CB0E3A00A2CEF4 /* DVESecurityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DVESecurityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		651224A624CB0E3A00A2CEF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -483,7 +358,6 @@
 		6521CF0924DB5CB10018EEA5 /* Keychain+GenericPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+GenericPassword.swift"; sourceTree = "<group>"; };
 		6521CF0B24DB66830018EEA5 /* Keychain+InternetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+InternetPassword.swift"; sourceTree = "<group>"; };
 		653A87AE24E1C30500934AC0 /* Crypto+AsymmetricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+AsymmetricTests.swift"; sourceTree = "<group>"; };
-		653B77BB27682768006E0B51 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		654490FB252E5B7C00D67C43 /* InteractiveTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = InteractiveTests.xctestplan; path = InteractiveTests/InteractiveTests.xctestplan; sourceTree = SOURCE_ROOT; };
 		65449112252E611000D67C43 /* InteractiveTestCaseDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTestCaseDevice.swift; sourceTree = "<group>"; };
 		65449117252E612300D67C43 /* InteractiveTestCaseiOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTestCaseiOS13.swift; sourceTree = "<group>"; };
@@ -532,11 +406,6 @@
 		657DDBC024F98898004441F9 /* Keychain+ECCTestsiOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+ECCTestsiOS13.swift"; sourceTree = "<group>"; };
 		657DDBC224F98915004441F9 /* Keychain+RSATestsiOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+RSATestsiOS13.swift"; sourceTree = "<group>"; };
 		657DDBC424F98981004441F9 /* Keychain+AESTestsiOS13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+AESTestsiOS13.swift"; sourceTree = "<group>"; };
-		658183422505846800B482F1 /* ASN1+RSAPrivateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASN1+RSAPrivateKey.swift"; sourceTree = "<group>"; };
-		658183442505847800B482F1 /* ASN1+RSAPublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASN1+RSAPublicKey.swift"; sourceTree = "<group>"; };
-		6581834625058D4700B482F1 /* DVEASN1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVEASN1.h; sourceTree = "<group>"; };
-		6581834725058D4700B482F1 /* DVEASN1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DVEASN1.m; sourceTree = "<group>"; };
-		6581834A250593CB00B482F1 /* DVEASN1+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DVEASN1+Internal.h"; sourceTree = "<group>"; };
 		6589D09B260591A500DB637E /* AppEntitlements+MachOFat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppEntitlements+MachOFat.swift"; sourceTree = "<group>"; };
 		6589D0A32605970F00DB637E /* CpuInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CpuInfo.swift; sourceTree = "<group>"; };
 		6598BB172718265A006DA1C1 /* Crypto+CryptoKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+CryptoKit.swift"; sourceTree = "<group>"; };
@@ -547,7 +416,6 @@
 		659ABC7424DDF88600F37338 /* Crypto+RSA+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+RSA+Internal.swift"; sourceTree = "<group>"; };
 		659ABC7624DDFDA000F37338 /* Crypto+AES+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+AES+Internal.swift"; sourceTree = "<group>"; };
 		659ABC7B24DE053300F37338 /* Hashing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
-		65A1D43624EDCE6B006E19E6 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		65A4301624EEFE5C00E326D9 /* TestApp.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestApp.xcconfig; sourceTree = "<group>"; };
 		65A4301724EF0FA100E326D9 /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		65AB87EF271F0DE2003DF680 /* TestCaseLegacyKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCaseLegacyKeychain.swift; sourceTree = "<group>"; };
@@ -582,11 +450,6 @@
 		65C12AF724FB036900F21629 /* Crypto+HMACTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+HMACTests.swift"; sourceTree = "<group>"; };
 		65C518AC2705EF29006D1F0D /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		65C518AD2705EFA9006D1F0D /* DVESecurity.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DVESecurity.docc; sourceTree = "<group>"; };
-		65C902A32502EB0F007F2F76 /* DVEASN1Coder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVEASN1Coder.h; sourceTree = "<group>"; };
-		65C902A42502EB0F007F2F76 /* DVEASN1Coder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DVEASN1Coder.m; sourceTree = "<group>"; };
-		65C903B52503119E007F2F76 /* DVEASN1CoderError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVEASN1CoderError.h; sourceTree = "<group>"; };
-		65C903B62503119E007F2F76 /* DVEASN1CoderError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DVEASN1CoderError.m; sourceTree = "<group>"; };
-		65C903B925031BA4007F2F76 /* ASN1+Coder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASN1+Coder.swift"; sourceTree = "<group>"; };
 		65C903BB25031F0A007F2F76 /* RSAPublicKey+X509.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RSAPublicKey+X509.swift"; sourceTree = "<group>"; };
 		65C903BD25039D8E007F2F76 /* Preconditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preconditions.swift; sourceTree = "<group>"; };
 		65C903BF2503A353007F2F76 /* X509RSAPublicKey.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = X509RSAPublicKey.der; sourceTree = "<group>"; };
@@ -617,136 +480,18 @@
 		65E8C3492722D22A0036E324 /* KeychainQueries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQueries.swift; sourceTree = "<group>"; };
 		65E8C34B2722EFBB0036E324 /* Keychain+ItemAccessibility+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+ItemAccessibility+Internal.swift"; sourceTree = "<group>"; };
 		65E8C34D2723215C0036E324 /* CustomKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKey.swift; sourceTree = "<group>"; };
-		65EF6763273AF3FA00B2A1C7 /* OCTET_STRING.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OCTET_STRING.c; sourceTree = "<group>"; };
-		65EF6764273AF3FA00B2A1C7 /* constr_SEQUENCE_ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SEQUENCE_ber.c; sourceTree = "<group>"; };
-		65EF6765273AF3FA00B2A1C7 /* constr_SEQUENCE_OF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constr_SEQUENCE_OF.h; sourceTree = "<group>"; };
-		65EF6766273AF3FA00B2A1C7 /* constr_SEQUENCE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SEQUENCE.c; sourceTree = "<group>"; };
-		65EF6767273AF3FA00B2A1C7 /* xer_support.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xer_support.h; sourceTree = "<group>"; };
-		65EF6768273AF3FA00B2A1C7 /* INTEGER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INTEGER.h; sourceTree = "<group>"; };
-		65EF6769273AF3FA00B2A1C7 /* OCTET_STRING_ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OCTET_STRING_ber.c; sourceTree = "<group>"; };
-		65EF676A273AF3FB00B2A1C7 /* ECParameters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ECParameters.c; sourceTree = "<group>"; };
-		65EF676B273AF3FB00B2A1C7 /* constr_CHOICE_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_CHOICE_xer.c; sourceTree = "<group>"; };
-		65EF676C273AF3FB00B2A1C7 /* OBJECT_IDENTIFIER.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OBJECT_IDENTIFIER.c; sourceTree = "<group>"; };
-		65EF676D273AF3FB00B2A1C7 /* OBJECT_IDENTIFIER_print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OBJECT_IDENTIFIER_print.c; sourceTree = "<group>"; };
-		65EF676E273AF3FB00B2A1C7 /* asn_SET_OF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_SET_OF.h; sourceTree = "<group>"; };
-		65EF676F273AF3FB00B2A1C7 /* der_encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = der_encoder.c; sourceTree = "<group>"; };
-		65EF6770273AF3FB00B2A1C7 /* constr_TYPE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constr_TYPE.h; sourceTree = "<group>"; };
-		65EF6771273AF3FB00B2A1C7 /* OtherPrimeInfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OtherPrimeInfo.c; sourceTree = "<group>"; };
-		65EF6772273AF3FB00B2A1C7 /* constraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constraints.h; sourceTree = "<group>"; };
-		65EF6773273AF3FB00B2A1C7 /* ber_tlv_tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ber_tlv_tag.h; sourceTree = "<group>"; };
-		65EF6774273AF3FB00B2A1C7 /* OCTET_STRING.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTET_STRING.h; sourceTree = "<group>"; };
-		65EF6775273AF3FB00B2A1C7 /* ber_tlv_length.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ber_tlv_length.h; sourceTree = "<group>"; };
-		65EF6776273AF3FB00B2A1C7 /* constr_SEQUENCE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constr_SEQUENCE.h; sourceTree = "<group>"; };
-		65EF6777273AF3FB00B2A1C7 /* BIT_STRING_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BIT_STRING_xer.c; sourceTree = "<group>"; };
-		65EF6778273AF3FB00B2A1C7 /* ECParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECParameters.h; sourceTree = "<group>"; };
-		65EF6779273AF3FC00B2A1C7 /* der_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = der_encoder.h; sourceTree = "<group>"; };
-		65EF677A273AF3FC00B2A1C7 /* constr_SET_OF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SET_OF.c; sourceTree = "<group>"; };
-		65EF677B273AF3FC00B2A1C7 /* INTEGER_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = INTEGER_xer.c; sourceTree = "<group>"; };
-		65EF677C273AF3FC00B2A1C7 /* OPEN_TYPE_ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OPEN_TYPE_ber.c; sourceTree = "<group>"; };
-		65EF677D273AF3FC00B2A1C7 /* asn_codecs_prim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_codecs_prim.h; sourceTree = "<group>"; };
-		65EF677E273AF3FC00B2A1C7 /* BIT_STRING_rfill.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BIT_STRING_rfill.c; sourceTree = "<group>"; };
-		65EF677F273AF3FC00B2A1C7 /* RSAPrivateKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAPrivateKey.h; sourceTree = "<group>"; };
-		65EF6780273AF3FC00B2A1C7 /* ANY.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ANY.c; sourceTree = "<group>"; };
-		65EF6781273AF3FC00B2A1C7 /* constr_CHOICE_print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_CHOICE_print.c; sourceTree = "<group>"; };
-		65EF6782273AF3FC00B2A1C7 /* AlgorithmIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlgorithmIdentifier.h; sourceTree = "<group>"; };
-		65EF6783273AF3FC00B2A1C7 /* constraints.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constraints.c; sourceTree = "<group>"; };
-		65EF6784273AF3FC00B2A1C7 /* asn_codecs_prim.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn_codecs_prim.c; sourceTree = "<group>"; };
-		65EF6785273AF3FC00B2A1C7 /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
-		65EF6786273AF3FC00B2A1C7 /* EXTERNAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTERNAL.h; sourceTree = "<group>"; };
-		65EF6787273AF3FC00B2A1C7 /* RSAPublicKey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = RSAPublicKey.c; sourceTree = "<group>"; };
-		65EF6788273AF3FC00B2A1C7 /* xer_encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xer_encoder.c; sourceTree = "<group>"; };
-		65EF6789273AF3FC00B2A1C7 /* INTEGER_rfill.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = INTEGER_rfill.c; sourceTree = "<group>"; };
-		65EF678A273AF3FD00B2A1C7 /* OtherPrimeInfos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherPrimeInfos.h; sourceTree = "<group>"; };
-		65EF678B273AF3FD00B2A1C7 /* constr_CHOICE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_CHOICE.c; sourceTree = "<group>"; };
-		65EF678C273AF3FD00B2A1C7 /* Version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Version.c; sourceTree = "<group>"; };
-		65EF678D273AF3FD00B2A1C7 /* xer_decoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xer_decoder.c; sourceTree = "<group>"; };
-		65EF678E273AF3FD00B2A1C7 /* ber_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ber_decoder.h; sourceTree = "<group>"; };
-		65EF678F273AF3FD00B2A1C7 /* xer_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xer_decoder.h; sourceTree = "<group>"; };
-		65EF6790273AF3FD00B2A1C7 /* asn_bit_data.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn_bit_data.c; sourceTree = "<group>"; };
-		65EF6791273AF3FD00B2A1C7 /* constr_SET_OF_print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SET_OF_print.c; sourceTree = "<group>"; };
-		65EF6792273AF3FD00B2A1C7 /* constr_SEQUENCE_OF_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SEQUENCE_OF_xer.c; sourceTree = "<group>"; };
-		65EF6793273AF3FD00B2A1C7 /* ber_decoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ber_decoder.c; sourceTree = "<group>"; };
-		65EF6794273AF3FD00B2A1C7 /* ber_tlv_tag.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ber_tlv_tag.c; sourceTree = "<group>"; };
-		65EF6795273AF3FD00B2A1C7 /* xer_support.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xer_support.c; sourceTree = "<group>"; };
-		65EF6796273AF3FD00B2A1C7 /* constr_SET_OF_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SET_OF_xer.c; sourceTree = "<group>"; };
-		65EF6797273AF3FD00B2A1C7 /* ANY_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ANY_xer.c; sourceTree = "<group>"; };
-		65EF6798273AF3FD00B2A1C7 /* asn_codecs_prim_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn_codecs_prim_xer.c; sourceTree = "<group>"; };
-		65EF6799273AF3FD00B2A1C7 /* OCTET_STRING_print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OCTET_STRING_print.c; sourceTree = "<group>"; };
-		65EF679A273AF3FD00B2A1C7 /* constr_SEQUENCE_rfill.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SEQUENCE_rfill.c; sourceTree = "<group>"; };
-		65EF679B273AF3FD00B2A1C7 /* OtherPrimeInfos.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OtherPrimeInfos.c; sourceTree = "<group>"; };
-		65EF679C273AF3FD00B2A1C7 /* OPEN_TYPE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPEN_TYPE.h; sourceTree = "<group>"; };
-		65EF679D273AF3FD00B2A1C7 /* RSAPublicKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAPublicKey.h; sourceTree = "<group>"; };
-		65EF679E273AF3FE00B2A1C7 /* OCTET_STRING_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OCTET_STRING_xer.c; sourceTree = "<group>"; };
-		65EF679F273AF3FE00B2A1C7 /* asn_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_internal.h; sourceTree = "<group>"; };
-		65EF67A0273AF3FE00B2A1C7 /* asn_random_fill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_random_fill.h; sourceTree = "<group>"; };
-		65EF67A2273AF3FE00B2A1C7 /* ANY_ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ANY_ber.c; sourceTree = "<group>"; };
-		65EF67A3273AF3FE00B2A1C7 /* INTEGER_ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = INTEGER_ber.c; sourceTree = "<group>"; };
-		65EF67A4273AF3FE00B2A1C7 /* asn_application.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn_application.c; sourceTree = "<group>"; };
-		65EF67A5273AF3FE00B2A1C7 /* constr_SEQUENCE_print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SEQUENCE_print.c; sourceTree = "<group>"; };
-		65EF67A7273AF3FE00B2A1C7 /* OBJECT_IDENTIFIER_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OBJECT_IDENTIFIER_xer.c; sourceTree = "<group>"; };
-		65EF67A8273AF3FE00B2A1C7 /* xer_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xer_encoder.h; sourceTree = "<group>"; };
-		65EF67A9273AF3FE00B2A1C7 /* asn_random_fill.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn_random_fill.c; sourceTree = "<group>"; };
-		65EF67AA273AF3FE00B2A1C7 /* asn_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_system.h; sourceTree = "<group>"; };
-		65EF67AB273AF3FE00B2A1C7 /* constr_TYPE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_TYPE.c; sourceTree = "<group>"; };
-		65EF67AC273AF3FE00B2A1C7 /* ANY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANY.h; sourceTree = "<group>"; };
-		65EF67AD273AF3FE00B2A1C7 /* asn_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_application.h; sourceTree = "<group>"; };
-		65EF67AE273AF3FE00B2A1C7 /* EXTERNAL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = EXTERNAL.c; sourceTree = "<group>"; };
-		65EF67AF273AF3FE00B2A1C7 /* asn_codecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_codecs.h; sourceTree = "<group>"; };
-		65EF67B0273AF3FE00B2A1C7 /* asn_bit_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_bit_data.h; sourceTree = "<group>"; };
-		65EF67B1273AF3FF00B2A1C7 /* OCTET_STRING_rfill.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OCTET_STRING_rfill.c; sourceTree = "<group>"; };
-		65EF67B2273AF3FF00B2A1C7 /* INTEGER.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = INTEGER.c; sourceTree = "<group>"; };
-		65EF67B3273AF3FF00B2A1C7 /* constr_SEQUENCE_OF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SEQUENCE_OF.c; sourceTree = "<group>"; };
-		65EF67B4273AF3FF00B2A1C7 /* asn_internal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn_internal.c; sourceTree = "<group>"; };
-		65EF67B5273AF3FF00B2A1C7 /* constr_SEQUENCE_OF_ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SEQUENCE_OF_ber.c; sourceTree = "<group>"; };
-		65EF67B6273AF3FF00B2A1C7 /* constr_SET_OF_ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SET_OF_ber.c; sourceTree = "<group>"; };
-		65EF67B7273AF3FF00B2A1C7 /* ber_tlv_length.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ber_tlv_length.c; sourceTree = "<group>"; };
-		65EF67B8273AF3FF00B2A1C7 /* SubjectPublicKeyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectPublicKeyInfo.h; sourceTree = "<group>"; };
-		65EF67B9273AF3FF00B2A1C7 /* asn_codecs_prim_ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn_codecs_prim_ber.c; sourceTree = "<group>"; };
-		65EF67BA273AF3FF00B2A1C7 /* asn_ioc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_ioc.h; sourceTree = "<group>"; };
-		65EF67BB273AF3FF00B2A1C7 /* GraphicString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicString.h; sourceTree = "<group>"; };
-		65EF67BC273AF3FF00B2A1C7 /* OPEN_TYPE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OPEN_TYPE.c; sourceTree = "<group>"; };
-		65EF67BD273AF3FF00B2A1C7 /* constr_CHOICE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constr_CHOICE.h; sourceTree = "<group>"; };
-		65EF67BE273AF3FF00B2A1C7 /* constr_CHOICE_rfill.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_CHOICE_rfill.c; sourceTree = "<group>"; };
-		65EF67BF273AF3FF00B2A1C7 /* ObjectDescriptor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ObjectDescriptor.c; sourceTree = "<group>"; };
-		65EF67C0273AF3FF00B2A1C7 /* constr_SET_OF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constr_SET_OF.h; sourceTree = "<group>"; };
-		65EF67C1273AF3FF00B2A1C7 /* asn_SEQUENCE_OF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_SEQUENCE_OF.h; sourceTree = "<group>"; };
-		65EF67C2273AF3FF00B2A1C7 /* BIT_STRING.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BIT_STRING.c; sourceTree = "<group>"; };
-		65EF67C3273AF3FF00B2A1C7 /* OBJECT_IDENTIFIER_rfill.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OBJECT_IDENTIFIER_rfill.c; sourceTree = "<group>"; };
-		65EF67C4273AF3FF00B2A1C7 /* BIT_STRING.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIT_STRING.h; sourceTree = "<group>"; };
-		65EF67C5273AF40000B2A1C7 /* ObjectDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectDescriptor.h; sourceTree = "<group>"; };
-		65EF67C6273AF40000B2A1C7 /* OBJECT_IDENTIFIER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJECT_IDENTIFIER.h; sourceTree = "<group>"; };
-		65EF67C7273AF40000B2A1C7 /* OtherPrimeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherPrimeInfo.h; sourceTree = "<group>"; };
-		65EF67C8273AF40000B2A1C7 /* INTEGER_print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = INTEGER_print.c; sourceTree = "<group>"; };
-		65EF67C9273AF40000B2A1C7 /* AlgorithmIdentifier.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AlgorithmIdentifier.c; sourceTree = "<group>"; };
-		65EF67CA273AF40000B2A1C7 /* constr_SEQUENCE_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SEQUENCE_xer.c; sourceTree = "<group>"; };
-		65EF67CB273AF40000B2A1C7 /* BIT_STRING_print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BIT_STRING_print.c; sourceTree = "<group>"; };
-		65EF67CC273AF40000B2A1C7 /* constr_SET_OF_rfill.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_SET_OF_rfill.c; sourceTree = "<group>"; };
-		65EF67CD273AF40000B2A1C7 /* RSAPrivateKey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = RSAPrivateKey.c; sourceTree = "<group>"; };
-		65EF67CE273AF40000B2A1C7 /* asn_SET_OF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn_SET_OF.c; sourceTree = "<group>"; };
-		65EF67CF273AF40000B2A1C7 /* GraphicString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GraphicString.c; sourceTree = "<group>"; };
-		65EF67D0273AF40000B2A1C7 /* SubjectPublicKeyInfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SubjectPublicKeyInfo.c; sourceTree = "<group>"; };
-		65EF67D1273AF40000B2A1C7 /* asn_SEQUENCE_OF.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn_SEQUENCE_OF.c; sourceTree = "<group>"; };
-		65EF67D2273AF40000B2A1C7 /* constr_CHOICE_ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = constr_CHOICE_ber.c; sourceTree = "<group>"; };
-		65EF67D3273AF40000B2A1C7 /* OPEN_TYPE_xer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OPEN_TYPE_xer.c; sourceTree = "<group>"; };
-		65EF6845273AF63400B2A1C7 /* asn_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn_config.h; sourceTree = "<group>"; };
-		65EF6848273AF8DF00B2A1C7 /* PKCS1.asn1 */ = {isa = PBXFileReference; lastKnownFileType = text; path = PKCS1.asn1; sourceTree = "<group>"; };
-		65EF6849273AF8E000B2A1C7 /* PKIX.asn1 */ = {isa = PBXFileReference; lastKnownFileType = text; path = PKIX.asn1; sourceTree = "<group>"; };
-		65EF684A273AF8EE00B2A1C7 /* Makefile.am.libasncodec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am.libasncodec; sourceTree = "<group>"; };
 		65EF684E273D479300B2A1C7 /* Keychain+InternetPassword+ItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+InternetPassword+ItemTests.swift"; sourceTree = "<group>"; };
 		65EF6850273D92A900B2A1C7 /* Keychain+Legacy+InternetPassword+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+Legacy+InternetPassword+Internal.swift"; sourceTree = "<group>"; };
-		65EF6858273ECF3800B2A1C7 /* ASN1+CoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASN1+CoderTests.swift"; sourceTree = "<group>"; };
+		65EF6858273ECF3800B2A1C7 /* ASN1PKCS1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASN1PKCS1Tests.swift; sourceTree = "<group>"; };
 		65EF685A2740598600B2A1C7 /* ECCSecureEnclaveKey+SecKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ECCSecureEnclaveKey+SecKey.swift"; sourceTree = "<group>"; };
 		65EF685C2741566500B2A1C7 /* Crypto+SecureEnclaveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+SecureEnclaveTests.swift"; sourceTree = "<group>"; };
-		65FB35DD2504064D00C38585 /* DVEASN1RSAPrivateKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVEASN1RSAPrivateKey.h; sourceTree = "<group>"; };
-		65FB35DE2504064D00C38585 /* DVEASN1RSAPrivateKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DVEASN1RSAPrivateKey.m; sourceTree = "<group>"; };
-		65FB35E12504065D00C38585 /* DVEASN1RSAPublicKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVEASN1RSAPublicKey.h; sourceTree = "<group>"; };
-		65FB35E22504065D00C38585 /* DVEASN1RSAPublicKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DVEASN1RSAPublicKey.m; sourceTree = "<group>"; };
-		65FB35E5250406FC00C38585 /* DVEASN1RSAOtherPrimeInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVEASN1RSAOtherPrimeInfo.h; sourceTree = "<group>"; };
-		65FB35E6250406FC00C38585 /* DVEASN1RSAOtherPrimeInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DVEASN1RSAOtherPrimeInfo.m; sourceTree = "<group>"; };
-		65FB35E92504124900C38585 /* DVEASN1RSAOtherPrimeInfo+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DVEASN1RSAOtherPrimeInfo+Internal.h"; sourceTree = "<group>"; };
-		65FB35EB2504130D00C38585 /* DVEASN1RSAPrivateKey+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DVEASN1RSAPrivateKey+Internal.h"; sourceTree = "<group>"; };
-		65FB35ED2504137C00C38585 /* DVEASN1RSAPublicKey+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DVEASN1RSAPublicKey+Internal.h"; sourceTree = "<group>"; };
 		65FB35EF25042C5300C38585 /* DVESecurity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVESecurity.h; sourceTree = "<group>"; };
+		8B9DB7A029D90B56002F5F1C /* ASN1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASN1.swift; sourceTree = "<group>"; };
+		8B9DB7A629D9BBCA002F5F1C /* ASN1+PKCS1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASN1+PKCS1.swift"; sourceTree = "<group>"; };
+		8B9DB7A829D9BCDA002F5F1C /* ASN1+PKCS1+RSAPrivateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASN1+PKCS1+RSAPrivateKey.swift"; sourceTree = "<group>"; };
+		8B9DB7AA29D9BCFB002F5F1C /* ASN1+PKCS1+RSAPublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASN1+PKCS1+RSAPublicKey.swift"; sourceTree = "<group>"; };
+		8B9DB7AD29D9D042002F5F1C /* ASN1+X509.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASN1+X509.swift"; sourceTree = "<group>"; };
+		8B9DB7B529DC7741002F5F1C /* ASN1X509Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASN1X509Tests.swift; sourceTree = "<group>"; };
 		8BEE873229D869E400DDF2D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9103A00324F684630093AA18 /* Keychain+QueryAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+QueryAuthentication.swift"; sourceTree = "<group>"; };
 		9103A00524F684AF0093AA18 /* Keychain+QueryAuthentication+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+QueryAuthentication+Internal.swift"; sourceTree = "<group>"; };
@@ -847,6 +592,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D73A332705EB78008FCF5D /* Security.framework in Frameworks */,
+				8B9DB7A429D90D63002F5F1C /* SwiftASN1 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,7 +698,6 @@
 				91E5736324DD8AB400C50786 /* .swiftlint.yml */,
 				65C518AC2705EF29006D1F0D /* Package.swift */,
 				65A4301524EEFE2900E326D9 /* Configuration */,
-				65A1D43024EDCDC5006E19E6 /* CSource */,
 				6512249824CB0E3A00A2CEF4 /* Source */,
 				651224A324CB0E3A00A2CEF4 /* Tests */,
 				65002EF8252E594E0001F9E8 /* InteractiveTests */,
@@ -1011,7 +756,6 @@
 		651224B724CB14D400A2CEF4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				65A1D43624EDCE6B006E19E6 /* module.modulemap */,
 				65FB35EF25042C5300C38585 /* DVESecurity.h */,
 				6512249A24CB0E3A00A2CEF4 /* Info.plist */,
 			);
@@ -1238,14 +982,6 @@
 			path = Hashing;
 			sourceTree = "<group>";
 		};
-		65A1D43024EDCDC5006E19E6 /* CSource */ = {
-			isa = PBXGroup;
-			children = (
-				65C903C42503B02A007F2F76 /* ObjC */,
-			);
-			path = CSource;
-			sourceTree = "<group>";
-		};
 		65A4301524EEFE2900E326D9 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -1255,146 +991,12 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
-		65BA9A142503B06F00AF984D /* ASN1 */ = {
-			isa = PBXGroup;
-			children = (
-				65EF6847273AF8CA00B2A1C7 /* Files */,
-				65EF67C9273AF40000B2A1C7 /* AlgorithmIdentifier.c */,
-				65EF6782273AF3FC00B2A1C7 /* AlgorithmIdentifier.h */,
-				65EF67A2273AF3FE00B2A1C7 /* ANY_ber.c */,
-				65EF6797273AF3FD00B2A1C7 /* ANY_xer.c */,
-				65EF6780273AF3FC00B2A1C7 /* ANY.c */,
-				65EF67AC273AF3FE00B2A1C7 /* ANY.h */,
-				65EF67A4273AF3FE00B2A1C7 /* asn_application.c */,
-				65EF67AD273AF3FE00B2A1C7 /* asn_application.h */,
-				65EF6790273AF3FD00B2A1C7 /* asn_bit_data.c */,
-				65EF67B0273AF3FE00B2A1C7 /* asn_bit_data.h */,
-				65EF67B9273AF3FF00B2A1C7 /* asn_codecs_prim_ber.c */,
-				65EF6798273AF3FD00B2A1C7 /* asn_codecs_prim_xer.c */,
-				65EF6784273AF3FC00B2A1C7 /* asn_codecs_prim.c */,
-				65EF677D273AF3FC00B2A1C7 /* asn_codecs_prim.h */,
-				65EF67AF273AF3FE00B2A1C7 /* asn_codecs.h */,
-				65EF6845273AF63400B2A1C7 /* asn_config.h */,
-				65EF67B4273AF3FF00B2A1C7 /* asn_internal.c */,
-				65EF679F273AF3FE00B2A1C7 /* asn_internal.h */,
-				65EF67BA273AF3FF00B2A1C7 /* asn_ioc.h */,
-				65EF67A9273AF3FE00B2A1C7 /* asn_random_fill.c */,
-				65EF67A0273AF3FE00B2A1C7 /* asn_random_fill.h */,
-				65EF67D1273AF40000B2A1C7 /* asn_SEQUENCE_OF.c */,
-				65EF67C1273AF3FF00B2A1C7 /* asn_SEQUENCE_OF.h */,
-				65EF67CE273AF40000B2A1C7 /* asn_SET_OF.c */,
-				65EF676E273AF3FB00B2A1C7 /* asn_SET_OF.h */,
-				65EF67AA273AF3FE00B2A1C7 /* asn_system.h */,
-				65EF6793273AF3FD00B2A1C7 /* ber_decoder.c */,
-				65EF678E273AF3FD00B2A1C7 /* ber_decoder.h */,
-				65EF67B7273AF3FF00B2A1C7 /* ber_tlv_length.c */,
-				65EF6775273AF3FB00B2A1C7 /* ber_tlv_length.h */,
-				65EF6794273AF3FD00B2A1C7 /* ber_tlv_tag.c */,
-				65EF6773273AF3FB00B2A1C7 /* ber_tlv_tag.h */,
-				65EF67CB273AF40000B2A1C7 /* BIT_STRING_print.c */,
-				65EF677E273AF3FC00B2A1C7 /* BIT_STRING_rfill.c */,
-				65EF6777273AF3FB00B2A1C7 /* BIT_STRING_xer.c */,
-				65EF67C2273AF3FF00B2A1C7 /* BIT_STRING.c */,
-				65EF67C4273AF3FF00B2A1C7 /* BIT_STRING.h */,
-				65EF67D2273AF40000B2A1C7 /* constr_CHOICE_ber.c */,
-				65EF6781273AF3FC00B2A1C7 /* constr_CHOICE_print.c */,
-				65EF67BE273AF3FF00B2A1C7 /* constr_CHOICE_rfill.c */,
-				65EF676B273AF3FB00B2A1C7 /* constr_CHOICE_xer.c */,
-				65EF678B273AF3FD00B2A1C7 /* constr_CHOICE.c */,
-				65EF67BD273AF3FF00B2A1C7 /* constr_CHOICE.h */,
-				65EF6764273AF3FA00B2A1C7 /* constr_SEQUENCE_ber.c */,
-				65EF67B5273AF3FF00B2A1C7 /* constr_SEQUENCE_OF_ber.c */,
-				65EF6792273AF3FD00B2A1C7 /* constr_SEQUENCE_OF_xer.c */,
-				65EF67B3273AF3FF00B2A1C7 /* constr_SEQUENCE_OF.c */,
-				65EF6765273AF3FA00B2A1C7 /* constr_SEQUENCE_OF.h */,
-				65EF67A5273AF3FE00B2A1C7 /* constr_SEQUENCE_print.c */,
-				65EF679A273AF3FD00B2A1C7 /* constr_SEQUENCE_rfill.c */,
-				65EF67CA273AF40000B2A1C7 /* constr_SEQUENCE_xer.c */,
-				65EF6766273AF3FA00B2A1C7 /* constr_SEQUENCE.c */,
-				65EF6776273AF3FB00B2A1C7 /* constr_SEQUENCE.h */,
-				65EF67B6273AF3FF00B2A1C7 /* constr_SET_OF_ber.c */,
-				65EF6791273AF3FD00B2A1C7 /* constr_SET_OF_print.c */,
-				65EF67CC273AF40000B2A1C7 /* constr_SET_OF_rfill.c */,
-				65EF6796273AF3FD00B2A1C7 /* constr_SET_OF_xer.c */,
-				65EF677A273AF3FC00B2A1C7 /* constr_SET_OF.c */,
-				65EF67C0273AF3FF00B2A1C7 /* constr_SET_OF.h */,
-				65EF67AB273AF3FE00B2A1C7 /* constr_TYPE.c */,
-				65EF6770273AF3FB00B2A1C7 /* constr_TYPE.h */,
-				65EF6783273AF3FC00B2A1C7 /* constraints.c */,
-				65EF6772273AF3FB00B2A1C7 /* constraints.h */,
-				65EF676F273AF3FB00B2A1C7 /* der_encoder.c */,
-				65EF6779273AF3FC00B2A1C7 /* der_encoder.h */,
-				65EF676A273AF3FB00B2A1C7 /* ECParameters.c */,
-				65EF6778273AF3FB00B2A1C7 /* ECParameters.h */,
-				65EF67AE273AF3FE00B2A1C7 /* EXTERNAL.c */,
-				65EF6786273AF3FC00B2A1C7 /* EXTERNAL.h */,
-				65EF67CF273AF40000B2A1C7 /* GraphicString.c */,
-				65EF67BB273AF3FF00B2A1C7 /* GraphicString.h */,
-				65EF67A3273AF3FE00B2A1C7 /* INTEGER_ber.c */,
-				65EF67C8273AF40000B2A1C7 /* INTEGER_print.c */,
-				65EF6789273AF3FC00B2A1C7 /* INTEGER_rfill.c */,
-				65EF677B273AF3FC00B2A1C7 /* INTEGER_xer.c */,
-				65EF67B2273AF3FF00B2A1C7 /* INTEGER.c */,
-				65EF6768273AF3FA00B2A1C7 /* INTEGER.h */,
-				65EF676D273AF3FB00B2A1C7 /* OBJECT_IDENTIFIER_print.c */,
-				65EF67C3273AF3FF00B2A1C7 /* OBJECT_IDENTIFIER_rfill.c */,
-				65EF67A7273AF3FE00B2A1C7 /* OBJECT_IDENTIFIER_xer.c */,
-				65EF676C273AF3FB00B2A1C7 /* OBJECT_IDENTIFIER.c */,
-				65EF67C6273AF40000B2A1C7 /* OBJECT_IDENTIFIER.h */,
-				65EF67BF273AF3FF00B2A1C7 /* ObjectDescriptor.c */,
-				65EF67C5273AF40000B2A1C7 /* ObjectDescriptor.h */,
-				65EF6769273AF3FA00B2A1C7 /* OCTET_STRING_ber.c */,
-				65EF6799273AF3FD00B2A1C7 /* OCTET_STRING_print.c */,
-				65EF67B1273AF3FF00B2A1C7 /* OCTET_STRING_rfill.c */,
-				65EF679E273AF3FE00B2A1C7 /* OCTET_STRING_xer.c */,
-				65EF6763273AF3FA00B2A1C7 /* OCTET_STRING.c */,
-				65EF6774273AF3FB00B2A1C7 /* OCTET_STRING.h */,
-				65EF677C273AF3FC00B2A1C7 /* OPEN_TYPE_ber.c */,
-				65EF67D3273AF40000B2A1C7 /* OPEN_TYPE_xer.c */,
-				65EF67BC273AF3FF00B2A1C7 /* OPEN_TYPE.c */,
-				65EF679C273AF3FD00B2A1C7 /* OPEN_TYPE.h */,
-				65EF6771273AF3FB00B2A1C7 /* OtherPrimeInfo.c */,
-				65EF67C7273AF40000B2A1C7 /* OtherPrimeInfo.h */,
-				65EF679B273AF3FD00B2A1C7 /* OtherPrimeInfos.c */,
-				65EF678A273AF3FD00B2A1C7 /* OtherPrimeInfos.h */,
-				65EF67CD273AF40000B2A1C7 /* RSAPrivateKey.c */,
-				65EF677F273AF3FC00B2A1C7 /* RSAPrivateKey.h */,
-				65EF6787273AF3FC00B2A1C7 /* RSAPublicKey.c */,
-				65EF679D273AF3FD00B2A1C7 /* RSAPublicKey.h */,
-				65EF67D0273AF40000B2A1C7 /* SubjectPublicKeyInfo.c */,
-				65EF67B8273AF3FF00B2A1C7 /* SubjectPublicKeyInfo.h */,
-				65EF678C273AF3FD00B2A1C7 /* Version.c */,
-				65EF6785273AF3FC00B2A1C7 /* Version.h */,
-				65EF678D273AF3FD00B2A1C7 /* xer_decoder.c */,
-				65EF678F273AF3FD00B2A1C7 /* xer_decoder.h */,
-				65EF6788273AF3FC00B2A1C7 /* xer_encoder.c */,
-				65EF67A8273AF3FE00B2A1C7 /* xer_encoder.h */,
-				65EF6795273AF3FD00B2A1C7 /* xer_support.c */,
-				65EF6767273AF3FA00B2A1C7 /* xer_support.h */,
-			);
-			path = ASN1;
-			sourceTree = "<group>";
-		};
-		65BA9B192503B1C200AF984D /* include */ = {
-			isa = PBXGroup;
-			children = (
-				6512249924CB0E3A00A2CEF4 /* DVESecurity.h */,
-				6581834625058D4700B482F1 /* DVEASN1.h */,
-				65C902A32502EB0F007F2F76 /* DVEASN1Coder.h */,
-				65C903B52503119E007F2F76 /* DVEASN1CoderError.h */,
-				65FB35DD2504064D00C38585 /* DVEASN1RSAPrivateKey.h */,
-				65FB35E12504065D00C38585 /* DVEASN1RSAPublicKey.h */,
-				65FB35E5250406FC00C38585 /* DVEASN1RSAOtherPrimeInfo.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		65BA9B1A2503B55A00AF984D /* ASN1 */ = {
 			isa = PBXGroup;
 			children = (
-				65C903B925031BA4007F2F76 /* ASN1+Coder.swift */,
-				658183422505846800B482F1 /* ASN1+RSAPrivateKey.swift */,
-				658183442505847800B482F1 /* ASN1+RSAPublicKey.swift */,
+				8B9DB7AC29D9D035002F5F1C /* X509 */,
+				8B9DB7A529D9BBBB002F5F1C /* PKCS1 */,
+				8B9DB7A029D90B56002F5F1C /* ASN1.swift */,
 			);
 			path = ASN1;
 			sourceTree = "<group>";
@@ -1445,25 +1047,6 @@
 				65C903BF2503A353007F2F76 /* X509RSAPublicKey.der */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		65C903C42503B02A007F2F76 /* ObjC */ = {
-			isa = PBXGroup;
-			children = (
-				65BA9B192503B1C200AF984D /* include */,
-				65BA9A142503B06F00AF984D /* ASN1 */,
-				6581834A250593CB00B482F1 /* DVEASN1+Internal.h */,
-				6581834725058D4700B482F1 /* DVEASN1.m */,
-				65C902A42502EB0F007F2F76 /* DVEASN1Coder.m */,
-				65C903B62503119E007F2F76 /* DVEASN1CoderError.m */,
-				65FB35EB2504130D00C38585 /* DVEASN1RSAPrivateKey+Internal.h */,
-				65FB35DE2504064D00C38585 /* DVEASN1RSAPrivateKey.m */,
-				65FB35ED2504137C00C38585 /* DVEASN1RSAPublicKey+Internal.h */,
-				65FB35E22504065D00C38585 /* DVEASN1RSAPublicKey.m */,
-				65FB35E92504124900C38585 /* DVEASN1RSAOtherPrimeInfo+Internal.h */,
-				65FB35E6250406FC00C38585 /* DVEASN1RSAOtherPrimeInfo.m */,
-			);
-			path = ObjC;
 			sourceTree = "<group>";
 		};
 		65D34D2B251E4BF000A9C323 /* AppEntitlements */ = {
@@ -1607,17 +1190,6 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		65EF6847273AF8CA00B2A1C7 /* Files */ = {
-			isa = PBXGroup;
-			children = (
-				653B77BB27682768006E0B51 /* LICENSE */,
-				65EF6848273AF8DF00B2A1C7 /* PKCS1.asn1 */,
-				65EF6849273AF8E000B2A1C7 /* PKIX.asn1 */,
-				65EF684A273AF8EE00B2A1C7 /* Makefile.am.libasncodec */,
-			);
-			name = Files;
-			sourceTree = "<group>";
-		};
 		65EF6852273E888E00B2A1C7 /* Keys */ = {
 			isa = PBXGroup;
 			children = (
@@ -1654,9 +1226,28 @@
 		65EF6855273EC87400B2A1C7 /* ASN1 */ = {
 			isa = PBXGroup;
 			children = (
-				65EF6858273ECF3800B2A1C7 /* ASN1+CoderTests.swift */,
+				65EF6858273ECF3800B2A1C7 /* ASN1PKCS1Tests.swift */,
+				8B9DB7B529DC7741002F5F1C /* ASN1X509Tests.swift */,
 			);
 			path = ASN1;
+			sourceTree = "<group>";
+		};
+		8B9DB7A529D9BBBB002F5F1C /* PKCS1 */ = {
+			isa = PBXGroup;
+			children = (
+				8B9DB7A629D9BBCA002F5F1C /* ASN1+PKCS1.swift */,
+				8B9DB7A829D9BCDA002F5F1C /* ASN1+PKCS1+RSAPrivateKey.swift */,
+				8B9DB7AA29D9BCFB002F5F1C /* ASN1+PKCS1+RSAPublicKey.swift */,
+			);
+			path = PKCS1;
+			sourceTree = "<group>";
+		};
+		8B9DB7AC29D9D035002F5F1C /* X509 */ = {
+			isa = PBXGroup;
+			children = (
+				8B9DB7AD29D9D042002F5F1C /* ASN1+X509.swift */,
+			);
+			path = X509;
 			sourceTree = "<group>";
 		};
 		9109828D24F94052000D981F /* iOS13 */ = {
@@ -1771,58 +1362,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65EF6831273AF40100B2A1C7 /* constr_SET_OF.h in Headers */,
-				65EF6838273AF40100B2A1C7 /* OtherPrimeInfo.h in Headers */,
-				65EF67EE273AF40000B2A1C7 /* asn_codecs_prim.h in Headers */,
-				65EF67E7273AF40000B2A1C7 /* constr_SEQUENCE.h in Headers */,
-				65EF680E273AF40000B2A1C7 /* RSAPublicKey.h in Headers */,
-				65EF67F6273AF40000B2A1C7 /* Version.h in Headers */,
-				65EF6810273AF40000B2A1C7 /* asn_internal.h in Headers */,
-				65EF67F7273AF40000B2A1C7 /* EXTERNAL.h in Headers */,
-				65EF6835273AF40100B2A1C7 /* BIT_STRING.h in Headers */,
-				65EF681D273AF40000B2A1C7 /* ANY.h in Headers */,
-				65FB35EE2504137C00C38585 /* DVEASN1RSAPublicKey+Internal.h in Headers */,
-				65EF6836273AF40100B2A1C7 /* ObjectDescriptor.h in Headers */,
-				65EF67E3273AF40000B2A1C7 /* constraints.h in Headers */,
-				65FB35EA2504129F00C38585 /* DVEASN1RSAOtherPrimeInfo+Internal.h in Headers */,
-				65EF682E273AF40100B2A1C7 /* constr_CHOICE.h in Headers */,
-				65EF67E9273AF40000B2A1C7 /* ECParameters.h in Headers */,
-				65FB35EC2504130D00C38585 /* DVEASN1RSAPrivateKey+Internal.h in Headers */,
-				65EF6800273AF40000B2A1C7 /* xer_decoder.h in Headers */,
-				65EF6837273AF40100B2A1C7 /* OBJECT_IDENTIFIER.h in Headers */,
-				65EF6829273AF40100B2A1C7 /* SubjectPublicKeyInfo.h in Headers */,
-				6581834825058D4700B482F1 /* DVEASN1.h in Headers */,
-				65FB35E32504065D00C38585 /* DVEASN1RSAPublicKey.h in Headers */,
-				65EF67F3273AF40000B2A1C7 /* AlgorithmIdentifier.h in Headers */,
-				65FB35DF2504064D00C38585 /* DVEASN1RSAPrivateKey.h in Headers */,
-				65EF67DF273AF40000B2A1C7 /* asn_SET_OF.h in Headers */,
-				65EF6846273AF63400B2A1C7 /* asn_config.h in Headers */,
-				65EF6832273AF40100B2A1C7 /* asn_SEQUENCE_OF.h in Headers */,
-				65EF67D8273AF40000B2A1C7 /* xer_support.h in Headers */,
-				65EF6821273AF40100B2A1C7 /* asn_bit_data.h in Headers */,
-				65EF67E6273AF40000B2A1C7 /* ber_tlv_length.h in Headers */,
-				65FB35E7250406FC00C38585 /* DVEASN1RSAOtherPrimeInfo.h in Headers */,
-				65C902A52502EB0F007F2F76 /* DVEASN1Coder.h in Headers */,
-				65EF67D9273AF40000B2A1C7 /* INTEGER.h in Headers */,
-				65EF680D273AF40000B2A1C7 /* OPEN_TYPE.h in Headers */,
-				65EF67FF273AF40000B2A1C7 /* ber_decoder.h in Headers */,
-				65EF67EA273AF40000B2A1C7 /* der_encoder.h in Headers */,
-				6581834B2505940300B482F1 /* DVEASN1+Internal.h in Headers */,
-				65EF6819273AF40000B2A1C7 /* xer_encoder.h in Headers */,
-				65EF682B273AF40100B2A1C7 /* asn_ioc.h in Headers */,
-				65EF681B273AF40000B2A1C7 /* asn_system.h in Headers */,
-				65EF67FB273AF40000B2A1C7 /* OtherPrimeInfos.h in Headers */,
 				65FB35F225042E0B00C38585 /* DVESecurity.h in Headers */,
-				65EF67E1273AF40000B2A1C7 /* constr_TYPE.h in Headers */,
-				65C903B72503119E007F2F76 /* DVEASN1CoderError.h in Headers */,
-				65EF6811273AF40000B2A1C7 /* asn_random_fill.h in Headers */,
-				65EF67F0273AF40000B2A1C7 /* RSAPrivateKey.h in Headers */,
-				65EF681E273AF40000B2A1C7 /* asn_application.h in Headers */,
-				65EF67E4273AF40000B2A1C7 /* ber_tlv_tag.h in Headers */,
-				65EF682C273AF40100B2A1C7 /* GraphicString.h in Headers */,
-				65EF67D6273AF40000B2A1C7 /* constr_SEQUENCE_OF.h in Headers */,
-				65EF6820273AF40100B2A1C7 /* asn_codecs.h in Headers */,
-				65EF67E5273AF40000B2A1C7 /* OCTET_STRING.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1908,6 +1448,7 @@
 			);
 			name = DVESecurity;
 			packageProductDependencies = (
+				8B9DB7A329D90D63002F5F1C /* SwiftASN1 */,
 			);
 			productName = DVESecurity;
 			productReference = 6512249624CB0E3A00A2CEF4 /* DVESecurity.framework */;
@@ -1977,6 +1518,7 @@
 			mainGroup = 6512248C24CB0E3A00A2CEF4;
 			packageReferences = (
 				45D526B324E13D3000269217 /* XCRemoteSwiftPackageReference "Nimble" */,
+				8B9DB7A229D90D63002F5F1C /* XCRemoteSwiftPackageReference "swift-asn1" */,
 			);
 			productRefGroup = 6512249724CB0E3A00A2CEF4 /* Products */;
 			projectDirPath = "";
@@ -2112,45 +1654,28 @@
 				6589D09C260591A500DB637E /* AppEntitlements+MachOFat.swift in Sources */,
 				65D538CD251E92050037BE41 /* CodeSigning.swift in Sources */,
 				6576536527299E5B00D20684 /* Keychain+ItemAttribute+Set.swift in Sources */,
-				65FB35E8250406FC00C38585 /* DVEASN1RSAOtherPrimeInfo.m in Sources */,
 				91D376F424EC248F002BA60B /* Keychain+AccessControl+Internal.swift in Sources */,
 				65765371272C195000D20684 /* SecKey+Internal.swift in Sources */,
 				91E5735724DC597100C50786 /* CommonCryptoError.swift in Sources */,
 				65696CED24E56DB500BA8774 /* Keychain+SymmetricKey.swift in Sources */,
-				65EF6807273AF40000B2A1C7 /* constr_SET_OF_xer.c in Sources */,
 				655F96C8274681F7002B5C9B /* Keychain+GenericPassword+SynchronizableKeys.swift in Sources */,
-				65EF682D273AF40100B2A1C7 /* OPEN_TYPE.c in Sources */,
-				65EF6839273AF40100B2A1C7 /* INTEGER_print.c in Sources */,
 				657653A1273A87B900D20684 /* Keychain+Legacy+GenericPassword+Internal.swift in Sources */,
 				6599BFFB24DEE2FF0063E210 /* Crypto+ECC.swift in Sources */,
-				6581834925058D4700B482F1 /* DVEASN1.m in Sources */,
-				65EF67DB273AF40000B2A1C7 /* ECParameters.c in Sources */,
-				65EF6842273AF40100B2A1C7 /* asn_SEQUENCE_OF.c in Sources */,
-				65EF6816273AF40000B2A1C7 /* constr_SEQUENCE_print.c in Sources */,
-				65EF6826273AF40100B2A1C7 /* constr_SEQUENCE_OF_ber.c in Sources */,
+				8B9DB7A929D9BCDA002F5F1C /* ASN1+PKCS1+RSAPrivateKey.swift in Sources */,
 				65696CE924E565AE00BA8774 /* Crypto+AES+Key.swift in Sources */,
 				657653912735AD3000D20684 /* Keychain+InternetPassword+NetworkProtocol.swift in Sources */,
 				65765383273435B100D20684 /* Crypto+ECC+Operations.swift in Sources */,
-				658183432505846800B482F1 /* ASN1+RSAPrivateKey.swift in Sources */,
-				65EF6827273AF40100B2A1C7 /* constr_SET_OF_ber.c in Sources */,
 				657653932735AD6600D20684 /* Keychain+InternetPassword+AuthenticationType.swift in Sources */,
-				65EF6823273AF40100B2A1C7 /* INTEGER.c in Sources */,
 				91C0F6DA24E457BA00511980 /* Keychain+ECC.swift in Sources */,
 				65E8C3462722BD6D0036E324 /* Crypto+ECC+SecureEnclaveKey.swift in Sources */,
 				65E8C3422722BCBB0036E324 /* Crypto+ECC+PrivateKey.swift in Sources */,
 				65EF6851273D92A900B2A1C7 /* Keychain+Legacy+InternetPassword+Internal.swift in Sources */,
-				65EF6813273AF40000B2A1C7 /* ANY_ber.c in Sources */,
 				65E8C327272170B90036E324 /* Keychain+AddItemQuery.swift in Sources */,
-				65EF683A273AF40100B2A1C7 /* AlgorithmIdentifier.c in Sources */,
 				917D440724EFE52500FCEE33 /* ECCSecureEnclaveKey.swift in Sources */,
 				65C12AE924FAF1FA00F21629 /* HMAC.swift in Sources */,
 				65C12AD424FAD61100F21629 /* SHA512.swift in Sources */,
-				65EF6830273AF40100B2A1C7 /* ObjectDescriptor.c in Sources */,
 				91D376F824EC25DD002BA60B /* Keychain+ItemClass.swift in Sources */,
 				91C0F6C424E3F1EC00511980 /* Keychain+RSA.swift in Sources */,
-				65EF6822273AF40100B2A1C7 /* OCTET_STRING_rfill.c in Sources */,
-				65EF67FD273AF40000B2A1C7 /* Version.c in Sources */,
-				65EF6801273AF40000B2A1C7 /* asn_bit_data.c in Sources */,
 				912039F524F7B54D00F89DAE /* Keychain+AccessControlFlags.swift in Sources */,
 				65E8C34C2722EFBB0036E324 /* Keychain+ItemAccessibility+Internal.swift in Sources */,
 				65E8C32B272174410036E324 /* Keychain+UpdateItemQuery.swift in Sources */,
@@ -2159,157 +1684,99 @@
 				91C0F6C224E3DC8800511980 /* RSAKey.swift in Sources */,
 				91BB46C424F8FD4D00A27BF1 /* AsyncHelper.swift in Sources */,
 				917D440524EFC8F800FCEE33 /* KeyConversions.swift in Sources */,
-				65EF6809273AF40000B2A1C7 /* asn_codecs_prim_xer.c in Sources */,
 				65C518AE2705EFAA006D1F0D /* DVESecurity.docc in Sources */,
-				65EF67E0273AF40000B2A1C7 /* der_encoder.c in Sources */,
 				65C903BC25031F0A007F2F76 /* RSAPublicKey+X509.swift in Sources */,
 				65C12ADD24FAD8CD00F21629 /* Insecure+SHA1.swift in Sources */,
 				65E8C3312721B4820036E324 /* Keychain+Legacy+AddItemQuery.swift in Sources */,
 				65E8C3352721B7150036E324 /* Keychain+Legacy+DeleteItemsQuery.swift in Sources */,
 				6576537927342F7900D20684 /* RSAPrivateKey+SecKey.swift in Sources */,
-				65EF683C273AF40100B2A1C7 /* BIT_STRING_print.c in Sources */,
 				91C0F6D224E44F8200511980 /* ECCPrivateKey.swift in Sources */,
-				65EF67F5273AF40000B2A1C7 /* asn_codecs_prim.c in Sources */,
 				65C12AC224FA859E00F21629 /* Crypto+ECC+Combine.swift in Sources */,
 				65E8C3332721B7070036E324 /* Keychain+Legacy+UpdateItemQuery.swift in Sources */,
-				65EF6825273AF40100B2A1C7 /* asn_internal.c in Sources */,
 				65C12ADB24FAD8C100F21629 /* Insecure+MD5.swift in Sources */,
 				659ABC7C24DE053300F37338 /* Hashing.swift in Sources */,
 				65C12AD724FAD89D00F21629 /* Insecure+MD2.swift in Sources */,
-				65EF67DE273AF40000B2A1C7 /* OBJECT_IDENTIFIER_print.c in Sources */,
 				9138384824ED642D00D10030 /* AppEntitlements+MachO.swift in Sources */,
 				91C0F6D624E44FD800511980 /* ECCKey.swift in Sources */,
-				65EF680F273AF40000B2A1C7 /* OCTET_STRING_xer.c in Sources */,
-				65EF680B273AF40000B2A1C7 /* constr_SEQUENCE_rfill.c in Sources */,
-				65EF67DD273AF40000B2A1C7 /* OBJECT_IDENTIFIER.c in Sources */,
 				65E8C34A2722D22A0036E324 /* KeychainQueries.swift in Sources */,
 				65E8C3252721655D0036E324 /* Result+Mapping.swift in Sources */,
 				657653972735ADC100D20684 /* Keychain+GenericPassword+Item.swift in Sources */,
-				65EF6833273AF40100B2A1C7 /* BIT_STRING.c in Sources */,
 				65C12AF024FAFFD100F21629 /* HMAC+SHA224.swift in Sources */,
 				65EF685B2740598600B2A1C7 /* ECCSecureEnclaveKey+SecKey.swift in Sources */,
-				65EF67FE273AF40000B2A1C7 /* xer_decoder.c in Sources */,
-				65C902A62502EB0F007F2F76 /* DVEASN1Coder.m in Sources */,
 				65C12AF624FAFFEE00F21629 /* HMAC+SHA512.swift in Sources */,
 				91C0F6D024E44F7800511980 /* ECCPublicKey.swift in Sources */,
 				65696CFC24E5C02600BA8774 /* SecKeyType.swift in Sources */,
 				65C12ABE24FA858700F21629 /* Crypto+AES+Combine.swift in Sources */,
 				6576536327299BAF00D20684 /* Keychain+ItemAttribute.swift in Sources */,
-				65EF6843273AF40100B2A1C7 /* constr_CHOICE_ber.c in Sources */,
-				65EF681C273AF40000B2A1C7 /* constr_TYPE.c in Sources */,
 				91E5735B24DD7A0700C50786 /* Keychain+GenericPassword+Internal.swift in Sources */,
-				65EF67F1273AF40000B2A1C7 /* ANY.c in Sources */,
-				65EF67FA273AF40000B2A1C7 /* INTEGER_rfill.c in Sources */,
+				8B9DB7A129D90B56002F5F1C /* ASN1.swift in Sources */,
 				65765380273433CB00D20684 /* Crypto+RSA+Operations.swift in Sources */,
 				6576537C2734303100D20684 /* Crypto+RSA+PublicKey.swift in Sources */,
 				65C12AD224FAD60600F21629 /* SHA384.swift in Sources */,
 				910FDF5E24E68D480018AD42 /* RSAPrivateKey.swift in Sources */,
-				65C903BA25031BA4007F2F76 /* ASN1+Coder.swift in Sources */,
-				65EF67EF273AF40000B2A1C7 /* BIT_STRING_rfill.c in Sources */,
-				65EF6803273AF40000B2A1C7 /* constr_SEQUENCE_OF_xer.c in Sources */,
-				65EF6804273AF40000B2A1C7 /* ber_decoder.c in Sources */,
 				6557F73724DBF7A000C4BA3A /* Crypto.swift in Sources */,
 				91E5735924DC5DF700C50786 /* Crypto+Errors.swift in Sources */,
+				8B9DB7AE29D9D042002F5F1C /* ASN1+X509.swift in Sources */,
 				65E8C32D272176B40036E324 /* Keychain+DeleteItemsQuery.swift in Sources */,
 				9103A00424F684630093AA18 /* Keychain+QueryAuthentication.swift in Sources */,
 				657653852734363300D20684 /* ECCKey+SecKey.swift in Sources */,
-				65EF683E273AF40100B2A1C7 /* RSAPrivateKey.c in Sources */,
 				6589D0A42605970F00DB637E /* CpuInfo.swift in Sources */,
-				65EF6802273AF40000B2A1C7 /* constr_SET_OF_print.c in Sources */,
-				65EF680A273AF40000B2A1C7 /* OCTET_STRING_print.c in Sources */,
 				65DBF08C24DAB4ED00580422 /* KeychainError.swift in Sources */,
 				65696CEB24E56D6D00BA8774 /* Crypto+AES+Key+Internal.swift in Sources */,
 				6576537E2734306400D20684 /* RSAPublicKey+SecKey.swift in Sources */,
 				6521CF0824DB5C0E0018EEA5 /* Keychain+CryptoKey.swift in Sources */,
 				65E8C323272068AE0036E324 /* Keychain+FetchItemsQuery.swift in Sources */,
-				65EF6824273AF40100B2A1C7 /* constr_SEQUENCE_OF.c in Sources */,
 				657653A3273ADBAF00D20684 /* Keychain+Legacy+InternetPassword+Item.swift in Sources */,
-				65EF67D7273AF40000B2A1C7 /* constr_SEQUENCE.c in Sources */,
 				6576539F273A82E900D20684 /* Keychain+Legacy+GenericPassword+Item.swift in Sources */,
-				65EF67FC273AF40000B2A1C7 /* constr_CHOICE.c in Sources */,
 				65DBF08E24DAB97800580422 /* Keychain+Internal.swift in Sources */,
 				6598BB182718265A006DA1C1 /* Crypto+CryptoKit.swift in Sources */,
-				65EF6844273AF40100B2A1C7 /* OPEN_TYPE_xer.c in Sources */,
 				65BC1C2127201ADE00C19EA2 /* Keychain+Legacy+InternetPassword.swift in Sources */,
+				8B9DB7A729D9BBCA002F5F1C /* ASN1+PKCS1.swift in Sources */,
 				65696CFE24E5C79600BA8774 /* SecKeyAttributes.swift in Sources */,
-				65EF6840273AF40100B2A1C7 /* GraphicString.c in Sources */,
 				6576537727342F1300D20684 /* RSAKey+SecKey.swift in Sources */,
-				65EF67DA273AF40000B2A1C7 /* OCTET_STRING_ber.c in Sources */,
 				65765387273436CE00D20684 /* ECCPrivateKey+SecKey.swift in Sources */,
-				65EF6834273AF40100B2A1C7 /* OBJECT_IDENTIFIER_rfill.c in Sources */,
 				65C12AF424FAFFE600F21629 /* HMAC+SHA384.swift in Sources */,
 				6599BFFD24DEE5810063E210 /* Crypto+ECC+Internal.swift in Sources */,
 				65E8C3402722BB2C0036E324 /* Crypto+RSA+PrivateKey.swift in Sources */,
 				6521CF0C24DB66830018EEA5 /* Keychain+InternetPassword.swift in Sources */,
 				651CA953271EDAF200FBE820 /* Keychain+Legacy+GenericPassword.swift in Sources */,
-				65EF683F273AF40100B2A1C7 /* asn_SET_OF.c in Sources */,
 				6548AEA724E966D300856EBA /* AppEntitlements.swift in Sources */,
-				65EF67D5273AF40000B2A1C7 /* constr_SEQUENCE_ber.c in Sources */,
 				9167773824F0272900A37D0C /* Keychain+SecureEnclave.swift in Sources */,
-				65EF67F4273AF40000B2A1C7 /* constraints.c in Sources */,
-				65EF67DC273AF40000B2A1C7 /* constr_CHOICE_xer.c in Sources */,
 				657653892734373500D20684 /* ECCPublicKey+SecKey.swift in Sources */,
 				65C12ACE24FAD5F000F21629 /* SHA224.swift in Sources */,
 				65C12AF224FAFFDC00F21629 /* HMAC+SHA256.swift in Sources */,
-				65C903B82503119E007F2F76 /* DVEASN1CoderError.m in Sources */,
 				91E5735D24DD7A2700C50786 /* Keychain+InternetPassword+Internal.swift in Sources */,
-				65EF683B273AF40100B2A1C7 /* constr_SEQUENCE_xer.c in Sources */,
-				65FB35E42504065D00C38585 /* DVEASN1RSAPublicKey.m in Sources */,
 				657653992735ADED00D20684 /* Keychain+GenericPassword+Keys.swift in Sources */,
 				6521CF0A24DB5CB10018EEA5 /* Keychain+GenericPassword.swift in Sources */,
-				65EF6808273AF40000B2A1C7 /* ANY_xer.c in Sources */,
 				9103A00624F684AF0093AA18 /* Keychain+QueryAuthentication+Internal.swift in Sources */,
 				65696CF624E5A4EC00BA8774 /* SecKeyConvertible.swift in Sources */,
 				659ABC7524DDF88600F37338 /* Crypto+RSA+Internal.swift in Sources */,
-				65EF67EC273AF40000B2A1C7 /* INTEGER_xer.c in Sources */,
 				910FDF5C24E68D1E0018AD42 /* RSAPublicKey.swift in Sources */,
 				65C12AEE24FAFFAC00F21629 /* Hashing+Internal.swift in Sources */,
-				65EF6806273AF40000B2A1C7 /* xer_support.c in Sources */,
 				65E8C329272170DF0036E324 /* KeychainQueryParamsConvertible.swift in Sources */,
 				91E5736824DD91B100C50786 /* Crypto+Asymmetric.swift in Sources */,
+				8B9DB7AB29D9BCFB002F5F1C /* ASN1+PKCS1+RSAPublicKey.swift in Sources */,
 				91D376F224EC1EBF002BA60B /* Keychain+AccessControl.swift in Sources */,
 				65C12ACB24FA9B0A00F21629 /* Crypto+AES+Key+Combine.swift in Sources */,
-				658183452505847800B482F1 /* ASN1+RSAPublicKey.swift in Sources */,
-				65EF682A273AF40100B2A1C7 /* asn_codecs_prim_ber.c in Sources */,
-				65EF6815273AF40000B2A1C7 /* asn_application.c in Sources */,
 				65C12AD924FAD8B300F21629 /* Insecure+MD4.swift in Sources */,
 				91E5736624DD8D0F00C50786 /* Crypto+RSA.swift in Sources */,
 				657653952735AD9100D20684 /* Keychain+InternetPassword+Item.swift in Sources */,
-				65EF67EB273AF40000B2A1C7 /* constr_SET_OF.c in Sources */,
-				65EF680C273AF40000B2A1C7 /* OtherPrimeInfos.c in Sources */,
 				65E3D5F72525D9AA0015064E /* Keychain+AccessControl+Combine.swift in Sources */,
 				65C903BE25039D8E007F2F76 /* Preconditions.swift in Sources */,
-				65EF6841273AF40100B2A1C7 /* SubjectPublicKeyInfo.c in Sources */,
 				65E8C32F2721A6340036E324 /* Keychain+Legacy+FetchItemsQuery.swift in Sources */,
-				65EF67F8273AF40000B2A1C7 /* RSAPublicKey.c in Sources */,
 				651A623024FC0CD100B6420A /* Crypto+HMAC+Combine.swift in Sources */,
 				9138384A24ED646C00D10030 /* AppEntitlements+MobileProvisioning.swift in Sources */,
 				65DBF08824DAA3BA00580422 /* Keychain.swift in Sources */,
 				65C12AD024FAD5FB00F21629 /* SHA256.swift in Sources */,
-				65EF6828273AF40100B2A1C7 /* ber_tlv_length.c in Sources */,
-				65EF67E2273AF40000B2A1C7 /* OtherPrimeInfo.c in Sources */,
-				65EF6805273AF40000B2A1C7 /* ber_tlv_tag.c in Sources */,
-				65EF67E8273AF40000B2A1C7 /* BIT_STRING_xer.c in Sources */,
-				65EF67F9273AF40000B2A1C7 /* xer_encoder.c in Sources */,
 				6557F73924DBF80600C4BA3A /* Crypto+AES.swift in Sources */,
 				659ABC7724DDFDA000F37338 /* Crypto+AES+Internal.swift in Sources */,
-				65EF683D273AF40100B2A1C7 /* constr_SET_OF_rfill.c in Sources */,
-				65EF6818273AF40000B2A1C7 /* OBJECT_IDENTIFIER_xer.c in Sources */,
 				65696CFA24E5BF4400BA8774 /* SecKeyClass.swift in Sources */,
-				65EF67F2273AF40000B2A1C7 /* constr_CHOICE_print.c in Sources */,
-				65EF67ED273AF40000B2A1C7 /* OPEN_TYPE_ber.c in Sources */,
-				65FB35E02504064E00C38585 /* DVEASN1RSAPrivateKey.m in Sources */,
-				65EF681A273AF40000B2A1C7 /* asn_random_fill.c in Sources */,
-				65EF682F273AF40100B2A1C7 /* constr_CHOICE_rfill.c in Sources */,
-				65EF67D4273AF40000B2A1C7 /* OCTET_STRING.c in Sources */,
 				65CB50F8270F49F200FE5951 /* Keychain+Legacy.swift in Sources */,
 				BB35D8D7C203C42E26AC16B5 /* Keychain+SynchronizableItemAccessibility+Internal.swift in Sources */,
 				BB35D9A7F9EC6A271B61039A /* Keychain+SynchronizableItemAccessibility.swift in Sources */,
-				65EF681F273AF40100B2A1C7 /* EXTERNAL.c in Sources */,
 				BB35D05E2351771D16E043A1 /* Keychain+GenericPassword+Synchronizable.swift in Sources */,
 				6576539B2736E72800D20684 /* Optional+SetElement.swift in Sources */,
 				BB35D2989E4ABC62AFD69660 /* Keychain+InternetPassword+Synchronizable.swift in Sources */,
-				65EF6814273AF40000B2A1C7 /* INTEGER_ber.c in Sources */,
 				BB35DE2E4482709C1B6E573A /* Keychain+RSA+Synchronizable.swift in Sources */,
 				BB35D34D3C25D6962F3365A8 /* Keychain+SymmetricKey+Synchronizable.swift in Sources */,
 				BB35DC2E0920B60E141AE72D /* Keychain+ECC+Synchronizable.swift in Sources */,
@@ -2346,8 +1813,9 @@
 				65EF685D2741566500B2A1C7 /* Crypto+SecureEnclaveTests.swift in Sources */,
 				65C12AB024F98BCA00F21629 /* TestCaseCombine.swift in Sources */,
 				91C0F6D824E4550700511980 /* Crypto+ECCPrivateKeyTests.swift in Sources */,
+				8B9DB7B729DC7765002F5F1C /* ASN1X509Tests.swift in Sources */,
 				65C12AE324FAED4000F21629 /* SHA256Tests.swift in Sources */,
-				65EF6859273ECF3800B2A1C7 /* ASN1+CoderTests.swift in Sources */,
+				65EF6859273ECF3800B2A1C7 /* ASN1PKCS1Tests.swift in Sources */,
 				9109829224F940EC000D981F /* TestCaseiOS13.swift in Sources */,
 				91C0F6DE24E4594100511980 /* Crypto+ECCTests.swift in Sources */,
 				6598BB1E27182B0A006DA1C1 /* TestCaseCryptoKit.swift in Sources */,
@@ -2752,7 +2220,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = Source/module.modulemap;
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
@@ -2780,7 +2247,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = Source/module.modulemap;
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
@@ -2902,6 +2368,14 @@
 				minimumVersion = 11.2.0;
 			};
 		};
+		8B9DB7A229D90D63002F5F1C /* XCRemoteSwiftPackageReference "swift-asn1" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-asn1.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2914,6 +2388,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 45D526B324E13D3000269217 /* XCRemoteSwiftPackageReference "Nimble" */;
 			productName = Nimble;
+		};
+		8B9DB7A329D90D63002F5F1C /* SwiftASN1 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B9DB7A229D90D63002F5F1C /* XCRemoteSwiftPackageReference "swift-asn1" */;
+			productName = SwiftASN1;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

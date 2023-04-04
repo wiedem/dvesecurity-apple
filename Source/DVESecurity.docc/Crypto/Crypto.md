@@ -4,7 +4,8 @@
 
 This container provides symmetric and asymmetric cryptographic methods and types.
 
-Provided that RSA and iOS 12 support are not an issue, Apple's [CryptoKit](https://developer.apple.com/documentation/cryptokit) framework can alternatively be used for the same functionality.
+Supported cryptographic methods are AES, RSA and ECC.
+The cryptographic key types are compatible with the [Apple CryptoKit](https://developer.apple.com/documentation/cryptokit).
 
 - Note: The use of encryption in applications requires compliance with export regulations. See [Complying with Encryption Export Regulations](https://developer.apple.com/documentation/security/complying_with_encryption_export_regulations) for further details.
 

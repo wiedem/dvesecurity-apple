@@ -12,6 +12,8 @@ public extension Crypto {
 
         /// Creates IV data used for AES data encryption.
         ///
+        /// Initialization vectors don't need to be kept secret but must be random and should not be re-used for the same AES key.
+        ///
         /// - Returns: Randomly generated IV data.
         public static func createIV() throws -> Data {
             try Crypto.createRandomData(length: blockSize)

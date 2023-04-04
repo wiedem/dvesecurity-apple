@@ -47,5 +47,5 @@ public protocol CCHmacAlgorithmMapping {
 /// A container for hashing types and methods.
 public enum Hashing {
     /// A container for older, cryptographically insecure hashing algorithms.
-    public struct Insecure {}
+    public enum Insecure {}
 }

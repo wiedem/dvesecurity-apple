@@ -11,28 +11,20 @@ let package = Package(
     products: [
         .library(
             name: "DVESecurity",
-            targets: ["DVESecurity", "DVESecurity_ObjC"]
+            targets: ["DVESecurity"]
         ),
     ],
     dependencies: [
+        .package(url: "https://github.com/apple/swift-asn1.git", .upToNextMinor(from: "0.7.0"))
     ],
     targets: [
         .target(
             name: "DVESecurity",
-            dependencies: ["DVESecurity_ObjC"],
+            dependencies: [
+                .product(name: "SwiftASN1", package: "swift-asn1"),
+            ],
             path: "Source",
-            exclude: [],
-            publicHeadersPath: nil
-        ),
-        .target(
-            name: "DVESecurity_ObjC",
-            dependencies: [],
-            path: "CSource/ObjC",
-            exclude: ["ASN1/LICENSE", "ASN1/PKCS1.asn1", "ASN1/PKIX.asn1", "ASN1/Makefile.am.asn1convert", "ASN1/Makefile.am.libasncodec"],
-            publicHeadersPath: "include",
-            cSettings: [
-                .headerSearchPath("ASN1"),
-            ]
+            exclude: []
         ),
     ],
     swiftLanguageVersions: [.v5]

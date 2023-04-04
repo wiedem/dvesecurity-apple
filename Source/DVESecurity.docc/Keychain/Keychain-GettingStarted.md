@@ -44,11 +44,13 @@ The following example shows the use of the keychain with the key types from the 
 ```swift
 // Create a random AES key and save it in the keychain.
 // The tag and application label values are used to identify the entry and to query them later.
-let aesKey = try Crypto.AES.Key(keySize: .bits256,
-                                password: "Hello Test!",
-                                withSalt: "Salt",
-                                pseudoRandomAlgorithm: .hmacAlgSHA256,
-                                rounds: 1)
+let aesKey = try Crypto.AES.Key(
+    keySize: .bits256,
+    password: "Hello Test!",
+    withSalt: "Salt",
+    pseudoRandomAlgorithm: .hmacAlgSHA256,
+    rounds: 1
+)
 try Keychain.saveKey(key, withTag: "AESKeyTag", applicationLabel: "SearchLabel")
 
 // Create random RSA / ECC private keys and save them in the keychain.

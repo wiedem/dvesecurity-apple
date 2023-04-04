@@ -116,7 +116,13 @@ public extension Crypto.AES.Key {
     ///   - salt: The salt used as input to the derivation function.
     ///   - pseudoRandomAlgorithm: The Pseudo Random Algorithm to use for the derivation iterations.
     ///   - rounds: The number of rounds of the Pseudo Random Algorithm to use.
-    init(keySize: Crypto.AES.KeySize, password: String, withSalt salt: String, pseudoRandomAlgorithm: PseudoRandomAlgorithm, rounds: UInt32) throws {
+    init(
+        keySize: Crypto.AES.KeySize,
+        password: String,
+        withSalt salt: String,
+        pseudoRandomAlgorithm: PseudoRandomAlgorithm,
+        rounds: UInt32
+    ) throws {
         guard let passwordData = password.data(using: .utf8) else {
             throw Crypto.AESError.invalidPassword
         }

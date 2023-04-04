@@ -10,7 +10,7 @@ DVESecurity can be used as a Swift package via the [Swift Package Manager], via 
 ### Using the Swift Package Manager
 To use the framework as a Swift package, add the following dependency to your `Package.swift`:
 ```swift
-.package(url: "https://oss.diva-e.com/libraries/dvesecurity-apple", .upToNextMajor(from: "2.0.0")),
+.package(url: "https://github.com/wiedem/dvesecurity-apple", .upToNextMajor(from: "2.0.0")),
 ```
 
 A [DocC] documentation for the framework is available. Further details can be found in the [Documentation](#Documentation) section.
@@ -20,7 +20,7 @@ Note that the framework does not have a test target in the Swift package manifes
 ### Using Carthage
 To use the framework as a Carthage dependency, add the following line to your `Cartfile`:
 ```
-git "https://oss.diva-e.com/libraries/dvesecurity-apple" ~> 2.0
+git "https://github.com/wiedem/dvesecurity-apple" ~> 2.0
 ```
 
 For more details about the integration via Carthage see the notes on the [Carthage] project page.

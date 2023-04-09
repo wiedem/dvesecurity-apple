@@ -74,11 +74,15 @@ public extension Keychain {
         accessGroup: String = defaultAccessGroup,
         authentication: QueryAuthentication = .default,
         completion: @escaping (Result<PK?, Error>) -> Void
-    ) where
-        PK: ECCPrivateKey & CreateableFromSecKey
-    {
+    ) where PK: ECCPrivateKey & CreateableFromSecKey {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.x963Representation)
-        queryKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup, authentication: authentication, completion: completion)
+        queryKey(
+            withPublicKeySHA1: publicKeySHA1,
+            tag: tag,
+            accessGroup: accessGroup,
+            authentication: authentication,
+            completion: completion
+        )
     }
 
     /// Saves an ECC private key to the keychain.
@@ -132,7 +136,12 @@ public extension Keychain {
         accessGroup: String = defaultAccessGroup
     ) throws -> Bool {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.x963Representation)
-        return try deleteKey(ofType: Crypto.ECC.PrivateKey.self, withTag: tag, publicKeySHA1: publicKeySHA1, accessGroup: accessGroup)
+        return try deleteKey(
+            ofType: Crypto.ECC.PrivateKey.self,
+            withTag: tag,
+            publicKeySHA1: publicKeySHA1,
+            accessGroup: accessGroup
+        )
     }
 
     /// Deletes an ECC private key in the keychain.
@@ -186,7 +195,6 @@ public extension Keychain {
     }
 }
 
-@available(iOS 13.0, *)
 public extension Keychain {
     /// Performs a keychain query for a private ECC key and a given private tag data.
     ///
@@ -262,11 +270,13 @@ public extension Keychain {
         withTag tag: String? = nil,
         accessGroup: String = Keychain.defaultAccessGroup,
         authentication: Keychain.QueryAuthentication = .default
-    ) throws -> PK?
-        where
-        PK: ECCPrivateKey & CreateableFromSecKey
-    {
+    ) throws -> PK? where PK: ECCPrivateKey & CreateableFromSecKey {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.x963Representation)
-        return try queryKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup, authentication: authentication)
+        return try queryKey(
+            withPublicKeySHA1: publicKeySHA1,
+            tag: tag,
+            accessGroup: accessGroup,
+            authentication: authentication
+        )
     }
 }

@@ -72,11 +72,15 @@ public extension Keychain {
         accessGroup: String = defaultAccessGroup,
         authentication: QueryAuthentication = .default,
         completion: @escaping (Result<PK?, Error>) -> Void
-    ) where
-        PK: RSAPrivateKey & CreateableFromSecKey
-    {
+    ) where PK: RSAPrivateKey & CreateableFromSecKey {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
-        queryKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup, authentication: authentication, completion: completion)
+        queryKey(
+            withPublicKeySHA1: publicKeySHA1,
+            tag: tag,
+            accessGroup: accessGroup,
+            authentication: authentication,
+            completion: completion
+        )
     }
 
     /// Stores a private RSA key in the keychain.
@@ -132,7 +136,12 @@ public extension Keychain {
         accessGroup: String = defaultAccessGroup
     ) throws -> Bool {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
-        return try deleteKey(ofType: Crypto.RSA.PrivateKey.self, withTag: tag, publicKeySHA1: publicKeySHA1, accessGroup: accessGroup)
+        return try deleteKey(
+            ofType: Crypto.RSA.PrivateKey.self,
+            withTag: tag,
+            publicKeySHA1: publicKeySHA1,
+            accessGroup: accessGroup
+        )
     }
 
     /// Deletes a private RSA key from the keychain.
@@ -153,7 +162,12 @@ public extension Keychain {
     ) throws -> Bool where PK: RSAPrivateKey & PKCS1Convertible {
         let publicKey: Crypto.RSA.PublicKey = privateKey.publicKey()
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
-        return try deleteKey(ofType: PK.self, withTag: tag, publicKeySHA1: publicKeySHA1, accessGroup: accessGroup)
+        return try deleteKey(
+            ofType: PK.self,
+            withTag: tag,
+            publicKeySHA1: publicKeySHA1,
+            accessGroup: accessGroup
+        )
     }
 
     /// Deletes any type of RSA key in the keychain.
@@ -186,7 +200,6 @@ public extension Keychain {
     }
 }
 
-@available(iOS 13.0, *)
 public extension Keychain {
     /// Performs a keychain query for a private RSA key and a given private tag data.
     ///
@@ -259,11 +272,13 @@ public extension Keychain {
         withTag tag: String? = nil,
         accessGroup: String = defaultAccessGroup,
         authentication: QueryAuthentication = .default
-    ) throws -> PK?
-        where
-        PK: RSAPrivateKey & CreateableFromSecKey
-    {
+    ) throws -> PK? where PK: RSAPrivateKey & CreateableFromSecKey {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
-        return try queryKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup, authentication: authentication)
+        return try queryKey(
+            withPublicKeySHA1: publicKeySHA1,
+            tag: tag,
+            accessGroup: accessGroup,
+            authentication: authentication
+        )
     }
 }

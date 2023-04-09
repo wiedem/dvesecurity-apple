@@ -28,12 +28,14 @@ final class Keychain_GenericPasswordTestsiOS13: TestCaseiOS13 {
         expect(queriedPassword) == password
     }
 
-    func testSaveAndQueryKey() throws {
-        let key = CustomKey(value: password)
+    func testSaveAndQueryWithUnsafeData() throws {
+        let key = Crypto.KeyData.createFromUnsafeData(password.data(using: .utf8)!)
 
         try Keychain.GenericPassword.saveKey(key, forAccount: account1, service: service)
 
-        let queriedKey: CustomKey? = try Keychain.GenericPassword.queryKey(forAccount: account1, service: service)
+        let queriedKey: Crypto.KeyData? = try wait(description: "Keychain query") {
+            Keychain.GenericPassword.queryKey(forAccount: self.account1, service: self.service, completion: $0)
+        }
         expect(queriedKey) == key
     }
 

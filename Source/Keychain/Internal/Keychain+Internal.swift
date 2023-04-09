@@ -36,15 +36,6 @@ extension Keychain {
         }
     }
 
-    static func dataResultItemsToKeys<K>(_ result: CFTypeRef) throws -> [K] where K: RawKeyConvertible {
-        guard let dataItems = result as? [NSData] else {
-            throw KeychainError.resultError
-        }
-        return try dataItems.map {
-            try K(rawKeyRepresentation: Data(referencing: $0))
-        }
-    }
-
     static func attributesTransform<A>(_ result: CFTypeRef) throws -> [A] where A: KeychainAttributesConvertible {
         guard let result = result as? [[String: Any]] else {
             throw KeychainError.resultError
@@ -124,6 +115,17 @@ extension Keychain {
     static func saveItem(query: KeychainAddItemQuery) throws {
         let queryDictionary = query.queryDictionary as CFDictionary
 
+        if query.requiresExtendedLifetime {
+            // Keep the query item alive until the query is complete.
+            try withExtendedLifetime(query) {
+                try saveItem(queryDictionary: queryDictionary)
+            }
+        } else {
+            try saveItem(queryDictionary: queryDictionary)
+        }
+    }
+
+    private static func saveItem(queryDictionary: CFDictionary) throws {
         let status = SecItemAdd(queryDictionary, nil)
         guard status == errSecSuccess else {
             throw KeychainError.itemSavingFailed(status: status)

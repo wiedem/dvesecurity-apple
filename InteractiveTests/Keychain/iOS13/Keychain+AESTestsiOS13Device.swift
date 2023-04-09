@@ -9,8 +9,8 @@ import XCTest
 @available(iOS 13.0, *)
 final class Keychain_AESTestsiOS13Device: InteractiveTestCaseiOS13Device {
     // swiftlint:disable:next force_try
-    private let key: Crypto.AES.Key = try! Crypto.AES.Key(
-        keySize: Crypto.AES.KeySize.bits256,
+    private lazy var key: Crypto.AES.Key = try! Crypto.AES.Key(
+        keySize: .bits256,
         password: "Hello Test!",
         withSalt: "Salt",
         pseudoRandomAlgorithm: .hmacAlgSHA256,

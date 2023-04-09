@@ -35,17 +35,17 @@ final class Keychain_GenericPassword_SynchronizableTests: XCTestCase {
         expect(queriedSynchronizedPassword) == synchronizedPassword
     }
 
-    func testSaveAndQueryKey() throws {
-        let key = CustomKey(value: password)
-        let synchronizedKey = CustomKey(value: synchronizedPassword)
+    func testSaveAndQueryWithUnsafeData() throws {
+        let key = Crypto.KeyData.createFromUnsafeData(password.data(using: .utf8)!)
+        let synchronizedKey = Crypto.KeyData.createFromUnsafeData(synchronizedPassword.data(using: .utf8)!)
 
         try Keychain.GenericPassword.saveKey(key, forAccount: account, service: service)
         try Keychain.GenericPassword.saveSynchronizableKey(synchronizedKey, forAccount: account, service: service)
 
-        let queriedKey: CustomKey? = try wait(description: "Keychain query") {
+        let queriedKey: Crypto.KeyData? = try wait(description: "Keychain query") {
             Keychain.GenericPassword.queryKey(forAccount: account, service: service, completion: $0)
         }
-        let queriedSynchronizedKey: CustomKey? = try wait(description: "Keychain query") {
+        let queriedSynchronizedKey: Crypto.KeyData? = try wait(description: "Keychain query") {
             Keychain.GenericPassword.querySynchronizableKey(forAccount: account, service: service, completion: $0)
         }
 

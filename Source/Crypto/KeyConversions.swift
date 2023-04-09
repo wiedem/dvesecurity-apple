@@ -3,17 +3,6 @@
 
 import Foundation
 
-/// A type that can be converted to and from a raw key representation.
-public protocol RawKeyConvertible {
-    /// The raw key representation of the type.
-    var rawKeyRepresentation: Data { get }
-
-    /// Creates a new instance from a raw key representation of the type.
-    ///
-    /// - Parameter rawKeyRepresentation: Raw representation of the key.
-    init<Bytes>(rawKeyRepresentation: Bytes) throws where Bytes: ContiguousBytes
-}
-
 /// A type that can be  converted to and from a PKCS#1 representation.
 public protocol PKCS1Convertible {
     /// The PKCS#1 representation of the type.

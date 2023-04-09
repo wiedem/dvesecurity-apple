@@ -20,11 +20,14 @@ public extension Keychain {
         withTag tag: String? = nil,
         accessGroup: String = defaultAccessGroup,
         completion: @escaping (Result<PK?, Error>) -> Void
-    ) where
-        PK: ECCPrivateKey & CreateableFromSecKey
-    {
+    ) where PK: ECCPrivateKey & CreateableFromSecKey {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.x963Representation)
-        querySynchronizableKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup, completion: completion)
+        querySynchronizableKey(
+            withPublicKeySHA1: publicKeySHA1,
+            tag: tag,
+            accessGroup: accessGroup,
+            completion: completion
+        )
     }
 
     /// Performs a keychain query for a synchronized private ECC key and a given public key digest.
@@ -118,7 +121,12 @@ public extension Keychain {
         accessGroup: String = defaultAccessGroup
     ) throws -> Bool {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.x963Representation)
-        return try deleteSynchronizableKey(ofType: Crypto.ECC.PrivateKey.self, withTag: tag, publicKeySHA1: publicKeySHA1, accessGroup: accessGroup)
+        return try deleteSynchronizableKey(
+            ofType: Crypto.ECC.PrivateKey.self,
+            withTag: tag,
+            publicKeySHA1: publicKeySHA1,
+            accessGroup: accessGroup
+        )
     }
 
     /// Deletes an synchronized ECC private key in the keychain.
@@ -139,7 +147,12 @@ public extension Keychain {
     ) throws -> Bool where PK: ECCPrivateKey & ConvertibleToSecKey {
         let publicKey: Crypto.ECC.PublicKey = privateKey.publicKey()
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.x963Representation)
-        return try deleteSynchronizableKey(ofType: PK.self, withTag: tag, publicKeySHA1: publicKeySHA1, accessGroup: accessGroup)
+        return try deleteSynchronizableKey(
+            ofType: PK.self,
+            withTag: tag,
+            publicKeySHA1: publicKeySHA1,
+            accessGroup: accessGroup
+        )
     }
 
     /// Deletes any type of synchronized ECC key in the keychain.
@@ -172,7 +185,6 @@ public extension Keychain {
     }
 }
 
-@available(iOS 13.0, *)
 public extension Keychain {
     /// Performs a keychain query for a synchronized private ECC key and a given public key.
     ///
@@ -189,10 +201,7 @@ public extension Keychain {
         for publicKey: some ECCPublicKey,
         withTag tag: String? = nil,
         accessGroup: String = Keychain.defaultAccessGroup
-    ) throws -> PK?
-        where
-        PK: ECCPrivateKey & CreateableFromSecKey
-    {
+    ) throws -> PK? where PK: ECCPrivateKey & CreateableFromSecKey {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.x963Representation)
         return try querySynchronizableKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup)
     }

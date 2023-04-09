@@ -5,7 +5,7 @@ import Foundation
 import Security
 
 extension Keychain {
-    struct FetchItemsQuery: KeychainFetchItemsQuery {
+    final class FetchItemsQuery: KeychainFetchItemsQuery {
         struct ReturnType: OptionSet {
             let rawValue: Int
 
@@ -24,28 +24,23 @@ extension Keychain {
             returnType.insertIntoKeychainQuery(&queryDictionary)
             attributes.insertIntoKeychainQuery(&queryDictionary)
 
-            if #available(iOS 13.0, *) {
-                // See https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain
-                queryDictionary[kSecUseDataProtectionKeychain as String] = true
-            }
+            // See https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain
+            queryDictionary[kSecUseDataProtectionKeychain as String] = true
         }
 
         func add(_ attributes: some KeychainQueryParamsConvertible) -> Self {
-            var copy = self
-            attributes.insertIntoKeychainQuery(&copy.queryDictionary)
-            return copy
+            attributes.insertIntoKeychainQuery(&queryDictionary)
+            return self
         }
 
         func setLimit(_ limit: UInt) -> Self {
-            var copy = self
-            insertLimit(limit, into: &copy.queryDictionary)
-            return copy
+            insertLimit(limit, into: &queryDictionary)
+            return self
         }
 
         func includeSynchronizableItems() -> Self {
-            var copy = self
-            copy.queryDictionary[kSecAttrSynchronizable as String] = kSecAttrSynchronizableAny
-            return copy
+            queryDictionary[kSecAttrSynchronizable as String] = kSecAttrSynchronizableAny
+            return self
         }
     }
 }

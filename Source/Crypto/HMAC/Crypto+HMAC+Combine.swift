@@ -5,7 +5,6 @@ import Foundation
 #if canImport(Combine)
 import Combine
 
-@available(iOS 13.0, *)
 public extension Crypto.HMAC {
     /// Returns a publisher that computes a message authentication code for the given data.
     ///
@@ -14,7 +13,7 @@ public extension Crypto.HMAC {
     ///   - key: The symmetric key used to secure the computation.
     static func authenticationCodePublisher(
         for data: some DataProtocol,
-        using key: some SymmetricKey & RawKeyConvertible
+        using key: some SecureData
     ) -> AnyPublisher<Data, Never> {
         Future { promise in
             let code = authenticationCode(for: data, using: key)
@@ -32,7 +31,7 @@ public extension Crypto.HMAC {
     static func validationPublisher(
         for authenticationCode: Data,
         authenticating authenticatedData: some DataProtocol,
-        using key: some SymmetricKey & RawKeyConvertible
+        using key: some SecureData
     ) -> AnyPublisher<Bool, Never> {
         Future { promise in
             let isValid = isValidAuthenticationCode(authenticationCode, authenticating: authenticatedData, using: key)

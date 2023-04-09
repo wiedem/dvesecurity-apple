@@ -14,9 +14,9 @@ public extension Crypto {
         ///
         /// Initialization vectors don't need to be kept secret but must be random and should not be re-used for the same AES key.
         ///
-        /// - Returns: Randomly generated IV data.
-        public static func createIV() throws -> Data {
-            try Crypto.createRandomData(length: blockSize)
+        /// - Returns: Randomly generated Initialization vector data.
+        public static func createInitVector() throws -> some SecureData {
+            try Crypto.KeyData.createRandomData(length: blockSize)
         }
 
         /// Encrypts a block of data using the Advanced Encryption Standard (AES).
@@ -26,17 +26,21 @@ public extension Crypto {
         /// - Parameters:
         ///   - plainText: The plaintext data to encrypt.
         ///   - key: The AES key used for the encryption.
-        ///   - ivData: IV data used for the encryption.
+        ///   - initVector: Initialization vector data used for the encryption.
         ///
         /// - Returns: The ciphertext data with PKCS#7 padding represented as a Data object.
-        public static func encrypt(_ plainText: some ContiguousBytes, withKey key: Key, ivData: Data) throws -> Data {
+        public static func encrypt(
+            _ plainText: some ContiguousBytes,
+            withKey key: some SecureData,
+            initVector: some SecureData
+        ) throws -> Data {
             try cryptOperation(
                 CCOperation(kCCEncrypt),
                 algorithm: CCAlgorithm(kCCAlgorithmAES),
                 options: CCOptions(kCCOptionPKCS7Padding),
                 for: plainText,
-                withKey: key.rawKeyRepresentation,
-                iv: ivData
+                withKey: key,
+                initVector: initVector
             )
         }
 
@@ -47,18 +51,60 @@ public extension Crypto {
         /// - Parameters:
         ///   - data: The PKCS#7 padded ciphertext data to decrypt.
         ///   - key: The AES key used for the decryption.
-        ///   - ivData: IV data used for the decryption.
+        ///   - initVector: Initialization vector data used for the decryption.
         ///
         /// - Returns: The decrypted plaintext data.
-        public static func decrypt(_ data: some ContiguousBytes, withKey key: Key, ivData: Data) throws -> Data {
+        public static func decrypt(
+            _ data: some ContiguousBytes,
+            withKey key: some SecureData,
+            initVector: some SecureData
+        ) throws -> Data {
             try cryptOperation(
                 CCOperation(kCCDecrypt),
                 algorithm: CCAlgorithm(kCCAlgorithmAES),
                 options: CCOptions(kCCOptionPKCS7Padding),
                 for: data,
-                withKey: key.rawKeyRepresentation,
-                iv: ivData
+                withKey: key,
+                initVector: initVector
             )
         }
+    }
+}
+
+public extension Crypto.AES {
+    /// Encrypts a block of data using the Advanced Encryption Standard (AES).
+    ///
+    /// Cipher Block Chaining (CBC) is used for the encryption with PKCS#7 padding.
+    ///
+    /// - Parameters:
+    ///   - plainText: The plaintext data to encrypt.
+    ///   - key: The AES key used for the encryption.
+    ///   - initVector: Initialization vector data used for the encryption.
+    ///
+    /// - Returns: The ciphertext data with PKCS#7 padding represented as a Data object.
+    static func encrypt(
+        _ plainText: some ContiguousBytes,
+        withKey key: some KeyDataRepresentable,
+        initVector: some SecureData
+    ) throws -> Data {
+        try encrypt(plainText, withKey: key.keyData, initVector: initVector)
+    }
+
+    /// Decrypts a block of data using the Advanced Encryption Standard (AES).
+    ///
+    /// Cipher Block Chaining (CBC) is used for the decryption with PKCS#7 padding.
+    ///
+    /// - Parameters:
+    ///   - data: The PKCS#7 padded ciphertext data to decrypt.
+    ///   - key: The AES key used for the decryption.
+    ///   - initVector: Initialization vector data used for the decryption.
+    ///
+    /// - Returns: The decrypted plaintext data.
+    static func decrypt(
+        _ data: some ContiguousBytes,
+        withKey key: some KeyDataRepresentable,
+        initVector: some SecureData
+    ) throws -> Data {
+        try decrypt(data, withKey: key.keyData, initVector: initVector)
     }
 }

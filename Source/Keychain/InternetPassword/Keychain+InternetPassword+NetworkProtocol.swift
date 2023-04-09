@@ -4,7 +4,7 @@
 import Foundation
 
 public extension Keychain.InternetPassword {
-    // swiftlint:disable:next identifier_name
+    // swiftlint:disable identifier_name
     /// Network protocol attribute of an Internet Password keychain entry.
     enum NetworkProtocol {
         case ftp
@@ -39,4 +39,5 @@ public extension Keychain.InternetPassword {
         case ircs
         case pop3s
     }
+    // swiftlint:enable identifier_name
 }

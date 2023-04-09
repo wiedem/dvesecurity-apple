@@ -174,7 +174,7 @@ final class Keychain_CryptoKitTests: TestCaseCryptoKit {
             return
         }
         expect(queriedKey.bitCount) == 256
-        expect(key.rawKeyRepresentation) == queriedKey.rawKeyRepresentation
+        expect(key) == queriedKey
     }
 }
 #endif

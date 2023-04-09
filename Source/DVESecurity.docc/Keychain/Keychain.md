@@ -6,7 +6,7 @@ This container contains types and functions for the Data Protection Keychain of 
 
 Use the functionality provided in the ``Legacy`` container for file based keychains of macOS.
 
-- Note: Trying to use the methods for the Data Protection Keychain in macOS applications without an application ID will cause your  app to crash with a fatal error.
+- Note: Trying to use the methods for the Data Protection Keychain in macOS applications without an application ID will cause your app to crash with a fatal error.
 Such macOS applications do not have access to the Data Protection Keychain.
 
 ## Topics
@@ -94,22 +94,35 @@ Such macOS applications do not have access to the Data Protection Keychain.
 - ``Keychain/deleteSynchronizableKey(ofType:withTag:publicKeySHA1:accessGroup:)-k4pw``
 
 ### Symmetric Keys
-- ``Keychain/saveKey(_:withTag:applicationLabel:accessGroup:accessControl:label:authenticationContext:)``
+- ``Keychain/saveKey(_:withTag:applicationLabel:accessGroup:accessControl:label:authenticationContext:)-2f06e``
+- ``Keychain/saveKey(_:withTag:applicationLabel:accessGroup:accessControl:label:authenticationContext:)-3syxw``
 
-- ``Keychain/updateKey(newKey:withTag:applicationLabel:accessGroup:authentication:)``
+- ``Keychain/updateKey(newKey:withTag:applicationLabel:accessGroup:authentication:)-7dfa4``
+- ``Keychain/updateKey(newKey:withTag:applicationLabel:accessGroup:authentication:)-5ibv3``
 
-- ``Keychain/queryKey(withTag:applicationLabel:accessGroup:authentication:completion:)``
-- ``Keychain/queryKey(withTag:applicationLabel:accessGroup:authentication:)``
+
+- ``Keychain/queryKey(withTag:applicationLabel:accessGroup:authentication:completion:)-6m7re``
+- ``Keychain/queryKey(withTag:applicationLabel:accessGroup:authentication:completion:)-295i7``
+- ``Keychain/queryKey(withTag:applicationLabel:accessGroup:authentication:)-1oxfn``
+- ``Keychain/queryKey(withTag:applicationLabel:accessGroup:authentication:)-57zj2``
+- ``Keychain/queryKey(withTag:applicationLabel:accessGroup:authentication:)-empy``
+- ``Keychain/queryKey(withTag:applicationLabel:accessGroup:authentication:)-91veo``
 
 - ``Keychain/deleteKey(withTag:applicationLabel:accessGroup:)``
 
 ### Synchronizable Symmetric Keys
-- ``Keychain/saveSynchronizableKey(_:withTag:applicationLabel:accessGroup:accessibility:label:)``
+- ``Keychain/saveSynchronizableKey(_:withTag:applicationLabel:accessGroup:accessibility:label:)-7jabm``
+- ``Keychain/saveSynchronizableKey(_:withTag:applicationLabel:accessGroup:accessibility:label:)-1p88y``
 
-- ``Keychain/updateSynchronizableKey(newKey:withTag:applicationLabel:accessGroup:)``
+- ``Keychain/updateSynchronizableKey(newKey:withTag:applicationLabel:accessGroup:)-89r83``
+- ``Keychain/updateSynchronizableKey(newKey:withTag:applicationLabel:accessGroup:)-169l``
 
-- ``Keychain/querySynchronizableKey(withTag:applicationLabel:accessGroup:completion:)``
-- ``Keychain/querySynchronizableKey(withTag:applicationLabel:accessGroup:)``
+- ``Keychain/querySynchronizableKey(withTag:applicationLabel:accessGroup:completion:)-92ur9``
+- ``Keychain/querySynchronizableKey(withTag:applicationLabel:accessGroup:completion:)-6nui1``
+- ``Keychain/querySynchronizableKey(withTag:applicationLabel:accessGroup:)-3ir5g``
+- ``Keychain/querySynchronizableKey(withTag:applicationLabel:accessGroup:)-81svh``
+- ``Keychain/querySynchronizableKey(withTag:applicationLabel:accessGroup:)-8h97w``
+- ``Keychain/querySynchronizableKey(withTag:applicationLabel:accessGroup:)-1jhkq``
 
 - ``Keychain/deleteSynchronizableKey(withTag:applicationLabel:accessGroup:)``
 

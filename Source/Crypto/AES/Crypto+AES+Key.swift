@@ -4,15 +4,70 @@
 import CommonCrypto
 import Foundation
 
-/// A type for a symmetic cryptographic key.
-public protocol SymmetricKey: ContiguousBytes {
-    /// The number of bits in the key.
-    var bitCount: Int { get }
+public extension Crypto.AES {
+    /// A symmetric cryptographic key for AES operations.
+    ///
+    /// The storate for the key data must implement the ``SecureData`` protocol, which ensures that the key data is deleted from the memory as soon as it is
+    /// no longer required.
+    ///
+    /// `Key` itself implements the ``SecureData`` protocol.
+    struct Key<SD: SecureData> {
+        /// The data of the key.
+        public let keyData: SD
+
+        /// Creates a new AES key.
+        ///
+        /// - Parameter keyData: An instance of type ``SecureData`` containing the data of the key.
+        public init(keyData: SD) {
+            self.keyData = keyData
+        }
+    }
 }
 
-public extension Crypto.AES {
+extension Crypto.AES.Key: Equatable where SD == Crypto.KeyData {}
+extension Crypto.AES.Key: Hashable where SD == Crypto.KeyData {}
+extension Crypto.AES.Key: KeyDataRepresentable where SD == Crypto.KeyData {}
+
+public extension Crypto.AES.Key {
+    /// Encrypts a block of data using the Advanced Encryption Standard (AES).
+    ///
+    /// Cipher Block Chaining (CBC) is used for the encryption with PKCS#7 padding.
+    ///
+    /// - Parameters:
+    ///   - plainText: The plaintext data to encrypt.
+    ///   - initVector: Initialization vector data used for the encryption.
+    ///
+    /// - Returns: The ciphertext represented as a Data object.
+    func encrypt(_ plainText: some ContiguousBytes, initVector: some SecureData) throws -> Data {
+        try Crypto.AES.encrypt(plainText, withKey: keyData, initVector: initVector)
+    }
+
+    /// Decrypts a block of data using the Advanced Encryption Standard (AES).
+    ///
+    /// Cipher Block Chaining (CBC) is used for the decryption with PKCS#7 padding.
+    ///
+    /// - Parameters:
+    ///   - data: The ciphertext data to decrypt.
+    ///   - initVector: Initialization vector data used for the decryption.
+    ///
+    /// - Returns: The decrypted plaintext data.
+    func decrypt(_ data: some ContiguousBytes, initVector: some SecureData) throws -> Data {
+        try Crypto.AES.decrypt(data, withKey: keyData, initVector: initVector)
+    }
+}
+
+// MARK: - AES key derivation.
+public extension Crypto.AES.Key where SD == Crypto.KeyData {
     /// The sizes that a AES cryptographic key can take.
     struct KeySize {
+        /// 128 bit AES key size.
+        static let bits128 = Self(sizeInBytes: kCCKeySizeAES128)
+        /// 192 bit AES key size.
+        static let bits192 = Self(sizeInBytes: kCCKeySizeAES192)
+        /// 256 bit AES key size.
+        static let bits256 = Self(sizeInBytes: kCCKeySizeAES256)
+
+        /// The size of the key in bytes.
         private(set) var sizeInBytes: Int
 
         /// Creates a new key size of the given length in bytes.
@@ -26,79 +81,6 @@ public extension Crypto.AES {
         }
     }
 
-    /// A symmetric cryptographic key for AES.
-    struct Key: SymmetricKey {
-        public let blockSize: Int = kCCBlockSizeAES128
-        public var bitCount: Int { keyData.count * 8 }
-
-        private let keyData: Data
-
-        public func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R {
-            try keyData.withUnsafeBytes(body)
-        }
-    }
-}
-
-public extension Crypto.AES.Key {
-    /// Encrypts a block of data using the Advanced Encryption Standard (AES).
-    ///
-    /// Cipher Block Chaining (CBC) is used for the encryption with PKCS#7 padding.
-    ///
-    /// - Parameters:
-    ///   - plainText: The plaintext data to encrypt.
-    ///   - ivData: IV data used for the encryption.
-    ///
-    /// - Returns: The ciphertext represented as a Data object.
-    func encrypt(_ plainText: Data, ivData: Data) throws -> Data {
-        try Crypto.AES.encrypt(plainText, withKey: self, ivData: ivData)
-    }
-
-    /// Decrypts a block of data using the Advanced Encryption Standard (AES).
-    ///
-    /// Cipher Block Chaining (CBC) is used for the decryption with PKCS#7 padding.
-    ///
-    /// - Parameters:
-    ///   - data: The ciphertext data to decrypt.
-    ///   - ivData: IV data used for the decryption.
-    ///
-    /// - Returns: The decrypted plaintext data.
-    func decrypt(_ data: Data, ivData: Data) throws -> Data {
-        try Crypto.AES.decrypt(data, withKey: self, ivData: ivData)
-    }
-}
-
-// MARK: - RawKeyConvertible
-extension Crypto.AES.Key: RawKeyConvertible {
-    /// Raw data representation of the AES key.
-    public var rawKeyRepresentation: Data { keyData }
-
-    /// Create a new AES key from raw data.
-    ///
-    /// - Parameter rawKeyRepresentation: The raw key data from which the key should be created.
-    public init(rawKeyRepresentation: some ContiguousBytes) {
-        keyData = rawKeyRepresentation.withUnsafeBytes { Data($0) }
-    }
-}
-
-// MARK: - Equatable
-extension Crypto.AES.Key: Equatable {
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.rawKeyRepresentation == rhs.rawKeyRepresentation
-    }
-}
-
-// MARK: - AESKeySize default values
-public extension Crypto.AES.KeySize {
-    /// 128 bit AES key size.
-    static let bits128 = Self(sizeInBytes: kCCKeySizeAES128)
-    /// 192 bit AES key size.
-    static let bits192 = Self(sizeInBytes: kCCKeySizeAES192)
-    /// 256 bit AES key size.
-    static let bits256 = Self(sizeInBytes: kCCKeySizeAES256)
-}
-
-// MARK: - AES key derivation.
-public extension Crypto.AES.Key {
     /// Pseudo Random Algorithm used for key derivations.
     enum PseudoRandomAlgorithm {
         case hmacAlgSHA1
@@ -117,7 +99,7 @@ public extension Crypto.AES.Key {
     ///   - pseudoRandomAlgorithm: The Pseudo Random Algorithm to use for the derivation iterations.
     ///   - rounds: The number of rounds of the Pseudo Random Algorithm to use.
     init(
-        keySize: Crypto.AES.KeySize,
+        keySize: KeySize,
         password: String,
         withSalt salt: String,
         pseudoRandomAlgorithm: PseudoRandomAlgorithm,
@@ -130,10 +112,9 @@ public extension Crypto.AES.Key {
             throw Crypto.AESError.invalidSalt
         }
         let derivedKeyLength = keySize.sizeInBytes
-        var derivedKey = Data(count: derivedKeyLength)
 
-        let result = derivedKey.withUnsafeMutableBytes { derivedKeyBuffer in
-            passwordData.withUnsafeBytes { passwordBuffer in
+        let keyData = try Crypto.KeyData(byteCount: derivedKeyLength) { rawBufferPointer in
+            let result = passwordData.withUnsafeBytes { passwordBuffer in
                 saltData.withUnsafeBytes { saltBuffer in
                     CCKeyDerivationPBKDF(
                         CCPBKDFAlgorithm(kCCPBKDF2),
@@ -143,17 +124,17 @@ public extension Crypto.AES.Key {
                         saltBuffer.count,
                         pseudoRandomAlgorithm.ccryptoValue,
                         rounds,
-                        derivedKeyBuffer.bindMemory(to: UInt8.self).baseAddress!,
+                        rawBufferPointer.bindMemory(to: UInt8.self).baseAddress!,
                         derivedKeyLength
                     )
                 }
             }
+
+            guard result == kCCSuccess else {
+                throw CommonCryptoError(status: result)
+            }
         }
 
-        guard result == kCCSuccess else {
-            throw CommonCryptoError(status: result)
-        }
-
-        self.init(keyData: derivedKey)
+        self.init(keyData: keyData)
     }
 }

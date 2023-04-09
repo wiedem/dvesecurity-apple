@@ -12,21 +12,22 @@ public protocol DefinesSecKeyClass {
     static var secKeyClass: SecKeyClass { get }
 }
 
-/// A type that can be converted to a `SecKey` instance.
+/// A type that can be converted to a [SecKey](https://developer.apple.com/documentation/security/seckey) instance.
 public protocol ConvertibleToSecKey {
-    /// A `SecKey` instance representation of this type.
+    /// A [SecKey](https://developer.apple.com/documentation/security/seckey) instance representation of this type.
     var secKey: SecKey { get }
 }
 
-/// A type that can be initialized from `SecKey` instances.
+/// A type that can be initialized from [SecKey](https://developer.apple.com/documentation/security/seckey) instances.
 public protocol CreateableFromSecKey {
-    /// Creates this type from a `SecKey` instance.
+    /// Creates this type from a [SecKey](https://developer.apple.com/documentation/security/seckey) instance.
     ///
-    /// - Parameter secKey: The `SecKey` from which this type should be created.
+    /// - Parameter secKey: The [SecKey](https://developer.apple.com/documentation/security/seckey) from which this type should be created.
     init(secKey: SecKey) throws
 }
 
-/// A type that can be initialized from `SecKey` instances and converted to a `SecKey` instance.
+/// A type that can be initialized from [SecKey](https://developer.apple.com/documentation/security/seckey) instances and
+/// converted to a [SecKey](https://developer.apple.com/documentation/security/seckey) instance.
 public protocol SecKeyConvertible: ConvertibleToSecKey & CreateableFromSecKey {}
 
 public extension ConvertibleToSecKey {

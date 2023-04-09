@@ -5,7 +5,6 @@ import Foundation
 #if canImport(Combine)
 import Combine
 
-@available(iOS 13.0, *)
 extension Crypto.RSA {
     /// Returns a publisher that encrypts a block of data using an RSA public key and the specified RSA algorithm.
     ///

@@ -7,7 +7,7 @@ protocol KeychainQueryParamsConvertible {
     func insertIntoKeychainQuery(_ query: inout [String: Any])
 }
 
-extension Set: KeychainQueryParamsConvertible where Element: KeychainQueryParamsConvertible {
+extension Sequence where Element: KeychainQueryParamsConvertible {
     func insertIntoKeychainQuery(_ query: inout [String: Any]) {
         forEach { $0.insertIntoKeychainQuery(&query) }
     }

@@ -10,28 +10,28 @@ final class Keychain_AES_SynchronizableTests: XCTestCase {
 
     // swiftlint:disable force_try
     private let key: Crypto.AES.Key = try! Crypto.AES.Key(
-        keySize: Crypto.AES.KeySize.bits256,
+        keySize: .bits256,
         password: "Hello Test!",
         withSalt: "Salt",
         pseudoRandomAlgorithm: .hmacAlgSHA256,
         rounds: 1
     )
     private let synchronizedKey: Crypto.AES.Key = try! Crypto.AES.Key(
-        keySize: Crypto.AES.KeySize.bits256,
+        keySize: .bits256,
         password: "Synchronized Hello Test!",
         withSalt: "Synchronized Salt",
         pseudoRandomAlgorithm: .hmacAlgSHA256,
         rounds: 1
     )
     private let key2: Crypto.AES.Key = try! Crypto.AES.Key(
-        keySize: Crypto.AES.KeySize.bits256,
+        keySize: .bits256,
         password: "Hello Test!2",
         withSalt: "Salt2",
         pseudoRandomAlgorithm: .hmacAlgSHA256,
         rounds: 1
     )
     private let synchronizedKey2: Crypto.AES.Key = try! Crypto.AES.Key(
-        keySize: Crypto.AES.KeySize.bits256,
+        keySize: .bits256,
         password: "Synchronized Hello Test!2",
         withSalt: "Synchronized Salt2",
         pseudoRandomAlgorithm: .hmacAlgSHA256,
@@ -148,7 +148,7 @@ final class Keychain_AES_SynchronizableTests: XCTestCase {
 
 // MARK: - Private
 private extension Keychain_AES_SynchronizableTests {
-    func queryKey(synchronizable: Bool, keyTag: String, applicationLabel: Data?, expectationDescription: String = "Keychain query") throws -> Crypto.AES.Key? {
+    func queryKey(synchronizable: Bool, keyTag: String, applicationLabel: Data?, expectationDescription: String = "Keychain query") throws -> Crypto.AES.Key<Crypto.KeyData>? {
         try wait(description: expectationDescription) {
             if synchronizable {
                 return Keychain.querySynchronizableKey(withTag: keyTag, applicationLabel: applicationLabel, completion: $0)

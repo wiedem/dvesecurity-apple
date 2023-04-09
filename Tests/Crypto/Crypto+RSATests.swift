@@ -17,8 +17,10 @@ final class RSATests: XCTestCase {
         let rawDataLength = rsaPrivateKey.maxPlainTextLength(for: .raw)!
         let paddedPlainText = plainText.padding(toLength: rawDataLength, withPad: "P", startingAt: 0)
         let paddedPlainTextData = paddedPlainText.data(using: .utf8)!
+
         let cipherTextData = try rsaPublicKey.encrypt(paddedPlainTextData, using: .raw)
         let decryptedPaddedData = try rsaPrivateKey.decrypt(cipherTextData, using: .raw)
+
         let decryptedPaddedText = String(data: decryptedPaddedData, encoding: .utf8)!
         expect(decryptedPaddedText) == paddedPlainText
 

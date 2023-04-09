@@ -42,12 +42,12 @@ final class Keychain_GenericPasswordTests: XCTestCase {
         expect(items?.map(\.account)).to(contain(account1, account2))
     }
 
-    func testSaveAndQueryKey() throws {
-        let key = CustomKey(value: password)
+    func testSaveAndQueryWithUnsafeData() throws {
+        let key = Crypto.KeyData.createFromUnsafeData(password.data(using: .utf8)!)
 
         try Keychain.GenericPassword.saveKey(key, forAccount: account1, service: service)
 
-        let queriedKey: CustomKey? = try wait(description: "Keychain query") {
+        let queriedKey: Crypto.KeyData? = try wait(description: "Keychain query") {
             Keychain.GenericPassword.queryKey(forAccount: self.account1, service: self.service, completion: $0)
         }
         expect(queriedKey) == key

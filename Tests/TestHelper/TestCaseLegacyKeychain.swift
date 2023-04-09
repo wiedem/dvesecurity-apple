@@ -13,10 +13,12 @@ class TestCaseLegacyKeychain: TestCaseMacOS {
     override func setUpWithError() throws {
         try super.setUpWithError()
 
-        tempURL = try FileManager.default.url(for: .itemReplacementDirectory,
-                                              in: .userDomainMask,
-                                              appropriateFor: FileManager.default.temporaryDirectory,
-                                              create: true)
+        tempURL = try FileManager.default.url(
+            for: .itemReplacementDirectory,
+            in: .userDomainMask,
+            appropriateFor: FileManager.default.temporaryDirectory,
+            create: true
+        )
         let keychainURL = tempURL.appendingPathComponent("keychain.db")
 
         keychain = try Keychain.Legacy.createKeychain(pathName: keychainURL.relativePath, password: "Test123")

@@ -23,23 +23,12 @@ extension Keychain {
         static func queryOneSymmetricKey(
             itemAttributes: Set<ItemAttribute> = [],
             authentication: Keychain.QueryAuthentication = .default,
-            completion: @escaping (Result<Data?, Error>) -> Void
+            completion: @escaping (Result<Crypto.KeyData?, Error>) -> Void
         ) {
             let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
                 .add(SecKeyClass.symmetric)
                 .add(authentication)
-            Keychain.queryOneItem(query: query, completion: completion)
-        }
-
-        static func queryOneSymmetricKey<K>(
-            itemAttributes: Set<ItemAttribute> = [],
-            authentication: Keychain.QueryAuthentication = .default,
-            completion: @escaping (Result<K?, Error>) -> Void
-        ) where K: RawKeyConvertible {
-            let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
-                .add(SecKeyClass.symmetric)
-                .add(authentication)
-            Keychain.queryOneItem(query: query, transform: dataResultItemsToKeys, completion: completion)
+            Keychain.queryOneItem(query: query, transform: dataResultItemsToKeyData, completion: completion)
         }
 
         static func queryAttributes(
@@ -56,7 +45,7 @@ extension Keychain {
 
         static func save(
             keyClass: SecKeyClass,
-            keyData: Data,
+            keyData: some SecureData,
             itemAttributes: Set<ItemAttribute> = [],
             authenticationContext: LAContext? = nil
         ) throws {
@@ -81,7 +70,7 @@ extension Keychain {
 
         static func update(
             keyClass: SecKeyClass,
-            newKeyData: Data,
+            newKeyData: some SecureData,
             itemAttributes: Set<ItemAttribute> = [],
             authentication: Keychain.QueryAuthentication = .default
         ) throws {
@@ -112,6 +101,16 @@ extension Keychain.CryptoKey {
         }
         return try secKeyItems.map { try K(secKey: $0) }
     }
+
+    static func dataResultItemsToKeyData(_ result: CFTypeRef) throws -> [Crypto.KeyData] {
+        guard let dataItems = result as? [NSMutableData] else {
+            throw KeychainError.resultError
+        }
+
+        return dataItems.map {
+            Crypto.KeyData(transferFrom: $0)
+        }
+    }
 }
 
 extension Keychain.CryptoKey {
@@ -131,7 +130,6 @@ extension Keychain.CryptoKey {
         Keychain.queryItems(query: query, completion: completion)
     }
 
-    @available(iOS 13.0, *)
     static func queryAll(
         keyClass: SecKeyClass,
         itemAttributes: Set<Keychain.ItemAttribute> = [],
@@ -148,7 +146,6 @@ extension Keychain.CryptoKey {
     }
 }
 
-@available(iOS 13.0, *)
 extension Keychain.CryptoKey {
     static func queryOne<K>(
         keyClass: SecKeyClass,
@@ -166,11 +163,11 @@ extension Keychain.CryptoKey {
     static func queryOneSymmetricKey(
         itemAttributes: Set<Keychain.ItemAttribute> = [],
         authentication: Keychain.QueryAuthentication = .default
-    ) throws -> Data? {
+    ) throws -> Crypto.KeyData? {
         let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
             .add(SecKeyClass.symmetric)
             .add(authentication)
-        return try Keychain.queryOneItem(query: query)
+        return try Keychain.queryOneItem(query: query, transform: dataResultItemsToKeyData)
     }
 
     static func queryAttributes(

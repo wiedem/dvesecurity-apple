@@ -244,7 +244,6 @@ public extension Keychain.InternetPassword {
     }
 }
 
-@available(iOS 13.0, *)
 public extension Keychain.InternetPassword {
     /// Searches the keychain for a single synchronizable internet password entry.
     ///

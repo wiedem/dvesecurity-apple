@@ -32,9 +32,10 @@ This allows this type to be used when the credential is not assignable to the ot
 Generic password functionality is encapsulated in the ``Keychain/GenericPassword``container.
 
 ### Cryptographic Keys
-The ``Keychain`` container contains generic methods for the different cryptographic key types. The methods to be used are determined by the protocols implemented by the key types.
+The ``Keychain`` container contains generic methods for the different cryptographic key types.
+The methods to be used are determined by the protocols implemented by the key types.
 
-AES key types should implement the ``SymmetricKey`` protocol while RSA keys implement the ``RSAPublicKey`` and ``RSAPrivateKey`` and Elliptic Curve Crypto keys implement the ``ECCPublicKey``and ``ECCPrivateKey`` methods.
+AES key types should implement the ``SecureData`` protocol while RSA keys implement the ``RSAPublicKey`` and ``RSAPrivateKey`` and Elliptic Curve Crypto keys implement the ``ECCPublicKey``and ``ECCPrivateKey`` methods.
 
 For further requirements on the protocols to be implemented, see the corresponding methods.
 
@@ -49,7 +50,7 @@ let aesKey = try Crypto.AES.Key(
     password: "Hello Test!",
     withSalt: "Salt",
     pseudoRandomAlgorithm: .hmacAlgSHA256,
-    rounds: 1
+    rounds: 10000
 )
 try Keychain.saveKey(key, withTag: "AESKeyTag", applicationLabel: "SearchLabel")
 

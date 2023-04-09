@@ -22,6 +22,38 @@ extension Keychain {
         ///   - service: Specifies the service value with which to restrict the query.
         ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
         ///   - authentication: Keychain query authentication.
+        ///
+        /// - Returns: A list of  generic password items of type ``Item``, or `nil` if no item was found.
+        class func queryItems(
+            account: String? = nil,
+            service: String? = nil,
+            accessGroup: String = defaultAccessGroup,
+            authentication: QueryAuthentication = .default
+        ) throws -> [Item]? {
+            var itemAttributes: Set<Keychain.ItemAttribute> = [.accessGroup(accessGroup)]
+            account.updateMapped({ .account($0) }, in: &itemAttributes)
+            service.updateMapped({ .service($0) }, in: &itemAttributes)
+
+            let query = Keychain.FetchItemsQuery(
+                itemClass: itemClass,
+                returnType: [.data, .attributes],
+                attributes: itemAttributes
+            )
+            .add(authentication)
+            .includeSynchronizableItems()
+
+            return try Keychain.queryItems(query: query, transform: Keychain.attributesTransform)
+        }
+
+        /// Asynchronously queries generic password items in an access group.
+        ///
+        /// This method queries generic password entries, including synchronizable entries, in the keychain and returns them as an array of ``Item`` items.
+        ///
+        /// - Parameters:
+        ///   - account: Specifies the account value with which to restrict the query.
+        ///   - service: Specifies the service value with which to restrict the query.
+        ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
+        ///   - authentication: Keychain query authentication.
         ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
         open class func queryItems(
             account: String? = nil,
@@ -46,6 +78,33 @@ extension Keychain {
         }
 
         /// Searches the keychain for a generic password.
+        ///
+        /// Searches the keychain for a generic non-synchronizable password and returns the entry as a value of `String`.
+        ///
+        /// - Parameters:
+        ///   - account: Specifies the account name for the password.
+        ///   - service: Specifies the service associated with the password.
+        ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
+        ///   - authentication: Keychain query authentication.
+        ///
+        /// - Throws: ``KeychainError/resultError`` if the value of the entry cannot be decoded to a String.
+        /// - Returns: The generic password decoded as a `String` value, or `nil` if no item was found.
+        class func query(
+            forAccount account: String,
+            service: String,
+            accessGroup: String = Keychain.defaultAccessGroup,
+            authentication: Keychain.QueryAuthentication = .default
+        ) throws -> String? {
+            let itemAttributes: Set<Keychain.ItemAttribute> = [
+                .account(account), .service(service), .accessGroup(accessGroup),
+            ]
+
+            let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
+                .add(authentication)
+            return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString)
+        }
+
+        /// Asynchronously searches the keychain for a generic password.
         ///
         /// Searches the keychain for a generic non-synchronizable password and returns the entry as a value of `String`.
         ///
@@ -198,9 +257,8 @@ extension Keychain {
     }
 }
 
-@available(iOS 13.0, *)
 public extension Keychain.GenericPassword {
-    /// Queries generic password items in an access group.
+    /// Asynchronously queries generic password items in an access group.
     ///
     /// This method queries generic password entries, including synchronizable entries, in the keychain and returns them as an array of ``Item`` items.
     ///
@@ -216,25 +274,19 @@ public extension Keychain.GenericPassword {
         service: String? = nil,
         accessGroup: String = Keychain.defaultAccessGroup,
         authentication: Keychain.QueryAuthentication = .default
-    ) throws -> [Item]? {
-        var itemAttributes: Set<Keychain.ItemAttribute> = [.accessGroup(accessGroup)]
-        account.updateMapped({ .account($0) }, in: &itemAttributes)
-        service.updateMapped({ .service($0) }, in: &itemAttributes)
-
-        let query = Keychain.FetchItemsQuery(
-            itemClass: itemClass,
-            returnType: [.data, .attributes],
-            attributes: itemAttributes
-        )
-        .add(authentication)
-        .includeSynchronizableItems()
-
-        return try Keychain.queryItems(query: query, transform: Keychain.attributesTransform)
+    ) async throws -> [Item]? {
+        try await withCheckedThrowingContinuation { continuation in
+            queryItems(account: account, service: service, accessGroup: accessGroup, authentication: authentication) {
+                continuation.resume(with: $0)
+            }
+        }
     }
 
-    /// Searches the keychain for a generic password.
+    /// Asynchronously searches the keychain for a generic password.
     ///
     /// Searches the keychain for a generic non-synchronizable password and returns the entry as a value of `String`.
+    ///
+    /// Returns a ``KeychainError/resultError`` if the value of the entry cannot be decoded to a String.
     ///
     /// - Parameters:
     ///   - account: Specifies the account name for the password.
@@ -242,20 +294,17 @@ public extension Keychain.GenericPassword {
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication.
     ///
-    /// - Throws: ``KeychainError/resultError`` if the value of the entry cannot be decoded to a String.
     /// - Returns: The generic password decoded as a `String` value, or `nil` if no item was found.
     class func query(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,
         authentication: Keychain.QueryAuthentication = .default
-    ) throws -> String? {
-        let itemAttributes: Set<Keychain.ItemAttribute> = [
-            .account(account), .service(service), .accessGroup(accessGroup),
-        ]
-
-        let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
-            .add(authentication)
-        return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString)
+    ) async throws -> String? {
+        try await withCheckedThrowingContinuation { continuation in
+            query(forAccount: account, service: service, accessGroup: accessGroup, authentication: authentication) {
+                continuation.resume(with: $0)
+            }
+        }
     }
 }

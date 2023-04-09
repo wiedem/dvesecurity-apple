@@ -5,7 +5,6 @@ import Foundation
 #if canImport(Combine)
 import Combine
 
-@available(iOS 13.0, *)
 public extension Crypto.AES.Key {
     /// Returns a publisher that encrypts a block of data using the Advanced Encryption Standard (AES).
     ///
@@ -13,9 +12,9 @@ public extension Crypto.AES.Key {
     ///
     /// - Parameters:
     ///   - plainText: The plaintext data to encrypt.
-    ///   - ivData: IV data used for the encryption.
-    func encryptPublisher(for plainText: Data, ivData: Data) -> AnyPublisher<Data, Error> {
-        Crypto.AES.encryptPublisher(for: plainText, withKey: self, ivData: ivData)
+    ///   - initVector: Initialization vector data used for the encryption.
+    func encryptPublisher(for plainText: Data, initVector: some SecureData) -> AnyPublisher<Data, Error> {
+        Crypto.AES.encryptPublisher(for: plainText, withKey: keyData, initVector: initVector)
     }
 
     /// Returns a publisher that decrypts a block of data using the Advanced Encryption Standard (AES).
@@ -24,9 +23,9 @@ public extension Crypto.AES.Key {
     ///
     /// - Parameters:
     ///   - data: The PKCS#7 padded ciphertext data to decrypt.
-    ///   - ivData: IV data used for the decryption.
-    func decryptPublisher(for data: Data, ivData: Data) -> AnyPublisher<Data, Error> {
-        Crypto.AES.decryptPublisher(for: data, withKey: self, ivData: ivData)
+    ///   - initVector: Initialization vector data used for the decryption.
+    func decryptPublisher(for data: Data, initVector: some SecureData) -> AnyPublisher<Data, Error> {
+        Crypto.AES.decryptPublisher(for: data, withKey: keyData, initVector: initVector)
     }
 }
 #endif

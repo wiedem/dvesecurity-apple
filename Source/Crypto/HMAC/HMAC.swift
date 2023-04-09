@@ -17,19 +17,18 @@ public extension Crypto {
         /// - Returns: The authentication code.
         public static func authenticationCode(
             for data: some DataProtocol,
-            using key: some SymmetricKey & RawKeyConvertible
+            using key: some SecureData
         ) -> Data {
             let sourceData = Data(data)
             var hmacData = Data(count: H.byteCount)
-            let keyData = key.rawKeyRepresentation
 
             hmacData.withUnsafeMutableBytes { (hmacDataPointer: UnsafeMutableRawBufferPointer) in
-                keyData.withUnsafeBytes { keyPointer in
+                key.withUnsafeBytes { keyPointer in
                     sourceData.withUnsafeBytes { sourceDataPointer in
                         CCHmac(
                             H.ccHmacAlgorithm,
                             keyPointer.baseAddress!,
-                            keyData.count,
+                            key.byteCount,
                             sourceDataPointer.baseAddress!,
                             sourceData.count,
                             hmacDataPointer.baseAddress
@@ -51,9 +50,9 @@ public extension Crypto {
         public static func isValidAuthenticationCode(
             _ authenticationCode: Data,
             authenticating authenticatedData: some DataProtocol,
-            using key: some SymmetricKey & RawKeyConvertible
+            using key: some SecureData
         ) -> Bool {
-            return authenticationCode == self.authenticationCode(for: authenticatedData, using: key)
+            authenticationCode == self.authenticationCode(for: authenticatedData, using: key)
         }
 
         private var hmacContext = CCHmacContext()
@@ -61,12 +60,10 @@ public extension Crypto {
         /// Creates a message authentication code generator.
         ///
         /// - Parameter key: The symmetric key used to secure the computation.
-        public init(key: some SymmetricKey & RawKeyConvertible) {
-            let keyData = key.rawKeyRepresentation
-
+        public init(key: some SecureData) {
             withUnsafeMutablePointer(to: &hmacContext) { hmacContextPointer in
-                keyData.withUnsafeBytes { keyPointer in
-                    CCHmacInit(hmacContextPointer, H.ccHmacAlgorithm, keyPointer.baseAddress!, keyData.count)
+                key.withUnsafeBytes { keyPointer in
+                    CCHmacInit(hmacContextPointer, H.ccHmacAlgorithm, keyPointer.baseAddress!, key.byteCount)
                 }
             }
         }
@@ -97,5 +94,26 @@ public extension Crypto {
             }
             return hmac
         }
+    }
+}
+
+public extension Crypto.HMAC {
+    init(key: some KeyDataRepresentable) {
+        self.init(key: key.keyData)
+    }
+
+    static func authenticationCode(
+        for data: some DataProtocol,
+        using key: some KeyDataRepresentable
+    ) -> Data {
+        authenticationCode(for: data, using: key.keyData)
+    }
+
+    static func isValidAuthenticationCode(
+        _ authenticationCode: Data,
+        authenticating authenticatedData: some DataProtocol,
+        using key: some KeyDataRepresentable
+    ) -> Bool {
+        isValidAuthenticationCode(authenticationCode, authenticating: authenticatedData, using: key.keyData)
     }
 }

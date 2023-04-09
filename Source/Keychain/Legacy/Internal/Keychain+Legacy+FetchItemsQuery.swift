@@ -6,7 +6,7 @@ import Security
 
 #if os(macOS)
 extension Keychain.Legacy {
-    struct FetchItemsQuery: KeychainFetchItemsQuery {
+    final class FetchItemsQuery: KeychainFetchItemsQuery {
         struct ReturnType: OptionSet {
             let rawValue: Int
 
@@ -36,15 +36,13 @@ extension Keychain.Legacy {
         }
 
         func add(_ attributes: some KeychainQueryParamsConvertible) -> Self {
-            var copy = self
-            attributes.insertIntoKeychainQuery(&copy.queryDictionary)
-            return copy
+            attributes.insertIntoKeychainQuery(&queryDictionary)
+            return self
         }
 
         func setLimit(_ limit: UInt) -> Self {
-            var copy = self
-            insertLimit(limit, into: &copy.queryDictionary)
-            return copy
+            insertLimit(limit, into: &queryDictionary)
+            return self
         }
     }
 }

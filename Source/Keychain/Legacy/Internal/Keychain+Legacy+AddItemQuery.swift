@@ -6,7 +6,8 @@ import Security
 
 #if os(macOS)
 extension Keychain.Legacy {
-    struct AddItemQuery: KeychainAddItemQuery {
+    final class AddItemQuery: KeychainAddItemQuery {
+        private(set) var requiresExtendedLifetime: Bool = false
         private(set) var queryDictionary = [String: Any]()
 
         init(
@@ -39,15 +40,13 @@ extension Keychain.Legacy {
         }
 
         func add(_ attributes: some KeychainQueryParamsConvertible) -> Self {
-            var copy = self
-            attributes.insertIntoKeychainQuery(&copy.queryDictionary)
-            return copy
+            attributes.insertIntoKeychainQuery(&queryDictionary)
+            return self
         }
 
         func addIsPermanent(_ isPermanent: Bool) -> Self {
-            var copy = self
-            copy.queryDictionary[kSecAttrIsPermanent as String] = isPermanent
-            return copy
+            queryDictionary[kSecAttrIsPermanent as String] = isPermanent
+            return self
         }
     }
 }

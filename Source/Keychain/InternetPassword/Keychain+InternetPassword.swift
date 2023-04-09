@@ -27,9 +27,56 @@ extension Keychain {
         ///   - path: Specifies the path value with which to restrict the query.
         ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
         ///   - authentication: Keychain query authentication.
+        ///
+        /// - Returns: A list of  internet password items of type ``Item``, or `nil` if no item was found.
+        class func queryItems(
+            forAccount account: String? = nil,
+            securityDomain: String? = nil,
+            server: String? = nil,
+            protocol: Keychain.InternetPassword.NetworkProtocol? = nil,
+            authenticationType: Keychain.InternetPassword.AuthenticationType? = nil,
+            port: UInt16? = nil,
+            path: String? = nil,
+            accessGroup: String = Keychain.defaultAccessGroup,
+            authentication: Keychain.QueryAuthentication = .default
+        ) throws -> [Item]? {
+            var itemAttributes: Set<Keychain.ItemAttribute> = [.accessGroup(accessGroup)]
+            account.updateMapped({ .account($0) }, in: &itemAttributes)
+            securityDomain.updateMapped({ .securityDomain($0) }, in: &itemAttributes)
+            server.updateMapped({ .server($0) }, in: &itemAttributes)
+            `protocol`.updateMapped({ .protocol($0) }, in: &itemAttributes)
+            authenticationType.updateMapped({ .authenticationType($0) }, in: &itemAttributes)
+            port.updateMapped({ .port($0) }, in: &itemAttributes)
+            path.updateMapped({ .path($0) }, in: &itemAttributes)
+
+            let query = Keychain.FetchItemsQuery(
+                itemClass: itemClass,
+                returnType: [.data, .attributes],
+                attributes: itemAttributes
+            )
+            .add(authentication)
+            .includeSynchronizableItems()
+
+            return try Keychain.queryItems(query: query, transform: Keychain.attributesTransform)
+        }
+
+        /// Asynchronously queries internet password items in an access group.
+        ///
+        /// This method queries Internet password entries in the keychain, including synchronizable entries, and returns them as an array of  ``Item`` items.
+        ///
+        /// - Parameters:
+        ///   - account: Specifies the account value with which to restrict the query.
+        ///   - service: Specifies the service value with which to restrict the query.
+        ///   - server: Specifies the server value with which to restrict the query.
+        ///   - protocol: Specifies the protocol value with which to restrict the query.
+        ///   - authenticationType: Specifies the authenticationType value with which to restrict the query.
+        ///   - port: Specifies the port value with which to restrict the query.
+        ///   - path: Specifies the path value with which to restrict the query.
+        ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
+        ///   - authentication: Keychain query authentication.
         ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
         open class func queryItems(
-            account: String? = nil,
+            forAccount account: String? = nil,
             securityDomain: String? = nil,
             server: String? = nil,
             protocol: Keychain.InternetPassword.NetworkProtocol? = nil,
@@ -49,15 +96,61 @@ extension Keychain {
             port.updateMapped({ .port($0) }, in: &itemAttributes)
             path.updateMapped({ .path($0) }, in: &itemAttributes)
 
-            let query = Keychain.FetchItemsQuery(itemClass: itemClass,
-                                                 returnType: [.data, .attributes],
-                                                 attributes: itemAttributes)
-                .add(authentication)
-                .includeSynchronizableItems()
+            let query = Keychain.FetchItemsQuery(
+                itemClass: itemClass,
+                returnType: [.data, .attributes],
+                attributes: itemAttributes
+            )
+            .add(authentication)
+            .includeSynchronizableItems()
+
             Keychain.queryItems(query: query, transform: attributesTransform, completion: completion)
         }
 
         /// Searches the keychain for a single internet password entry.
+        ///
+        /// Searches the keychain for a single non-synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
+        ///
+        /// - Parameters:
+        ///   - account: Specifies the account name for this password.
+        ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
+        ///   - securityDomain: The internet security domain associated with the password item.
+        ///   - server: Server domain name or IP address associated with the password item.
+        ///   - protocol: Protocol associated with the internet password item.
+        ///   - authenticationType: Authentication scheme associated with the internet password item.
+        ///   - port: Internet port number associated with the internet password item.
+        ///   - path: Path associated with the internet password keychain item.
+        ///   - authentication: Keychain query authentication used for the search operation.
+        ///
+        /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item.
+        /// - Returns: The password for the specified account and service, or `nil` if no item was found.
+        class func queryOne(
+            forAccount account: String,
+            accessGroup: String = Keychain.defaultAccessGroup,
+            securityDomain: String? = nil,
+            server: String? = nil,
+            protocol: NetworkProtocol? = nil,
+            authenticationType: AuthenticationType? = nil,
+            port: UInt16? = nil,
+            path: String? = nil,
+            authentication: Keychain.QueryAuthentication = .default
+        ) throws -> String? {
+            var itemAttributes: Set<Keychain.ItemAttribute> = [
+                .account(account), .accessGroup(accessGroup),
+            ]
+            securityDomain.updateMapped({ .securityDomain($0) }, in: &itemAttributes)
+            server.updateMapped({ .server($0) }, in: &itemAttributes)
+            `protocol`.updateMapped({ .protocol($0) }, in: &itemAttributes)
+            authenticationType.updateMapped({ .authenticationType($0) }, in: &itemAttributes)
+            port.updateMapped({ .port($0) }, in: &itemAttributes)
+            path.updateMapped({ .path($0) }, in: &itemAttributes)
+
+            let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
+                .add(authentication)
+            return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString)
+        }
+
+        /// Asynchronously searches the keychain for a single internet password entry.
         ///
         /// Searches the keychain for a single non-synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
         ///
@@ -310,9 +403,8 @@ extension Keychain {
     }
 }
 
-@available(iOS 13.0, *)
 public extension Keychain.InternetPassword {
-    /// Queries internet password items in an access group.
+    /// Asynchronously queries internet password items in an access group.
     ///
     /// This method queries Internet password entries in the keychain, including synchronizable entries, and returns them as an array of  ``Item`` items.
     ///
@@ -329,7 +421,7 @@ public extension Keychain.InternetPassword {
     ///
     /// - Returns: A list of  internet password items of type ``Item``, or `nil` if no item was found.
     class func queryItems(
-        account: String? = nil,
+        forAccount account: String? = nil,
         securityDomain: String? = nil,
         server: String? = nil,
         protocol: Keychain.InternetPassword.NetworkProtocol? = nil,
@@ -338,28 +430,25 @@ public extension Keychain.InternetPassword {
         path: String? = nil,
         accessGroup: String = Keychain.defaultAccessGroup,
         authentication: Keychain.QueryAuthentication = .default
-    ) throws -> [Item]? {
-        var itemAttributes: Set<Keychain.ItemAttribute> = [.accessGroup(accessGroup)]
-        account.updateMapped({ .account($0) }, in: &itemAttributes)
-        securityDomain.updateMapped({ .securityDomain($0) }, in: &itemAttributes)
-        server.updateMapped({ .server($0) }, in: &itemAttributes)
-        `protocol`.updateMapped({ .protocol($0) }, in: &itemAttributes)
-        authenticationType.updateMapped({ .authenticationType($0) }, in: &itemAttributes)
-        port.updateMapped({ .port($0) }, in: &itemAttributes)
-        path.updateMapped({ .path($0) }, in: &itemAttributes)
-
-        let query = Keychain.FetchItemsQuery(
-            itemClass: itemClass,
-            returnType: [.data, .attributes],
-            attributes: itemAttributes
-        )
-        .add(authentication)
-        .includeSynchronizableItems()
-
-        return try Keychain.queryItems(query: query, transform: Keychain.attributesTransform)
+    ) async throws -> [Item]? {
+        try await withCheckedThrowingContinuation { continuation in
+            queryItems(
+                forAccount: account,
+                securityDomain: securityDomain,
+                server: server,
+                protocol: `protocol`,
+                authenticationType: authenticationType,
+                port: port,
+                path: path,
+                accessGroup: accessGroup,
+                authentication: authentication
+            ) {
+                continuation.resume(with: $0)
+            }
+        }
     }
 
-    /// Searches the keychain for a single internet password entry.
+    /// Asynchronously searches the keychain for a single internet password entry.
     ///
     /// Searches the keychain for a single non-synchronizable internet password item of the access group identified by a unqiue combination of the `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` fields.
     ///
@@ -381,24 +470,26 @@ public extension Keychain.InternetPassword {
         accessGroup: String = Keychain.defaultAccessGroup,
         securityDomain: String? = nil,
         server: String? = nil,
-        protocol: Keychain.InternetPassword.NetworkProtocol? = nil,
-        authenticationType: Keychain.InternetPassword.AuthenticationType? = nil,
+        protocol: NetworkProtocol? = nil,
+        authenticationType: AuthenticationType? = nil,
         port: UInt16? = nil,
         path: String? = nil,
         authentication: Keychain.QueryAuthentication = .default
-    ) throws -> String? {
-        var itemAttributes: Set<Keychain.ItemAttribute> = [
-            .account(account), .accessGroup(accessGroup),
-        ]
-        securityDomain.updateMapped({ .securityDomain($0) }, in: &itemAttributes)
-        server.updateMapped({ .server($0) }, in: &itemAttributes)
-        `protocol`.updateMapped({ .protocol($0) }, in: &itemAttributes)
-        authenticationType.updateMapped({ .authenticationType($0) }, in: &itemAttributes)
-        port.updateMapped({ .port($0) }, in: &itemAttributes)
-        path.updateMapped({ .path($0) }, in: &itemAttributes)
-
-        let query = Keychain.FetchItemsQuery(itemClass: itemClass, returnType: .data, attributes: itemAttributes)
-            .add(authentication)
-        return try Keychain.queryOneItem(query: query, transform: Keychain.dataResultItemsToString)
+    ) async throws -> String? {
+        try await withCheckedThrowingContinuation { continuation in
+            queryOne(
+                forAccount: account,
+                accessGroup: accessGroup,
+                securityDomain: securityDomain,
+                server: server,
+                protocol: `protocol`,
+                authenticationType: authenticationType,
+                port: port,
+                path: path,
+                authentication: authentication
+            ) {
+                continuation.resume(with: $0)
+            }
+        }
     }
 }

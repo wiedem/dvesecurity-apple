@@ -203,11 +203,7 @@ extension Crypto.Asymmetric {
         var secPrivateKeyAttributes = [:] as [String: Any]
         privateKeyAttributes.insertIntoSecParameters(&secPrivateKeyAttributes)
         parameters[kSecPrivateKeyAttrs as String] = secPrivateKeyAttributes
-        // Note that this availabilty check will succeed for macOS 10.15+
-        // Also iOS 12 doesn't really need the kSecUseDataProtectionKeychain attribute since iOS only has one keychain type.
-        if #available(iOS 13.0, *) {
-            parameters[kSecUseDataProtectionKeychain as String] = true
-        }
+        parameters[kSecUseDataProtectionKeychain as String] = true
 
         keyGenerationAttributes.insertIntoSecParameters(&parameters)
 

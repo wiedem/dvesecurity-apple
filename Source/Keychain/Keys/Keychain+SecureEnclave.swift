@@ -97,7 +97,6 @@ public extension Keychain {
     }
 }
 
-@available(iOS 13.0, *)
 public extension Keychain {
     /// Performs a keychain query for a Secure Enclave key.
     ///
@@ -176,11 +175,13 @@ public extension Keychain {
         withTag tag: String? = nil,
         accessGroup: String = Keychain.defaultAccessGroup,
         authentication: Keychain.QueryAuthentication = .default
-    ) throws -> K?
-        where
-        K: ECCSecureEnclaveKey & CreateableFromSecKey
-    {
+    ) throws -> K? where K: ECCSecureEnclaveKey & CreateableFromSecKey {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.x963Representation)
-        return try queryKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup, authentication: authentication)
+        return try queryKey(
+            withPublicKeySHA1: publicKeySHA1,
+            tag: tag,
+            accessGroup: accessGroup,
+            authentication: authentication
+        )
     }
 }

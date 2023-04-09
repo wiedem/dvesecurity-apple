@@ -219,4 +219,8 @@ extension Keychain.Legacy {
         }
     }
 }
+
+public extension Keychain.Legacy.InternetPassword {
+    typealias Item = Keychain.InternetPassword.Item
+}
 #endif

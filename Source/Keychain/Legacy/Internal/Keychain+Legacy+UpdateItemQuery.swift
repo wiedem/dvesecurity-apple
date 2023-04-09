@@ -6,7 +6,7 @@ import Security
 
 #if os(macOS)
 extension Keychain.Legacy {
-    struct UpdateItemQuery: KeychainUpdateItemQuery {
+    final class UpdateItemQuery: KeychainUpdateItemQuery {
         private(set) var queryDictionary = [String: Any]()
         private(set) var updateDictionary = [String: Any]()
 
@@ -21,9 +21,8 @@ extension Keychain.Legacy {
         }
 
         func add(_ attributes: some KeychainQueryParamsConvertible) -> Self {
-            var copy = self
-            attributes.insertIntoKeychainQuery(&copy.queryDictionary)
-            return copy
+            attributes.insertIntoKeychainQuery(&queryDictionary)
+            return self
         }
     }
 }

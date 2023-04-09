@@ -12,7 +12,13 @@ final class Crypto_HMACTests: XCTestCase {
     func testAuthenticationCode() throws {
         let data = "Hello World!".data(using: .utf8)!
 
-        let key = try Crypto.AES.Key(keySize: .bits256, password: "Password", withSalt: "Salt", pseudoRandomAlgorithm: .hmacAlgSHA256, rounds: 1)
+        let key = try Crypto.AES.Key(
+            keySize: .bits256,
+            password: "Password",
+            withSalt: "Salt",
+            pseudoRandomAlgorithm: .hmacAlgSHA256,
+            rounds: 1
+        )
 
         let code = Crypto.HMAC<Hashing.SHA256>.authenticationCode(for: data, using: key)
         let valid = Crypto.HMAC<Hashing.SHA256>.isValidAuthenticationCode(code, authenticating: data, using: key)

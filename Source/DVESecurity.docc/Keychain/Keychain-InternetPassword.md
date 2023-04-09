@@ -15,8 +15,8 @@ With iOS 12 a synchronous query on the main thread leads to a deadlock when the 
 - ``queryOne(forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:authentication:completion:)``
 - ``queryOne(forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:authentication:)``
 
-- ``queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)``
-- ``queryItems(account:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)``
+- ``queryItems(forAccount:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:completion:)``
+- ``queryItems(forAccount:securityDomain:server:protocol:authenticationType:port:path:accessGroup:authentication:)``
 
 ### Save and Update Passwords
 - ``save(_:forAccount:accessGroup:securityDomain:server:protocol:authenticationType:port:path:accessControl:label:authenticationContext:)``

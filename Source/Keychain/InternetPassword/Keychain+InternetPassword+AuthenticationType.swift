@@ -4,7 +4,7 @@
 import Foundation
 
 public extension Keychain.InternetPassword {
-    // swiftlint:disable:next identifier_name
+    // swiftlint:disable identifier_name
     /// Authentication type attribute of an Internet Password keychain entry.
     enum AuthenticationType {
         case ntlm
@@ -16,4 +16,5 @@ public extension Keychain.InternetPassword {
         case htmlForm
         case `default`
     }
+    // swiftlint:enable identifier_name
 }

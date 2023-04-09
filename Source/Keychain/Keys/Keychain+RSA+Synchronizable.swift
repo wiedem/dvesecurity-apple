@@ -18,11 +18,14 @@ public extension Keychain {
         withTag tag: String? = nil,
         accessGroup: String = defaultAccessGroup,
         completion: @escaping (Result<PK?, Error>) -> Void
-    ) where
-        PK: RSAPrivateKey & CreateableFromSecKey
-    {
+    ) where PK: RSAPrivateKey & CreateableFromSecKey {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
-        querySynchronizableKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup, completion: completion)
+        querySynchronizableKey(
+            withPublicKeySHA1: publicKeySHA1,
+            tag: tag,
+            accessGroup: accessGroup,
+            completion: completion
+        )
     }
 
     /// Performs a keychain query for a synchronized private RSA key and a given public key digest.
@@ -111,7 +114,12 @@ public extension Keychain {
         accessGroup: String = defaultAccessGroup
     ) throws -> Bool {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
-        return try deleteSynchronizableKey(ofType: Crypto.RSA.PrivateKey.self, withTag: tag, publicKeySHA1: publicKeySHA1, accessGroup: accessGroup)
+        return try deleteSynchronizableKey(
+            ofType: Crypto.RSA.PrivateKey.self,
+            withTag: tag,
+            publicKeySHA1: publicKeySHA1,
+            accessGroup: accessGroup
+        )
     }
 
     /// Deletes a synchronized RSA private key from the keychain.
@@ -132,7 +140,12 @@ public extension Keychain {
     ) throws -> Bool where PK: RSAPrivateKey & PKCS1Convertible {
         let publicKey: Crypto.RSA.PublicKey = privateKey.publicKey()
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
-        return try deleteSynchronizableKey(ofType: PK.self, withTag: tag, publicKeySHA1: publicKeySHA1, accessGroup: accessGroup)
+        return try deleteSynchronizableKey(
+            ofType: PK.self,
+            withTag: tag,
+            publicKeySHA1: publicKeySHA1,
+            accessGroup: accessGroup
+        )
     }
 
     /// Deletes any type of synchronized RSA key from the keychain.
@@ -165,7 +178,6 @@ public extension Keychain {
     }
 }
 
-@available(iOS 13.0, *)
 public extension Keychain {
     /// Performs a keychain query for a synchronized private RSA key and a given public key.
     ///
@@ -182,10 +194,7 @@ public extension Keychain {
         for publicKey: some RSAPublicKey & PKCS1Convertible,
         withTag tag: String? = nil,
         accessGroup: String = defaultAccessGroup
-    ) throws -> PK?
-        where
-        PK: RSAPrivateKey & CreateableFromSecKey
-    {
+    ) throws -> PK? where PK: RSAPrivateKey & CreateableFromSecKey {
         let publicKeySHA1 = Hashing.Insecure.SHA1.hash(publicKey.pkcs1Representation)
         return try querySynchronizableKey(withPublicKeySHA1: publicKeySHA1, tag: tag, accessGroup: accessGroup)
     }

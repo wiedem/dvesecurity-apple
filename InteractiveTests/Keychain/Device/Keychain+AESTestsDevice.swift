@@ -8,11 +8,13 @@ import XCTest
 
 final class Keychain_AESTestsDevice: InteractiveTestCaseDevice {
     // swiftlint:disable force_try
-    private let key: Crypto.AES.Key = try! Crypto.AES.Key(keySize: Crypto.AES.KeySize.bits256,
-                                                          password: "Hello Test!",
-                                                          withSalt: "Salt",
-                                                          pseudoRandomAlgorithm: .hmacAlgSHA256,
-                                                          rounds: 1)
+    private lazy var key: Crypto.AES.Key = try! Crypto.AES.Key(
+        keySize: .bits256,
+        password: "Hello Test!",
+        withSalt: "Salt",
+        pseudoRandomAlgorithm: .hmacAlgSHA256,
+        rounds: 1
+    )
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()

@@ -141,4 +141,8 @@ extension Keychain.Legacy {
         }
     }
 }
+
+public extension Keychain.Legacy.GenericPassword {
+    typealias Item = Keychain.GenericPassword.Item
+}
 #endif

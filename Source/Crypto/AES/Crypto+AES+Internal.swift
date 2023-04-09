@@ -12,10 +12,10 @@ extension Crypto.AES {
         options: CCOptions,
         for data: some ContiguousBytes,
         withKey key: some ContiguousBytes,
-        iv: Data // swiftlint:disable:this identifier_name
+        initVector: some SecureData
     ) throws -> Data {
-        guard iv.count == blockSize else {
-            throw Crypto.AESError.invalidIVSize(blockSize)
+        guard initVector.byteCount == blockSize else {
+            throw Crypto.AESError.invalidInitVectorSize(blockSize)
         }
 
         var cryptData = Data()
@@ -33,14 +33,14 @@ extension Crypto.AES {
 
                 return cryptData.withUnsafeMutableBytes { cryptDataBuffer in
                     key.withUnsafeBytes { keyBuffer in
-                        iv.withUnsafeBytes { ivBuffer in
+                        initVector.withUnsafeBytes { initVectorBuffer in
                             return CCCrypt(
                                 operation,
                                 algorithm,
                                 options,
                                 keyBuffer.baseAddress,
                                 keyBuffer.count,
-                                ivBuffer.baseAddress,
+                                initVectorBuffer.baseAddress,
                                 dataBuffer.baseAddress,
                                 dataBuffer.count,
                                 cryptDataBuffer.baseAddress,

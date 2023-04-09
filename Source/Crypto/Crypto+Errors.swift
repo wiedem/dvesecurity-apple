@@ -26,8 +26,8 @@ public extension Crypto {
         case invalidPassword
         /// An error that occurs when trying to derive a symmetric encryption key with an invalid salt.
         case invalidSalt
-        /// An error that occurs when an invalid IV size is specified for an AES operation.
-        case invalidIVSize(Int)
+        /// An error that occurs when an invalid initialization vector size is specified for an AES operation.
+        case invalidInitVectorSize(Int)
     }
 }
 

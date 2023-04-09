@@ -11,16 +11,21 @@ final class Keychain_AESTestsiOS13: TestCaseiOS13 {
     private static let configuredAccessGroups = Keychain.accessGroups
 
     // swiftlint:disable force_try
-    private let key: Crypto.AES.Key = try! Crypto.AES.Key(keySize: Crypto.AES.KeySize.bits256,
-                                                          password: "Hello Test!",
-                                                          withSalt: "Salt",
-                                                          pseudoRandomAlgorithm: .hmacAlgSHA256,
-                                                          rounds: 1)
-    private let key2: Crypto.AES.Key = try! Crypto.AES.Key(keySize: Crypto.AES.KeySize.bits256,
-                                                           password: "Hello Test!2",
-                                                           withSalt: "Salt2",
-                                                           pseudoRandomAlgorithm: .hmacAlgSHA256,
-                                                           rounds: 1)
+    private lazy var key = try! Crypto.AES.Key(
+        keySize: .bits256,
+        password: "Hello Test!",
+        withSalt: "Salt",
+        pseudoRandomAlgorithm: .hmacAlgSHA256,
+        rounds: 1
+    )
+    private lazy var key2 = try! Crypto.AES.Key(
+        keySize: .bits256,
+        password: "Hello Test!2",
+        withSalt: "Salt2",
+        pseudoRandomAlgorithm: .hmacAlgSHA256,
+        rounds: 1
+    )
+    // swiftlint:enable force_try
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()

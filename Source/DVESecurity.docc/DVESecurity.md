@@ -4,8 +4,9 @@ Secure your app data with cryptographic functions and by using keychains.
 
 ## Overview
 
-Use the DVESecurity framework for easy access to iOS and macOS cryptographic and keychain features.
-The framework provides easy access to functionalities provided by the [Security](https://developer.apple.com/documentation/security) and [CommonCrypto](https://opensource.apple.com/source/CommonCrypto/) frameworks, abstracting and simplifying the necessary API calls for Swift based solutions.
+The DVESecurity framework provides easy access to cryptographic and keychain functions for iOS and macOS.
+
+The types and functions included in the framework provide high-level access to the functionality provided by the [Security](https://developer.apple.com/documentation/security) and [CommonCrypto](https://opensource.apple.com/source/CommonCrypto/) frameworks, abstracting and simplifying the necessary API calls for Swift based solutions.
 
 ## Topics
 
@@ -23,7 +24,6 @@ The framework provides easy access to functionalities provided by the [Security]
 
 ### Cryptography
 - ``Crypto``
-- ``SymmetricKey``
 - ``RSAKey``
 - ``RSAPrivateKey``
 - ``RSAPublicKey``

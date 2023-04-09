@@ -5,16 +5,15 @@ import Foundation
 #if canImport(Combine)
 import Combine
 
-@available(iOS 13.0, *)
 public extension Crypto.AES {
     /// Creates IV data used for AES data encryption.
     ///
     /// - Returns: A publisher which publishes randomly generated IV data.
-    static func createIVPublisher() -> AnyPublisher<Data, Error> {
+    static func createInitVectorPublisher() -> AnyPublisher<some SecureData, Error> {
         Future { promise in
             do {
-                let ivData = try createIV()
-                promise(.success(ivData))
+                let initVectorData = try createInitVector()
+                promise(.success(initVectorData))
             } catch {
                 promise(.failure(error))
             }
@@ -29,11 +28,11 @@ public extension Crypto.AES {
     /// - Parameters:
     ///   - plainText: The plaintext data to encrypt.
     ///   - key: The AES key used for the encryption.
-    ///   - ivData: IV data used for the encryption.
-    static func encryptPublisher(for plainText: Data, withKey key: Key, ivData: Data) -> AnyPublisher<Data, Error> {
+    ///   - initVector: Initialization vector data used for the encryption.
+    static func encryptPublisher(for plainText: Data, withKey key: some SecureData, initVector: some SecureData) -> AnyPublisher<Data, Error> {
         Future { promise in
             do {
-                let cipherText = try encrypt(plainText, withKey: key, ivData: ivData)
+                let cipherText = try encrypt(plainText, withKey: key, initVector: initVector)
                 promise(.success(cipherText))
             } catch {
                 promise(.failure(error))
@@ -49,11 +48,11 @@ public extension Crypto.AES {
     /// - Parameters:
     ///   - data: The PKCS#7 padded ciphertext data to decrypt.
     ///   - key: The AES key used for the decryption.
-    ///   - ivData: IV data used for the decryption.
-    static func decryptPublisher(for data: Data, withKey key: Key, ivData: Data) -> AnyPublisher<Data, Error> {
+    ///   - initVector: Initialization vector data used for the decryption.
+    static func decryptPublisher(for data: Data, withKey key: some SecureData, initVector: some SecureData) -> AnyPublisher<Data, Error> {
         Future { promise in
             do {
-                let plainText = try decrypt(data, withKey: key, ivData: ivData)
+                let plainText = try decrypt(data, withKey: key, initVector: initVector)
                 promise(.success(plainText))
             } catch {
                 promise(.failure(error))

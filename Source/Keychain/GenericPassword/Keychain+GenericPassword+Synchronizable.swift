@@ -13,7 +13,7 @@ public extension Keychain.GenericPassword {
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///
     /// - Returns: The generic password decoded as a `String` value, or `nil` if no item was found.
-    class func querySynchronizable(
+    static func querySynchronizable(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup
@@ -33,7 +33,7 @@ public extension Keychain.GenericPassword {
     ///   - service: Specifies the service associated with the password.
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-    class func querySynchronizable(
+    static func querySynchronizable(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -58,7 +58,7 @@ public extension Keychain.GenericPassword {
     ///   - accessGroup: Keychain Access group for which the save should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - accessibility: Indicates when your application needs access to an item's data. You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
-    class func saveSynchronizable(
+    static func saveSynchronizable(
         _ password: String,
         forAccount account: String,
         service: String,
@@ -90,7 +90,7 @@ public extension Keychain.GenericPassword {
     ///   - account: Specifies the account name for this password.
     ///   - service: Specifies the service associated with this password.
     ///   - accessGroup: Keychain Access group for which the update should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
-    class func updateSynchronizable(
+    static func updateSynchronizable(
         newPassword: String,
         forAccount account: String,
         service: String,
@@ -119,7 +119,7 @@ public extension Keychain.GenericPassword {
     ///   - accessibility: Indicates when your application needs access to an item's data. You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible.
     ///   This parameter is only used for saving the password and not for updating the password.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item. This parameter is only used for saving the password and not for updating the password.
-    class func upsertSynchronizable(
+    static func upsertSynchronizable(
         _ password: String,
         forAccount account: String,
         service: String,
@@ -149,7 +149,7 @@ public extension Keychain.GenericPassword {
     ///
     /// - Returns: `true` if an item matching the parameters was deleted, `false` otherwise.
     @discardableResult
-    class func deleteSynchronizable(
+    static func deleteSynchronizable(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup

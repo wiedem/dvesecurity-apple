@@ -12,7 +12,7 @@ public extension Keychain.GenericPassword {
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///
     /// - Returns: The key for the specified account and service, or `nil` if no item was found.
-    class func querySynchronizableKey(
+    static func querySynchronizableKey(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup
@@ -32,7 +32,7 @@ public extension Keychain.GenericPassword {
     ///   - service: Specifies the service associated with the password.
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-    class func querySynchronizableKey(
+    static func querySynchronizableKey(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -61,7 +61,7 @@ public extension Keychain.GenericPassword {
     ///   - accessibility: Indicates when your application needs access to an item's data. You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
     ///   allow the system to protect that item in the best way possible.
-    class func saveSynchronizableKey(
+    static func saveSynchronizableKey(
         _ key: some SecureData,
         forAccount account: String,
         service: String,
@@ -98,7 +98,7 @@ public extension Keychain.GenericPassword {
     ///   - accessibility: Indicates when your application needs access to an item's data. You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
     ///   allow the system to protect that item in the best way possible.
-    class func saveSynchronizableKey(
+    static func saveSynchronizableKey(
         _ key: some KeyDataRepresentable,
         forAccount account: String,
         service: String,
@@ -126,7 +126,7 @@ public extension Keychain.GenericPassword {
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///
     /// - Returns: The key for the specified account and service, or `nil` if no item was found.
-    class func querySynchronizableKey(
+    static func querySynchronizableKey(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup

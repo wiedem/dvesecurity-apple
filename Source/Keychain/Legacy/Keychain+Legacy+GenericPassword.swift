@@ -13,7 +13,7 @@ extension Keychain.Legacy {
     }
 
     /// A container for generic password items.
-    open class GenericPassword {
+    public enum GenericPassword {
         /// Searches a file based keychain for a generic password.
         ///
         /// Searches a file based keychain for a generic non-synchronizable password and returns the entry as a UTF-8 encoded `String` value.
@@ -27,7 +27,7 @@ extension Keychain.Legacy {
         ///
         /// - Throws: ``KeychainError/resultError`` if the value of the entry cannot be decoded to a String.
         /// - Returns: The password for the specified account and service, or `nil` if no item was found.
-        open class func query(
+        public static func query(
             forAccount account: String,
             service: String,
             inKeychain keychain: SecKeychain? = nil
@@ -55,7 +55,7 @@ extension Keychain.Legacy {
         ///
         /// - Throws: ``Keychain/Legacy/GenericPasswordError/invalidQueryItemLimit`` if the specified limit is invalid.
         /// - Returns: A list of  generic password items of type ``Item``, or `nil` if no item was found.
-        open class func queryItems(
+        public static func queryItems(
             account: String? = nil,
             service: String? = nil,
             limit: UInt,
@@ -92,7 +92,7 @@ extension Keychain.Legacy {
         ///   - keychain: The keychain on which to perform the operation or `nil` if the default keychain should be used.
         ///   - label: Specifies the user-visible label for this item. This value is visible to the user in the macOS Keychain Access app and should therefore be chosen so that the user can identify the item.
         ///   - access: Access instance indicating access control list settings for the password. See [Access Control Lists](https://developer.apple.com/documentation/security/keychain_services/access_control_lists).
-        open class func save(
+        public static func save(
             _ password: String,
             forAccount account: String,
             service: String,
@@ -127,7 +127,7 @@ extension Keychain.Legacy {
         ///
         /// - Returns: `true` if an item matching the parameters was deleted, `false` otherwise.
         @discardableResult
-        open class func delete(
+        public static func delete(
             forAccount account: String,
             service: String,
             inKeychain keychain: SecKeychain? = nil

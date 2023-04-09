@@ -7,8 +7,6 @@ import LocalAuthentication
 public extension Keychain.GenericPassword {
     /// Searches the keychain for a key saved as a generic password.
     ///
-    /// - Note: Use the ``queryKey(forAccount:service:accessGroup:authentication:completion:)-78h4l`` if you don't want to block the calling thread.
-    ///
     /// - Parameters:
     ///   - account: Specifies the account name for the password.
     ///   - service: Specifies the service associated with the password.
@@ -16,7 +14,7 @@ public extension Keychain.GenericPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Returns: The key for the specified account and service, or `nil` if no item was found.
-    class func queryKey(
+    static func queryKey(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -39,7 +37,7 @@ public extension Keychain.GenericPassword {
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-    class func queryKey(
+    static func queryKey(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -70,7 +68,7 @@ public extension Keychain.GenericPassword {
     ///   - accessControl: Indicates when your application needs access to an item's data. You should choose the most restrictive option that meets your application's needs to
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
     ///   allow the system to protect that item in the best way possible.
-    class func saveKey(
+    static func saveKey(
         _ key: some SecureData,
         forAccount account: String,
         service: String,
@@ -100,7 +98,7 @@ public extension Keychain.GenericPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Returns: The key for the specified account and service, or `nil` if no item was found.
-    class func queryKey(
+    static func queryKey(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -117,8 +115,6 @@ public extension Keychain.GenericPassword {
 public extension Keychain.GenericPassword {
     /// Searches the keychain for a key saved as a generic password.
     ///
-    /// - Note: Use the ``queryKey(forAccount:service:accessGroup:authentication:completion:)-36nsf`` if you don't want to block the calling thread.
-    ///
     /// - Parameters:
     ///   - account: Specifies the account name for the password.
     ///   - service: Specifies the service associated with the password.
@@ -126,7 +122,7 @@ public extension Keychain.GenericPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Returns: The key for the specified account and service, or `nil` if no item was found.
-    class func queryKey<K>(
+    static func queryKey<K>(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -152,7 +148,7 @@ public extension Keychain.GenericPassword {
     ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
     ///   - authentication: Keychain query authentication.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-    class func queryKey<K>(
+    static func queryKey<K>(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -194,7 +190,7 @@ public extension Keychain.GenericPassword {
     ///   - accessControl: Indicates when your application needs access to an item's data. You should choose the most restrictive option that meets your application's needs to
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
     ///   allow the system to protect that item in the best way possible.
-    class func saveKey(
+    static func saveKey(
         _ key: some KeyDataRepresentable,
         forAccount account: String,
         service: String,
@@ -225,7 +221,7 @@ public extension Keychain.GenericPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Returns: The key for the specified account and service, or `nil` if no item was found.
-    class func queryKey<K>(
+    static func queryKey<K>(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,

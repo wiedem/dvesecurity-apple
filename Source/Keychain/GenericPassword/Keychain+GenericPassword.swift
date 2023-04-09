@@ -12,7 +12,7 @@ extension Keychain {
     }
 
     /// A container for generic password items.
-    open class GenericPassword {
+    public enum GenericPassword {
         /// Queries generic password items in an access group.
         ///
         /// This method queries generic password entries, including synchronizable entries, in the keychain and returns them as an array of ``Item`` items.
@@ -24,7 +24,7 @@ extension Keychain {
         ///   - authentication: Keychain query authentication.
         ///
         /// - Returns: A list of  generic password items of type ``Item``, or `nil` if no item was found.
-        class func queryItems(
+        public static func queryItems(
             account: String? = nil,
             service: String? = nil,
             accessGroup: String = defaultAccessGroup,
@@ -55,7 +55,7 @@ extension Keychain {
         ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
         ///   - authentication: Keychain query authentication.
         ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-        open class func queryItems(
+        public static func queryItems(
             account: String? = nil,
             service: String? = nil,
             accessGroup: String = defaultAccessGroup,
@@ -89,7 +89,7 @@ extension Keychain {
         ///
         /// - Throws: ``KeychainError/resultError`` if the value of the entry cannot be decoded to a String.
         /// - Returns: The generic password decoded as a `String` value, or `nil` if no item was found.
-        class func query(
+        public static func query(
             forAccount account: String,
             service: String,
             accessGroup: String = Keychain.defaultAccessGroup,
@@ -116,7 +116,7 @@ extension Keychain {
         ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
         ///   - authentication: Keychain query authentication.
         ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-        open class func query(
+        public static func query(
             forAccount account: String,
             service: String,
             accessGroup: String = defaultAccessGroup,
@@ -146,7 +146,7 @@ extension Keychain {
         ///   - accessControl: Indicates when your application needs access to an item's data. You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible.
         ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
         ///   - authenticationContext: A local authentication context to use.
-        open class func save(
+        public static func save(
             _ password: String,
             forAccount account: String,
             service: String,
@@ -178,7 +178,7 @@ extension Keychain {
         ///   - service: Specifies the service associated with the password.
         ///   - accessGroup: Keychain Access group for which the update should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
         ///   - authentication: Keychain query authentication.
-        open class func update(
+        public static func update(
             newPassword: String,
             forAccount account: String,
             service: String,
@@ -211,7 +211,7 @@ extension Keychain {
         ///   This parameter is only used for saving the password and not for updating the password.
         ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
         ///   - authentication: Keychain query authentication. This parameter is only used for updating the password and not for saving the password.
-        open class func upsert(
+        public static func upsert(
             _ password: String,
             forAccount account: String,
             service: String,
@@ -242,7 +242,7 @@ extension Keychain {
         ///
         /// - Returns: `true` if an item matching the parameters was deleted, `false` otherwise.
         @discardableResult
-        open class func delete(
+        public static func delete(
             forAccount account: String,
             service: String,
             accessGroup: String = defaultAccessGroup
@@ -269,7 +269,7 @@ public extension Keychain.GenericPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Returns: A list of  generic password items of type ``Item``, or `nil` if no item was found.
-    class func queryItems(
+    static func queryItems(
         account: String? = nil,
         service: String? = nil,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -295,7 +295,7 @@ public extension Keychain.GenericPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Returns: The generic password decoded as a `String` value, or `nil` if no item was found.
-    class func query(
+    static func query(
         forAccount account: String,
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup,

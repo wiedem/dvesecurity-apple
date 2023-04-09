@@ -13,7 +13,7 @@ extension Keychain.Legacy {
     }
 
     /// A container for internet password items.
-    open class InternetPassword {
+    public enum InternetPassword {
         /// Queries internet password items in a file based keychain.
         ///
         /// Fetches a number of internet password entries from a file-based keychain up to a specified limit.
@@ -33,7 +33,7 @@ extension Keychain.Legacy {
         ///
         /// - Throws: ``Keychain/Legacy/InternetPasswordError/invalidQueryItemLimit`` if the specified limit is invalid.
         /// - Returns: A list of  internet password items of type ``Item``, or `nil` if no item was found.
-        open class func queryItems(
+        public static func queryItems(
             account: String? = nil,
             securityDomain: String? = nil,
             server: String? = nil,
@@ -87,7 +87,7 @@ extension Keychain.Legacy {
         ///
         /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item.
         /// - Returns: The password for the specified account, or `nil` if no item was found.
-        open class func queryOne(
+        public static func queryOne(
             forAccount account: String,
             securityDomain: String? = nil,
             server: String? = nil,
@@ -136,7 +136,7 @@ extension Keychain.Legacy {
         ///   - label: Specifies the user-visible label for this item. This value is visible to the user in the macOS Keychain Access app and should therefore be chosen so that the user can identify the item.
         ///   - keychain: The keychain on which to perform the operation or `nil` if the default keychain should be used.
         ///   - access: Access instance indicating access control list settings for the password. See [Access Control Lists](https://developer.apple.com/documentation/security/keychain_services/access_control_lists).
-        open class func save(
+        public static func save(
             _ password: String,
             forAccount account: String,
             securityDomain: String? = nil,
@@ -191,7 +191,7 @@ extension Keychain.Legacy {
         ///
         /// - Returns: `true` if at least one item in the keychain was deleted, `false` otherwise.
         @discardableResult
-        open class func deleteItems(
+        public static func deleteItems(
             forAccount account: String,
             securityDomain: String? = nil,
             server: String? = nil,

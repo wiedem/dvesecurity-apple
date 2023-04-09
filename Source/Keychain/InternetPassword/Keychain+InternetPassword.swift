@@ -12,7 +12,7 @@ extension Keychain {
     }
 
     /// A container for internet password items.
-    open class InternetPassword {
+    public enum InternetPassword {
         /// Queries internet password items in an access group.
         ///
         /// This method queries Internet password entries in the keychain, including synchronizable entries, and returns them as an array of  ``Item`` items.
@@ -29,7 +29,7 @@ extension Keychain {
         ///   - authentication: Keychain query authentication.
         ///
         /// - Returns: A list of  internet password items of type ``Item``, or `nil` if no item was found.
-        class func queryItems(
+        public static func queryItems(
             forAccount account: String? = nil,
             securityDomain: String? = nil,
             server: String? = nil,
@@ -75,7 +75,7 @@ extension Keychain {
         ///   - accessGroup: Keychain Access group for which the search should be performed. If you don’t explicitly specify a group, the default keychain access group will be used.
         ///   - authentication: Keychain query authentication.
         ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-        open class func queryItems(
+        public static func queryItems(
             forAccount account: String? = nil,
             securityDomain: String? = nil,
             server: String? = nil,
@@ -124,7 +124,7 @@ extension Keychain {
         ///
         /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item.
         /// - Returns: The password for the specified account and service, or `nil` if no item was found.
-        class func queryOne(
+        public static func queryOne(
             forAccount account: String,
             accessGroup: String = Keychain.defaultAccessGroup,
             securityDomain: String? = nil,
@@ -165,7 +165,7 @@ extension Keychain {
         ///   - path: Path associated with the internet password keychain item.
         ///   - authentication: Keychain query authentication used for the search operation.
         ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-        open class func queryOne(
+        public static func queryOne(
             forAccount account: String,
             accessGroup: String = defaultAccessGroup,
             securityDomain: String? = nil,
@@ -214,7 +214,7 @@ extension Keychain {
         ///   - accessControl: Indicates when your application needs access to an item's data.  You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible.
         ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item.
         ///   - authenticationContext: A local authentication context to use.
-        open class func save(
+        public static func save(
             _ password: String,
             forAccount account: String,
             accessGroup: String = defaultAccessGroup,
@@ -263,7 +263,7 @@ extension Keychain {
         ///   - port: Internet port number associated with the internet password item.
         ///   - path: Path associated with the internet password keychain item.
         ///   - authentication: Keychain query authentication used for the update operation.
-        open class func updateItems(
+        public static func updateItems(
             newPassword: String,
             forAccount account: String,
             accessGroup: String = defaultAccessGroup,
@@ -312,7 +312,7 @@ extension Keychain {
         ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item. This parameter is only used for saving the password and not for updating the password.
         ///   - authentication: Keychain query authentication.
         ///   This parameter is only used for updating the password and not for saving the password.
-        open class func upsert(
+        public static func upsert(
             _ password: String,
             forAccount account: String,
             accessGroup: String = defaultAccessGroup,
@@ -377,7 +377,7 @@ extension Keychain {
         ///
         /// - Returns: `true` if at least one item in the keychain was deleted, `false` otherwise.
         @discardableResult
-        open class func deleteItems(
+        public static func deleteItems(
             forAccount account: String,
             accessGroup: String = defaultAccessGroup,
             securityDomain: String? = nil,
@@ -420,7 +420,7 @@ public extension Keychain.InternetPassword {
     ///   - authentication: Keychain query authentication.
     ///
     /// - Returns: A list of  internet password items of type ``Item``, or `nil` if no item was found.
-    class func queryItems(
+    static func queryItems(
         forAccount account: String? = nil,
         securityDomain: String? = nil,
         server: String? = nil,
@@ -465,7 +465,7 @@ public extension Keychain.InternetPassword {
     ///
     /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item.
     /// - Returns: The password for the specified account and service, or `nil` if no item was found.
-    class func queryOne(
+    static func queryOne(
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
         securityDomain: String? = nil,

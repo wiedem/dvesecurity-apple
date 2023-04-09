@@ -18,7 +18,7 @@ public extension Keychain.InternetPassword {
     ///   - port: Internet port number associated with the internet password item.
     ///   - path: Path associated with the internet password keychain item.
     ///   - completion: The completion handler called after the query is completed. This handler is executed on a background thread.
-    class func queryOneSynchronizable(
+    static func queryOneSynchronizable(
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
         securityDomain: String? = nil,
@@ -64,7 +64,7 @@ public extension Keychain.InternetPassword {
     ///   - path: Path associated with the internet password keychain item.
     ///   - accessibility: Indicates when your application needs access to an item's data.  You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item. This parameter is only used for saving the password and not for updating the password.
-    class func saveSynchronizable(
+    static func saveSynchronizable(
         _ password: String,
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -112,7 +112,7 @@ public extension Keychain.InternetPassword {
     ///   - authenticationType: Authentication scheme associated with the internet password item.
     ///   - port: Internet port number associated with the internet password item.
     ///   - path: Path associated with the internet password keychain item.
-    class func updateSynchronizableItems(
+    static func updateSynchronizableItems(
         newPassword: String,
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -156,7 +156,7 @@ public extension Keychain.InternetPassword {
     ///   - path: Path associated with the internet password keychain item.
     ///   - accessibility: Indicates when your application needs access to an item's data.  You should choose the most restrictive option that meets your application's needs to allow the system to protect that item in the best way possible. This parameter is only used for saving the password and not for updating the password.
     ///   - label: A keychain item label that can be displayed to the user by apps that have access to the item. This parameter is only used for saving the password and not for updating the password.
-    class func upsertSynchronizable(
+    static func upsertSynchronizable(
         _ password: String,
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
@@ -219,7 +219,7 @@ public extension Keychain.InternetPassword {
     ///
     /// - Returns: `true` if at least one item in the keychain was deleted, `false` otherwise.
     @discardableResult
-    class func deleteSynchronizableItems(
+    static func deleteSynchronizableItems(
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
         securityDomain: String? = nil,
@@ -261,7 +261,7 @@ public extension Keychain.InternetPassword {
     ///
     /// - Throws: ``KeychainError/ambiguousQueryResult`` if the query returns more than one item.
     /// - Returns: The password, or nil if no password was found for this account.
-    class func queryOneSynchronizable(
+    static func queryOneSynchronizable(
         forAccount account: String,
         accessGroup: String = Keychain.defaultAccessGroup,
         securityDomain: String? = nil,

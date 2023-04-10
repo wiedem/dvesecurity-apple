@@ -22,7 +22,9 @@ Secure key types should implement the ``SecureData`` protocol, with ``Crypto/Key
 ### Password Creation
 - ``Crypto/createRandomPassword(length:characters:)``
 - ``Crypto/defaultRandomPasswordAlphabet``
-- ``Crypto/createRandomData(length:)``
+
+### Creating Cryptographically Secure Random Data
+- ``Crypto/KeyData/createRandomData(length:)``
 
 ### Message Authentication Codes
 - ``Crypto/HMAC``

@@ -27,25 +27,10 @@ public enum Crypto {
             }
     }()
 
-    /// Creates random data for cryptographic operations.
+    /// Creates a random password.
     ///
-    /// - Parameter length: The length of the random data to create.
-    ///
-    /// - Returns: Random data of the specified length.
-    public static func createRandomData(length: Int) throws -> Data {
-        var data = Data(count: length)
-
-        let result = data.withUnsafeMutableBytes { (dataPointer: UnsafeMutableRawBufferPointer) in
-            return SecRandomCopyBytes(kSecRandomDefault, length, dataPointer.baseAddress!)
-        }
-
-        guard result == errSecSuccess else {
-            throw CryptoError(status: result)
-        }
-        return data
-    }
-
-    /// Creates a random password for cryptographic operations.
+    /// - Note: Since the password is generated as a `String` type, it is not guaranteed that it will be removed from memory after use or that no copies will
+    /// be created in memory. In certain attack situations, this can lead to the generated password data being reconstructed or read by other processes.
     ///
     /// - Parameters:
     ///   - length: The length of the random password to create.

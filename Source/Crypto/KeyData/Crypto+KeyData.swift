@@ -74,7 +74,7 @@ public extension Crypto {
 
 extension Crypto.KeyData: Hashable {
     /// Generates cryptographically secure random key data
-    /// .
+    ///
     /// - Parameter length: The number of random bytes of the key.
     public static func createRandomData(length: Int) throws -> Self {
         try Self(byteCount: length) { rawBufferPointer in

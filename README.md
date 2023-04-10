@@ -64,15 +64,19 @@ If a test is terminated irregularly, it can happen that keychain entries from th
 The framework is designed to generate a detailed [DocC] documentation.
 It contains the API documentation as well as articles on getting started and code samples.
 
-An online version of the documentation can be found [here](https://libraries.oss-pages.diva-e.com/dvesecurity-apple-documentation/documentation/index.html).
+An automatically generated online version of the documentation of the `main` branch can be found [here](https://wiedem.github.io/dvesecurity-apple/main/documentation/dvesecurity/).
 
-When the framework is included as a Swift package in Xcode, the documentation can be generated via the `Product > Build Documentation` menu item or the corresponding `xcodebuild` command from the command line.
+The framework's documentation is automatically available in Xcode's Development Documentation when the framework's project file is opened.
+
+To generate an online version of the documentation with Xcode, the menu item `Product > Build Documentation` can be used or the corresponding `xcodebuild` command from the command line.
+
+The Swift package also supports the [Swift-DocC SPM command plugin](https://github.com/apple/swift-docc-plugin) to generate the documentation.
 
 If the framework is included via Carthage or manually as a library, then the documentation must be generated manually.  
 
 ## Compatibility
 DVESecurity is compatible with iOS 13.0, macOS 10.15 and requires at least Swift 5.7.
-The framework also follows the [SemVer 2.0.0] rules.
+The framework follows the [SemVer 2.0.0] rules.
 
 [Security Framework]: https://developer.apple.com/documentation/security "Security Framework"
 [CommonCrypto Library]: https://opensource.apple.com/source/CommonCrypto/ "CommonCrypto Library"

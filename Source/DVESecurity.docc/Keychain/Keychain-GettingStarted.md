@@ -12,7 +12,7 @@ On macOS, in addition to the modern `Data Protection Keychain`, there are legacy
 
 macOS offers both a modern and a legacy keychain type as system keychains. In addition, macOS apps can also create and use their own legacy keychain files, which are independent of the system keychain. The functionality for legacy keychain types is contained in the ``Keychain/Legacy`` type.
 
-Using the `Data Protection Keychain` on macOS requires that the application has an `Application Identifier`. While all iOS apps usually have the required entitlement set, this usually has to be explicitly done for macOS apps.
+- Important: Using the `Data Protection Keychain` on macOS requires that the application has an `Application Identifier`. While all iOS apps usually have the required entitlement set, this usually has to be explicitly done for macOS apps.
 
 The two keychain types differ in terms of available features and access control. In particular, `SecKey` instances created for one keychain type cannot be used in the other type without issues. Another example is synchronized keychain entries (via iCloud), which are only supported by the `Data Protection Keychain`.
 
@@ -111,3 +111,16 @@ try Keychain.GenericPassword.saveKey(privateKey, forAccount: account, service: s
 let privateKey = try SecureEnclave.P256.Signing.PrivateKey()
 try Keychain.GenericPassword.saveKey(privateKey, forAccount: account, service: service)
 ```
+
+## Sharing Keychain Items
+Keychain items can be shared with app extensions and other apps via access groups.
+See [Sharing Access to Keychain Items Among a Collection of Apps](https://developer.apple.com/documentation/security/keychain_services/keychain_items/sharing_access_to_keychain_items_among_a_collection_of_apps) for a detailed description on how to setup your apps and app extensions.
+
+All query methods of the keychain item types in the ``Keychain`` container have an `accessGroup` parameter that can be used to specify the access group for the query.
+By default, this parameter always uses the access group returned by ``Keychain/defaultAccessGroup``.
+
+Retrieving keychain objects without specifying an access group could lead to an ambiguous query result. The `accessGroup` parameter ensures that the result is unique.
+
+The access groups used by an app can be retrieved with ``Keychain/accessGroups``.
+
+- Note: macOS apps by default don't have an application identifier nor an access group. Make sure you add an application identifier to your app if you want to use keychain functions requiring an access group.

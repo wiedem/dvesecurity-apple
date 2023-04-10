@@ -119,8 +119,8 @@ See [Sharing Access to Keychain Items Among a Collection of Apps](https://develo
 All query methods of the keychain item types in the ``Keychain`` container have an `accessGroup` parameter that can be used to specify the access group for the query.
 By default, this parameter always uses the access group returned by ``Keychain/defaultAccessGroup``.
 
-Retrieving keychain objects without specifying an access group could lead to an ambiguous query result. The `accessGroup` parameter ensures that the result is unique.
+Retrieving keychain objects without specifying an access group could lead to an ambiguous query result. The `accessGroup` parameter ensures that the result is unique for all queries.
 
-The access groups used by an app can be retrieved with ``Keychain/accessGroups``.
+The access groups used by an app can be retrieved with the ``Keychain/accessGroups`` property.
 
 - Note: macOS apps by default don't have an application identifier nor an access group. Make sure you add an application identifier to your app if you want to use keychain functions requiring an access group.

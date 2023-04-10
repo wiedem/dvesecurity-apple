@@ -16,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-asn1.git", .upToNextMinor(from: "0.7.0")),
-        .package(url: "https://github.com/apple/swift-docc-plugin", .upToNextMinor(from: "1.0.0")),
+        .package(url: "https://github.com/apple/swift-docc-plugin", .upToNextMinor(from: "1.2.0")),
     ],
     targets: [
         .target(

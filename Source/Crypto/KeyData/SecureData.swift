@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// A type used for sensitive data such as passwords and cryptographic keys.
+/// A type that manages sensitive data such as passwords and cryptographic keys in memory.
 ///
 /// Implementations of this type ensure that the underlying managed data is kept in memory for the minimum amount of time possible and is written over when no longer needed.
 ///

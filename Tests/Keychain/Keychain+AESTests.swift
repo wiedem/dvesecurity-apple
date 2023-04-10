@@ -45,7 +45,7 @@ final class Keychain_AESTests: XCTestCase {
         let keyTag = "Test Tag \(#function)"
         let applicationLabel = "appLabel".data(using: .utf8)!
 
-        try Keychain.saveKey(key.keyData, withTag: keyTag, applicationLabel: applicationLabel)
+        try Keychain.saveKey(key, withTag: keyTag, applicationLabel: applicationLabel)
 
         let queriedKey: Crypto.AES.Key? = try wait(description: "Keychain query") {
             Keychain.queryKey(withTag: keyTag, applicationLabel: applicationLabel, completion: $0)
@@ -57,9 +57,9 @@ final class Keychain_AESTests: XCTestCase {
         let keyTag = "Test Tag \(#function)"
         let applicationLabel1 = "appLabel1".data(using: .utf8)
 
-        try Keychain.saveKey(key.keyData, withTag: keyTag, applicationLabel: applicationLabel1)
+        try Keychain.saveKey(key, withTag: keyTag, applicationLabel: applicationLabel1)
         expect {
-            try Keychain.saveKey(self.key2.keyData, withTag: keyTag, applicationLabel: applicationLabel1)
+            try Keychain.saveKey(self.key2, withTag: keyTag, applicationLabel: applicationLabel1)
         }.to(throwError {
             expect($0) == KeychainError.itemSavingFailed(status: errSecDuplicateItem)
         })
@@ -70,7 +70,7 @@ final class Keychain_AESTests: XCTestCase {
         let applicationLabel = "Test ApplicationLabel \(#function)".data(using: .utf8)
 
         expect {
-            try Keychain.saveKey(self.key.keyData, withTag: keyTag, applicationLabel: applicationLabel, accessGroup: "UnknownAccessGroup")
+            try Keychain.saveKey(self.key, withTag: keyTag, applicationLabel: applicationLabel, accessGroup: "UnknownAccessGroup")
         }.to(throwError {
             expect($0) == KeychainError.itemSavingFailed(status: errSecMissingEntitlement)
         })
@@ -80,7 +80,7 @@ final class Keychain_AESTests: XCTestCase {
         let keyTag = "Test Tag \(#function)"
         let applicationLabel = "Test ApplicationLabel \(#function)".data(using: .utf8)
 
-        try Keychain.saveKey(key.keyData, withTag: keyTag, applicationLabel: applicationLabel)
+        try Keychain.saveKey(key, withTag: keyTag, applicationLabel: applicationLabel)
 
         expect {
             try Keychain.updateKey(newKey: self.key2, withTag: keyTag, applicationLabel: applicationLabel, accessGroup: Self.configuredAccessGroups[1])
@@ -93,7 +93,7 @@ final class Keychain_AESTests: XCTestCase {
         let keyTag = "Test Tag \(#function)"
         let applicationLabel = "Test ApplicationLabel \(#function)".data(using: .utf8)
 
-        try Keychain.saveKey(key.keyData, withTag: keyTag, applicationLabel: applicationLabel)
+        try Keychain.saveKey(key, withTag: keyTag, applicationLabel: applicationLabel)
 
         let result1 = try Keychain.deleteKey(withTag: keyTag, applicationLabel: applicationLabel)
         expect(result1) == true

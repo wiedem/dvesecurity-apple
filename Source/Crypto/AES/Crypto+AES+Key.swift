@@ -10,7 +10,7 @@ public extension Crypto.AES {
     /// The storate for the key data must implement the ``SecureData`` protocol, which ensures that the key data is deleted from the memory as soon as it is
     /// no longer required.
     ///
-    /// `Key` itself implements the ``SecureData`` protocol.
+    /// `Key` itself implements the ``SecureData`` protocol by acting as a facade to the underlying key data.
     struct Key<SD: SecureData> {
         /// The data of the key.
         public let keyData: SD

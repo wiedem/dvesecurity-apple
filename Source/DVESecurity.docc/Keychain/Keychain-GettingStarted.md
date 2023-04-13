@@ -44,7 +44,7 @@ The ``Crypto`` container contains predefined key types that meet these protocols
 The following example shows the use of the keychain with the key types from the ``Crypto`` container:
 ```swift
 // Create a random AES key and save it in the keychain.
-// The tag and application label values are used to identify the entry and to query them later.
+// The values of the tag and the application label are used to identify the entry and to query it later.
 let aesKey = try Crypto.AES.Key(
     keySize: .bits256,
     password: "Hello Test!",

@@ -6,6 +6,12 @@ Internet password keychain items are usually used to save passwords for network 
 
 Internet passwords are uniquely identified by the access group they blong to and a combination of their `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` attributes. All attributes except the `account` attribute are optional.
 
+```swift
+try Keychain.InternetPassword.save("MySecret", forAccount: "MyAccount")
+
+let secret = try Keychain.InternetPassword.queryOne(forAccount: "MyAccount")
+```
+
 ## Topics
 
 ### Retrieve Passwords

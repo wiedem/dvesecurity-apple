@@ -7,6 +7,12 @@ This may include cryptographic key types not directly supported by the keychain.
 
 The ``GenericPassword`` container provides methods to store and retrieve entries as `String` values or as arbitrary keys.
 
+```swift
+try Keychain.GenericPassword.save("MySecret", forAccount: "MyAccount", service: "MyService")
+
+let secreet = try Keychain.GenericPassword.query(forAccount: "MyAccount", service: "MyService")
+```
+
 ## Topics
 
 ### Retrieve Items

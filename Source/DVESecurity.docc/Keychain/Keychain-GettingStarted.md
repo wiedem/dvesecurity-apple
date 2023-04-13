@@ -14,7 +14,7 @@ macOS offers both a modern and a legacy keychain type as system keychains. In ad
 
 - Important: Using the `Data Protection Keychain` on macOS requires that the application has an `Application Identifier`. While all iOS apps usually have the required entitlement set, this usually has to be explicitly done for macOS apps.
 
-The two keychain types differ in terms of available features and access control. In particular, `SecKey` instances created for one keychain type cannot be used in the other type without issues. Another example is synchronized keychain entries (via iCloud), which are only supported by the `Data Protection Keychain`.
+The two keychain types differ in terms of available features and access control. In particular, [SecKey](https://developer.apple.com/documentation/security/seckey) instances created for one keychain type cannot be used in the other type without issues. Another example is synchronized keychain entries (via iCloud), which are only supported by the `Data Protection Keychain`.
 
 - Note: The use of legacy file-based keychains is deprecated as of macOS 12.0. It is generally recommended to use the modern `Data Protection Keychain`.
 
@@ -29,13 +29,13 @@ Generic passwords are entries that are not intended to be assigned to any specif
 
 This allows this type to be used when the credential is not assignable to the other available keychain entry types.
 
-Generic password functionality is encapsulated in the ``Keychain/GenericPassword``container.
+Generic password functionality is encapsulated in the ``Keychain/GenericPassword`` container.
 
 ### Cryptographic Keys
 The ``Keychain`` container contains generic methods for the different cryptographic key types.
 The methods to be used are determined by the protocols implemented by the key types.
 
-AES key types should implement the ``SecureData`` protocol while RSA keys implement the ``RSAPublicKey`` and ``RSAPrivateKey`` and Elliptic Curve Crypto keys implement the ``ECCPublicKey``and ``ECCPrivateKey`` methods.
+AES key types should implement the ``SecureData`` protocol while RSA keys implement the ``RSAPublicKey`` and ``RSAPrivateKey`` and Elliptic Curve Crypto keys implement the ``ECCPublicKey`` and ``ECCPrivateKey`` methods.
 
 For further requirements on the protocols to be implemented, see the corresponding methods.
 
@@ -53,7 +53,8 @@ let aesKey = try Crypto.AES.Key(
     rounds: 10000
 )
 try Keychain.saveKey(key, withTag: "AESKeyTag", applicationLabel: "SearchLabel")
-
+```
+```swift
 // Create random RSA / ECC private keys and save them in the keychain.
 // The items are identified by a tag value can also be queried by the SHA1 of their public keys.
 let rsaKey = try Crypto.RSA.PrivateKey(bitCount: 2048)

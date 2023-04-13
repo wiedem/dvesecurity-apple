@@ -10,7 +10,7 @@ The ``GenericPassword`` container provides methods to store and retrieve entries
 ```swift
 try Keychain.GenericPassword.save("MySecret", forAccount: "MyAccount", service: "MyService")
 
-let secreet = try Keychain.GenericPassword.query(forAccount: "MyAccount", service: "MyService")
+let secret = try Keychain.GenericPassword.query(forAccount: "MyAccount", service: "MyService")
 ```
 
 ## Topics

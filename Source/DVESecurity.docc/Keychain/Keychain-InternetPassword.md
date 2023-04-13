@@ -6,9 +6,6 @@ Internet password keychain items are usually used to save passwords for network 
 
 Internet passwords are uniquely identified by the access group they blong to and a combination of their `account`, `security domain`, `server`, `protocol`, `authentication type`, `port` and `path` attributes. All attributes except the `account` attribute are optional.
 
-- Note: Due to an issue / limitation in iOS 12, the synchronous query methods are only available for iOS 13 and later.
-With iOS 12 a synchronous query on the main thread leads to a deadlock when the keychain services try to display a UI due to an access control restriction.
-
 ## Topics
 
 ### Retrieve Passwords

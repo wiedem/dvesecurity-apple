@@ -14,10 +14,11 @@ Initialization vectors don't need to be kept secret but must be random and shoul
 The ``createInitVector()`` method creates a new random initialization vector which can be used to encrypt a plain text message.
 
 Secure symmetric keys should be generated from random data or derived from passwords or passphrases.
-One method for this is provided by ``DVESecurity/Crypto/AES/Key/init(keySize:password:withSalt:pseudoRandomAlgorithm:rounds:)`` initializer.
 
 ```swift
-let initVector = try Crypto.AES.createInitVector()
+let aesKey = try Crypto.AES.Key.createRandom(.bits192)
+```
+```swift
 let aesKey = try Crypto.AES.Key(
   keySize: .bits192,
   password: "Password",
@@ -36,6 +37,7 @@ See ``Keychain`` for more details on how to save symmetric keys.
 ### Encryption
 Encryption with AES can either be done directly with the key ``Key/encrypt(_:initVector:)`` or the  ``encrypt(_:withKey:initVector:)-2m6jq`` and ``encrypt(_:withKey:initVector:)-1p0o7`` methods:
 ```swift
+let initVector = try Crypto.AES.createInitVector()
 let plainText = "Secret Message".data(using: .utf8)!
 
 let encryptedData1 = try aesKey.encrypt(plainText, initVector: initVector)

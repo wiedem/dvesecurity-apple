@@ -73,10 +73,27 @@ public extension Crypto {
 }
 
 extension Crypto.KeyData: Hashable {
+    public static func == (lhs: Crypto.KeyData, rhs: Crypto.KeyData) -> Bool {
+        guard lhs.byteCount == rhs.byteCount else {
+            return false
+        }
+        return memcmp(lhs.dataPointer, rhs.dataPointer, lhs.byteCount) == 0
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(bytes: unsafeRawBufferPointer)
+    }
+
+    public func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R {
+        try body(unsafeRawBufferPointer)
+    }
+}
+
+public extension Crypto.KeyData {
     /// Generates cryptographically secure random key data
     ///
     /// - Parameter length: The number of random bytes of the key.
-    public static func createRandomData(length: Int) throws -> Self {
+    static func createRandomData(length: Int) throws -> Self {
         try Self(byteCount: length) { rawBufferPointer in
             let result = SecRandomCopyBytes(kSecRandomDefault, length, rawBufferPointer.baseAddress!)
 
@@ -101,7 +118,7 @@ extension Crypto.KeyData: Hashable {
     /// the ownership of memory to the newly created key object and resetting the source memory.
     ///
     /// - Parameter data: The bytes from which the secure data should be created.
-    public static func createFromUnsafeData(_ data: some DataProtocol) -> Self {
+    static func createFromUnsafeData(_ data: some DataProtocol) -> Self {
         Self(byteCount: data.count) { mutableRawBufferPointer in
             data.copyBytes(to: mutableRawBufferPointer)
         }
@@ -122,26 +139,11 @@ extension Crypto.KeyData: Hashable {
     /// the ownership of memory to the newly created key object and resetting the source memory.
     ///
     /// - Parameter data: The bytes from which the secure data should be created.
-    public static func createFromUnsafeBytes(_ data: some ContiguousBytes) -> Self {
+    static func createFromUnsafeBytes(_ data: some ContiguousBytes) -> Self {
         data.withUnsafeBytes { sourceBufferPointer in
             Self(byteCount: sourceBufferPointer.count) { mutableRawBufferPointer in
                 sourceBufferPointer.copyBytes(to: mutableRawBufferPointer)
             }
         }
-    }
-
-    public static func == (lhs: Crypto.KeyData, rhs: Crypto.KeyData) -> Bool {
-        guard lhs.byteCount == rhs.byteCount else {
-            return false
-        }
-        return memcmp(lhs.dataPointer, rhs.dataPointer, lhs.byteCount) == 0
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(bytes: unsafeRawBufferPointer)
-    }
-
-    public func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R {
-        try body(unsafeRawBufferPointer)
     }
 }

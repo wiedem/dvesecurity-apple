@@ -90,6 +90,14 @@ public extension Crypto.AES.Key where SD == Crypto.KeyData {
         case hmacAlgSHA512
     }
 
+    /// Creates a new random symmetric AES key.
+    ///
+    /// - Parameter keySize: The expected size of the key.
+    static func createRandom(_ keySize: KeySize) throws -> Self {
+        let keyData = try Crypto.KeyData.createRandomData(length: keySize.sizeInBytes)
+        return Self(keyData: keyData)
+    }
+
     /// Derive a symmetric encryption key from a text password or passphrase.
     ///
     /// - Parameters:

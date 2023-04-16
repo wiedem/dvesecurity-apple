@@ -7,7 +7,6 @@
 ## Overview
 ECC is a modern alternative to RSA that can be used for symmetric key encryption and message signing.
 
-
 ### Key Generation
 An ECC private key is required to decrypt and sign data:
 

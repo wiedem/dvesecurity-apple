@@ -9,21 +9,37 @@ import XCTest
 final class Crypto_HMACTests: XCTestCase {
     private lazy var testFileURL = Bundle.main.url(forResource: "test", withExtension: "dat")!
 
-    func testAuthenticationCode() throws {
+    func testValidAuthenticationCode() throws {
         let data = "Hello World!".data(using: .utf8)!
+        let keyData = try Crypto.KeyData.createRandomData(length: 32)
+        let code = Crypto.HMAC<Hashing.SHA256>.authenticationCode(for: data, keyData: keyData)
 
-        let key = try Crypto.AES.Key(
-            keySize: .bits256,
-            password: "Password",
-            withSalt: "Salt",
-            pseudoRandomAlgorithm: .hmacAlgSHA256,
-            rounds: 1
-        )
+        let isCodeValid = Crypto.HMAC<Hashing.SHA256>.isValidAuthenticationCode(code, authenticating: data, keyData: keyData)
+        expect(isCodeValid) == true
+    }
 
-        let code = Crypto.HMAC<Hashing.SHA256>.authenticationCode(for: data, using: key)
-        let valid = Crypto.HMAC<Hashing.SHA256>.isValidAuthenticationCode(code, authenticating: data, using: key)
+    func testValidAuthenticationCodeWithAESKey() throws {
+        let data = "Hello World!".data(using: .utf8)!
+        let key = try Crypto.AES.Key.createRandom(.bits256)
+        let code = Crypto.HMAC<Hashing.SHA256>.authenticationCode(for: data, key: key)
 
-        expect(valid) == true
+        let isCodeValid = Crypto.HMAC<Hashing.SHA256>.isValidAuthenticationCode(code, authenticating: data, key: key)
+        expect(isCodeValid) == true
+    }
+
+    func testInvalidAuthenticationCode() throws {
+        let data = "Hello World!".data(using: .utf8)!
+        let keyData = try Crypto.KeyData.createRandomData(length: 32)
+        let code = Crypto.HMAC<Hashing.SHA256>.authenticationCode(for: data, keyData: keyData)
+
+        let tamperedData = "Manipulated".data(using: .utf8)!
+        let tamperedKeyData = try Crypto.KeyData.createRandomData(length: 32)
+
+        let isCodeValid1 = Crypto.HMAC<Hashing.SHA256>.isValidAuthenticationCode(code, authenticating: tamperedData, keyData: keyData)
+        expect(isCodeValid1) == false
+
+        let isCodeValid2 = Crypto.HMAC<Hashing.SHA256>.isValidAuthenticationCode(code, authenticating: data, keyData: tamperedKeyData)
+        expect(isCodeValid2) == false
     }
 
     func testIncrementalAuthenticationCode() throws {
@@ -53,7 +69,7 @@ private extension Crypto_HMACTests {
         let code = hmac.finalize()
 
         let fileData = try Data(contentsOf: testFileURL, options: .dataReadingMapped)
-        let valid = Crypto.HMAC<H>.isValidAuthenticationCode(code, authenticating: fileData, using: key)
+        let valid = Crypto.HMAC<H>.isValidAuthenticationCode(code, authenticating: fileData, key: key)
 
         expect(valid) == true
     }

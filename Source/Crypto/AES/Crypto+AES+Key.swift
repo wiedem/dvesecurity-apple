@@ -35,7 +35,7 @@ public extension Crypto.AES.Key {
     ///
     /// - Parameters:
     ///   - plainText: The plaintext data to encrypt.
-    ///   - initVector: Initialization vector data used for the encryption.
+    ///   - initVector: Initialization vector data used for the encryption.  See ``Crypto/AES/createInitVector()``,
     ///
     /// - Returns: The ciphertext represented as a Data object.
     func encrypt(_ plainText: some ContiguousBytes, initVector: some SecureData) throws -> Data {

@@ -12,9 +12,12 @@ public extension Crypto {
 
         /// Creates IV data used for AES data encryption.
         ///
-        /// Initialization vectors don't need to be kept secret but must be random and should not be re-used for the same AES key.
+        /// The generated initialization vector can be used for AES encryption methods, such as ``Key/encrypt(_:initVector:)``.
         ///
-        /// - Returns: Randomly generated Initialization vector data.
+        /// - Important: Initialization vectors don't need to be kept secret but should not be re-used for the same AES key.
+        /// IV data should also be protected against manipulation.
+        ///
+        /// - Returns: Randomly generated initialization vector data.
         public static func createInitVector() throws -> some SecureData {
             try Crypto.KeyData.createRandomData(length: blockSize)
         }
@@ -26,7 +29,7 @@ public extension Crypto {
         /// - Parameters:
         ///   - plainText: The plaintext data to encrypt.
         ///   - key: The AES key used for the encryption.
-        ///   - initVector: Initialization vector data used for the encryption.
+        ///   - initVector: Initialization vector data used for the encryption. See ``createInitVector()``,
         ///
         /// - Returns: The ciphertext data with PKCS#7 padding represented as a Data object.
         public static func encrypt(
@@ -79,7 +82,7 @@ public extension Crypto.AES {
     /// - Parameters:
     ///   - plainText: The plaintext data to encrypt.
     ///   - key: The AES key used for the encryption.
-    ///   - initVector: Initialization vector data used for the encryption.
+    ///   - initVector: Initialization vector data used for the encryption.  See ``createInitVector()``,
     ///
     /// - Returns: The ciphertext data with PKCS#7 padding represented as a Data object.
     static func encrypt(

@@ -18,16 +18,14 @@ Secure key types should implement the ``SecureData`` protocol, with ``Crypto/Key
 - ``Crypto/AES``
 - ``Crypto/RSA``
 - ``Crypto/ECC``
-
-### Password Creation
-- ``Crypto/createRandomPassword(length:characters:)``
-- ``Crypto/defaultRandomPasswordAlphabet``
+- ``Crypto/HMAC``
 
 ### Creating Cryptographically Secure Random Data
 - ``Crypto/KeyData/createRandomData(length:)``
 
-### Message Authentication Codes
-- ``Crypto/HMAC``
+### Password Creation
+- ``Crypto/createRandomPassword(length:characters:)``
+- ``Crypto/defaultRandomPasswordAlphabet``
 
 ### Errors
 - ``Crypto/KeyError``

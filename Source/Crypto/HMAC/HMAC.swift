@@ -11,24 +11,24 @@ public extension Crypto {
         ///
         /// - Parameters:
         ///   - data: The data for which to compute the authentication code.
-        ///   - key: The symmetric key used to secure the computation.
+        ///   - keyData: The symmetric key data used to secure the computation.
         ///   - hashFunction: The hash function to use for the computation.
         ///
         /// - Returns: The authentication code.
         public static func authenticationCode(
             for data: some DataProtocol,
-            using key: some SecureData
+            keyData: some SecureData
         ) -> Data {
             let sourceData = Data(data)
             var hmacData = Data(count: H.byteCount)
 
             hmacData.withUnsafeMutableBytes { (hmacDataPointer: UnsafeMutableRawBufferPointer) in
-                key.withUnsafeBytes { keyPointer in
+                keyData.withUnsafeBytes { keyPointer in
                     sourceData.withUnsafeBytes { sourceDataPointer in
                         CCHmac(
                             H.ccHmacAlgorithm,
                             keyPointer.baseAddress!,
-                            key.byteCount,
+                            keyData.byteCount,
                             sourceDataPointer.baseAddress!,
                             sourceData.count,
                             hmacDataPointer.baseAddress
@@ -44,26 +44,35 @@ public extension Crypto {
         /// - Parameters:
         ///   - authenticationCode: The authentication code.
         ///   - authenticatedData: The authenticated data.
-        ///   - key: The symmetric key used to secure the computation.
+        ///   - keyData: The symmetric key data used to secure the computation.
         ///
         /// - Returns: Returns `true` iif the authentication code is valid for the given authenticated data, `false` otherwise.
         public static func isValidAuthenticationCode(
             _ authenticationCode: Data,
             authenticating authenticatedData: some DataProtocol,
-            using key: some SecureData
+            keyData: some SecureData
         ) -> Bool {
-            authenticationCode == self.authenticationCode(for: authenticatedData, using: key)
+            let expectedCode = self.authenticationCode(for: authenticatedData, keyData: keyData)
+            guard expectedCode.count == authenticationCode.count else {
+                return false
+            }
+
+            return authenticationCode.withUnsafeBytes { codeBuffer in
+                expectedCode.withUnsafeBytes { expectedCodeBuffer in
+                    timingsafe_bcmp(codeBuffer.baseAddress!, expectedCodeBuffer.baseAddress!, expectedCode.count) == 0
+                }
+            }
         }
 
         private var hmacContext = CCHmacContext()
 
         /// Creates a message authentication code generator.
         ///
-        /// - Parameter key: The symmetric key used to secure the computation.
-        public init(key: some SecureData) {
+        /// - Parameter keyData: The symmetric key data used to secure the computation.
+        public init(keyData: some SecureData) {
             withUnsafeMutablePointer(to: &hmacContext) { hmacContextPointer in
-                key.withUnsafeBytes { keyPointer in
-                    CCHmacInit(hmacContextPointer, H.ccHmacAlgorithm, keyPointer.baseAddress!, key.byteCount)
+                keyData.withUnsafeBytes { keyPointer in
+                    CCHmacInit(hmacContextPointer, H.ccHmacAlgorithm, keyPointer.baseAddress!, keyData.byteCount)
                 }
             }
         }
@@ -99,21 +108,21 @@ public extension Crypto {
 
 public extension Crypto.HMAC {
     init(key: some KeyDataRepresentable) {
-        self.init(key: key.keyData)
+        self.init(keyData: key.keyData)
     }
 
     static func authenticationCode(
         for data: some DataProtocol,
-        using key: some KeyDataRepresentable
+        key: some KeyDataRepresentable
     ) -> Data {
-        authenticationCode(for: data, using: key.keyData)
+        authenticationCode(for: data, keyData: key.keyData)
     }
 
     static func isValidAuthenticationCode(
         _ authenticationCode: Data,
         authenticating authenticatedData: some DataProtocol,
-        using key: some KeyDataRepresentable
+        key: some KeyDataRepresentable
     ) -> Bool {
-        isValidAuthenticationCode(authenticationCode, authenticating: authenticatedData, using: key.keyData)
+        isValidAuthenticationCode(authenticationCode, authenticating: authenticatedData, keyData: key.keyData)
     }
 }

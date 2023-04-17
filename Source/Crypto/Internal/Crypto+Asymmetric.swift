@@ -91,6 +91,7 @@ extension Crypto {
             var error: Unmanaged<CFError>?
             let result = SecKeyVerifySignature(publicKey, algorithm, dataToVerify as CFData, signature as CFData, &error)
             guard error == nil else {
+                // CFError should actually be toll-free-bridged to NSError, but Swift currently doesn't know about it [SR-3206].
                 let nsError = error!.takeRetainedValue() as Error as NSError
                 switch (nsError.domain, OSStatus(nsError.code)) {
                 case (NSOSStatusErrorDomain, errSecVerifyFailed):

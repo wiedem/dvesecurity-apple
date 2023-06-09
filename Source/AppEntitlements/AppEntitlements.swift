@@ -16,9 +16,9 @@ public enum AppEntitlementsError: Error {
     case missingEntitlements
 }
 
-/// A singleton class used to get the app's entitlements.
+/// A singleton class providing access to the app's entitlements.
 ///
-/// - SeeAlso: [Entitlements](https://developer.apple.com/documentation/bundleresources/entitlements)
+/// - See: [Entitlements](https://developer.apple.com/documentation/bundleresources/entitlements)
 public final class AppEntitlements {
     private let entitlements: [String: Any]
 
@@ -36,6 +36,7 @@ public final class AppEntitlements {
     /// The app's identifier as defined in the entitlements.
     ///
     /// - Note: Attempting to access this value in a macOS application that does not have an application identifier will result in a fatal error.
+    ///
     /// iOS applications are always guaranteed to have an application identifier.
     public class var applicationIdentifier: String {
         let appIDKey1 = EntitlementKey.associatedApplicationIdentifier.rawValue
@@ -111,15 +112,17 @@ public final class AppEntitlements {
     }
     #endif
 
-    // TODO: Added
+    /// A list of associated domains for specific services, such as shared web credentials, universal links, and App Clips.
     public class var associatedDomains: [String] {
         shared.entitlements[EntitlementKey.associatedDomains.rawValue] as? [String] ?? []
     }
 
+    /// A list of container identifiers for the iCloud development environment.
     public class var iCouldContainerIdentifiers: [String] {
         shared.entitlements[EntitlementKey.iCouldContainerIdentifiers.rawValue] as? [String] ?? []
     }
 
+    /// The environment to use for the iCloud containers.
     public class var iCouldContainerEnvironment: ICloudContainerEnvironment? {
         guard let iCouldContainerEnvironmentValue = shared.entitlements[EntitlementKey.iCouldContainerEnvironment.rawValue] as? String else {
             return nil
@@ -127,6 +130,7 @@ public final class AppEntitlements {
         return .init(rawValue: iCouldContainerEnvironmentValue)
     }
 
+    /// The iCloud services used by the app.
     public class var iCloudServices: ICloudServices? {
         guard let iCloudServicesValue = shared.entitlements[EntitlementKey.iCloudServices.rawValue] as? String else {
             return nil
@@ -134,15 +138,18 @@ public final class AppEntitlements {
         return .init(rawValue: iCloudServicesValue)
     }
 
+    /// The container identifier to use for iCloud key-value storage.
     public class var iCloudKeyValueStoreIdentifier: String? {
         shared.entitlements[EntitlementKey.iCloudKeyValueStoreIdentifier.rawValue] as? String
     }
 
     #if os(iOS)
+    /// A list of identifiers that specify pass types that the app can access in Wallet.
     public class var walletPassTypeIdentifiers: [String] {
         shared.entitlements[EntitlementKey.walletPassTypeIdentifiers.rawValue] as? [String] ?? []
     }
 
+    /// A list of merchant IDs the app uses for Apple Pay support.
     public class var applePeyMerchantIDs: [String] {
         shared.entitlements[EntitlementKey.applePeyMerchantIDs.rawValue] as? [String] ?? []
     }
@@ -245,11 +252,11 @@ private extension AppEntitlements {
         case iCloudKeyValueStoreIdentifier = "com.apple.developer.ubiquity-kvstore-identifier"
 
         #if os(iOS)
-        /// Entitlement key for the pass types that your app can access in Wallet.
+        /// Entitlement key for the pass types that the app can access in Wallet.
         ///
         /// See [Pass Type IDs Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_pass-type-identifiers)
         case walletPassTypeIdentifiers = "com.apple.developer.pass-type-identifiers"
-        /// Entitlement key for the merchant IDs your app uses for Apple Pay support.
+        /// Entitlement key for the merchant IDs the app uses for Apple Pay support.
         ///
         /// See [Merchant IDs Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_in-app-payments)
         case applePeyMerchantIDs = "com.apple.developer.in-app-payments"

@@ -15,7 +15,7 @@ extension Keychain {
             // See https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain
             queryDictionary[kSecUseDataProtectionKeychain as String] = true
 
-            // TODO: find a better way
+            // TODO: find a better way which doesn't involve copying the data.
             let data = valueData.withUnsafeBytes { rawBufferPointer in
                 NSData(bytes: rawBufferPointer.baseAddress, length: valueData.byteCount)
             }

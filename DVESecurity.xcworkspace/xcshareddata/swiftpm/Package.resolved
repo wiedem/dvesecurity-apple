@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-asn1.git",
       "state" : {
-        "revision" : "805deae27a7506dcad043604c00a9dc52d465dcb",
-        "version" : "0.7.0"
+        "revision" : "0700d170e8ba3f6b37fdf61b1617b93945b1157d",
+        "version" : "0.9.1"
       }
     }
   ],

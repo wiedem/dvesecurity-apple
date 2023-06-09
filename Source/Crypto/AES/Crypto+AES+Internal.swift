@@ -11,7 +11,7 @@ extension Crypto.AES {
         algorithm: CCAlgorithm,
         options: CCOptions,
         for data: some ContiguousBytes,
-        withKey key: some ContiguousBytes,
+        withKey key: some SecureData,
         initVector: some SecureData
     ) throws -> Data {
         guard initVector.byteCount == blockSize else {

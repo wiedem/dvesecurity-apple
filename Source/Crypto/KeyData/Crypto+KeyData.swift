@@ -8,10 +8,15 @@ public extension Crypto {
     ///
     /// The key data is automatically reset as soon as the key is released.
     ///
-    /// The implementation ensures that the memory pages of the key data are not transferred to a swap area by the operating system.
+    /// The implementation also ensures that the memory pages of the key data are not transferred to a swap area by the operating system.
+    ///
+    /// The underlying bytes of the key can be accessed with the ``withUnsafeBytes(_:)`` method.
+    /// This data should only be accessed for reading and not copied.
     ///
     /// - Note: References to the key should be kept only as long as necessary.
-    final class KeyData: SecureData {
+    /// - Note: This type conforms to the [Sendable](https://developer.apple.com/documentation/swift/sendable) protocol, since the data
+    /// of the key is immutable.
+    final class KeyData: SecureData, Sendable {
         public let byteCount: Int
 
         private let dataPointer: UnsafeMutablePointer<UInt8>

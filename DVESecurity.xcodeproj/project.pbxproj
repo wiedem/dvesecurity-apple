@@ -168,7 +168,7 @@
 		8B9DB7B729DC7765002F5F1C /* ASN1X509Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB7B529DC7741002F5F1C /* ASN1X509Tests.swift */; };
 		8B9DB7B929DCC5E5002F5F1C /* SecureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB7B829DCC5E5002F5F1C /* SecureData.swift */; };
 		8B9DB7BC29DCC698002F5F1C /* Crypto+KeyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB7BB29DCC697002F5F1C /* Crypto+KeyData.swift */; };
-		8B9DB7C029DCCA14002F5F1C /* Keychain+KeyDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB7BE29DCC9FE002F5F1C /* Keychain+KeyDataTests.swift */; };
+		8B9DB7C029DCCA14002F5F1C /* Crypto+KeyDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9DB7BE29DCC9FE002F5F1C /* Crypto+KeyDataTests.swift */; };
 		8BEA6E0B29E1A73100BFD4CF /* KeyDataRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEA6E0A29E1A73100BFD4CF /* KeyDataRepresentable.swift */; };
 		9103A00424F684630093AA18 /* Keychain+QueryAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103A00324F684630093AA18 /* Keychain+QueryAuthentication.swift */; };
 		9103A00624F684AF0093AA18 /* Keychain+QueryAuthentication+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103A00524F684AF0093AA18 /* Keychain+QueryAuthentication+Internal.swift */; };
@@ -492,7 +492,7 @@
 		8B9DB7B529DC7741002F5F1C /* ASN1X509Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASN1X509Tests.swift; sourceTree = "<group>"; };
 		8B9DB7B829DCC5E5002F5F1C /* SecureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureData.swift; sourceTree = "<group>"; };
 		8B9DB7BB29DCC697002F5F1C /* Crypto+KeyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+KeyData.swift"; sourceTree = "<group>"; };
-		8B9DB7BE29DCC9FE002F5F1C /* Keychain+KeyDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+KeyDataTests.swift"; sourceTree = "<group>"; };
+		8B9DB7BE29DCC9FE002F5F1C /* Crypto+KeyDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crypto+KeyDataTests.swift"; sourceTree = "<group>"; };
 		8BEA6E0A29E1A73100BFD4CF /* KeyDataRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyDataRepresentable.swift; sourceTree = "<group>"; };
 		8BEE873229D869E400DDF2D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9103A00324F684630093AA18 /* Keychain+QueryAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+QueryAuthentication.swift"; sourceTree = "<group>"; };
@@ -1263,7 +1263,7 @@
 		8B9DB7BD29DCC9E8002F5F1C /* KeyData */ = {
 			isa = PBXGroup;
 			children = (
-				8B9DB7BE29DCC9FE002F5F1C /* Keychain+KeyDataTests.swift */,
+				8B9DB7BE29DCC9FE002F5F1C /* Crypto+KeyDataTests.swift */,
 			);
 			path = KeyData;
 			sourceTree = "<group>";
@@ -1844,7 +1844,7 @@
 				8B9DB7B729DC7765002F5F1C /* ASN1X509Tests.swift in Sources */,
 				65C12AE324FAED4000F21629 /* SHA256Tests.swift in Sources */,
 				65EF6859273ECF3800B2A1C7 /* ASN1PKCS1Tests.swift in Sources */,
-				8B9DB7C029DCCA14002F5F1C /* Keychain+KeyDataTests.swift in Sources */,
+				8B9DB7C029DCCA14002F5F1C /* Crypto+KeyDataTests.swift in Sources */,
 				9109829224F940EC000D981F /* TestCaseiOS13.swift in Sources */,
 				91C0F6DE24E4594100511980 /* Crypto+ECCTests.swift in Sources */,
 				6598BB1E27182B0A006DA1C1 /* TestCaseCryptoKit.swift in Sources */,

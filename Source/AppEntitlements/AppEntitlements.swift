@@ -22,6 +22,17 @@ public enum AppEntitlementsError: Error {
 public final class AppEntitlements {
     private let entitlements: [String: Any]
 
+    public enum ICloudContainerEnvironment: String {
+        case production = "Production"
+        case development = "Development"
+    }
+
+    public enum ICloudServices: String {
+        case cloudDocuments = "CloudDocuments"
+        case cloudKit = "CloudKit"
+        case cloudKitAnonymous = "CloudKit-Anonymous"
+    }
+
     /// The app's identifier as defined in the entitlements.
     ///
     /// - Note: Attempting to access this value in a macOS application that does not have an application identifier will result in a fatal error.
@@ -96,7 +107,44 @@ public final class AppEntitlements {
     ///
     /// See [App Sandbox](https://developer.apple.com/documentation/security/app_sandbox).
     public class var isAppSandboxed: Bool {
-        return shared.entitlements[EntitlementKey.applicationSandbox.rawValue] as? Bool ?? false
+        shared.entitlements[EntitlementKey.applicationSandbox.rawValue] as? Bool ?? false
+    }
+    #endif
+
+    // TODO: Added
+    public class var associatedDomains: [String] {
+        shared.entitlements[EntitlementKey.associatedDomains.rawValue] as? [String] ?? []
+    }
+
+    public class var iCouldContainerIdentifiers: [String] {
+        shared.entitlements[EntitlementKey.iCouldContainerIdentifiers.rawValue] as? [String] ?? []
+    }
+
+    public class var iCouldContainerEnvironment: ICloudContainerEnvironment? {
+        guard let iCouldContainerEnvironmentValue = shared.entitlements[EntitlementKey.iCouldContainerEnvironment.rawValue] as? String else {
+            return nil
+        }
+        return .init(rawValue: iCouldContainerEnvironmentValue)
+    }
+
+    public class var iCloudServices: ICloudServices? {
+        guard let iCloudServicesValue = shared.entitlements[EntitlementKey.iCloudServices.rawValue] as? String else {
+            return nil
+        }
+        return .init(rawValue: iCloudServicesValue)
+    }
+
+    public class var iCloudKeyValueStoreIdentifier: String? {
+        shared.entitlements[EntitlementKey.iCloudKeyValueStoreIdentifier.rawValue] as? String
+    }
+
+    #if os(iOS)
+    public class var walletPassTypeIdentifiers: [String] {
+        shared.entitlements[EntitlementKey.walletPassTypeIdentifiers.rawValue] as? [String] ?? []
+    }
+
+    public class var applePeyMerchantIDs: [String] {
+        shared.entitlements[EntitlementKey.applePeyMerchantIDs.rawValue] as? [String] ?? []
     }
     #endif
 
@@ -173,6 +221,38 @@ private extension AppEntitlements {
         ///
         /// See [App Sandbox Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_app-sandbox).
         case applicationSandbox = "com.apple.security.app-sandbox"
+        #endif
+
+        /// Entitlement key for the associated domains for specific services.
+        ///
+        /// See [Associated Domains Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_associated-domains)
+        case associatedDomains = "com.apple.developer.associated-domains"
+        /// Entitlement key for the container identifiers for the iCloud development environment.
+        ///
+        /// See [com.apple.developer.icloud-container-development-container-identifiers](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_icloud-container-development-container-identifiers)
+        case iCouldContainerIdentifiers = "com.apple.developer.icloud-container-development-container-identifiers"
+        /// Entitlement key for the environment to use for the iCloud containers.
+        ///
+        /// See [com.apple.developer.icloud-container-environment](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_icloud-container-environment)
+        case iCouldContainerEnvironment = "com.apple.developer.icloud-container-environment"
+        /// Entitlement key for the iCloud services used by the app.
+        ///
+        /// See [iCloud Services Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_icloud-services)
+        case iCloudServices = "com.apple.developer.icloud-services"
+        /// Entitlement key for the container identifier to use for iCloud key-value storage.
+        ///
+        /// See [iCloud Key-Value Store Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_ubiquity-kvstore-identifier)
+        case iCloudKeyValueStoreIdentifier = "com.apple.developer.ubiquity-kvstore-identifier"
+
+        #if os(iOS)
+        /// Entitlement key for the pass types that your app can access in Wallet.
+        ///
+        /// See [Pass Type IDs Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_pass-type-identifiers)
+        case walletPassTypeIdentifiers = "com.apple.developer.pass-type-identifiers"
+        /// Entitlement key for the merchant IDs your app uses for Apple Pay support.
+        ///
+        /// See [Merchant IDs Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_in-app-payments)
+        case applePeyMerchantIDs = "com.apple.developer.in-app-payments"
         #endif
     }
 

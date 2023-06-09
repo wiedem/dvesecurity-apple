@@ -41,6 +41,8 @@ public extension Crypto {
 
         /// Returns a Boolean indicating whether the given code is valid for a block of data.
         ///
+        /// The comparison is safe against timing attacks.
+        ///
         /// - Parameters:
         ///   - authenticationCode: The authentication code.
         ///   - authenticatedData: The authenticated data.
@@ -107,10 +109,20 @@ public extension Crypto {
 }
 
 public extension Crypto.HMAC {
+    /// Creates a message authentication code generator.
+    ///
+    /// - Parameter key: The symmetric key data used to secure the computation.
     init(key: some KeyDataRepresentable) {
         self.init(keyData: key.keyData)
     }
 
+    /// Computes a message authentication code for the given data.
+    ///
+    /// - Parameters:
+    ///   - data: The data for which to compute the authentication code.
+    ///   - key: The symmetric key data used to secure the computation.
+    ///
+    /// - Returns: The authentication code.
     static func authenticationCode(
         for data: some DataProtocol,
         key: some KeyDataRepresentable
@@ -118,6 +130,16 @@ public extension Crypto.HMAC {
         authenticationCode(for: data, keyData: key.keyData)
     }
 
+    /// Returns a Boolean indicating whether the given code is valid for a block of data.
+    ///
+    /// The comparison is safe against timing attacks.
+    ///
+    /// - Parameters:
+    ///   - authenticationCode: The authentication code.
+    ///   - authenticatedData: The authenticated data.
+    ///   - key: The symmetric key data used to secure the computation.
+    ///
+    /// - Returns: Returns `true` iif the authentication code is valid for the given authenticated data, `false` otherwise.
     static func isValidAuthenticationCode(
         _ authenticationCode: Data,
         authenticating authenticatedData: some DataProtocol,

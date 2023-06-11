@@ -75,7 +75,7 @@ The Swift package also supports the [Swift-DocC SPM command plugin](https://gith
 If the framework is included via Carthage or manually as a library, then the documentation must be generated manually.  
 
 ## Compatibility
-DVESecurity is compatible with iOS 13.0, macOS 10.15 and requires at least Swift 5.7.
+DVESecurity is compatible with iOS 13.0, macOS 10.15 and requires at least Swift 5.8 and Xcode 14.3.
 The framework follows the [SemVer 2.0.0] rules.
 
 [Security Framework]: https://developer.apple.com/documentation/security "Security Framework"

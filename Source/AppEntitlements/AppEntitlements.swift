@@ -162,6 +162,11 @@ public final class AppEntitlements {
         shared.entitlements[EntitlementKey.appleSignin.rawValue] as? [String] ?? []
     }
 
+    /// Indicated whether the app may, with user permission, provide user names and passwords for AutoFill in Safari and other apps.
+    public class var autoFillCredentialProvider: Bool {
+        shared.entitlements[EntitlementKey.autoFillCredentialProvider.rawValue] as? Bool ?? false
+    }
+
     private init(_ entitlements: [String: Any]) {
         self.entitlements = entitlements
     }
@@ -273,6 +278,11 @@ private extension AppEntitlements {
         ///
         /// See [Sign in with Apple Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_applesignin)
         case appleSignin = "com.apple.developer.applesignin"
+
+        /// Entitlement key for AutoFill in Safari and other apps.
+        ///
+        /// See [AutoFill Credential Provider Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_authentication-services_autofill-credential-provider)
+        case autoFillCredentialProvider = "com.apple.developer.authentication-services"
     }
 
     static let shared: AppEntitlements = createSharedInstance()

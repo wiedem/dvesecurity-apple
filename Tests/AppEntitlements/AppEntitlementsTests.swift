@@ -19,6 +19,8 @@ final class AppEntitlementsTests: XCTestCase {
         expect(AppEntitlements.applicationGroups).to(beNil())
         expect(AppEntitlements.getTaskAllow) == true
 
+        expect(AppEntitlements.associatedDomains).to(contain("webcredentials:dvesecurity.test", "applinks:dvesecurity.test"))
+
         #if targetEnvironment(simulator)
         expect(AppEntitlements.developerTeamIdentifier).to(beNil())
         #else

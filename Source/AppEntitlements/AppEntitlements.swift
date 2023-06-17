@@ -155,6 +155,13 @@ public final class AppEntitlements {
     }
     #endif
 
+    /// Apple Sign in capability of the app.
+    ///
+    /// Returns one entry with the value `Default` if the Sign in entitlement is set.
+    public class var appleSignin: [String] {
+        shared.entitlements[EntitlementKey.appleSignin.rawValue] as? [String] ?? []
+    }
+
     private init(_ entitlements: [String: Any]) {
         self.entitlements = entitlements
     }
@@ -261,6 +268,11 @@ private extension AppEntitlements {
         /// See [Merchant IDs Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_in-app-payments)
         case applePayMerchantIDs = "com.apple.developer.in-app-payments"
         #endif
+
+        /// Entitlement key for Apple Sign in.
+        ///
+        /// See [Sign in with Apple Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_applesignin)
+        case appleSignin = "com.apple.developer.applesignin"
     }
 
     static let shared: AppEntitlements = createSharedInstance()

@@ -150,8 +150,8 @@ public final class AppEntitlements {
     }
 
     /// A list of merchant IDs the app uses for Apple Pay support.
-    public class var applePeyMerchantIDs: [String] {
-        shared.entitlements[EntitlementKey.applePeyMerchantIDs.rawValue] as? [String] ?? []
+    public class var applePayMerchantIDs: [String] {
+        shared.entitlements[EntitlementKey.applePayMerchantIDs.rawValue] as? [String] ?? []
     }
     #endif
 
@@ -259,7 +259,7 @@ private extension AppEntitlements {
         /// Entitlement key for the merchant IDs the app uses for Apple Pay support.
         ///
         /// See [Merchant IDs Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_in-app-payments)
-        case applePeyMerchantIDs = "com.apple.developer.in-app-payments"
+        case applePayMerchantIDs = "com.apple.developer.in-app-payments"
         #endif
     }
 

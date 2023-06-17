@@ -6,8 +6,8 @@ This container contains types and functions for the Data Protection Keychain of 
 
 Use the functionality provided in the ``Legacy`` container for file based keychains of macOS.
 
-- Note: Trying to use the methods for the Data Protection Keychain in macOS applications without an application ID will cause your app to crash with a fatal error.
-Such macOS applications do not have access to the Data Protection Keychain.
+- Note: macOS applications without an application ID do not have access to the Data Protection Keychain and trying to
+use the APIs from such an application will result in a runtime error..
 
 ## Topics
 

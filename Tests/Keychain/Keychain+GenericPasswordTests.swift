@@ -43,7 +43,7 @@ final class Keychain_GenericPasswordTests: XCTestCase {
     }
 
     func testSaveAndQueryWithUnsafeData() throws {
-        let key = Crypto.KeyData.createFromUnsafeData(password.data(using: .utf8)!)
+        let key = Crypto.KeyData.createSecureCopy(of: password.data(using: .utf8)!)
 
         try Keychain.GenericPassword.saveKey(key, forAccount: account1, service: service)
 

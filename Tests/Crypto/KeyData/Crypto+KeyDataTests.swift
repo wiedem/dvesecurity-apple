@@ -18,4 +18,21 @@ final class Crypto_KeyDataTests: XCTestCase {
             expect(dataPointer[index]) == 0
         }
     }
+
+    func testCompare() {
+        let bytes1: [UInt8] = [0x01, 0x02, 0x03, 0x04]
+        let bytes2: [UInt8] = [0x04, 0x03, 0x02, 0x01]
+        let bytes3: [UInt8] = [0x01, 0x02, 0x03, 0x04]
+
+        let data1 = NSMutableData(bytes: bytes1, length: bytes1.count)
+        let data2 = NSMutableData(bytes: bytes2, length: bytes2.count)
+        let data3 = NSMutableData(bytes: bytes3, length: bytes3.count)
+
+        let keyData1 = Crypto.KeyData(transferFrom: data1)
+        let keyData2 = Crypto.KeyData(transferFrom: data2)
+        let keyData3 = Crypto.KeyData(transferFrom: data3)
+
+        expect(keyData1) != keyData2
+        expect(keyData1) == keyData3
+    }
 }

@@ -77,9 +77,10 @@ public extension Keychain.InternetPassword {
         accessibility: Keychain.SynchronizableItemAccessibility = .afterFirstUnlock,
         label: String? = nil
     ) throws {
-        guard let data = password.data(using: .utf8) else {
+        guard let valueData = Crypto.KeyData(copyFrom: password as NSString, encoding: .utf8) else {
             throw Keychain.InternetPasswordError.invalidPassword
         }
+
         var itemAttributes: Set<Keychain.ItemAttribute> = [
             .account(account), .accessGroup(accessGroup), .synchronizable(accessibility: accessibility),
         ]
@@ -91,7 +92,12 @@ public extension Keychain.InternetPassword {
         path.updateMapped({ .path($0) }, in: &itemAttributes)
         label.updateMapped({ .label($0) }, in: &itemAttributes)
 
-        let query = Keychain.AddItemQuery(itemClass: itemClass, valueData: data, attributes: itemAttributes)
+        let query = Keychain.AddItemQuery(
+            itemClass: itemClass,
+            valueData: valueData,
+            attributes: itemAttributes
+        )
+        
         try Keychain.saveItem(query: query)
     }
 
@@ -123,9 +129,10 @@ public extension Keychain.InternetPassword {
         port: UInt16? = nil,
         path: String? = nil
     ) throws {
-        guard let data = newPassword.data(using: .utf8) else {
+        guard let valueData = Crypto.KeyData(copyFrom: newPassword as NSString, encoding: .utf8) else {
             throw Keychain.InternetPasswordError.invalidPassword
         }
+
         var itemAttributes: Set<Keychain.ItemAttribute> = [
             .account(account), .accessGroup(accessGroup), .synchronizable(),
         ]
@@ -136,7 +143,7 @@ public extension Keychain.InternetPassword {
         port.updateMapped({ .port($0) }, in: &itemAttributes)
         path.updateMapped({ .path($0) }, in: &itemAttributes)
 
-        let query = Keychain.UpdateItemQuery(itemClass: itemClass, valueData: data, attributes: itemAttributes)
+        let query = Keychain.UpdateItemQuery(itemClass: itemClass, valueData: valueData, attributes: itemAttributes)
         return try Keychain.updateItem(query: query)
     }
 

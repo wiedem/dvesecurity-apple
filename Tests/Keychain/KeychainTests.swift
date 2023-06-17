@@ -111,8 +111,15 @@ private extension KeychainTests {
             .service(_defaultAccessGroupTestService), .accessControl(.afterFirstUnlockThisDeviceOnly),
         ]
 
+        var data = Data()
+        let valueData = Crypto.KeyData(copyFrom: data)
+
         do {
-            let query = Keychain.AddItemQuery(itemClass: .genericPassword, valueData: Data(), attributes: itemAttributes)
+            let query = Keychain.AddItemQuery(
+                itemClass: .genericPassword,
+                valueData: valueData,
+                attributes: itemAttributes
+            )
             try Keychain.saveItem(query: query)
         } catch {
             throw KeychainTestError(underlyingError: error)

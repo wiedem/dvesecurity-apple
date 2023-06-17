@@ -113,32 +113,22 @@ extension Keychain {
 
 extension Keychain {
     static func saveItem(query: KeychainAddItemQuery) throws {
-        let queryDictionary = query.queryDictionary as CFDictionary
-
-        if query.requiresExtendedLifetime {
-            // Keep the query item alive until the query is complete.
-            try withExtendedLifetime(query) {
-                try saveItem(queryDictionary: queryDictionary)
+        try query.queryAttributes { attributes in
+            let status = SecItemAdd(attributes as CFDictionary, nil)
+            guard status == errSecSuccess else {
+                throw KeychainError.itemSavingFailed(status: status)
             }
-        } else {
-            try saveItem(queryDictionary: queryDictionary)
         }
     }
 
-    private static func saveItem(queryDictionary: CFDictionary) throws {
-        let status = SecItemAdd(queryDictionary, nil)
-        guard status == errSecSuccess else {
-            throw KeychainError.itemSavingFailed(status: status)
-        }
-    }
-
-    static func updateItem(query: KeychainUpdateItemQuery) throws {
+    static func updateItem(query: some KeychainUpdateItemQuery) throws {
         let queryDictionary = query.queryDictionary as CFDictionary
-        let attributesToUpdate = query.updateDictionary as CFDictionary
 
-        let status = SecItemUpdate(queryDictionary, attributesToUpdate)
-        guard status == errSecSuccess else {
-            throw KeychainError.itemUpdateFailed(status: status)
+        try query.updateAttributes { attributes in
+            let status = SecItemUpdate(queryDictionary, attributes as CFDictionary)
+            guard status == errSecSuccess else {
+                throw KeychainError.itemUpdateFailed(status: status)
+            }
         }
     }
 

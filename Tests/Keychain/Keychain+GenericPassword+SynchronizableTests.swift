@@ -36,8 +36,8 @@ final class Keychain_GenericPassword_SynchronizableTests: XCTestCase {
     }
 
     func testSaveAndQueryWithUnsafeData() throws {
-        let key = Crypto.KeyData.createFromUnsafeData(password.data(using: .utf8)!)
-        let synchronizedKey = Crypto.KeyData.createFromUnsafeData(synchronizedPassword.data(using: .utf8)!)
+        let key = Crypto.KeyData.createSecureCopy(of: password.data(using: .utf8)!)
+        let synchronizedKey = Crypto.KeyData.createSecureCopy(of: synchronizedPassword.data(using: .utf8)!)
 
         try Keychain.GenericPassword.saveKey(key, forAccount: account, service: service)
         try Keychain.GenericPassword.saveSynchronizableKey(synchronizedKey, forAccount: account, service: service)

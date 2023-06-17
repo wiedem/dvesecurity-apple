@@ -61,6 +61,7 @@ public extension Crypto {
 
             let mutableRawBufferPointer = UnsafeMutableRawBufferPointer(mutating: unsafeRawBufferPointer)
             source.copyBytes(to: mutableRawBufferPointer)
+
             if resetSource {
                 source.resetBytes(in: NSRange(location: 0, length: source.length))
             }
@@ -82,7 +83,7 @@ extension Crypto.KeyData: Hashable {
         guard lhs.byteCount == rhs.byteCount else {
             return false
         }
-        return memcmp(lhs.dataPointer, rhs.dataPointer, lhs.byteCount) == 0
+        return timingsafe_bcmp(lhs.dataPointer, rhs.dataPointer, lhs.byteCount) == 0
     }
 
     public func hash(into hasher: inout Hasher) {
@@ -123,17 +124,19 @@ public extension Crypto.KeyData {
     /// the ownership of memory to the newly created key object and resetting the source memory.
     ///
     /// - Parameter data: The bytes from which the secure data should be created.
-    static func createFromUnsafeData(_ data: some DataProtocol) -> Self {
-        Self(byteCount: data.count) { mutableRawBufferPointer in
-            data.copyBytes(to: mutableRawBufferPointer)
+    static func createSecureCopy(of data: some ContiguousBytes) -> Self {
+        data.withUnsafeBytes { sourceBufferPointer in
+            Self(byteCount: sourceBufferPointer.count) { mutableRawBufferPointer in
+                sourceBufferPointer.copyBytes(to: mutableRawBufferPointer)
+            }
         }
     }
 
-    /// Creates secure key data from a unsecure data source.
+    /// Creates secure key data from an insecure data source.
     ///
     /// The source data from wich the key data is created is not changed and remains in an unsafe state.
     ///
-    /// For Swift high-level data types such as `Data` and `String`, there is no guarantee that the underlying bytes in memory will not be copied multiple times
+    /// For Swift value types such as `Data` and `String`, there is no guarantee that the underlying bytes in memory will not be copied multiple times
     /// during the lifetime of the value, leaving multiple data traces behind.
     ///
     /// There is no guarantee that the source data in memory cannot be read by an attacker after the value has been released or that the data will not be moved to
@@ -144,11 +147,38 @@ public extension Crypto.KeyData {
     /// the ownership of memory to the newly created key object and resetting the source memory.
     ///
     /// - Parameter data: The bytes from which the secure data should be created.
-    static func createFromUnsafeBytes(_ data: some ContiguousBytes) -> Self {
-        data.withUnsafeBytes { sourceBufferPointer in
-            Self(byteCount: sourceBufferPointer.count) { mutableRawBufferPointer in
-                sourceBufferPointer.copyBytes(to: mutableRawBufferPointer)
-            }
+    convenience init(copyFrom data: some DataProtocol) {
+        self.init(byteCount: data.count) { mutableRawBufferPointer in
+            data.copyBytes(to: mutableRawBufferPointer)
+        }
+    }
+
+    /// Creates secure key data from an insecure string.
+    ///
+    /// The source string from wich the key data is created is not changed and remains in an unsafe state.
+    ///
+    /// If the string cannot be converted with the specified string encoding, the initializer fails and returns `nil`.
+    ///
+    /// - Parameters:
+    ///   - string: The string from which a secure key data representation should be created.
+    ///   - encoding: The encoding to use for the secure data representation.
+    convenience init?(copyFrom string: NSString, encoding: String.Encoding) {
+        let byteCount = string.lengthOfBytes(using: encoding.rawValue)
+        guard byteCount > 0 else {
+            return nil
+        }
+
+        self.init(byteCount: byteCount) { rawBufferPointer in
+            var usedLength = 0
+
+            _ = string.getBytes(
+                rawBufferPointer.baseAddress,
+                maxLength: byteCount,
+                usedLength: &usedLength,
+                encoding: encoding.rawValue,
+                range: NSRange(location: 0, length: string.length),
+                remaining: nil
+            )
         }
     }
 }

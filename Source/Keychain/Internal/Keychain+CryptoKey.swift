@@ -61,7 +61,7 @@ extension Keychain {
             itemAttributes: Set<ItemAttribute> = [],
             authenticationContext: LAContext? = nil
         ) throws {
-            let query = Keychain.AddItemQuery(secKey: secKey, attributes: itemAttributes)
+            let query = Keychain.AddSecKeyQuery(secKey: secKey, attributes: itemAttributes)
                 .add(keyClass)
                 .useAuthenticationContext(authenticationContext)
                 .addIsPermanent(true)

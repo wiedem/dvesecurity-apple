@@ -100,17 +100,18 @@ extension Keychain.Legacy {
             inKeychain keychain: SecKeychain? = nil,
             access: SecAccess? = nil
         ) throws {
-            guard let data = password.data(using: .utf8) else {
+            guard let valueData = Crypto.KeyData(copyFrom: password as NSString, encoding: .utf8) else {
                 throw Keychain.GenericPasswordError.invalidPassword
             }
 
             let query = Keychain.Legacy.AddItemQuery(
                 itemClass: itemClass,
-                valueData: data,
+                valueData: valueData,
                 attributes: [.account(account), .service(service), .label(label)],
                 keychain: keychain,
                 access: access
             )
+            
             try Keychain.saveItem(query: query)
         }
 

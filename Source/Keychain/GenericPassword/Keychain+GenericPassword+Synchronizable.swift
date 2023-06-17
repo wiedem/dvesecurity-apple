@@ -66,9 +66,10 @@ public extension Keychain.GenericPassword {
         accessibility: Keychain.SynchronizableItemAccessibility = .afterFirstUnlock,
         label: String? = nil
     ) throws {
-        guard let data = password.data(using: .utf8) else {
+        guard let valueData = Crypto.KeyData(copyFrom: password as NSString, encoding: .utf8) else {
             throw Keychain.GenericPasswordError.invalidPassword
         }
+
         var itemAttributes: Set<Keychain.ItemAttribute> = [
             .account(account),
             .service(service),
@@ -77,7 +78,12 @@ public extension Keychain.GenericPassword {
         ]
         label.updateMapped({ .label($0) }, in: &itemAttributes)
 
-        let query = Keychain.AddItemQuery(itemClass: itemClass, valueData: data, attributes: itemAttributes)
+        let query = Keychain.AddItemQuery(
+            itemClass: itemClass,
+            valueData: valueData,
+            attributes: itemAttributes
+        )
+        
         try Keychain.saveItem(query: query)
     }
 
@@ -96,14 +102,15 @@ public extension Keychain.GenericPassword {
         service: String,
         accessGroup: String = Keychain.defaultAccessGroup
     ) throws {
-        guard let data = newPassword.data(using: .utf8) else {
+        guard let valueData = Crypto.KeyData(copyFrom: newPassword as NSString, encoding: .utf8) else {
             throw Keychain.GenericPasswordError.invalidPassword
         }
+
         let itemAttributes: Set<Keychain.ItemAttribute> = [
             .account(account), .service(service), .accessGroup(accessGroup), .synchronizable(),
         ]
 
-        let query = Keychain.UpdateItemQuery(itemClass: itemClass, valueData: data, attributes: itemAttributes)
+        let query = Keychain.UpdateItemQuery(itemClass: itemClass, valueData: valueData, attributes: itemAttributes)
         try Keychain.updateItem(query: query)
     }
 

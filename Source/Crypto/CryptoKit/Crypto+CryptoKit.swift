@@ -31,7 +31,7 @@ extension P521.KeyAgreement.PublicKey: ECCPublicKey & X963Convertible {}
 
 extension Curve25519.KeyAgreement.PrivateKey: KeyDataRepresentable {
     public var keyData: Crypto.KeyData {
-        .createFromUnsafeData(rawRepresentation)
+        .createSecureCopy(of: rawRepresentation)
     }
 
     public init(keyData: Crypto.KeyData) throws {
@@ -43,7 +43,7 @@ extension Curve25519.KeyAgreement.PrivateKey: KeyDataRepresentable {
 
 extension Curve25519.Signing.PrivateKey: KeyDataRepresentable {
     public var keyData: Crypto.KeyData {
-        .createFromUnsafeData(rawRepresentation)
+        .createSecureCopy(of: rawRepresentation)
     }
 
     public init(keyData: Crypto.KeyData) throws {
@@ -55,7 +55,7 @@ extension Curve25519.Signing.PrivateKey: KeyDataRepresentable {
 
 extension CryptoKit.SymmetricKey: KeyDataRepresentable {
     public var keyData: Crypto.KeyData {
-        .createFromUnsafeBytes(self)
+        .createSecureCopy(of: self)
     }
 
     public init(keyData: Crypto.KeyData) {
@@ -67,7 +67,7 @@ extension CryptoKit.SymmetricKey: KeyDataRepresentable {
 
 extension CryptoKit.SecureEnclave.P256.Signing.PrivateKey: KeyDataRepresentable {
     public var keyData: Crypto.KeyData {
-        .createFromUnsafeData(dataRepresentation)
+        .createSecureCopy(of: dataRepresentation)
     }
 
     public init(keyData: Crypto.KeyData) throws {
@@ -79,7 +79,7 @@ extension CryptoKit.SecureEnclave.P256.Signing.PrivateKey: KeyDataRepresentable 
 
 extension CryptoKit.SecureEnclave.P256.KeyAgreement.PrivateKey: KeyDataRepresentable {
     public var keyData: Crypto.KeyData {
-        .createFromUnsafeData(dataRepresentation)
+        .createSecureCopy(of: dataRepresentation)
     }
 
     public init(keyData: Crypto.KeyData) throws {

@@ -228,9 +228,10 @@ extension Keychain {
             label: String? = nil,
             authenticationContext: LAContext? = nil
         ) throws {
-            guard let data = password.data(using: .utf8) else {
+            guard let valueData = Crypto.KeyData(copyFrom: password as NSString, encoding: .utf8) else {
                 throw Keychain.InternetPasswordError.invalidPassword
             }
+
             var itemAttributes: Set<Keychain.ItemAttribute> = [
                 .account(account), .accessGroup(accessGroup), .securityDomain(securityDomain),
                 .server(server), .port(port), .path(path),
@@ -240,8 +241,13 @@ extension Keychain {
             authenticationType.updateMapped({ .authenticationType($0) }, in: &itemAttributes)
             label.updateMapped({ .label($0) }, in: &itemAttributes)
 
-            let query = Keychain.AddItemQuery(itemClass: itemClass, valueData: data, attributes: itemAttributes)
-                .useAuthenticationContext(authenticationContext)
+            let query = Keychain.AddItemQuery(
+                itemClass: itemClass,
+                valueData: valueData,
+                attributes: itemAttributes
+            )
+            .useAuthenticationContext(authenticationContext)
+
             try Keychain.saveItem(query: query)
         }
 
@@ -276,9 +282,10 @@ extension Keychain {
             accessControl: AccessControl = .afterFirstUnlockThisDeviceOnly,
             authentication: QueryAuthentication = .default
         ) throws {
-            guard let data = newPassword.data(using: .utf8) else {
+            guard let valueData = Crypto.KeyData(copyFrom: newPassword as NSString, encoding: .utf8) else {
                 throw Keychain.InternetPasswordError.invalidPassword
             }
+
             var itemAttributes: Set<Keychain.ItemAttribute> = [
                 .account(account), .accessGroup(accessGroup),
             ]
@@ -289,8 +296,13 @@ extension Keychain {
             port.updateMapped({ .port($0) }, in: &itemAttributes)
             path.updateMapped({ .path($0) }, in: &itemAttributes)
 
-            let query = Keychain.UpdateItemQuery(itemClass: itemClass, valueData: data, attributes: itemAttributes)
-                .add(authentication)
+            let query = Keychain.UpdateItemQuery(
+                itemClass: itemClass,
+                valueData: valueData,
+                attributes: itemAttributes
+            )
+            .add(authentication)
+
             try Keychain.updateItem(query: query)
         }
 

@@ -10,11 +10,11 @@ protocol KeychainQuery: AnyObject {
 protocol KeychainFetchItemsQuery: KeychainQuery {}
 
 protocol KeychainAddItemQuery: KeychainQuery {
-    var requiresExtendedLifetime: Bool { get }
+    func queryAttributes(_ queryHandler: ([String: Any]) throws -> Void) rethrows
 }
 
 protocol KeychainUpdateItemQuery: KeychainQuery {
-    var updateDictionary: [String: Any] { get }
+    func updateAttributes(_ queryHandler: ([String: Any]) throws -> Void) rethrows
 }
 
 protocol KeychainDeleteItemsQuery: KeychainQuery {}

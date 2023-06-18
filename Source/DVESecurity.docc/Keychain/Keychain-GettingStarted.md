@@ -12,7 +12,7 @@ On macOS, in addition to the modern `Data Protection Keychain`, there are legacy
 
 macOS offers both a modern and a legacy keychain type as system keychains. In addition, macOS apps can also create and use their own legacy keychain files, which are independent of the system keychain. The functionality for legacy keychain types is contained in the ``Keychain/Legacy`` type.
 
-- Important: Using the `Data Protection Keychain` on macOS requires that the application has an `Application Identifier`. While all iOS apps usually have the required entitlement set, this usually has to be explicitly done for macOS apps.
+- Important: Using the `Data Protection Keychain` on macOS requires that the application has an `Application Identifier`. While all iOS apps usually have the required entitlement set, this has to be explicitly done for macOS apps.
 
 The two keychain types differ in terms of available features and access control. In particular, [SecKey](https://developer.apple.com/documentation/security/seckey) instances created for one keychain type cannot be used in the other type without issues. Another example is synchronized keychain entries (via iCloud), which are only supported by the `Data Protection Keychain`.
 

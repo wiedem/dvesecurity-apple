@@ -187,7 +187,7 @@ final class Keychain_InternetPasswordTests: XCTestCase {
         })
     }
 
-    func testSavingPasswordWithEqualAttributesTwice() throws {
+    func testSaveDuplicateItem() throws {
         try Keychain.InternetPassword.save(password, forAccount: account1)
         expect { try Keychain.InternetPassword.save("CHANGED", forAccount: self.account1) }.to(throwError {
             expect($0) == KeychainError.itemSavingFailed(status: errSecDuplicateItem)
@@ -199,6 +199,12 @@ final class Keychain_InternetPasswordTests: XCTestCase {
 
         try Keychain.InternetPassword.updateItems(newPassword: "CHANGED", forAccount: account1)
         expect(try self.queryPassword()) == "CHANGED"
+    }
+
+    func testUpdateNonExisting() throws {
+        expect { try Keychain.InternetPassword.updateItems(newPassword: "CHANGED", forAccount: self.account1) }.to(throwError {
+            expect($0) == KeychainError.itemUpdateFailed(status: errSecItemNotFound)
+        })
     }
 
     func testUpsert() throws {
@@ -217,6 +223,11 @@ final class Keychain_InternetPasswordTests: XCTestCase {
 
         let result2 = try Keychain.InternetPassword.deleteItems(forAccount: account1)
         expect(result2) == false
+    }
+
+    func testDeleteNonExisting() throws {
+        let result = try Keychain.InternetPassword.deleteItems(forAccount: account1)
+        expect(result) == false
     }
 }
 

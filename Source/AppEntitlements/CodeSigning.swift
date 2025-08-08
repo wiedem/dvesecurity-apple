@@ -131,7 +131,7 @@ final class MachOCodeSigning {
             let blobLengthPointer = blobMagicPointer.advanced(by: 1)
             let blobLength = blobLengthPointer.pointee.bigEndian
             let blobDataPointer = UnsafeRawPointer(blobLengthPointer.advanced(by: 1))
-            let blobDataLength = Int(blobLength) - (blobDataPointer - blobPointer)
+            let blobDataLength = -(blobDataPointer - blobPointer) + Int(blobLength)
 
             let blob = CodeSigningBlob(magic: blobMagic, dataPointer: blobDataPointer, dataLength: blobDataLength)
             codeSigningBlobs.append(blob)
